@@ -1,0 +1,30 @@
+﻿@model AssociationViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.Event.Headline;
+    ViewBag.MetaDescription = Model.Event.Description.Trim().ScrubHtml().String200();
+    ViewBag.PageImage = "~/Content/Images/Natteravnene-6.jpg";
+    ViewBag.SocialImage = Html.FullyQualifiedUri("~/Content/Images/Natteravnene-6.jpg", Model.Host).ToString();
+    ViewBag.SocialType = "article";
+}
+
+<div id="pagehero">
+    <img src="@Url.Content(ViewBag.PageImage)" class="img-responsive" />
+    <h1>@Html.Raw(ViewBag.Title)</h1>
+</div>
+
+<div class="body-content">
+    <div class="row">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 eventback"><a href="@Url.Action("Aktiviteter")"><i class="fa fa-angle-left"></i></a></div>
+        <div class="col-xs-10 col-sm-10 col-md-4 col-lg-3">
+            <div class="eventstart">
+                <span class="day">@Model.Event.Start.ToString("dddd")</span><span class="date">@Model.Event.Start.ToString("d. MMMM")</span><span class="time">@Model.Event.Start.ToString("kl. H:mm")</span>
+            </div>
+        </div>
+        <div class="col-xs-offset-2 col-xs-10 col-sm-offset-2 col-sm-10 col-md-offset-0 col-md-6 col-lg-offset-0 col-lg-7">
+            <h2>@Model.Event.Headline</h2>
+            <div class="light-orange"><i class="ace-icon fa fa-map-marker light-orange bigger-110"></i>&nbsp;<strong>@Html.Raw(Model.Event.Location)</strong></div>
+            <p>@Html.Raw(Model.Event.Description)</p>
+        </div>
+    </div>
+</div>

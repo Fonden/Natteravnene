@@ -1,0 +1,193 @@
+﻿@model List<Association>
+
+
+
+@section pagescripts {
+    @Scripts.Render("~/bundles/table")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+    $(function () {
+        var oTable1 = $('#Association-table').dataTable({
+            "language": {
+                "lengthMenu": "@General.DatatablesLengthMenu",
+                "zeroRecords": "@General.DatatablesZeroRecords",
+                "info": "@General.DatatablesInfo",
+                "infoEmpty": "@General.DatatablesInfoEmpty",
+                "infoFiltered": "@General.DatatablesInfoFiltered",
+                "loadingRecords": "@General.DatatablesLoadingRecords",
+                "processing": "@General.DatatablesProcessing",
+                "search": "@General.Search:",
+                "thousands": "@General.ThousenSeperator",
+                "paginate": {
+                    first: ">>",
+                    previous: "<",
+                    next: ">",
+                    last: "<<"
+                }
+            },
+            "pageLength": @NR.Infrastructure.CurrentProfile.ListLines.ToString(),
+            "order": [1, "asc"],
+            "columnDefs": [
+                        {
+                            "targets": [ 4 ],
+                            "searchable": false
+                        },
+                         {
+                             "targets": [ 5 ],
+                             "searchable": false
+                         },
+                         {
+                             "targets": [ 6 ],
+                             "orderable": false,
+                             "searchable": false
+                         }
+
+            ]
+        });
+
+        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+        function tooltip_placement(context, source) {
+            var $source = $(source);
+            var $parent = $source.closest('table')
+            var off1 = $parent.offset();
+            var w1 = $parent.width();
+
+            var off2 = $source.offset();
+            //var w2 = $source.width();
+
+            if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+            return 'left';
+        }
+
+
+    })
+</script>
+}
+
+
+
+
+
+
+<div class="page-header position-relative">
+    
+    <div class="pull-right">
+        <div class="btn-group">
+            <a class="btn btn-success" href="@Url.Action("BirthdayListAssociation")">@General.AssociationBirthdayList</a>
+
+            <button data-toggle="dropdown" class="btn btn-success dropdown-toggle" aria-expanded="false">
+                <span class="ace-icon fa fa-caret-down icon-only"></span>
+            </button>
+
+            <ul class="dropdown-menu dropdown-success">
+<!--                <li>
+                    <a href="@Url.Action("ListPeople", new {id = 2 })">@General.BtnExportBoards</a>
+                </li>-->
+
+            </ul>
+        </div>
+
+        <a href="@Url.Action("Edit")" role="button" class="btn btn-small btn-primary"> @General.BtnNewAssociation </a>
+    </div>
+        <h1>Foreninger</h1>
+
+    </div>
+<div class="row">
+    <div class="col-xs-12">
+        <table id="Association-table" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>@DomainStrings.AssociationName</th>
+                    <th>@DomainStrings.NetworkName</th>
+                    <th>@DomainStrings.SetupSeniorInstructor</th>
+                    <th>@DomainStrings.AssociationStatus</th>
+                    <th>@DomainStrings.Established</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Association association in Model)
+                {
+                    <tr>
+                        <td>@association.Number</td>
+                        <td>@association.Name</td>
+                        <td>@(association.Network == null ? "-" : association.Network.NetworkName)</td>
+                        <td>@Html.ProfilLink(association.SeniorInstruktoer)</td>
+                        <td class="">@association.Status.DisplayName()</td>
+                        <td class="" data-order="@association.Established.ToString("yyyymmdd")">@association.Established.ToShortDateString()</td>
+                        <td class="td-actions">
+                            <div class="hidden-sm hidden-xs action-buttons">
+                                <a class="blue" href="@Url.Action("View", null, new { id = association.AssociationID })" data-rel="tooltip" title="@General.TooltipAssociationView" data-original-title="@General.TooltipAssociationView">
+                                    <i class="@Icons.View bigger-130"></i>
+                                </a>
+
+                                <a class="green" href="@Url.Action("Edit", null, new { id = association.AssociationID })" data-rel="tooltip" title="@General.TooltipAssociationEdit" data-original-title="@General.TooltipAssociationEdit">
+                                    <i class="@Icons.Edit bigger-130"></i>
+                                </a>
+
+                                <a class="green" href="@Url.Action("EditNote", null, new { id = association.AssociationID })" data-rel="tooltip" title="@General.TooltipAssociationNote" data-original-title="@General.TooltipAssociationNote">
+                                    <i class="@Icons.Note bigger-130"></i>
+                                </a>
+
+                                <a class="green" href="@Url.Action("EditBoard", null, new { id = association.AssociationID })" data-rel="tooltip" title="@General.TooltipBoardEdit" data-original-title="@General.TooltipBoardEdit">
+                                    <i class="ace-icon nricon-Bestyrelse bigger-130"></i>
+                                </a>
+
+                                <a class="green" href="@Url.Action("Access", null, new { id = association.AssociationID })" data-rel="tooltip" title="@General.TooltipAccessEdit" data-original-title="@General.TooltipAccessEdit">
+                                    <i class="@Icons.Access bigger-130"></i>
+                                </a>
+
+                                <a class="blue" href="@Url.Action("Location", null, new { id = association.AssociationID })" data-rel="tooltip" title="@General.TooltipAssociationLocation" data-original-title="@General.TooltipAssociationLocation">
+                                    <i class="@Icons.Location bigger-130"></i>
+                                </a>
+
+                                <a class="green" href="@Url.Action("_ResetLocalPage", null, new { id = association.AssociationID })" data-rel="tooltip" title="@General.TooltipResetLocal" data-original-title="@General.TooltipResetLocal">
+                                    <i class="ace-icon fa fa-history bigger-130"></i>
+                                </a>
+
+                                <a class="green" href="@Url.Action("Logos", null, new { id = association.AssociationID })" data-rel="tooltip" title="@General.TooltipUploadLogo" data-original-title="@General.TooltipUploadLogo">
+                                    <i class="ace-icon nricon-Natteravnenelogo bigger-130"></i>
+                                </a>
+
+                                <a class="green" href="@Url.Action("SimulateAssociation", null, new { id = association.AssociationID })" data-rel="tooltip" title="@General.TooltipSimulateAssociation" data-original-title="@General.TooltipSimulateAssociation">
+                                    <i class="ace-icon fa fa-arrow-circle-o-right bigger-130"></i>
+                                </a>
+                                
+                            </div>
+                            <div class="hidden-md hidden-lg">
+                                <div class="inline position-relative">
+                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                        <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                    </button>
+
+                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                        <li>
+                                            <a href="@Url.Action("View", null, new { id = association.AssociationID })" class="tooltip-info" data-rel="tooltip" title="@General.View" data-original-title="@General.View">
+                                                <span class="blue">
+                                                    <i class="ace-icon fa fa-eye bigger-120"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="@Url.Action("Edit", null, new { id = association.AssociationID })" class="tooltip-success" data-rel="tooltip" title="@General.Edit" data-original-title="@General.Edit">
+                                                <span class="green">
+                                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--PAGE CONTENT ENDS-->
+

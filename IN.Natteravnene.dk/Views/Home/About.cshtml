@@ -1,0 +1,563 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<div class="page-header position-relative">
+    <h1>
+        Natteravnenes Intranet
+    </h1>
+</div>
+<p>Velkommen til Natteravnenes Intranet.</p>
+<p>Systemet er på nuværende tidspunkt i beta test.</p>
+<p>Har du problemer så kontakt Landssekretariatet på 70 12 12 99 eller på <a href="mailto:info@natteravnene.dk">info@natteravnene.dk</a></p>
+<p>
+    Nuværende version: <strong>@ViewContext.Controller.GetType().Assembly.GetName().Version</strong>
+</p>
+
+<div class="row">
+    <div class="col-sm-6">
+        <h3 class="row header smaller lighter blue">
+            <span class="col-xs-6"> Frigivelses historik </span><!-- /.col -->
+        </h3>
+        <div id="accordion" class="accordion-style1 panel-group">
+            <!--Herfra-->
+            <!--<div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAB">
+                            <i class="bigger-110 ace-icon fa fa-angle-down" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+                            &nbsp;Version 0.8.0.4 <span class="pull-right inline"><i class="fa fa-calendar"></i> XX-02-2015</span>
+                        </a>
+                    </h4>
+                </div>
+
+                <div class="panel-collapse collapse in" id="collapseAB">
+                    <div class="panel-body">
+                        <h5>Nye funktioner/forbedringer/ændringer</h5>
+                        <ul>
+                            <li>--</li>
+                        </ul>
+                        <h5>Fejlrettelse</h5>
+                        <ul>
+                            <li>--</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>-->
+            <!--Hertil-->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAI">
+                            <i class="bigger-110 ace-icon fa fa-angle-down" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+                            &nbsp;Version 0.9 <span class="pull-right inline"><i class="fa fa-calendar"></i> 08-10-2015</span>
+                        </a>
+                    </h4>
+                </div>
+
+                <div class="panel-collapse collapse in" id="collapseAI">
+                    <div class="panel-body">
+                        <h5>Nye funktioner/forbedringer/ændringer</h5>
+                        <ul>
+                            <li>Lokal hjemmeside link tilføjet øverst til højre</li>
+                            <li>Rækkefølge sponsor tilføjet</li>
+                            <li>Sponsor håndtering tilføjet</li>
+                            <li>Prøveturer: Når status ændres til "Blevet frivillig" tilbydes man at oprette Emnet dom profil med overførsel af data</li>
+                            <li>Turmappe statusændrimgs knap under listevisning</li>
+                            <li>Emne håndtering (Prøveture)</li>
+                            <li>Automatisk fokus på Brugernavn feltet på Login siden.</li>
+                            <li>Nye Natteravne Ikoner.</li>
+                            <li>Planlægningsvisning viser kun planlagte ture.</li>
+                            <li>Lokal hjemmeside lanceret.</li>
+                            <li>Hjælp ved oprettlse af bruger i forhold til Brugernavn.</li>
+                        </ul>
+                        <h5>Fejlrettelse</h5>
+                        <ul>
+                            <li>Sponsor logo tilføjet</li>
+                            <li>Opsætning af "Brug sponsorside" gemmes nu</li>
+                            <li>Giver fejl hvis man forsøger at upload profil billede filer af forkert format</li>
+                            <li>Emneliste fjerne ikke længere status prøveture efter 7 dage</li>
+                            <li>DEn gule - Sidste ord i lister belev ikke vist - rettet.</li>
+                            <li>Aktiviteter start tidspunkt kunne ikke flyttes ud i fremtiden før man havde flyttet slut tidspunkt</li>
+                            <li>Man kunne ikke rette nyheder der var sat til at blive publiseret i fremtiden</li>
+                            <li>Fejl ved rettelse af Websider</li>
+                            <li>Opdatering til Turstatus opdatering for at gøre denne mere stabil.</li>
+                            <li>Opdatering til Notifikations status for at gøre denne mere stabil.</li>
+                            <li>500 fejl når der indtastes forkert format i tid eller dato. Nu vises fejl meddelelse.</li>
+                            <li>Rækker i lister virker nu under Turmapper og Listvisning af Turmappe</li>
+                            <li>Opdatering af afsender nummer så svar er mulig.</li>
+                            <li>Når man giver feedback på Turmappe hvor der ikke er nogle turer i.</li>
+                            <li>Afbryd under rediger Tur fjernet.</li>
+                            <li>Turnote SMS sendes nu.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAH">
+                            <i class="bigger-110 ace-icon fa fa-angle-down" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+                            &nbsp;Version 0.8.7 <span class="pull-right inline"><i class="fa fa-calendar"></i> 31-05-2015</span>
+                        </a>
+                    </h4>
+                </div>
+
+                <div class="panel-collapse collapse" id="collapseAH">
+                    <div class="panel-body">
+                        <h5>Nye funktioner/forbedringer/ændringer</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.19 - 20-09-2015</strong></li>
+                            <li>Lokal logo side</li>
+                            <li>Bestyrelses medlemmer, Suppleanter og Revisorer kan ikke meldes ud</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.18 - 17-09-2015</strong></li>
+                            <li>Mulighed for at bruge Presse side på Lokal hjemmesider</li>
+                            <li>Mulighed for at bruge Links side på Lokal hjemmesider</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.17 - 15-09-2015</strong></li>
+                            <li>Lokal hjemmeside redigering</li>
+                            <li>Nulstil lokal hjemmeside tekster</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.15 - 28-08-2015</strong></li>
+                            <li>Fejlsøgning på Bruger konto - admin</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.14 - 24-08-2015</strong></li>
+                            <li>Datovælger starter nu med mandag som første dag i ugen</li>
+                            <li>I forbindelse med oprettlse af Ravne der ikke har e-mail vil der nu blive sendt en SMS hvis de har mobilnummer indtastet</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.9 - 26-06-2015</strong></li>
+                            <li>Turmappe mail viser om personen er sat på turer</li>
+                            <li>Opfordring til at svare på Turmappe mail er fjernet</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.5 - 04-06-2015</strong></li>
+                            <li>Holderleder icon på frivillig listen</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.0 - 31-05-2015</strong></li>
+                            <li>News billed upload øget fra 4 mb til 10 mb</li>
+                            <li>Profil billed upload øget fra 4 mb til 10 mb</li>
+                        </ul>
+                        <h5>Fejlrettelse</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.15 - 28-08-2015</strong></li>
+                            <li>Dobbelt oprettlse Nyheder</li>
+                            <li>Problemer med upload af Profilbilleder efter opdatering</li>
+                            <li>Rette tur - antalet af mulige Ravne bliv vist til 1 for meget</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.14 - 24-08-2015</strong></li>
+                            <li>Nyhedsbillede opdatering virker nu i Firefox</li>
+                            <li>Sms til tur havde fejl i Dato format når tiden indeholdte "X0:00"</li>
+                            <li>Fejl i forbindelse med admin lister</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.12 - 04-07-2015</strong></li>
+                            <li>>Retter fejl ved manglende Mobil nummer under kommunikation for turplaner</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.11 - 20-07-2015</strong></li>
+                            <li>>Optimering af udsendelse af Tur SMS'er så de ikke blokere systemet</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.10 - 04-07-2015</strong></li>
+                            <li>>Fejl ved afsendelse af SMS'er når mobil er tom under TurMappe kommunikation</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.8 - 26-06-2015</strong></li>
+                            <li>Fejl ved at noge turer ikke blev vist på tilbagemeldingsformen</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.7 - 22-06-2015</strong></li>
+                            <li>Fejl ved beskæring af profilbilleder når beskæringen fyldet til bund eller højre side</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.6 - 17-06-2015</strong></li>
+                            <li>Logind: Hvis der blev klikket på logind unde at udfylde felter fik man en fejl 500</li>
+                            <li>Feedback formular der blev genåbnet vist forkert hvis der val valgt at man ikke kunne gå i inneværende periode</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.5 - 04-06-2015</strong></li>
+                            <li>Foreningens by navn blev ikke gemt</li>
+                            <li>Nedlagte turer vises ikke længere under turplanen, mine turer og åbneturer</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.4 - 1-06-2015</strong></li>
+                            <li>Side Scripts opdateret</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.3 - 1-06-2015</strong></li>
+                            <li>Fejl ved afsendelse af Besked SMSer</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.2 - 1-06-2015</strong></li>
+                            <li>Feedback fra SMS afsendelse rettet</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.1 - 1-06-2015</strong></li>
+                            <li>Antal turer vises korrekt</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.7.0 - 31-05-2015</strong></li>
+                            <li>Omlægning af database laget</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAG">
+                            <i class="bigger-110 ace-icon fa fa-angle-right" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+                            &nbsp;Version 0.8.6 <span class="pull-right inline"><i class="fa fa-calendar"></i> 10-05-2015</span>
+                        </a>
+                    </h4>
+                </div>
+
+                <div class="panel-collapse collapse" id="collapseAG">
+                    <div class="panel-body">
+                        <h5>Nye funktioner/forbedringer/ændringer</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.6.5 - 22-05-2015</strong></li>
+                            <li>Forsidens billed skift af nyheder forlænget til 12 sekunder.</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.6.3 - 17-05-2015</strong></li>
+                            <li>Maillisten "Personer der ikke har givet tilbagemelding" fixet</li>
+                            <li>Der kan nu vælges personner i henhold til vedtægterne</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.6.2 - 15-05-2015</strong></li>
+                            <li>Man kan nu se Navn på tilbagemeldingsformen, for dem der deler e-mail adresse</li>
+                            <li>Tooltips til knapper Foreningen</li>
+                            <li>Tooltips til knapper Beskeder</li>
+                            <li>Tooltips til knapper Frivillige</li>
+                            <li>Tooltips til knapper Aktiviteter</li>
+                            <li>Tooltips til knapper Nyheder</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.6.1 - 12-05-2015</strong></li>
+                            <li>Mulighed for at vælge forening hvis man er frivillig i flere foreninger</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.6.0 - 10-05-2015</strong></li>
+                            <li>15 min intervaller for start og slut events (Event/edit)</li>
+                            <li>Log ind formular viser hvis CAPS LOCK er slået til</li>
+                        </ul>
+                        <h5>Fejlrettelse</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.6.7 - 27-05-2015</strong></li>
+                            <li>Ved oprettlse af personer Danmark sat som standard</li>
+                            <li>Afsender opdateret så man kan modtage svar fra iPhone</li>
+                            <li>Status opdatering knappe på turer vises 6 timer før turen og ikke som nu 6 timer efter.</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.6.5 - 22-05-2015</strong></li>
+                            <li>Fejl ved Planlægningsvisning af Turmappe hvis der ikke er oprettet nogen turer i denne.</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.6.4 - 19-05-2015</strong></li>
+                            <li>Fejl hvis Nyheds Teaser ikke er udfyldt</li>
+                            <li>Ret bestyrelsen kanppen blev vis til alle brugere</li>
+                            <li>Fejl når man trykker Send ny besked under TurMappe kommunikation</li>
+                            <li>Sikre at en person kun får en notifikation 1 gang</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.6.1 - 12-05-2015</strong></li>
+                            <li>Beskeder kunne ikke vises</li>
+                            <li>Profiler kunne ikke vises</li>
+                            <li>Fejl side kunne ikke vises (error500)</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.6.0 - 10-05-2015</strong></li>
+                            <li>Fejlrettelse i forbindelse med problemer med at udsende TurMapper</li>
+                            <li>Rette tur så det ikke er muligt at vælge en "ekstra" Ravn, samt deaktivering af Ravn 2 når der er prøvetur (Planning/Edit)</li>
+                            <li>Rettte Kodeord rettet så den ikke sender det gamle kodeord når man anmoder om at få tilsendt kodeord</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAF">
+                            <i class="bigger-110 ace-icon fa fa-angle-right" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+                            &nbsp;Version 0.8.5 <span class="pull-right inline"><i class="fa fa-calendar"></i> 20-04-2015</span>
+                        </a>
+                    </h4>
+                </div>
+
+                <div class="panel-collapse collapse" id="collapseAF">
+                    <div class="panel-body">
+                        <h5>Nye funktioner/forbedringer/ændringer</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.5.3 - 25-04-2015</strong></li>
+                            <li>Opdatering af listefunktion (Admin)</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.5.2 - 22-04-2015</strong></li>
+                            <li>Export af lister (Admin)</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.5.1 - 21-04-2015</strong></li>
+                            <li>Ændret design på kort</li>
+                            <li>Ændret design på rediger knapper for Nyheder og Aktiviteter</li>
+                            <li>Ændret standardsortering under Listevisning (planning/Folder)</li>
+                            <li>Redigering af statiske sider</li>
+                            <li>Mine turer viser nu også åbne turer på forsiden</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.5</strong></li>
+                            <li>Tilbagemeldings sider nu med information om hvilken forening det er fra</li>
+                            <li>Ny side "Hvor går Natteravnene" <a href="@Url.Action("AssociationMap", "Home", new { area = "" })"><i class="ace-icon fa fa-arrow-circle-o-right bigger-130"></i></a></li>
+                            <li>Fjerne mellemrum i Brugernavn og Kodeord ved log ind.</li>
+                        </ul>
+                        <h5>Fejlrettelse</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.5.3 - 25-04-2015</strong></li>
+                            <li>Fejl rettlse idet ikke besatte ture blev vis for alle brugere</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.5.2 - 22-04-2015</strong></li>
+                            <li>Læs besked message X of X -> besked X af X</li>
+                            <li>Ny besked: Short -> Kortbesked (SMS)</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.5.1 - 21-04-2015</strong></li>
+                            <li>Planlægnings visning viser nu korrekt ved Prøvetur</li>
+                            <li>Dobbelt oprettelse af foreninger</li>
+                            <li>Man kunne ikke indtaste e-mail med punktum x.x@x.xx</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.5</strong></li>
+                            <li>Nyoprettede foreninger har ikke websider</li>
+                            <li>Fejl når der kigges på profil der ikke er af samme forning (People/ViewProfile)</li>
+                            <li>Korrekt titel på siden hvor turmapper redigeres (Planning/CreateFolder)/(Planning/FolderEdit)</li>
+                            <li>Korrekt titel på siden hvor profiler redigeres (People/Edit)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAE">
+                            <i class="bigger-110 ace-icon fa fa-angle-right" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+                            &nbsp;Version 0.8.4 <span class="pull-right inline"><i class="fa fa-calendar"></i> 17-04-2015</span>
+                        </a>
+                    </h4>
+                </div>
+
+                <div class="panel-collapse collapse" id="collapseAE">
+                    <div class="panel-body">
+                        <h5>Nye funktioner/forbedringer</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.4.0 - 17-04-2015</strong></li>
+                            <li>Konfirmation når frivillig "udmeldes" (People)</li>
+                            <li>Edit knap på se profil (People/Edit)</li>
+                            <li>Mailto funktion list uden navne <a href="@Url.Action("MailTo", "Message", new { area = "" })"><i class="ace-icon fa fa-arrow-circle-o-right bigger-130"></i></a></li>
+                            <li>Fejl side ved system fejl med mulighed for at sende yderliger information om fejl</li>
+                        </ul>
+                        <h5>Fejlrettelse</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.4.1 - 19-04-2015</strong></li>
+                            <li>Fejlretning news Endless scroll, når bruge bliver logged ud</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.4.0 - 17-04-2015</strong></li>
+                            <li>Turredigering fejl ved prøvetur (Planning/Edit)</li>
+                            <li>Turer der ikke kunne gå's kan ikke opdateres med OK eller Aflyst</li>
+                            <li>Turmappe kan først Arkiveret en måned efter Slutdato</li>
+                            <li>Turmappe navn kan nu rettes (Planning/FolderEdit)</li>
+                            <li>Fejl ved rettelse af netværks data (admin/Network)</li>
+                            <li>Overskrift rettet Fil bibliotek <a href="@Url.Action("Index", "File", new { area = "" })"><i class="ace-icon fa fa-arrow-circle-o-right bigger-130"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAD">
+                            <i class="bigger-110 ace-icon fa fa-angle-right" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+                            &nbsp;Version 0.8.3 <span class="pull-right inline"><i class="fa fa-calendar"></i> 05-04-2015</span>
+                        </a>
+                    </h4>
+                </div>
+
+                <div class="panel-collapse collapse" id="collapseAD">
+                    <div class="panel-body">
+                        <h5>Nye funktioner/forbedringer</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.3.1 - 08-04-2015</strong></li>
+                            <li>Fejlsøgnings værktøjer</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.3.0 - 05-04-2015</strong></li>
+                            <li>Lokale nyheder for Redaktører og Sekretærer <a href="@Url.Action("Index","News")"><i class="ace-icon fa fa-arrow-circle-o-right bigger-130"></i></a></li>
+                            <li>Notifikation ved forenings noter (Admin/Association/View)</li>
+                            <li>Redigering af lokale hjemmesider for Sekretærer og Redaktører <a href="@Url.Action("EditAssociationpages","Pages")"><i class="ace-icon fa fa-arrow-circle-o-right bigger-130"></i></a></li>
+                        </ul>
+                        <h5>Fejlrettelse</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.3.0 - 05-04-2015</strong></li>
+                            <li>Manglende fejlmeddelelse når Emne i ny besked er for lang <a href="@Url.Action("NewMessage", "Message", new { area = "" })"><i class="ace-icon fa fa-arrow-circle-o-right bigger-130"></i></a></li>
+                            <li>Vidensbank -> filer Downloaded ikke - rettet <a href="@Url.Action("Index", "File", new { area = "" })"><i class="ace-icon fa fa-arrow-circle-o-right bigger-130"></i></a></li>
+                            <li>Den Gule redigering fejlrettet (admin/Wik/Edit)</li>
+                            <li>Den Gule - ord sorteret alfabetisk <a href="@Url.Action("Index","Wiki")"><i class="ace-icon fa fa-arrow-circle-o-right bigger-130"></i></a></li>
+                            <li>Fejlmeddelelse "Kasser skal udfyldes" rettet til "Kasserer skal udfyldes" <a href="@Url.Action("EditBoard", "Association")"><i class="ace-icon fa fa-arrow-circle-o-right bigger-130"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAC">
+                            <i class="bigger-110 ace-icon fa fa-angle-right" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+                            &nbsp;Version 0.8.2 <span class="pull-right inline"><i class="fa fa-calendar"></i> 22-03-2015</span>
+                        </a>
+                    </h4>
+                </div>
+
+                <div class="panel-collapse collapse" id="collapseAC">
+                    <div class="panel-body">
+                        <h5>Nye funktioner/forbedringer</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.2.2 - 30-03-2015</strong></li>
+                            <li>Funktion til at lave IDkort (Admin)</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.2 - 22-03-2015</strong></li>
+                            <li>Ny knap til at sætte alle notifikationer som læst (nofification) <a href="@Url.Action("Index","Notification")"><i class="ace-icon fa fa-arrow-circle-o-right bigger-130"></i></a></li>
+                            <li>Fil bibliotek for alle implementeret <a href="@Url.Action("Index","File")"><i class="ace-icon fa fa-arrow-circle-o-right bigger-130"></i></a></li>
+                            <li>Ændre kodeord funktion implementeret <a href="@Url.Action("ChangePassword", "People")"><i class="ace-icon fa fa-arrow-circle-o-right bigger-130"></i></a></li>
+                            <li>Hjælpe funktion implementeret</li>
+                            <li>Ikon der viser om frivillige har et profilbillede i liste (people/index) <a href="@Url.Action("Index", "People")"><i class="ace-icon fa fa-arrow-circle-o-right bigger-130"></i></a></li>
+                            <li>Eksport frivillig til Excel (people/index) <a href="@Url.Action("Index", "People")"><i class="ace-icon fa fa-arrow-circle-o-right bigger-130"></i></a></li>
+                            <li>Send log ind til frivillige (people/index) <a href="@Url.Action("Index", "People")"><i class="ace-icon fa fa-arrow-circle-o-right bigger-130"></i></a></li>
+                        </ul>
+                        <h5>Fejlrettelse</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.2.3 - 29-03-2015</strong></li>
+                            <li>Fejl i layout i forbindelse med tabeller rettet</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.2.2 - 24-03-2015</strong></li>
+                            <li>Login til Personer uden membership</li>
+                            <li>Opdateret Nyheds oprettelse</li>
+                            <li>Brugernavn ikke altid uniq import AVIVA</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.2 - 22-03-2015</strong></li>
+                            <li>Sikre at personer kun få en notifikation</li>
+                            <li>Tidsbeskrivelse i nyheder, notifikation, beskeder var gal i forbindelse med minutter der blev til timer - rettet.</li>
+                            <li>Nyheder blev oprettet 2 gange hvis man gemte 2 gange (admin/news/edit)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAB">
+                            <i class="bigger-110 ace-icon fa fa-angle-right" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+                            &nbsp;Version 0.8.1 <span class="pull-right inline"><i class="fa fa-calendar"></i> 27-02-2015</span>
+                        </a>
+                    </h4>
+                </div>
+
+                <div class="panel-collapse collapse" id="collapseAB">
+                    <div class="panel-body">
+                        <h5>Nye funktioner/forbedringer</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.1.4 - 04-03-2015</strong></li>
+                            <li>Mulighed for at udmelde frivillige (people/index)</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.1.2 - 02-03-2015</strong></li>
+                            <li>Holdledere vises som ikon under attributer i frivilligheds listen</li>
+                            <li>Foreningsnoter aktiveret (admin/association/EditNote)</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.1.1 - 01-03-2015</strong></li>
+                            <li>Liste med billeder af SeniorInstruktører på Seniorinstruktør siden (SI/info)</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.1.0 - 27-02-2015</strong></li>
+                            <li>MailTo mulighed for at kopiere e-mails adresse over i ekstern e-mail program</li>
+                            <li>Nøgleboks modul (Keybox.Index)</li>
+                        </ul>
+                        <h5>Fejlrettelse</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.1.5 - XX-03-2015</strong></li>
+                            <li>"Husk mig?" funktion virker nu (Account/login)</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.1.4 - 04-03-2015</strong></li>
+                            <li>Fejl ved tildeling af rettigheder til frivillige når alle fivillige er valgt og dropdown listen er tom (admin/association/Access)</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.1.3 - 03-03-2015</strong></li>
+                            <li>Fejl ved import fra AVIVA ved manglende kodeord</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.1.1 - 01-03-2015</strong></li>
+                            <li>Viser ikke 2 ravne når man retter en tur (Planning/edit)</li>
+                            <li>Fejl når en tur med udmeldte eller ikke personer der ikke længere er holdledere redigeres (Planning/edit)</li>
+                            <li>Holdledere kan nu kun vælges bland personer der er defineret som holdledere (Planning/edit)</li>
+                            <li>Datoformat var forkert i dropdown under Person rediger/oprettelse i admin (admin/People/edit)</li>
+                            <li>Dobbelt oprettelse af Foreninger ved gen submit lige efter oprettelse fixet (admin/association/edit)</li>
+                        </ul>
+                        <h5>Øvrige ændringer</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.1.2 - 02-03-2015</strong></li>
+                            <li>Basistræning rettet til Grundtræning (Bruges i Vedtægterne)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseAA">
+                            <i class="bigger-110 ace-icon fa fa-angle-right" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+                            &nbsp;Version 0.8.0 <span class="pull-right inline"><i class="fa fa-calendar"></i> 14-02-2015</span>
+                        </a>
+                    </h4>
+                </div>
+
+                <div class="panel-collapse collapse" id="collapseAA">
+                    <div class="panel-body">
+                        <h5>Nye funktioner/forbedringer</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.0.10 - 19-02-2015</strong></li>
+                            <li>Maillist til Kvinder og Mænd (Message/Newmessage)</li>
+                            <li>Bruger specifik genvej (Turplanlægger)</li>
+                            <li>Delete news in admin (admin.news.index)</li>
+                            <li>Notification om versioner Sekretær, Turplanlægger, Editor og admin</li>
+                            <li>Håndtering af historiske data</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.0.07 - 17-02-2015</strong></li>
+                            <li>Tilføjet mulighed for at slette ture når folder har status "Ny"</li>
+                            <li>Forbedret layout på holdlistning</li>
+                            <li>Forbedret layout Notifikation list i top menu (HtmlExtensions.UserBarNotificationeListing)</li>
+                            <li>Forbedret brugerinterfacet for bestyrelses redigering</li>
+                        </ul>
+                        <h5>Fejlrettelse</h5>
+                        <ul>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.0.11 - 24-02-2015</strong></li>
+                            <li>Feedback skærm kunne ikke gemmes ved bestemte datoer (planning/feedback)</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.0.10 - 19-02-2015</strong></li>
+                            <li>Redigering af Turer gav fejl. Samtidig følgefejl i Tur visning så side med turer på gav fejl</li>
+                            <li>Bekræftigelse på gemt data ved redigering af bestyrelse (admin asssociation.EditBoard)</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.0.09 - 17-02-2015</strong></li>
+                            <li>Sletning af beskeder virker</li>
+                            <li>Besked link fra Top menu virker og ulæst bliver til læste</li>
+                            <li>Planlægningsview interaktivitet optimeret</li>
+                            <li>Planlægningview gav fejl når der ikke var sat personer på et hold</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.0.08 - 17-02-2015</strong></li>
+                            <li>Beskeder sorteres med nyeste først</li>
+                            <li>Link til og framelding i Feedback E-mail virker. Før blev den ikke vist</li>
+                            <li>Besked formatering vises korrekt (HTML) </li>
+                            <li>Feedback e-mail vises korrekt med formatering (HTML) (Planning/Communicate)</li>
+                            <li>Generere Password når person oprettes i Admin (Admin/People.Edit)</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.0.07 - 16-02-2015</strong></li>
+                            <li>"Den gule" rettet til "Den Gule" i menuen</li>
+                            <li>"Senior Instruktør" og "Seniorinstruktør rettet til "SeniorInstruktør" i menu</li>
+                            <li>Bruger besked i Tilbagemelding E-mail blev lavet til HTML</li>
+                            <li>Problemer med login når der er modtaget beskeder (reposetory.GetUserUnreadMessages)</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.0.06 - 15-02-2015</strong></li>
+                            <li>Besked Scheduler optimeret</li>
+                            <li>Fejl ved oprettelse af ture når man bruger "Tag tur" funktion</li>
+                            <li>Knyt forening til turer (PlanningController.AddTeams)</li>
+                            <li class="text-warning bigger-110 orange"><strong>Version 0.8.0.05 - 15-02-2015</strong></li>
+                            <li>Udsendelse af E-mail i forbindelse med tilbagemelding gav fejl. (Planning/Communicate)</li>
+                            <li>Redigering af forenings brugerrettigheder rettet, så der i valglisten ikke optræder "udmeldte" frivillige (Repository.GetAccess)</li>
+                            <li>Ikon for SeniorInstruktør rettet på person listen under Admin (HtmlExtensions.PersonOnlyAttributesIcons)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <h3 class="row header smaller lighter blue">
+            <span class="col-xs-6"> Ønsker og kendte fejl</span>
+        </h3>
+        <div id="accordionSecond" class="accordion-style1 panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionSecond" href="#collapseOne">
+                            <i class="ace-icon fa fa-angle-down bigger-110" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+                            &nbsp;Ønsker til systemet
+                        </a>
+                    </h4>
+                </div>
+
+                <div class="panel-collapse collapse in" id="collapseOne">
+                    <div class="panel-body">
+                        <p>Her registreres ønsker til systemet som ikke findes i den nuværende specifikation.</p>
+                        <ul>
+                            <li>Mail - Besvar (Kommer i senere version)</li>
+                            <li>Mail - Udbakke(Kommer i senere version)</li>
+                            <li>
+                                <strong>Statistik vandringer</strong><br />
+                                Statistikken indeholder alene det totale antal vandringer, som den frivillige har gennemført.
+                                Under den frivilliges nuværende stamkort kan vi se, hvornår de har været på tur.  Vi bruger denne oplysning til at følge op på vores frivillige, således vi kan kontakte dem, hvis deres interesse
+                                for at gå ture er faldet. D.v.s. vi får en mulighed for en snak og for at fastholde dem inden de helt forsvinder.  Det vil derfor være rart, hvis denne funktion også kommer med i det nye system.
+                                I øvrigt ville det være rart, hvis statistikken indeholdt antal ture indeværende år og totalt antal ture.(Kommer i senere version)
+                            </li>
+                            <li>
+                                <strong>Bestyrelsen</strong><br />
+                                Kan der eventuelt etableres en mulighed for at indsætte en kommentar på bestyrelsesmedlemmet, hvor deres ansvarsområde / funktion kan nævnes (Kommer i senere version)
+                            </li>
+                            <li>Det ville være rart hvis man kunne klikke sig ind på en frivillig ved at klikke et sted på linien, i stedet for at skulle ramme det lille ikon med øjet (se). Og det ville være en del mere bruger venligt at dette ikon var helt ude til venstre, hvor man står lige ved siden af navnet, i stedet for helt ude til højre.</li>
+                            <li>Mulighed for at kunne sortere kolonnen ”Tilbagemelding” i ”turmappen” i Planlægnisvisning således at alle ”OK” kunne komme til at stå samme (lettere når planen skal laves)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordionSecond" href="#collapseTwo">
+                            <i class="ace-icon fa fa-angle-right bigger-110" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+                            &nbsp;Kendte fejl
+                        </a>
+                    </h4>
+                </div>
+
+                <div class="panel-collapse collapse" id="collapseTwo">
+                    <div class="panel-body">
+                        <p>Her registreres kendte fejl i systemet.</p>
+                        <ul>
+                            <li>Funktioner i tur lisningen fungere kun på den første side af listen</li>
+                            <li>Dato i stedet for lokation, inde på den enkelte tur: dato med kalendervisning, tidspunkt og varighed bør være noget, den enkelte forening kan sætte op</li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

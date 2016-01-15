@@ -1,0 +1,61 @@
+﻿@import "../bootstrap/variables.less";
+
+.teamtime
+{
+    border: 1px solid red;
+    position:absolute;
+    padding-left: 30px;
+    height: 40px;
+    width: 150px;
+
+    .week
+    {
+        height: 100%;
+        left:0;
+        position:absolute;
+        height:100%;
+        width: 30px;
+        text-align:center;
+        vertical-align: middle;
+        background-color: @gray-light;
+         font-weight: bold; 
+         color: @body-bg;
+         border: none;
+
+    }
+    
+    .timedate
+    {
+        font-size: 13px;
+        line-height: 1.1;
+        height: 24px;
+        
+        span 
+        {
+            width: 100%;
+            height: 20px;
+            border-radius: 0;
+            text-shadow: none;
+            font-weight: normal;
+            display: inline-block;
+            padding: 2px;
+            font-weight: bold; 
+
+            i {
+                width: 20px;
+                text-align:center;
+            }
+        }
+
+        span:first-child {
+            background-color: @brand-black;
+            color: @body-bg;
+        }
+
+        span:last-child {
+            background-color: @brand-yellow;
+            color: @brand-black;
+        }
+    }
+
+}

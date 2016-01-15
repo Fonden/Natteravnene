@@ -1,0 +1,207 @@
+﻿@model ICollection<Person>
+    @section pagescripts {
+        @Scripts.Render("~/bundles/table")
+    }
+    @section inlinescripts {
+        <script type="text/javascript">
+ //@Url.Action("PersonsAjax","Admin")",
+            $(document).ready(function () {
+
+                var oTable1 = $('#Voulunteers-table')
+                    .on('xhr.dt', function ( e, settings, json ) {
+                        $('[data-rel="tooltip"]').tooltip();
+                    } )
+                    .dataTable( {
+                        "processing": true,
+                        "serverSide": true,
+                        "ajax": {
+                            "url": "@Url.Action("Ajax")",
+                            "type": "POST"
+                        },
+                        "language": {
+                            "lengthMenu": "@General.DatatablesLengthMenu",
+                            "zeroRecords": "@General.DatatablesZeroRecords",
+                            "info": "@General.DatatablesInfo",
+                            "infoEmpty": "@General.DatatablesInfoEmpty",
+                            "infoFiltered": "@General.DatatablesInfoFiltered",
+                            "loadingRecords": "@General.DatatablesLoadingRecords",
+                            "processing": "@General.DatatablesProcessing",
+                            "search": "@General.Search:",
+                            "thousands": "@General.ThousenSeperator",
+                            "paginate": {
+                                first: ">>",
+                                previous: "<",
+                                next: ">",
+                                last: "<<"
+                            }
+                        },
+                        "columns": [
+                            { "data": "PersonID" },
+                            { "data": "UserName" },
+                            { "data": "FullName" },
+                            { "data": "Mobile" },
+                            { "data": "Phone" },
+                            { "data": "Email" },
+                            { "data": "Association" },
+                            { "data": "Attributes" },
+                            { "data": "PersonID" }
+                        ],
+                        "columnDefs": [
+                            {
+                                "targets": [ 0 ],
+                                "visible": false,
+                                "searchable": false
+                            },
+                             {
+                                 "targets": [6],
+                                 "orderable": false,
+                                 "searchable": true,
+                             },
+                             {
+                                 "targets": [7],
+                                 "searchable": false,
+                                 "orderable": false
+                             },
+                             {
+                                 "targets": [8],
+                                 "searchable": false,
+                                 "orderable": false,
+                                 "render": function (data, type, full, meta) {
+                                     var str = '<div class="hidden-sm hidden-xs action-buttons"><a class="blue" href="@Url.Action("View", null, new { id = "ReplaceData" })" data-rel="tooltip" title="@General.View" data-original-title="@General.View"><i class="ace-icon fa fa-search-plus bigger-130"></i></a><a class="green" href="@Url.Action("Edit", null, new { id = "ReplaceData" })" data-rel="tooltip" title="@General.Edit" data-original-title="@General.Edit"><i class="ace-icon fa fa-pencil bigger-130"></i></a></div><div class="hidden-md hidden-lg"><div class="inline position-relative"><button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto"><i class="ace-icon fa fa-caret-down icon-only bigger-120"></i></button><ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close"><li><a href="@Url.Action("View", null, new { id = "ReplaceData" })" class="tooltip-info" data-rel="tooltip" title="@General.View" data-original-title="@General.View"><span class="blue"><i class="ace-icon fa fa-search-plus bigger-120"></i></span></a></li><li><a href="@Url.Action("Edit", null, new { id = "ReplaceData" })" class="tooltip-success" data-rel="tooltip" title="@General.Edit" data-original-title="@General.Edit"><span class="green"><i class="ace-icon fa fa-pencil-square-o bigger-120"></i></span></a></li></ul></div></div>';
+                                     return str.replace(/ReplaceData/g, data);
+                                 }
+                             }
+                        ]
+                            ,
+                        "pageLength": @NR.Infrastructure.CurrentProfile.ListLines.ToString(),
+                        "order": [[2, "asc"]]
+                    } );
+
+                $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+                function tooltip_placement(context, source) {
+                    var $source = $(source);
+                    var $parent = $source.closest('table')
+                    var off1 = $parent.offset();
+                    var w1 = $parent.width();
+
+                    var off2 = $source.offset();
+                    //var w2 = $source.width();
+
+                    if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+                    return 'left';
+                }
+
+            })
+
+            var tableToExcel = (function () {
+                var uri = 'data:application/vnd.ms-excel;base64,'
+                  , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+                  , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+                  , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+                return function (table, name, type) {
+                    $.get('@Url.Action("ListPeople")/'+ type, function (data) {
+                        //table = data.$(".result").html(data);
+                        //alert("Load was performed.");
+                        var ctx = { worksheet: name || 'Worksheet', table: data };
+                        window.location.href = uri + base64(format(template, ctx));
+                    });
+                }
+            })();
+        </script>
+    }
+
+
+    <div class="page-header position-relative">
+        <div class="pull-right">
+            <div class="btn-group">
+                <a class="btn btn-success" href="@Url.Action("ListPeople", new {id = 1 })">@General.BtnExportAllPeople</a>
+
+                <button data-toggle="dropdown" class="btn btn-success dropdown-toggle" aria-expanded="false">
+                    <span class="ace-icon fa fa-caret-down icon-only"></span>
+                </button>
+
+                <ul class="dropdown-menu dropdown-success">
+                    <li>
+                        <a href="@Url.Action("ListPeople", new {id = 2 })" >@General.BtnExportBoards</a>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("ListPeople", new {id = 3 })">@General.BtnExportChairmen</a>
+                    </li>
+
+                    <li class="divider"></li>
+
+                    <li>
+                        <a href="@Url.Action("ListPeople", new {id = 5 })">@General.BtnExportSI</a>
+                    </li>
+
+                    <li class="divider"></li>
+
+                    <li>
+                        <a href="@Url.Action("PrintNewsList")">@General.BtnExportPrint</a>
+                </li>
+                    <li>
+                        <a href="@Url.Action("ListPeople", new {id = 6 })">@General.BtnExportVoukentereEmails</a>
+                    </li>
+            </ul>
+        </div>
+
+        @Html.ActionLink(General.BtnNewPerson, "Edit", null, null, new { @class = "btn btn-small btn-primary" })
+    </div>
+    <h1>@General.People</h1>
+</div>
+
+
+<table id="Voulunteers-table" class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>@DomainStrings.Username</th>
+            <th>@DomainStrings.FullName</th>
+            <th class="center"><i class="ace-icon fa fa-mobile"></i></th>
+            <th class="center"><i class="ace-icon fa fa-phone icon-flip-horizontal"></i></th>
+            <th>@DomainStrings.Email</th>
+            <th>@DomainStrings.AssociationName</th>
+            <th class="">@General.Attributes</th>
+            <th>
+                <div class="hidden-sm hidden-xs action-buttons" data-rel="tooltip" title="@General.View" data-original-title="@General.View">
+                    <a class="blue" href="#">
+                        <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                    </a>
+
+                    <a class="green" href="#" data-rel="tooltip" title="@General.Edit" data-original-title="@General.Edit">
+                        <i class="ace-icon fa fa-pencil bigger-130"></i>
+                    </a>
+
+                </div>
+                <div class="hidden-md hidden-lg">
+                    <div class="inline position-relative">
+                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                            <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                            <li>
+                                <a href="#" class="tooltip-info" data-rel="tooltip" title="@General.View" data-original-title="@General.View">
+                                    <span class="blue">
+                                        <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="tooltip-success" data-rel="tooltip" title="@General.Edit" data-original-title="@General.Edit">
+                                    <span class="green">
+                                        <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                    </span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </th>
+        </tr>
+    </thead>
+</table>
+

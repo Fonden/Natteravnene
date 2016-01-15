@@ -1,0 +1,73 @@
+﻿@model List<Association>
+
+    @{
+        Layout = null;
+        int year = 0;
+        int birthdayyears;
+        bool Anniversary;
+    }
+
+    <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+    <head>
+        <!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Natteravnene</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
+        <style>
+            .num {
+                mso-number-format: General;
+            }
+
+            .text {
+                mso-number-format: "\@@"; /*force text*/
+            }
+        </style>
+    </head>
+    <body>
+
+
+
+        <table id="Voulunteers-table" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th colspan="4" height="100" style="padding: 10px; background-color: black; color: black;"><img src="@Url.Content("~/Content/img/Natteravnene_logo_gul_forside.png", true)" alt="Natteravnene logo" height="80" style="height: 80px;" /></th>
+                </tr>
+                <tr style="background-color: black; color: white;">
+                    <th>@DomainStrings.AssociationName</th>
+                    <th>@DomainStrings.Established</th>
+                    <th class="right">@DomainStrings.Anniversary</th>
+                    <th class="right">@DomainStrings.Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Association A in Model)
+                {
+                    if (!(((DateTime)A.Established).Month < DateTime.Now.Month || (((DateTime)A.Established).Month == DateTime.Now.Month && ((DateTime)A.Established).Day < DateTime.Now.Day)))
+                    {
+                        year = DateTime.Now.Year;
+                        birthdayyears = year - ((DateTime)A.Established).Year;
+                        Anniversary = birthdayyears % 5 == 0;
+                        
+                    }
+                    else
+                    {
+                        year = DateTime.Now.AddYears(1).Year;
+                        birthdayyears = year - ((DateTime)A.Established).Year;
+                        Anniversary = birthdayyears % 5 == 0;
+                    }
+                    <tr>
+                        <td style="padding: 0 5px;">@A.Name</td>
+                        <td style="padding: 0 5px; text-align: center;">@A.Established.ToShortDateString()</td>
+                        <td style="padding: 0 5px; text-align: right; @if (Anniversary) {<text>background-color: red;</text>}">@birthdayyears </td>
+                        <td style="padding: 0 5px; text-align: right;">@year</td>
+                    </tr>
+                }
+
+            </tbody>
+
+
+
+
+
+
+
+        </table>
+    </body>
+</html>

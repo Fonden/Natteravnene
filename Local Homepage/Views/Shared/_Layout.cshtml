@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Html.Raw(ViewBag.Title == "" ?  ViewBag.Association : ViewBag.Title + " - " + ViewBag.Association)</title>
+    @if (!string.IsNullOrWhiteSpace(ViewBag.MetaDescription))
+    {
+        <meta name="description" content="@Html.Raw(ViewBag.MetaDescription)" />
+        <meta property="og:description" content="@Html.Raw(ViewBag.MetaDescription)" />
+    }
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Canonical)) {
+        <link rel="canonical" href="@Html.Raw(ViewBag.Canonical)" />
+
+        <meta property="fb:app_id" content="195935547417227" />
+        <meta property="og:site_name" content="@Html.Raw(ViewBag.association)" />
+        <meta property="og:title" content="@Html.Raw(ViewBag.Title =="" ? ViewBag.association : ViewBag.title )" />
+        <meta property="og:type" content="@ViewBag.SocialType" />
+        if  (!string.IsNullOrWhiteSpace(ViewBag.SocialImage))
+        {
+            <meta property="og:image" content="@Html.Raw(ViewBag.SocialImage)" />
+            <meta property="og:image:width" content="200" />
+            <meta property="og:image:height" content="200" />
+        }
+        <meta property="og:url" content="@Html.Raw(ViewBag.Canonical)" />
+    }
+    @*<meta property=”fb:admins” content=”USER_ID”/>*@
+    <meta name="designer" content="Berit Funk (www.beritfunk.dk)">
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="@Url.Content("~/Content/ico/apple-touch-icon-144-precomposed.png")">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="@Url.Content("~/Content/ico/apple-touch-icon-114-precomposed.png")">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="@Url.Content("~/Content/ico/apple-touch-icon-72-precomposed.png")">
+    <link rel="apple-touch-icon-precomposed" href="@Url.Content("~/Content/ico/apple-touch-icon-57-precomposed.png")">
+    <link rel="shortcut icon" href="@Url.Content("~/Content/ico/favicon.png")">
+</head>
+<body>
+    <header class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".mainmenu">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" alt="@ViewBag.Association" id="nrlogo"><img src="@Url.Content("~/Content/Images/Natteravnene_logo_hvid.png")" alt="@ViewBag.Association logo" /></a>
+                @*Html.ActionLink("", "Index", "Home", null, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse mainmenu">
+                <ul class="nav navbar-nav">
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "OmNatteravnene" ? "active" : "")">@Html.ActionLink("Natteravnekonceptet", "Konceptet", "OmNatteravnene")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Nyheder" ? "active" : "")">@Html.ActionLink("Nyheder", "Nyheder", "Local")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Aktiviteter" ? "active" : "")">@Html.ActionLink("Aktiviteter", "Aktiviteter", "Local")</li>
+                    @if (ViewBag.UseSponsorerPage == true)
+                    {
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Sponsorer" ? "active" : "" )">@Html.ActionLink("Sponsorer", "Sponsorer", "Local")</li>
+                    }
+                    @if (ViewBag.UseLinksPage == true)
+                    {
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Links" ? "active" : "")">@Html.ActionLink("links", "Links", "Local")</li>
+                    }
+                    @if (ViewBag.UsePressPage == true)
+                    {
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Presse" ? "active" : "")">@Html.ActionLink("presse", "Presse", "Local")</li>
+                    }
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Kontakt" ? "active" : "")">@Html.ActionLink("Kontakt", "Kontakt", "Local")</li>
+                    <li><a href="http://natteravnene.dk" target="_blank">natteravnene.dk&nbsp;<i class="fa fa-external-link"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <footer>
+        <div id="popup">
+            <div>
+                <div id="leadpopupbox">
+                    <div class="cd-panel-header">
+                        <a href="#0" class="cd-panel-close close">&times;</a>
+
+                        <div id="ajaxblivnatteravn">
+                            @Html.Partial("_BlivNatteravn", new TrialFormModel())
+                        </div>
+                    </div>
+                </div>
+                <div id="lead">
+                    <a href="#">Bliv Natteravn<div class="content"></div></a>
+
+                </div>
+                @*<div id="supportpopupbox">
+                        <header class="cd-panel-header">
+                            <a href="#0" class="cd-panel-close">Luk</a>
+                            <h1>Title Goes Here</h1>
+
+                        </header>
+                    </div>
+                    <div id="support">
+                        <a href="#">Støt os</a>
+                    </div>*@
+            </div>
+        </div>
+        <div class="footer">
+            <p>
+                @ViewBag.Association
+                @if (!string.IsNullOrWhiteSpace(ViewBag.CVR))
+                {
+                    @:&nbsp;&nbsp;CVR: @ViewBag.CVR
+                }
+
+                <br />Logo &reg;&nbsp;1998 - @DateTime.Now.Year&nbsp;Natteravnenes&nbsp;Landssekretariat (Fonden&nbsp;for&nbsp;Socialt&nbsp;Ansvar)
+            </p>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/sitescripts")
+    @RenderSection("scripts", required: false)
+    <!-- page specific plugin scripts -->
+    @RenderSection("pagescripts", required: false)
+
+    <!-- inline scripts related to this page -->
+    @RenderSection("inlinescripts", required: false)
+    <script>
+        jQuery(document).ready(function ($) {
+            //open the lateral panel
+            $('#lead a').on('click', function (event) {
+                event.preventDefault();
+                //$('#leadpopupbox').addClass('is-visible');
+                $('#leadpopupbox').slideToggle("slow");
+            });
+            $('#support a').on('click', function (event) {
+                event.preventDefault();
+                //$('#supportpopupbox').addClass('is-visible');
+                $('#supportpopupbox').slideToggle("slow");
+            });
+            //clode the lateral panel
+            $('#leadpopupbox').on('click', function (event) {
+                if ($(event.target).is('.cd-panel') || $(event.target).is('.cd-panel-close')) {
+                    //$('#leadpopupbox').removeClass('is-visible');
+                    $('#leadpopupbox').slideToggle("slow");
+                    //event.preventDefault();
+                }
+            });
+            $('#supportpopupbox').on('click', function (event) {
+                if ($(event.target).is('.cd-panel') || $(event.target).is('.cd-panel-close')) {
+                    //$('#supportpopupbox').removeClass('is-visible');
+                    $('#supportpopupbox').slideToggle("slow");
+                    event.preventDefault();
+                }
+            });
+        });
+
+    </script>
+    <script type="application/ld+json">
+        {
+        "@@context": "http://schema.org",
+        "@@type": "NGO",
+        "url": "@Html.Raw(ViewBag.Host)",
+        "logo": "@Html.Raw(string.Format("{0}{1}", ViewBag.Host, Url.Content(@ViewBag.LocalLogoPath)))",
+        @if (!string.IsNullOrWhiteSpace(ViewBag.AssociationContactPhone))
+        {
+            @:"telephone" : "@ViewBag.AssociationContactPhone",
+    }
+        @if (!string.IsNullOrWhiteSpace(ViewBag.AssociationContactEmail))
+        {
+            @:"email" : "@Html.Raw(ViewBag.AssociationContactEmail)",
+    }
+        @if (!string.IsNullOrWhiteSpace(ViewBag.AssociationZIP) && !string.IsNullOrWhiteSpace(ViewBag.AssociationCity) && !string.IsNullOrWhiteSpace(ViewBag.AssociationCountry))
+        {
+            @:"address": {
+            @:"@@type": "PostalAddress",
+            @:"postalCode": "@ViewBag.AssociationZIP",
+            @:"streetAddress": "@Html.Raw(ViewBag.AssociationCity)",
+            @:"addressCountry" : "@ViewBag.AssociationCountry"
+            @:},
+    }
+        @if (!string.IsNullOrWhiteSpace(ViewBag.CVR))
+        {
+            @:"vatID" : "@ViewBag.CVR",
+    }
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Founded))
+    {
+        @:"foundingDate" : "@ViewBag.Founded",
+    }
+        "name": "@Html.Raw(ViewBag.Association)",
+        "description" : "@Html.Raw(ViewBag.Association + " er en frivillig social forening, der går ture i hold på tre m/k’er efter lokalt behov – middag, aften eller nat - i de karakteristiske gule jakker. Gennem synlighed og tilbud om ansvarlig voksenkontakt, er vi med til at skabe tryghed og støtte børn og unge der måtte have behov. En af sideeffekterne ved denne indsats er, at hærværk, vold og anden småkriminalitet i de områder hvor vi færdes, ofte falder drastisk.")",
+        "brand": [
+        {
+        "@@type": "NGO",
+        "name": "Natteravnene",
+        "url": "http://Natteravnene.dk",
+        "vatID": "27313566",
+        "email": "info@natteravnene.dk",
+        "telephone": "70121299",
+        "address": {
+            "@@type": "PostalAddress",
+            "postalCode": "1799",
+            "streetAddress": "Olivia Hansensgade 2",
+            "addressCountry" : "Danmark"
+         }
+        }]
+        }
+    </script>
+</body>
+
+</html>

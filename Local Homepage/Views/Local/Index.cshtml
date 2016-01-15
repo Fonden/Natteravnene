@@ -1,0 +1,63 @@
+﻿@model AssociationViewModel
+@{
+    ViewBag.Title = "";
+    ViewBag.MetaDescription = string.Format("Det er {0} primære formål, at medvirke til at skabe større lokal tryghed og især hjælpe børn og unge til øget livsglæde.", Model.AssociationNameGenitive);
+    ViewBag.PageImage = "~/Content/Images/Natteravnene-3.jpg";
+    ViewBag.SocialImage = Html.FullyQualifiedUri("~/Content/Images/Natteravnene-3.jpg", Model.Host).ToString();
+    ViewBag.Tst = Html.FullyQualifiedUri("~/Content/Images/Natteravnene-3.jpg", "http://hedensted-vest.natteravne.dk/").ToString();
+    ViewBag.SocialType = "website";
+}
+@section inlinescripts {
+
+    @if (DateTime.Now.Month == 12 && DateTime.Now.Day <= 28)
+    {
+        <script src="~/Scripts/snowfall.jquery.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(document).snowfall({ deviceorientation: true, round: true, minSize: 1, maxSize: 8, flakeCount: 250 });
+
+            });
+        </script>
+    }
+    @if ((DateTime.Now.Month == 12 && DateTime.Now.Day >= 30) | (DateTime.Now.Month == 1 && DateTime.Now.Day <= 4))
+    {
+        <script src="~/Scripts/jquery.fireworks.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('html').fireworks();
+            });
+        </script>
+    }
+}
+<div id="pagehero">
+    <img src="@Url.Content(ViewBag.PageImage)" class="img-responsive" />
+    <h1>@Model.AssociationName</h1>
+</div>
+
+
+<div class="body-content">
+    <div class="row">
+        <div class="col-md-8">
+            @Html.Raw(Model.PageAbout.Body)
+        </div>
+        <div class="col-md-4">
+            <a href="http://frivillig.natteravnene.dk" class="btn btn-nr-yellow btn-lg btn-block spacer">Er du Natteravn? Klik her!</a>
+            <div class="embed-responsive embed-responsive-4by3 spacer">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/@ViewBag.EmbedCode" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="partnerline">
+    <ul>
+        <li class="partnerlabel">Natteravnenes<br />hovedsamarbejdspartnere:</li>
+        <li><a href="http://www.trygfonden.dk/Projekter/Natteravnene" target="_blank"><img src="~/Content/Images/TrygFonden.png" alt="TrygFonden" title="TrygFonden" /></a></li>
+        <li><a href="http://www.falck.dk/" target="_blank"><img src="~/Content/Images/Falck.png" alt="Falck" title="Falck" class="img-responsive" /></a></li>
+        <li><a href="http://www.carlsberggroup.com/" target="_blank"><img src="~/Content/Images/Carlsberg.png" alt="Carlsberg" title="Carlsberg" class="img-responsive" /></a></li>
+        <li><a href="http://www.dsb.dk/" target="_blank"><img src="~/Content/Images/DSB.png" alt="DSB" title="DSB" class="img-responsive" /></a></li>
+        @if (DateTime.Now < new DateTime(2016, 1, 1, 0, 0, 0))
+        {
+            <li><a href="http://www.bikubenfonden.dk/" target="_blank"><img src="~/Content/Images/Bikubenfonden.png" alt="Bikubenfonden" title="Bikubenfonden" class="img-responsive" /></a></li>
+        }
+    </ul>
+</div>

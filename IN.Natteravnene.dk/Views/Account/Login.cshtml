@@ -1,0 +1,257 @@
+﻿@model LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_NRAnonomusLayout.cshtml";
+    var showCountdown = DateTime.Now < new DateTime(2015, 9, 26, 10, 0, 0);
+}
+@section pagescripts {
+    @Scripts.Render("~/bundles/form")
+    @if (showCountdown)
+    {
+        <script src="~/Scripts/jquery.responsive_countdown.min.js"></script>
+    }
+}
+@section inlinescripts {
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $(document).on('click', '.toolbar a[data-target]', function (e) {
+                e.preventDefault();
+                var target = $(this).data('target');
+                $('.widget-box.visible').removeClass('visible');//hide others
+                $(target).addClass('visible');//show target
+            });
+        });
+
+        $("form#login").submit(function () {
+            $('button[type=submit], input[type=submit]').attr('disabled', true);
+            return true;
+        });
+
+        function capLock(e) {
+            kc = e.keyCode ? e.keyCode : e.which;
+            sk = e.shiftKey ? e.shiftKey : ((kc == 16) ? true : false);
+            if (((kc >= 65 && kc <= 90) && !sk) || ((kc >= 97 && kc <= 122) && sk))
+                document.getElementById('divMayus').style.visibility = 'visible';
+            else
+                document.getElementById('divMayus').style.visibility = 'hidden';
+        }
+        @if (showCountdown)
+        {
+        <text>
+        $("#counter").ResponsiveCountdown({
+            server_now_date:"@DateTime.Now.ToString("yyyy/MM/d HH:mm:ss")",
+            target_date: "2015/9/26 10:00:00",
+            time_zone: 0, target_future: true,
+            set_id: 0, pan_id: 0, day_digits: 2,
+            fillStyleSymbol1: "rgba(255,255,255,1)",
+            fillStyleSymbol2: "rgba(255,255,255,1)",
+            fillStylesPanel_g1_1: "rgba(100,100,100,1)",
+            fillStylesPanel_g1_2: "rgba(30,30,30,1)",
+            fillStylesPanel_g2_1: "rgba(80,80,130,1)",
+            fillStylesPanel_g2_2: "rgba(20,20,60,1)",
+            text_color: "rgba(255,255,255,1)",
+            text_glow: "rgba(0,0,0,1)",
+            show_ss: true, show_mm: true,
+            show_hh: true, show_dd: true,
+            f_family: "Verdana", show_labels: true,
+            type3d: "single", max_height: 120,
+            days_long: "dage", days_short: "dd",
+            hours_long: "timer", hours_short: "hh",
+            mins_long: "minutter", mins_short: "mm",
+            secs_long: "sekunder", secs_short: "ss",
+            min_f_size: 9, max_f_size: 14,
+            spacer: "none", groups_spacing: 0, text_blur: 2,
+            font_to_digit_ratio: 0.125, labels_space: 1.2
+        });
+        </text>
+        }
+
+    </script>
+@if (DateTime.Now.Month == 12 && DateTime.Now.Day <= 28 ) 
+{
+<script src="~/Scripts/snowfall.jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).snowfall({ deviceorientation: true, round: true, minSize: 1, maxSize: 8, flakeCount: 250 });
+    });
+</script>
+}
+@if ((DateTime.Now.Month == 12 && DateTime.Now.Day >= 30) | (DateTime.Now.Month == 1 && DateTime.Now.Day <= 4))
+{
+<script src="~/Scripts/jquery.fireworks.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('html').fireworks();
+    });
+</script>
+}
+        }
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <div class="login-container">
+            <div class="center">
+                <h1>
+                    <img src="@Url.Content("~/Content/img/Natteravnene_logo_gul_forside.png")" alt="Natteravnene logo" />
+                </h1>
+            </div>
+
+            <div class="space-6"></div>
+
+            <div class="position-relative">
+                <div id="login-box" class="login-box visible widget-box no-border">
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <h4 class="header blue lighter bigger">
+                                <i class="ace-icon fa fa-coffee green"></i>
+                                @General.LoginPrompt
+                            </h4>
+                            @if (ViewBag.LoginRetrived == true)
+                            {
+                                <div class="space-6"></div>
+                                <p class="alert alert-danger text-success">
+                                    @General.LoginInfoRetrived
+                                </p>
+                            }
+                            <div class="space-6"></div>
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "login" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <fieldset>
+                                    <label class="block clearfix">
+                                        <span class="block input-icon input-icon-right">
+                                            <input type="text" id="@Html.IdFor(m => m.UserName)" name="@Html.NameFor(m => m.UserName)" class="form-control" placeholder="@DomainStrings.Username" autofocus />
+                                            <i class="ace-icon fa fa-user"></i>
+                                            @Html.ValidationMessageFor(m => m.UserName)
+                                        </span>
+                                    </label>
+                                    <label class="block clearfix">
+                                        <span class="block input-icon input-icon-right">
+                                            <input type="password" id="@Html.IdFor(m => m.Password)" name="@Html.NameFor(m => m.Password)" class="form-control" placeholder="@DomainStrings.Password" onkeypress="capLock(event)" />
+                                            <i class="ace-icon fa fa-lock"></i>
+                                            @Html.ValidationMessageFor(m => m.Password)
+                                        </span>
+                                    </label>
+                                    <div id="divMayus" style="visibility:hidden">@General.CapsLockOn</div>
+
+                                    <div class="space"></div>
+
+                                    <div class="clearfix">
+                                        <label class="inline">
+                                            <!--<input type="checkbox" id="@Html.IdFor(m => m.RememberMe)" name="@Html.NameFor(m => m.RememberMe)" class="ace" />-->
+                                            @Html.CheckBoxFor(m => m.RememberMe)
+                                            <span class="lbl"> @Html.LabelFor(m => m.RememberMe)</span>
+                                        </label>
+                                        <button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
+                                            <i class="ace-icon fa fa-key"></i>
+                                            <span class="bigger-110">@General.Login</span>
+                                        </button>
+                                    </div>
+                                    <div class="space-4"></div>
+                                </fieldset>
+                            }
+
+                            @*<div class="social-or-login center">
+                                    <span class="bigger-110">@General.UseSocialLoginDevider</span>
+                                </div>
+
+                                <div class="space-6"></div>
+
+                                <div class="social-login center">
+                                    <a class="btn btn-primary">
+                                        <i class="ace-icon fa fa-facebook"></i>
+                                    </a>
+
+                                </div>*@
+                        </div><!-- /.widget-main -->
+                        <div class="toolbar clearfix">
+                            <div>
+                                <a href="#" data-target="#forgot-box" class="forgot-password-link">
+                                    <i class="ace-icon fa fa-arrow-left"></i>
+                                    @General.IForgotMyPassword
+                                </a>
+                            </div>
+                            <div>
+                                <a href="@General.LoginRegisterLink" class="user-signup-link">
+                                    @General.LoginRegisterTxt
+                                    <i class="ace-icon fa fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div><!-- /.widget-body -->
+                </div><!-- /.login-box -->
+                <div id="forgot-box" class="forgot-box widget-box no-border">
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <h4 class="header red lighter bigger">
+                                <i class="ace-icon fa fa-key"></i>
+                                @General.RetriveLoginInfoTxt
+                            </h4>
+                            <div class="space-6"></div>
+                            <p>
+                                @General.RetriveLoginInfoTxtEnter
+                            </p>
+                            @using (Html.BeginForm("RetriveLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <fieldset>
+                                    <label class="block clearfix">
+                                        <span class="block input-icon input-icon-right">
+                                            <input type="email" name="email" class="form-control" placeholder="@DomainStrings.Email" />
+                                            <i class="ace-icon fa fa-envelope"></i>
+                                        </span>
+                                    </label>
+
+                                    <label class="block clearfix">
+                                        <span class="block input-icon input-icon-right">
+                                            <input type="text" name="mobile" class="form-control" placeholder="@DomainStrings.Mobile" />
+                                            <i class="ace-icon fa fa-mobile"></i>
+                                        </span>
+                                    </label>
+
+                                    <div class="clearfix">
+                                        <button type="submit" class="width-35 pull-right btn btn-sm btn-danger">
+                                            <i class="ace-icon fa fa-lightbulb-o"></i>
+                                            <span class="bigger-110">@General.SendMe</span>
+                                        </button>
+                                    </div>
+                                </fieldset>
+                            }
+                        </div><!-- /.widget-main -->
+
+                        <div class="toolbar center">
+                            <a href="#" data-target="#login-box" class="back-to-login-link">
+                                @General.BackToLogin
+                                <i class="ace-icon fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div><!-- /.widget-body -->
+                </div><!-- /.forgot-box -->
+            </div><!-- /.position-relative -->
+            <div class="center">
+                <a href="http://natteravnene.dk" target="_blank"><h4 id="id-company-text">www.natteravnene.dk</h4></a>
+            </div>
+        </div>
+    </div><!-- /.col -->
+</div><!-- /.row -->
+@if (showCountdown)
+{
+    <div id="frontcounter">
+        <div id="counter"></div>
+        <div class="text"><a href="http://www.natteravnene.dk/default.asp?page_id=3425" target="_blank">til Natteravnenes Landsmøde<br /><span>Læs mere her</span></a></div>
+    </div>
+}
+<div class="partnerline">
+    <ul>
+        <li class="partnerlabel">Natteravnenes<br />hovedsamarbejdspartnere:</li>
+        <li><a href="http://www.trygfonden.dk/Projekter/Natteravnene" target="_blank"><img src="~/Content/Img/TrygFonden.png" alt="TrygFonden" title="TrygFonden" /></a></li>
+        <li><a href="http://www.falck.dk/" target="_blank"><img src="~/Content/Img/Falck.png" alt="Falck" title="Falck" class="img-responsive" /></a></li>
+        <li><a href="http://www.carlsberggroup.com/" target="_blank"><img src="~/Content/Img/Carlsberg.png" alt="Carlsberg" title="Carlsberg" class="img-responsive" /></a></li>
+        <li><a href="http://www.dsb.dk/" target="_blank"><img src="~/Content/Img/DSB.png" alt="DSB" title="DSB" class="img-responsive" /></a></li>
+        @if (DateTime.Now < new DateTime(2016, 1, 1, 0, 0, 0))
+        {
+        <li><a href="http://www.bikubenfonden.dk/" target="_blank"><img src="~/Content/Img/Bikubenfonden.png" alt="Bikubenfonden" title="Bikubenfonden" class="img-responsive" /></a></li>
+        }
+    </ul>
+</div>

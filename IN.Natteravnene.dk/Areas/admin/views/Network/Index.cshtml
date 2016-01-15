@@ -1,0 +1,137 @@
+﻿@model List<Network>
+
+@section pagescripts {
+    @Scripts.Render("~/bundles/table")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+    $(function () {
+        var oTable1 = $('#Network-table').dataTable({
+            "language": {
+                "lengthMenu": "@General.DatatablesLengthMenu",
+                "zeroRecords": "@General.DatatablesZeroRecords",
+                "info": "@General.DatatablesInfo",
+                "infoEmpty": "@General.DatatablesInfoEmpty",
+                "infoFiltered": "@General.DatatablesInfoFiltered",
+                "loadingRecords": "@General.DatatablesLoadingRecords",
+                "processing": "@General.DatatablesProcessing",
+                "search": "@General.Search:",
+                "thousands": "@General.ThousenSeperator",
+                "paginate": {
+                    first: ">>",
+                    previous: "<",
+                    next: ">",
+                    last: "<<"
+                }
+            },
+            "pageLength": @NR.Infrastructure.CurrentProfile.ListLines.ToString(),
+            "order": [1, "asc"],
+            "columnDefs": [
+                        {
+                            "targets": [ 3 ],
+                            "orderable": false,
+                            "searchable": false
+                        },
+                         {
+                             "targets": [ 4 ],
+                             "orderable": false,
+                             "searchable": false
+                         },
+                         {
+                             "targets": [ 5 ],
+                             "orderable": false,
+                             "searchable": false
+                         }
+
+            ]
+        });
+
+        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+        function tooltip_placement(context, source) {
+            var $source = $(source);
+            var $parent = $source.closest('table')
+            var off1 = $parent.offset();
+            var w1 = $parent.width();
+			
+            var off2 = $source.offset();
+            //var w2 = $source.width();
+			
+            if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+            return 'left';
+        }
+
+
+    })
+    </script>
+}
+
+
+<div class="page-header position-relative">
+    @Html.ActionLink(General.BtnNewNetwork, "Edit", null, null, new { @class = "btn btn-small btn-primary pull-right" })
+    
+    <h1>@General.Networks</h1>
+</div>
+
+        <table id="Network-table" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>@DomainStrings.NetworkNumber</th>
+                    <th>@DomainStrings.NetworkName</th>
+                    <th>@DomainStrings.NetworkNotToShow</th>
+                    <th>@DomainStrings.Lastchanged</th>
+                    <th>@DomainStrings.Created</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Network Net in Model)
+                {
+                    <tr>
+                        <td>@Net.NetworkNumber</td>
+                        <td>@Net.NetworkName</td>
+                        <td class="center">@Html.IconBoolTable(Net.NetworkNotToShow)</td>
+                        <td class="center">@Net.Lastchanged.ToShortDateString()</td>
+                        <td class="center">@Net.Created.ToShortDateString()</td>
+                        <td class="td-actions">
+                            <div class="hidden-sm hidden-xs action-buttons">
+                                <a class="blue" href="@Url.Action("View", null, new { id = Net.NetworkID })" data-rel="tooltip" title="@General.View" data-original-title="@General.View">
+                                    <i class="@Icons.View bigger-130"></i>
+                                </a>
+
+                                <a class="green" href="@Url.Action("Edit", null, new { id = Net.NetworkID })" data-rel="tooltip" title="@General.Edit" data-original-title="@General.Edit">
+                                    <i class="@Icons.Edit bigger-130"></i>
+                                </a>
+                            </div>
+                            <div class="hidden-md hidden-lg">
+                                <div class="inline position-relative">
+                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                        <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                    </button>
+
+                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                        <li>
+                                            <a href="@Url.Action("View", null, new { id = Net.NetworkID })" class="tooltip-info" data-rel="tooltip" title="@General.View" data-original-title="@General.View">
+                                                <span class="blue">
+                                                    <i class="@Icons.View bigger-120"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="@Url.Action("Edit", null, new { id = Net.NetworkID })" class="tooltip-success" data-rel="tooltip" title="@General.Edit" data-original-title="@General.Edit">
+                                                <span class="green">
+                                                    <i class="@Icons.Edit bigger-120"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+

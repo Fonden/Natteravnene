@@ -1,0 +1,60 @@
+﻿@model List<Lead>
+    @{
+        Layout = null;
+    }
+
+    <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+    <head>
+        <!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Natteravnene Proeveture</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
+        <style>
+            .num {
+                mso-number-format: General;
+            }
+
+            .text {
+                mso-number-format: "\@@"; /*force text*/
+            }
+        </style>
+    </head>
+    <body>
+
+
+
+        <table id="Voulunteers-table" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th colspan="7" height="100" style="padding: 10px; background-color: black; color: black;"><img src="@Url.Content("~/Content/img/Natteravnene_logo_gul_forside.png", true)" alt="Natteravnene logo" height="80" style="height: 80px;" /></th>
+                </tr>
+                <tr style="background-color: black; color: white;">
+                    <th>@DomainStrings.Created</th>
+                    <th>@DomainStrings.Lastchanged</th>
+                    <th>@DomainStrings.FullName</th>
+                    <th>@DomainStrings.Email</th>
+                    <th>@DomainStrings.Zip</th>
+                    <th>@DomainStrings.Status</th>
+                    <th>@DomainStrings.AssociationName</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (Lead L in Model)
+                    {
+                        <tr>
+
+                            <td class="center" data-order="@L.Created.Ticks">@L.Created.ToShortDateString()</td>
+                            <td class="center" data-order="@L.Lastchanged.Ticks">@L.Lastchanged.ToShortDateString()</td>
+                            <td>@L.FullName</td>
+                            <td>@L.Email</td>
+                            <td>@L.Zip</td>
+                            <td>@L.Status.DisplayName()</td>
+                            <td class="center">@(L.Association == null ? "" : L.Association.Name.ToString())</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+
+        </table>
+    </body>
+</html>

@@ -1,0 +1,84 @@
+﻿@model AssociationViewModel
+@{
+    ViewBag.Title = "Kontakt";
+    ViewBag.MetaDescription = string.Format("Kontaktdata og kontaktpersoner for {0}.", Model.AssociationName);
+    ViewBag.PageImage = "~/Content/Images/Natteravnene-7.jpg";
+    ViewBag.SocialImage = Html.FullyQualifiedUri("~/Content/Images/Natteravnene-7.jpg", Model.Host).ToString();
+    ViewBag.SocialType = "website";
+}
+
+
+<div id="pagehero">
+    <img src="@Url.Content(ViewBag.PageImage)" class="img-responsive" />
+    <h1>@Html.Raw(ViewBag.Title)</h1>
+</div>
+
+
+<div class="body-content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 boardcontact">
+            <h2>Bestyrelsen</h2>
+            <div class="row">
+                @if (Model.Chairmann != null)
+                {
+                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2">
+                        @Html.ProfilImage(Model.Chairmann)
+                        <p><span class="name">@Model.Chairmann.FullName</span><span class="title">@BoardFunctionType.Chairman.DisplayName()</span></p>
+                    </div>
+                }
+                @if (Model.Accountant != null)
+                {
+                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2">
+                        @Html.ProfilImage(Model.Accountant)
+                        <p><span class="name">@Model.Accountant.FullName</span><span class="title">@BoardFunctionType.Accountant.DisplayName()</span></p>
+                    </div>
+                }
+                @if (Model.BoardMembers.Any())
+                {
+                    foreach (Person member in Model.BoardMembers)
+                    {
+                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2">
+                            @Html.ProfilImage(member)
+                            <p><span class="name">@member.FullName</span><span class="title">@BoardFunctionType.BoardMember.DisplayName()</span></p>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            <h2>Kontakt</h2>
+            <h4>@Model.AssociationName</h4>
+            <address>
+                @if (!string.IsNullOrWhiteSpace(Model.AssociationEmail))
+                {
+                    <strong>E-mail:</strong>  <a href="mailto:@Model.AssociationEmail">@Model.AssociationEmail</a><br />
+                }
+                else if (!string.IsNullOrWhiteSpace(Model.Chairmann.Email))
+                {
+                    <strong>E-mail:</strong>  <a href="mailto:@Model.Chairmann.Email">@Model.Chairmann.Email</a><br />
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.ContactPhone))
+                {
+                    <strong>Telefon:</strong>  @Model.ContactPhone
+                }
+                else if (!string.IsNullOrWhiteSpace(Model.Chairmann.Mobile))
+                {
+                    <strong>Telefon:</strong>  @Model.Chairmann.Mobile
+                }
+            </address>
+            <h4>Natteravnenes Landssekretariat</h4>
+            <address>
+                Olivia Hansens Gade 2<br />
+                1799 København V<br />
+                <br />
+                <strong>E-mail:</strong>  <a href="info@natteravnene.dk">info@natteravnene.dk</a><br />
+                <strong>Telefon:</strong>  70 12 12 99
+
+            </address>
+        </div>
+        <div class="col-md-8">
+
+        </div>
+    </div>
+</div>

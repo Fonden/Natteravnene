@@ -1,0 +1,223 @@
+﻿@model Userbar
+@{
+    Layout = null;
+}
+<div class="navbar-buttons navbar-header pull-right" role="navigation">
+    <ul class="nav ace-nav">
+       @* <li class="grey">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <i class="ace-icon fa fa-tasks"></i>
+            <span class="badge badge-grey">4</span>
+        </a>
+
+        <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+            <li class="dropdown-header">
+                <i class="ace-icon fa fa-check"></i>
+                4 Tasks to complete
+            </li>
+
+            <li>
+                <a href="#">
+                    <div class="clearfix">
+                        <span class="pull-left">Software Update</span>
+                        <span class="pull-right">65%</span>
+                    </div>
+
+                    <div class="progress progress-mini">
+                        <div style="width:65%" class="progress-bar"></div>
+                    </div>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <div class="clearfix">
+                        <span class="pull-left">Hardware Upgrade</span>
+                        <span class="pull-right">35%</span>
+                    </div>
+
+                    <div class="progress progress-mini">
+                        <div style="width:35%" class="progress-bar progress-bar-danger"></div>
+                    </div>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <div class="clearfix">
+                        <span class="pull-left">Unit Testing</span>
+                        <span class="pull-right">15%</span>
+                    </div>
+
+                    <div class="progress progress-mini">
+                        <div style="width:15%" class="progress-bar progress-bar-warning"></div>
+                    </div>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <div class="clearfix">
+                        <span class="pull-left">Bug Fixes</span>
+                        <span class="pull-right">90%</span>
+                    </div>
+
+                    <div class="progress progress-mini progress-striped active">
+                        <div style="width:90%" class="progress-bar progress-bar-success"></div>
+                    </div>
+                </a>
+            </li>
+
+            <li class="dropdown-footer">
+                <a href="#">
+                    See tasks with details
+                    <i class="ace-icon fa fa-arrow-right"></i>
+                </a>
+            </li>
+        </ul>
+    </li>*@
+
+        <li class="purple">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#" data-rel="tooltip" data-placement="bottom" title="@General.BtnNotificationTooltip">
+
+                @if (Model.UnreadNotifications != 0)
+                {
+                    <i class="ace-icon fa fa-bell icon-animated-bell"></i>
+                    <span class="badge badge-important">@Model.UnreadNotifications</span>
+                }
+                else
+                {
+                    <i class="ace-icon fa fa-bell"></i>
+                }
+            </a>
+
+            <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                <li class="dropdown-header">
+                    <i class="ace-icon fa fa-exclamation-triangle"></i>
+                    @string.Format(General.UnreadNotifications, Model.UnreadNotifications)
+                </li>
+
+                @Html.UserBarNotificationeListing(Model.Notifications)
+                @*<li>
+        <a href="#">
+            <div class="clearfix">
+                <span class="pull-left">
+                    <i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+                    New Comments
+                </span>
+                <span class="pull-right badge badge-info">+12</span>
+            </div>
+        </a>
+    </li>*@
+
+               
+                <li class="dropdown-footer">
+                    <a href="@Url.Action("Index", "Notification")">
+                        @General.SeeAllNotefications
+                        <i class="ace-icon fa fa-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="green">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#" data-rel="tooltip" data-placement="bottom" title="@General.BtnMessagesTooltip">
+                @if (Model.UnreadMessages != 0)
+                {
+                    <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
+                    <span class="badge badge-success">@Model.UnreadMessages</span>
+                }
+                else
+                {
+                    <i class="ace-icon fa fa-envelope"></i>
+                }
+            </a>
+
+            <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                <li class="dropdown-header">
+                    <i class="ace-icon fa fa-envelope-o"></i>
+                    @Model.UnreadMessages @General.Messages
+                </li>
+
+                <li class="dropdown-content">
+                    <ul class="dropdown-menu dropdown-navbar">
+                        @Html.UserBarMessageListing(Model.Messages)
+
+                    </ul>
+                </li>
+
+                <li class="dropdown-footer">
+                    <a href="@Url.Action("Index","Message")">
+                        @General.SeeAllMessages
+                        <i class="ace-icon fa fa-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- #section:basics/navbar.user_menu -->
+        <li class="light-blue">
+            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+
+                <div class="user-info">
+                    @Html.ProfilImage(@Model.CurrentUser)
+                    <small>@General.Hello,</small>
+                    @Model.CurrentUser.FullName
+                </div>
+
+                <i class="ace-icon fa fa-caret-down"></i>
+            </a>
+
+            <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+               @* <li>
+        <a href="@Url.Action("Settings","Account")">
+            <i class="ace-icon fa fa-cog"></i>
+            @General.Settings
+        </a>
+    </li>*@
+
+                <li>
+                    <a href="@Url.Action("View", "People")">
+                        <i class="ace-icon fa fa-user green"></i>
+                        @General.Profile
+                    </a>
+                </li>
+
+                <li>
+                    <a href="@Url.Action("EditProfile", "People")">
+                        <i class="ace-icon fa fa-pencil"></i>
+                        @General.ProfileEdit
+                    </a>
+                </li>
+
+                <li>
+                    <a href="@Url.Action("Setup", "People")">
+                        <i class="ace-icon fa fa-sliders"></i>
+                        @General.PersonSetup
+                    </a>
+                </li>
+
+                <li>
+                    <a href="@Url.Action("ChangePassword", "People")">
+                        <i class="ace-icon fa fa-key"></i>
+                        @General.ChangePassword
+                    </a>
+                </li>
+
+                <li class="divider"></li>
+
+                <li>
+                    <a href="@Url.Action("LogOff","Account")">
+                        <i class="ace-icon fa fa-power-off"></i>
+                        @General.Logout
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- /section:basics/navbar.user_menu -->
+    </ul>
+
+
+
+</div>

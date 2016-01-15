@@ -1,0 +1,245 @@
+﻿@model FolderUserAnswer
+
+@{
+    if (ViewBag.IsAuthenticated != true)
+    {
+        ViewBag.Title = "Feedback";
+        Layout = "~/Views/Shared/_NRAnonomusLayout.cshtml";
+        int index = 0;
+    }
+
+    int theMonth = 0;
+    DateTime WeekStart = new DateTime();
+
+}
+<!--<link href="~/Content/CSS/TmpStyle.css" rel="stylesheet" type="text/css">-->
+
+@section pagescripts
+    {
+    @Scripts.Render("~/bundles/form")
+
+}
+@section inlinescripts
+{
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $('.teamstate').click(function () {
+                var State = $(this).find('[id*="_OK"]');
+                if (State.val() == 'True') {
+                    State.val('False');
+                    $(this).switchClass('btn-success', 'btn-danger', 1000, 'easeInOutQuad');
+                    $(this).find('.state').html('<i class="ace-icon fa fa-minus-square bigger-300 "></i>');
+                }
+                else {
+                    State.val('True');
+                    $(this).switchClass('btn-danger', 'btn-success', 1000, 'easeInOutQuad');
+                    $(this).find('.state').html('<i class="ace-icon fa fa-check-square bigger-300 "></i>');
+                }
+
+            });
+
+            
+
+            if ($('#Pass').prop("checked"))
+            {
+                $('#passswitch').hide();
+            }
+
+            $('#Pass').change(function () {
+                $('#passswitch').slideToggle("slow");
+            });
+
+
+
+            $('[name*="switch-"]').change(function () {
+                var name = $(this).attr('name').substr(7);
+                $('.day .' + name).slideToggle("fast").switchClass('btn-success', 'btn-danger', 1000, 'easeInOutQuad');
+                //var State = $(this).find('[id*="_OK"]');
+                $('.day .' + name + ' input[id*="_OK"]').val('False');
+                $('.day .' + name + ' .state').html('<i class="ace-icon fa fa-minus-square bigger-300 "></i>');
+
+            });
+
+
+        });
+    </script>
+}
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <div id="logo" class="center">
+            <h1>
+                <img src="@Url.Content("~/Content/img/Natteravnene_logo_gul_forside.png")" alt="Natteravnene logo" />
+            </h1>
+        </div>
+
+        <div class="space-6"></div>
+
+        <div class="feedback">
+
+            <div class="page-header position-relative">
+                <h1>
+                    @General.FeedBackHead - @Model.Person.FullName <span class="small">@Html.AssociationTitle()</span> 
+                </h1>
+            </div>
+
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.HiddenFor(m => m.FolderUserAnswerID)
+                @Html.HiddenFor(m => m.PersonID)
+                @Html.HiddenFor(m => m.FolderID)
+
+
+                @Html.Partial("~/Views/Shared/_FormSummery.cshtml")
+
+                <div class="well well-lg">
+                    <h3>@Html.Raw(string.Format(General.FeedBackPassHead, Html.TextDatePeriod(Model.Folder.Start, Model.Folder.Finish)))</h3>
+                    <p>@Html.Raw(General.FeedBackPassTxt)</p>
+
+                    <label>
+                        <input id="@Html.IdFor(m => m.Pass)" name="@Html.IdFor(m => m.Pass)" class="ace ace-switch ace-switch-6" type="checkbox" checked="@Model.Pass" value="true"/>
+                        <!--<input name="switch-field-1" class="ace ace-switch" type="checkbox">-->
+                        <span class="lbl"></span>
+                    </label>
+
+                </div>
+                <div id="passswitch">
+                    <div class="well well-lg">
+                        <h3>@Html.Raw(string.Format(General.FeedBackTeamsHead, Html.TextDatePeriod(Model.Folder.Start, Model.Folder.Finish)))</h3>
+
+
+                        @Html.TextBoxFor(m => m.MaxTeams)
+                        @Html.ValidationMessageFor(m => m.MaxTeams)
+                        <p>@Html.Raw(string.Format(General.FeedBackTeamsTxt, Html.TextDatePeriod(Model.Folder.Start, Model.Folder.Finish)))</p>
+                    </div>
+                    @{
+                Dictionary<string, string> Locations = Model.Folder.Teams.OrderBy(L => L.Location.Name).Select(t => new { t.Location.ShortName, t.Location.Name })
+                        .Distinct().ToDictionary(t => t.ShortName, t => t.Name);
+                if (Locations.Count() > 1)
+                {
+
+                    <div class="well well-lg">
+                        <h3>@General.FeedBackLocationHead</h3>
+                        <p>@Html.Raw(General.FeedBackLocationTxt)</p>
+                        <div class="row">
+
+                            @foreach (Location L in Model.Folder.Association.Locations.OrderBy(m => m.Name))
+                            {
+                                <div class="col-sm-2">
+                                    @L.Name @L.ShortName
+                                    <br />
+                                    <label>
+                                        <input name="switch-@L.ShortName.ToLower()" class="ace ace-switch ace-switch-6" type="checkbox" checked>
+                                        <span class="lbl"></span>
+                                    </label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+                    }
+                    <div class="well well-lg">
+                        <h3>@General.FeedBackNoTeamsHead</h3>
+                        <p>@Html.Raw(General.FeedBackNoTeamsTxt)</p>
+
+                        <table>
+
+                            @foreach (Team T in Model.Folder.Teams)
+                            {
+                                if (T.Start > WeekStart.AddDays(7))
+                                {
+                                    if (theMonth != T.Start.AddSeconds(-1).Month)
+                                    {
+                                        <tr>
+                                            <td class="month" colspan="8">
+                                                @T.Start.ToString("MMMM")
+                                            </td>
+                                        </tr>
+
+
+
+                                        <tr>
+                                            <td class="dayhead">@DayOfWeek.Monday.ToString()</td>
+                                            <td class="dayhead">@DayOfWeek.Tuesday.ToString()</td>
+                                            <td class="dayhead">@DayOfWeek.Wednesday.ToString()</td>
+                                            <td class="dayhead">@DayOfWeek.Thursday.ToString()</td>
+                                            <td class="dayhead">@DayOfWeek.Friday.ToString()</td>
+                                            <td class="dayhead">@DayOfWeek.Saturday.ToString()</td>
+                                            <td class="dayhead">@DayOfWeek.Sunday.ToString()</td>
+                                        </tr>
+
+                                    }
+
+                                    theMonth = T.Start.Month;
+                                    DayOfWeek dayWeek = T.Start.AddSeconds(-1).DayOfWeek;
+                                    if (dayWeek == DayOfWeek.Sunday)
+                                    { WeekStart = T.Start.Date.AddDays(-(int)dayWeek - 6); }
+                                    else
+                                    { WeekStart = T.Start.Date.AddDays(-(int)dayWeek + 1); }
+
+
+
+                                    <tr>
+                                        @for (int i = 0; i < 7; i++)
+                                        {
+                                            <td class="day">
+                                                <div class="daynumber">@WeekStart.AddDays(i).Day.ToString()</div>
+
+                                                @{
+                                            DateTime thisDate = WeekStart.AddDays(i);
+                                            //int i = 0;
+
+
+
+                                            foreach (TeamUserAnswer TD in Model.Answers.Where(g => g.Team.Start.AddSeconds(-1).Date == thisDate.Date).OrderBy(t => t.Team.Start))
+                                            {
+                                                int index = Model.Answers.IndexOf(TD);
+
+                                                <div class="btn @(Model.Answers[index].OK == true ? "btn-success" : "btn-danger") btn-block no-border teamstate @Model.Answers[index].Team.Location.ShortName.ToLower()">
+                                                    @Html.HiddenFor(x => Model.Answers[index].AnswerID)
+                                                    @Html.HiddenFor(x => Model.Answers[index].TeamID)
+                                                    @Html.HiddenFor(x => Model.Answers[index].OK)
+                                                    <div class="teamtime">
+                                                        <i class="ace-icon fa fa-play smaller-80"></i> @Model.Answers[index].Team.Start.ToShortTimeString()<br />
+                                                        <i class="ace-icon fa fa-stop smaller-80"></i> @Model.Answers[index].Team.Finish.ToShortTimeString()<br />
+                                                        <i class="@Icons.Location smaller-80"></i> @Model.Answers[index].Team.Location.ShortName
+                                                    </div>
+                                                    <div class="state">
+                                                        <i class="ace-icon fa @(Model.Answers[index].OK == true ? "fa-check-square" : "fa-minus-square") bigger-300 "></i>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div></div>
+
+                                                </div>
+
+                                            }
+                                                }
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            }
+
+                        </table>
+                    </div>
+                </div>
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button class="btn btn-info" type="submit">
+                            <i class="icon-ok bigger-110"></i>
+                            @General.Send
+                        </button>
+
+                    </div>
+                </div>
+            }
+        </div>
+
+
+        <div class="center">
+            <a href="http://natteravnene.dk" target="_blank"><h4 id="id-company-text">www.natteravnene.dk</h4></a>
+        </div>
+
+        <div class="space-18"></div>
+
+    </div><!-- /.col -->
+</div><!-- /.row -->

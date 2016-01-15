@@ -1,0 +1,33 @@
+﻿@model Association
+<div class="page-header position-relative">
+    <h1>
+        @General.KeyBox
+    </h1>
+</div>
+
+@using (Html.BeginForm("Index", null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+
+    @Html.Partial("~/Views/Shared/_FormSummery.cshtml");
+    @Html.HiddenFor(m => m.AssociationID)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.KeyBoxcode, new { @class = "col-sm-1 control-label no-padding-right" })
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.KeyBoxcode, new { @class = "col-xs-2 col-sm-2", placeholder = DomainStrings.KeyBoxcode })
+            @Html.ValidationMessageFor(m => m.KeyBoxcode)
+        </div>
+    </div>
+
+
+
+    <div class="space-4"></div>
+
+    <div class="form-actions">
+        <button class="btn btn-info" type="submit" data-rel="tooltip" data-placement="right" title="@General.BtnSaveTooltip">
+            <i class="icon-ok bigger-110"></i>
+            @General.Save
+        </button>
+    </div>
+
+}

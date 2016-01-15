@@ -1,0 +1,14 @@
+﻿@model Event
+
+
+<div class="page-header position-relative">
+    <h1>
+        <a href="@Url.Action("Index")" class="btn btn-small btn-primary">
+            <i class="ace-icon @Icons.BackIcon icon-only"></i>
+        </a> @Model.Headline
+    </h1>
+</div>
+@Html.Raw(Model.Description)
+
+@Model.Start
+@Model.Finish

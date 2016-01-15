@@ -1,0 +1,32 @@
+﻿@model List<News>
+
+@if (Model.Any())
+{
+    foreach (News item in Model)
+    {
+        <article class="media" style="position: relative;">
+            <a class="pull-left" href="@Url.Action("View", "News", new { id = Html.GuidToUrl(item.NewsId), name = Html.ValidUrl(item.Headline) })">
+
+                @Html.NewsImage(item, new { @class = "img-rounded" })
+
+            </a>
+            <div class="media-body">
+                <h2 class="media-heading">
+                    <a href="@Url.Action("View", "News", new { id = Html.GuidToUrl(item.NewsId), name = Html.ValidUrl(item.Headline) })">@item.Headline</a>
+
+                </h2>
+                @Html.NewsDate(item)
+                @item.Teaser
+            </div>
+            @if ((NR.Infrastructure.CurrentProfile.isEditor | NR.Infrastructure.CurrentProfile.isSecretary) &&
+                    (item.Source == LevelType.Local & item.SourceLink == NR.Infrastructure.CurrentProfile.AssociationID))
+            {
+                <a href="@Url.Action("Edit", "News", new { id = item.NewsId })" class="btn btn-info btn-xs discreteedit" data-rel="tooltip" title="@General.BtnSilentEdit" >
+                    <span class="green">
+                        <i class="@Icons.Edit bigger-110 icon-only"></i>
+                    </span>
+                </a>
+            }
+        </article>
+    }
+}

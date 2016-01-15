@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>@General.LoginPageTitle | Frivillig.Natteravnene</title>
+
+    <meta name="description" content="@General.LoginPageDescription" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <!-- Basic CSS -->
+    @Styles.Render("~/bundles/style")
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/font-awesome.min.css")" />
+
+    <!-- page specific plugin styles -->
+    @RenderSection("pagecss", required: false)
+    <!-- text fonts -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600italic,600,700italic,700,800italic,800" rel="stylesheet" type="text/css">
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="@Url.Content("~/Content/css/ace-part2.min.css")" />
+    <![endif]-->
+    <!--[if lte IE 9]>
+      <link rel="stylesheet" href="@Url.Content("~/Content/css/ace-ie.min.css")" />
+    <![endif]-->
+    <!-- inline styles related to this page -->
+    <!-- ace settings handler -->
+    <script src="@Url.Content("~/Scripts/ace-extra.min.js")"></script>
+
+    <!-- Modernizr and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+         @Scripts.Render("~/bundles/modernizr")
+    <![endif]-->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="@Url.Content("~/Content/ico/apple-touch-icon-144-precomposed.png")">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="@Url.Content("~/Content/ico/apple-touch-icon-114-precomposed.png")">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="@Url.Content("~/Content/ico/apple-touch-icon-72-precomposed.png")">
+    <link rel="apple-touch-icon-precomposed" href="@Url.Content("~/Content/ico/apple-touch-icon-57-precomposed.png")">
+    <link rel="shortcut icon" href="@Url.Content("~/Content/ico/favicon.png")">
+</head>
+
+<body class="login-layout">
+    <div class="main-container">
+        <div class="main-content">
+
+            <!-- PAGE CONTENT BEGINS -->
+            @RenderBody()
+            <!-- PAGE CONTENT ENDS -->
+
+    </div><!-- /.main-content -->
+
+    
+
+
+    </div><!-- /.main-container -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        if (!window.jQuery) { document.write('<script src="@Url.Content("~/Scripts/jquery-2.1.3.min.js")"><\/script>'); }
+    </script>
+    <script type="text/javascript">
+        if ('ontouchstart' in document.documentElement) document.write("<script src='/Scripts/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+    @Scripts.Render("~/bundles/js")
+
+    <!-- page specific plugin scripts -->
+    @RenderSection("pagescripts", required: false)
+
+    <!-- inline scripts related to this page -->
+    @RenderSection("inlinescripts", required: false)
+</body>
+</html>

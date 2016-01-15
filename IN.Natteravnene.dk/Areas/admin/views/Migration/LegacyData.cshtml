@@ -1,0 +1,32 @@
+﻿@model IEnumerable<SelectListItem>
+    @{
+        ViewBag.Title = "LegacyData";
+    }
+
+    <div class="page-header position-relative">
+
+        <h1>
+
+            Korriger legacy data
+        </h1>
+    </div>
+
+    @using (Html.BeginForm("ExportData", null, FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.DropDownList("ForningID", Model)
+
+        <button class="btn btn-info" id="start">
+            <i class="icon-ok bigger-110"></i>
+            Export CSV
+        </button>
+    }
+    <hr>
+    @using (Html.BeginForm("ImportData", null, FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="file" />
+
+        <button class="btn btn-info" id="start">
+            <i class="icon-ok bigger-110"></i>
+            Import CSV
+        </button>
+    }

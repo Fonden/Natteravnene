@@ -1,0 +1,453 @@
+﻿@model NRMembership
+
+
+@section pagecss {
+
+}
+
+@section pagescripts {
+    @Scripts.Render("~/bundles/form")
+    @Scripts.Render("~/bundles/jcrop")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+        jQuery.validator.addMethod('date',
+         function (value, element, params) {
+             if (this.optional(element)) {
+                 return true;
+             }
+             try {
+                 var format = getDateFormat('@General.JavaScripDateformat');
+                 var result = MyParseDate(value, format);
+                 return result;
+             } catch (err) {
+                 console.log(err);
+                 return false;
+             }
+         });
+
+        jQuery(function ($) {
+
+            ///////////////////////////////////////////
+
+
+            $('.date-picker').datepicker({
+                format: "@General.JavaScripDateformat",
+                gotoCurrent: true,
+                autoclose: true,
+                todayHighlight: true,
+                weekStart: 1,
+                language: "da"
+            });
+
+        });
+    </script>
+}
+
+<div class="page-header position-relative">
+    <h1>
+        <a href="@Url.Action("Index")" class="btn btn-small btn-primary">
+            <i class="ace-icon @Icons.BackIcon icon-only"></i>
+        </a> @(Model.Person.PersonID == Guid.Empty ? General.ProfileCreate : General.ProfileEdit)
+    </h1>
+</div>
+<!--/.page-header-->
+<!-- PAGE CONTENT BEGINS -->
+@*using (Ajax.BeginForm("Edit", null, null, new { @class = "form-horizontal", enctype = "multipart/form-data" }))*@
+@using (Html.BeginForm("Edit", null, FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", id = "basicdata" }))
+{
+    @Html.HiddenFor(m => m.MembershipID)
+    @Html.HiddenFor(m => m.Person.PersonID)
+
+    <div>
+        @Html.Partial("~/Views/Shared/_FormSummery.cshtml")
+        <div class="space"></div>
+
+        <div class="tabbable">
+            <ul class="nav nav-tabs padding-16">
+                <li class="active">
+                    <a data-toggle="tab" href="#edit-basic">
+                        <i class="green icon-edit bigger-125"></i>
+                        @General.TabBasicdata
+                    </a>
+                </li>
+
+                <li>
+                    <a data-toggle="tab" href="#edit-functions">
+                        <i class="green icon-envelope-alt bigger-125"></i>
+                        @General.TabContactData
+                    </a>
+                </li>
+
+                @*<li>
+                        <a data-toggle="tab" href="#edit-training">
+                            <i class="green icon-folder-open-alt bigger-125"></i>
+                            @General.TabCauses
+                        </a>
+                    </li>*@
+            </ul>
+
+            <div class="tab-content profile-edit-tab-content">
+                <div id="edit-basic" class="row tab-pane in active">
+
+                    <h4 class="header blue bolder smaller">General</h4>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-2">
+
+                            @Html.ProfilImage(Model.Person)
+
+                            @if (Model.MembershipID != Guid.Empty)
+                            {<a href="#profilimage-form" role="button" class="btn full-width" data-toggle="modal"> @General.ChooseProfileImage </a>}
+                        </div>
+                        <div class="vspace-xs"></div>
+
+                        <div class="col-xs-12 col-sm-10">
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.UserName, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(m => m.Person.UserName, new { @class = "col-xs-2 col-sm-2", placeholder = DomainStrings.Username })
+                                    @Html.ValidationMessageFor(m => m.Person.UserName)
+                                    @if (Model.MembershipID == Guid.Empty)
+                                    {
+                                        <span class="help-inline col-xs-12 col-sm-7">
+                                            <span class="middle">@General.GuideLeaveUsernameEmpty</span>
+                                        </span>}
+                                </div>
+
+                            </div>
+
+                            <div class="space-4"></div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Type, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                                <div class="col-sm-10">
+                                    @Html.EnumDropDownListFor(m => m.Type)
+                                    @Html.ValidationMessageFor(m => m.Type)
+                                </div>
+                            </div>
+
+                            <div class="space-4"></div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.FirstName, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(m => m.Person.FirstName, new { @class = "col-xs-8 col-sm-8", placeholder = DomainStrings.FirstName })
+                                    @Html.ValidationMessageFor(m => m.Person.FirstName)
+                                </div>
+                            </div>
+
+                            <div class="space-4"></div>
+
+                            <div class="form-group">
+
+                                @Html.LabelFor(m => m.Person.FamilyName, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(m => m.Person.FamilyName, new { @class = "col-xs-8 col-sm-8", placeholder = DomainStrings.FamilyName })
+                                    @Html.ValidationMessageFor(m => m.Person.FamilyName)
+                                </div>
+                            </div>
+
+                            <div class="space-4"></div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.BirthDate, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                                <div class="col-sm-9">
+                                    <div class="input-medium">
+                                        <div class="input-group">
+                                            @Html.TextBoxFor(m => m.Person.BirthDate, "{0:dd-MM-yyyy}", new { @class = "form-control date-picker", placeholder = General.JavaScripDateformat })
+
+
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar bigger-110"></i>
+                                            </span>
+
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.Person.BirthDate)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-4"></div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Person.Gender, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                                <div class="col-sm-9">
+                                    <label class="inline">
+                                        <input name="RadioGender" type="radio" value="M" class="ace" @if (Model.Person.Gender != null && Model.Person.Gender == Gender.Man) { <text> checked </text>        } />
+                                        <span class="lbl"> @DomainStrings.GenderMan</span>
+                                    </label>
+
+                                    &nbsp; &nbsp; &nbsp;
+                                    <label class="inline">
+                                        <input name="RadioGender" type="radio" value="F" class="ace" @if (Model.Person.Gender != null && Model.Person.Gender == Gender.Woman) { <text> checked </text>        } />
+                                        <span class="lbl"> @DomainStrings.GenderWoman</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="space"></div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.SignupDate, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                                <div class="col-sm-9">
+                                    <div class="input-medium">
+                                        <div class="input-group">
+                                            @Html.TextBoxFor(m => m.SignupDate, "{0:dd-MM-yyyy}", new { @class = "form-control date-picker", placeholder = General.JavaScripDateformat })
+
+
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar bigger-110"></i>
+                                            </span>
+
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.SignupDate)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-4"></div>
+
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Person.BasicTrainingDate, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                        <div class="col-sm-9">
+                            <div class="input-medium">
+                                <div class="input-group">
+                                    @Html.TextBoxFor(m => m.Person.BasicTrainingDate, "{0:dd-MM-yyyy}", new { @class = "form-control date-picker", placeholder = General.JavaScripDateformat })
+
+
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar bigger-110"></i>
+                                    </span>
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Person.BasicTrainingDate)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Teamleader, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                        <div class="col-sm-9">
+                            <div class="input-medium">
+                                <div class="input-group">
+                                    <label>
+                                        <input id="@Html.IdFor(m => m.Teamleader)" name="@Html.NameFor(m => m.Teamleader)" class="ace ace-switch ace-switch-6" type="checkbox" value="true" @if (Model.Teamleader == true) { <text> checked </text>         } />
+                                        <span class="lbl"></span>
+                                    </label>
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Teamleader)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Note, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                        <div class="col-sm-8">
+                            @Html.TextAreaFor(m => m.Note, new { @class = "col-xs-12 col-sm-10" })
+                            @Html.ValidationMessageFor(m => m.Note)
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+
+                </div>
+
+                <div id="edit-functions" class="row tab-pane">
+
+                    <h4 class="header blue bolder smaller">Contact</h4>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Person.Mobile, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                        <div class="col-sm-9">
+                            <span class="input-icon input-icon-right">
+                                @Html.TextBoxFor(m => m.Person.Mobile, new { type = "tel", placeholder = DomainStrings.Mobile })
+                                <i class="icon-mobile-phone"></i>
+                            </span>
+                            @Html.ValidationMessageFor(m => m.Person.Mobile)
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Person.Phone, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                        <div class="col-sm-9">
+                            <span class="input-icon input-icon-right">
+                                @Html.TextBoxFor(m => m.Person.Phone, new { type = "tel", placeholder = DomainStrings.Phone })
+                                <i class="icon-phone icon-flip-horizontal"></i>
+                            </span>
+                            @Html.ValidationMessageFor(m => m.Person.Phone)
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Person.Email, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                        <div class="col-sm-9">
+                            <span class="input-icon input-icon-right ">
+                                @Html.TextBoxFor(m => m.Person.Email, new { type = "email", placeholder = DomainStrings.Email })
+                                <i class="icon-envelope"></i>
+                            </span>
+                            @Html.ValidationMessageFor(m => m.Person.Email)
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Person.Address, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(m => m.Person.Address, new { @class = "col-xs-12 col-sm-10", placeholder = DomainStrings.Address })
+                            @Html.ValidationMessageFor(m => m.Person.Address)
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Person.Zip, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(m => m.Person.Zip, new { @class = "col-xs-12 col-sm-10", placeholder = DomainStrings.Zip })
+                            @Html.ValidationMessageFor(m => m.Person.Zip)
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Person.City, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(m => m.Person.City, new { @class = "col-xs-12 col-sm-10", placeholder = DomainStrings.City })
+                            @Html.ValidationMessageFor(m => m.Person.City)
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Person.Country, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                        <div class="col-sm-4">
+                            @Html.EnumDropDownListFor(m => m.Person.Country)
+
+                            @Html.ValidationMessageFor(m => m.Person.Country)
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Person.PrintNewslettet, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                        <div class="col-sm-9">
+                            <div class="input-medium">
+                                <div class="input-group">
+                                    <label>
+                                        <input id="@Html.IdFor(m => m.Person.PrintNewslettet)" name="@Html.NameFor(m => m.Person.PrintNewslettet)" class="ace ace-switch ace-switch-6"
+                                               type="checkbox" value="true" @if (Model.Person.PrintNewslettet == true) { <text> checked</text>} />
+                                        <span class="lbl"></span>
+                                    </label>
+                                </div>
+                                <input id="@Html.IdFor(m => m.Person.PrintNewslettet)" name="@Html.NameFor(m => m.Person.PrintNewslettet)" type="hidden" value="false" />
+                                @Html.ValidationMessageFor(m => m.Person.PrintNewslettet)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Person.EmailNewsLetter, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                        <div class="col-sm-9">
+                            <div class="input-medium">
+                                <div class="input-group">
+                                    <label>
+                                        <input id="@Html.IdFor(m => m.Person.EmailNewsLetter)" name="@Html.NameFor(m => m.Person.EmailNewsLetter)" class="ace ace-switch ace-switch-6"
+                                               type="checkbox" value="true" @if (Model.Person.EmailNewsLetter == true) { <text> checked </text>          } />
+                                        <span class="lbl"></span>
+                                    </label>
+                                </div>
+                                <input id="@Html.IdFor(m => m.Person.EmailNewsLetter)" name="@Html.NameFor(m => m.Person.EmailNewsLetter)" type="hidden" value="false" />
+                                @Html.ValidationMessageFor(m => m.Person.EmailNewsLetter)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+
+
+                </div>
+
+                @* <div id="edit-training" class="row tab-pane">
+                        <table id="Cause-table" class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <td>@DomainStrings.CauseName</td>
+                                    <td>@DomainStrings.Causedate</td>
+                                    <td>@DomainStrings.CauseDescription</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (CausePartisipant m in Model.Person.Causes)
+                                {
+                                    <tr>
+                                        <td>@m.Cause.Name</td>
+                                        <td>@m.Date.ToShortDateString()</td>
+                                        <td>@m.Cause.Description</td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>*@
+            </div>
+        </div>
+
+        <div class="clearfix form-actions">
+            <div class="col-md-9">
+                <button class="btn btn-info" type="submit" data-rel="tooltip" data-placement="right" title="@(Model.MembershipID == Guid.Empty ? General.BtnCreateTooltip : General.BtnSaveTooltip)">
+                    <i class="icon-ok bigger-110"></i>
+                    @(Model.MembershipID == Guid.Empty ? General.Create : General.Save)
+                </button>
+            </div>
+        </div>
+
+        <!-- /span -->
+    </div>
+}
+
+@Html.Partial("~/Views/Avatar/_upload.cshtml", Model.Person.PersonID)
+
+<!-- PAGE CONTENT ENDS -->

@@ -1,0 +1,92 @@
+﻿@model Cause
+@section pagescripts {
+    @Scripts.Render("~/bundles/form")
+    @Scripts.Render("~/bundles/jcrop")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+        jQuery(function ($) {
+
+            ///////////////////////////////////////////
+            $('#DescriptionEditor').ace_wysiwyg({
+                toolbar:
+                [
+                    { name: 'bold', className: 'btn-info' },
+                    { name: 'italic', className: 'btn-info' },
+                    { name: 'strikethrough', className: 'btn-info' },
+                    { name: 'underline', className: 'btn-info' },
+                    null,
+                    { name: 'insertunorderedlist', className: 'btn-success' },
+                    { name: 'insertorderedlist', className: 'btn-success' },
+                    { name: 'outdent', className: 'btn-purple' },
+                    { name: 'indent', className: 'btn-purple' },
+                    null,
+                    { name: 'undo', className: 'btn-grey' },
+                    { name: 'redo', className: 'btn-grey' }
+                ]
+            }).prev();
+
+
+        $('form').on('submit', function () {
+
+            //put the editor's html content inside the hidden input to be sent to server
+            $('input[name=Description]', this).val($('#DescriptionEditor').html());
+
+            return true;
+        });
+
+        });
+
+
+    </script>
+}
+<div class="page-header position-relative">
+    <h1>
+        <a href="@Url.Action("Index")" class="btn btn-small btn-primary">
+            <i class="ace-icon @Icons.BackIcon icon-only"></i>
+        </a> @(Model.CauseID == Guid.Empty ? General.CauseCreate : General.CauseEdit)
+    </h1>
+</div>
+
+@using (Html.BeginForm("Edit", null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+
+    @Html.Partial("~/Views/Shared/_FormSummery.cshtml");
+    @Html.HiddenFor(m => m.CauseID)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "col-sm-2 control-label no-padding-right" })
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = DomainStrings.CauseName })
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "col-sm-2 control-label no-padding-right" })
+        <div class="col-sm-8">
+            <div class="wysiwyg-editor" id="DescriptionEditor">
+                @Html.Raw(Model.Description)
+            </div>
+            @Html.HiddenFor(f => f.Description)
+            @Html.ValidationMessageFor(m => m.Description)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+    <div class="form-actions">
+        <button class="btn btn-info" type="submit">
+            <i class="icon-ok bigger-110"></i>
+            @(Model.CauseID == Guid.Empty ? General.Create : General.Save)
+        </button>
+        &nbsp; &nbsp; &nbsp;
+        <button class="btn" type="reset">
+            <i class="icon-undo bigger-110"></i>
+            @General.Reset
+        </button>
+    </div>
+
+}

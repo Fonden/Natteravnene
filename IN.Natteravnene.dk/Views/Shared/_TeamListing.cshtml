@@ -1,0 +1,37 @@
+﻿@model List<Team>
+
+<table id="Team-Listing" class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                <i class="icon-time bigger-110 hidden-phone"></i>@General.When
+            </th>
+            <th>@DomainStrings.Note</th>
+            <th>@General.Location</th>
+            <th>@DomainStrings.Teamleader</th>
+            <th>@General.Teammember</th>
+            <th>@General.Teammember</th>
+            <th>@DomainStrings.Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model.Any())
+        {
+            foreach (Team Team in Model)
+            {
+                Html.RenderPartial("_TeamListingRow", Team);
+            }
+        }
+    </tbody>
+</table>
+
+<div id="EditTeamModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div id="EditTeamModalForm" class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,21 @@
+﻿@model NR.Models.BoardModelView
+
+<div class="page-header position-relative">
+@if (NR.Infrastructure.CurrentProfile.isEditor | NR.Infrastructure.CurrentProfile.isSecretary)
+    {
+   @Html.ActionLink(General.Edit, "EditBoard", null, null, new { @class = "btn btn-small btn-primary pull-right" })
+}
+ <h1>
+         @if (Model.Association.Governance == GovernanceType.Traditionel)
+        {
+            @General.Board
+        }
+        else
+        {
+            @General.Steeringgroup
+        }
+        @string.Format(General.BrandTitleAssociation, Model.Association.Name)
+    </h1>
+</div>
+@{Html.RenderPartial("~/Views/Association/BoardPartial.cshtml", Model);}
+

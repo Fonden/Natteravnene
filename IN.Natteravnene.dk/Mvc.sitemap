@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+  <mvcSiteMapNode title="Forside" controller="Home" action="Index" icon="Home" help="69c55654-ccd0-e411-b457-005056aa2abc">
+    <mvcSiteMapNode title="TurPlanen" controller="Planning" action="Index" icon="fa fa-calendar" area="" rights="association" module="planning" help="f38c8ac7-ccd0-e411-b457-005056aa2abc"> </mvcSiteMapNode>
+    <mvcSiteMapNode title="Nyheder" controller="News" action="Index" icon="fa fa-newspaper-o" area="" help="3c443596-ccd0-e411-b457-005056aa2abc">
+      <mvcSiteMapNode title="Se" controller="News" action="View" area="" visibility="SiteMapPathHelper, !*"  preservedRouteParameters="id" help="7ea8a930-cdd0-e411-b457-005056aa2abc"></mvcSiteMapNode>
+      <mvcSiteMapNode title="Rediger" controller="News" action="Edit" area="" visibility="SiteMapPathHelper, !*"  preservedRouteParameters="id" help="740fde7d-4ae5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Aktiviteter" controller="Event" action="Index" icon="fa fa-bookmark-o" area="" help="e5db5c9f-ced0-e411-b457-005056aa2abc">
+      <mvcSiteMapNode title="Se" controller="Event" action="View" area="" visibility="SiteMapPathHelper, !*"  preservedRouteParameters="id" help="3bf1fee7-ced0-e411-b457-005056aa2abc"></mvcSiteMapNode>
+      <mvcSiteMapNode title="Rediger" controller="Event" action="Edit" area="" visibility="SiteMapPathHelper, !*"  preservedRouteParameters="id" help="a29da78e-4ae5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Beskeder" controller="Message" action="Index" icon="fa fa-envelope-o"  area="" clickable="false" help="2a1d783b-cfd0-e411-b457-005056aa2abc">
+      <mvcSiteMapNode title="Interne" controller="Message" action="Index" icon="envelope-o" area="">
+        <mvcSiteMapNode title="Ny besked" controller="Message" action="NewMessage" area="" visibility ="SiteMapPathHelper, !*" help="7bed3e52-cfd0-e411-b457-005056aa2abc"></mvcSiteMapNode>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Mailto:" controller="Message" action="MailTo" icon="envelope-o" area="" help="d2f7db7f-cfd0-e411-b457-005056aa2abc"></mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Personer" controller="" action="" icon="nricon-Natteravn"  area="" clickable="false" help="2a1d783b-cfd0-e411-b457-005056aa2abc">
+      <mvcSiteMapNode title="Frivillige" controller="People" action="Index" icon="nricon-Natteravn"  area="" rights="association" help="14e156b1-cdd0-e411-b457-005056aa2abc">
+        <mvcSiteMapNode title="Opret/Rediger" controller="People" action="Edit" area="" preservedRouteParameters="id" visibility ="SiteMapPathHelper, !*" rights="association" help="ac00c7db-cdd0-e411-b457-005056aa2abc"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Profile" controller="People" action="View" area="" preservedRouteParameters="id"  visibility ="SiteMapPathHelper, !*" rights="association" help="d64efb0e-ced0-e411-b457-005056aa2abc"></mvcSiteMapNode>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Prøveture" controller="Emne" action="Index" icon="fa fa-wrench" area="" visibility ="*" rights="planner, secretary" help="a4908980-4af4-e411-9abb-005056aa2a44"></mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Foreningen" controller="Association" action="Index" icon="nricon-nrfugl" area="" clickable="false"  rights="association">
+      <mvcSiteMapNode title="Om" controller="Association" action="Index" icon="wrench" area="" rights="association" help="5f6848ed-4ae5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+      <mvcSiteMapNode title="Bestyrelsen" controller="Association" action="Board" icon="wrench" area="" rights="association" help="46abfa52-4be5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+      <mvcSiteMapNode title="Referater" controller="Association" action="Minutes" icon="fa fa-wrench" area="" visibility ="!*" rights="association" help="69f4c671-4be5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+      <mvcSiteMapNode title="Logo" controller="Association" action="Logo" icon="fa fa-wrench" area="" rights="association" help="a4908980-4af4-e411-9abb-005056aa2a33"></mvcSiteMapNode>
+      <mvcSiteMapNode title="Opsætning" controller="Association" action="EditBoard" icon="wrench" area="" clickable="false" visibility ="*" rights="planner, secretary">
+
+        <mvcSiteMapNode title="Rediger foreningsdata" controller="Association" action="Edit" icon="wrench" area="" visibility ="*" rights="planner, secretary" help="9c5269a1-4be5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Rediger bestyrelsen" controller="Association" action="EditBoard" icon="wrench" area="" visibility ="*" rights="planner, secretary" help="64f5eddd-4be5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Lokationer" controller="Association" action="Location" icon="wrench" area="" visibility ="*" rights="planner, secretary" help="acd89cf7-4be5-e411-80d0-005056aa2abc">
+          <mvcSiteMapNode title="Rediger Lokation" controller="Association" action="LocationEdit" icon="wrench" preservedRouteParameters="id" area="" visibility ="SiteMapPathHelper, !*" rights="planner, secretary" help="1bff2221-4ce5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+          <mvcSiteMapNode title="Se lokation" controller="Association" action="LocationView" icon="wrench" preservedRouteParameters="id" area="" visibility ="SiteMapPathHelper, !*" rights="planner, secretary" help="2157fe3c-4ce5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+        </mvcSiteMapNode>
+        <mvcSiteMapNode title="Websider" controller="Pages" action="EditAssociationpages" icon="wrench" area="" clickable="false" visibility ="*" rights="editor, secretary" help="">
+          <mvcSiteMapNode title="Tekster" controller="Pages" action="EditAssociationpages" icon="wrench" area="" visibility ="*" rights="editor, secretary" help="4a1ef167-4ce5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+          <mvcSiteMapNode title="Sponsors" controller="Pages" action="Sponsors" icon="wrench" area="" visibility ="*" rights="editor, secretary" help="239a1b60-4499-e511-97cb-005056aa2abc">
+            <mvcSiteMapNode title="Opret/Rediger" controller="Pages" action="EditSponsor" area="" preservedRouteParameters="id" visibility ="SiteMapPathHelper, !*" rights="association" help="ac00c7db-cdd0-e411-b457-005056aa2fbc"></mvcSiteMapNode>
+          </mvcSiteMapNode>
+        </mvcSiteMapNode>
+        <mvcSiteMapNode title="Bruger rettigheder" controller="Association" action="Access" icon="wrench" area="" visibility ="*" rights="planner, secretary" help="4a1ef167-4ce5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+      </mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Moduler" controller="Association" action="Index" icon="fa fa-puzzle-piece"  area="" clickable="false" rights ="planner, secretary, editor">
+      <mvcSiteMapNode title="TurMapper" controller="Planning" action="Folders" icon="wrench"  area="" rights ="planner"  module="planning" help="ed27132f-4ee5-e411-80d0-005056aa2abc">
+        <mvcSiteMapNode title="Opret turmappe" controller="Planning" action="CreateFolder" icon="wrench" preservedRouteParameters="id" area="" visibility ="SiteMapPathHelper, !*" rights="planner" module="planning" help="ad3e4963-4ee5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Rediger turmappe" controller="Planning" action="FolderEdit" icon="wrench" preservedRouteParameters="id" area="" visibility ="SiteMapPathHelper, !*" rights="planner" module="planning" help="6d494178-4ee5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Listevisning" controller="Planning" action="Folder" icon="wrench" preservedRouteParameters="id" area="" visibility ="SiteMapPathHelper, !*" rights="planner"  module="planning" help="edbba297-4ee5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Planlægningsvisning" controller="Planning" action="FolderPlanning" icon="wrench" preservedRouteParameters="id" area="" visibility ="SiteMapPathHelper, !*" rights="planner"  module="planning" help="ad2a0db3-4ee5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Opret tur(er)" controller="Planning" action="AddTeams" icon="wrench" preservedRouteParameters="id" area="" visibility ="SiteMapPathHelper, !*" rights="planner"  module="planning" help="6d7a6dd4-4ee5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Turmappe kommunikation" controller="Planning" action="Communicate" icon="wrench" preservedRouteParameters="id" area="" visibility ="SiteMapPathHelper, !*" rights="planner"  module="planning" help="adce24f7-4ee5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Turmappe tilbagemelding" controller="Planning" action="Feedback" icon="wrench" preservedRouteParameters="P, F" area="" visibility ="SiteMapPathHelper, !*" rights="planner"  module="planning" help="ad327218-4fe5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Rediger tur" controller="Planning" action="Edit" area="" visibility="SiteMapPathHelper, !*" preservedRouteParameters="id"  rights="planner"  module="planning" help="4df81046-4fe5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Nøgleboxkode" controller="KeyBox" action="Index" icon="wrench"  area="" rights ="planner"  module="keybox" help="bb596a53-4de5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="SeniorInstruktør" controller="SI" action="Index" icon="nricon-SeniorInstruktoer" area="" rights="si,admin,management" clickable="false">
+      <mvcSiteMapNode title="Information" controller="SI" action="Index" icon="life-ring" area="" rights="si"  help="ed34c96f-4fe5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+      <mvcSiteMapNode title="Filer" controller="SI" action="SIFiles" icon="life-ring" area="" rights="si,admin,management" help="8bef32ad-4ce5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Videnbank" controller="Association" action="Index" icon="fa fa-graduation-cap" area="" clickable="false" visibility ="*">
+      <mvcSiteMapNode title="De 5 gyldne regler" controller="Home" action="Content" icon="wrench" area="" id ="00A8EAD6-0A74-E411-BF1A-C485084553DE" ></mvcSiteMapNode>
+      <mvcSiteMapNode title="Den Gule" controller="Wiki" action="Index" icon="wrench" area="" help="b6ab4306-4de5-e411-80d0-005056aa2abc">
+        <mvcSiteMapNode title="Se" controller="Wiki" action="View" area="" visibility="SiteMapPathHelper, !*" preservedRouteParameters="id" help="be61a633-4de5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Landssekretariatet" controller="Home" action="Content" icon="wrench" area="" id="10a8ead6-0a74-e411-bf1a-c485084553de"> </mvcSiteMapNode>
+      <mvcSiteMapNode title="SeniorInstruktør" controller="SI" action="Info" icon="wrench" area="" > </mvcSiteMapNode>
+      <mvcSiteMapNode title="Hvor går Natteravnene" controller="Home" action="AssociationMap" icon="wrench" area="" help="9772500b-eee8-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+      <mvcSiteMapNode title="Filer" controller="File" action="Index" icon="wrench" area="" help="12c352d8-4ce5-e411-80d0-005056aa2abc"> </mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Admin"  controller="Home" action="About" icon="fa fa-wrench" clickable="false" rights ="admin,management">
+      <mvcSiteMapNode title="Status" controller="Home" action="Index" area="Admin" rights ="admin,management"></mvcSiteMapNode>
+      <mvcSiteMapNode title="Kommunikation" controller="" action="" icon="" area="Admin" clickable="false" visibility ="*" rights ="admin, management">
+        <mvcSiteMapNode title="Nyheder" controller="News" action="Index" area="Admin" rights ="admin,management">
+          <mvcSiteMapNode title="Opret/Edit" controller="News" action="Edit" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin, management" preservedRouteParameters="id"></mvcSiteMapNode>
+          <mvcSiteMapNode title="Se" controller="News" action="View" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin, management" preservedRouteParameters="id"></mvcSiteMapNode>
+        </mvcSiteMapNode>
+        <mvcSiteMapNode title="Aktiviteter" controller="Event" action="Index" area="Admin" rights ="admin,management">
+          <mvcSiteMapNode title="Opret/Rediger" controller="Event" action="Edit" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin, management" preservedRouteParameters="id"></mvcSiteMapNode>
+          <mvcSiteMapNode title="Se" controller="Event" action="View" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin, management" preservedRouteParameters="id"></mvcSiteMapNode>
+        </mvcSiteMapNode>
+        <mvcSiteMapNode title="Den Gule" controller="Wiki" action="Index" area="Admin" rights ="admin,management">
+          <mvcSiteMapNode title="Opret/Rediger" controller="Wiki" action="Edit" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin, management" preservedRouteParameters="id"></mvcSiteMapNode>
+          <mvcSiteMapNode title="Se" controller="Wiki" action="View" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin, management" preservedRouteParameters="id"></mvcSiteMapNode>
+        </mvcSiteMapNode>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Personer" controller="" action="" icon="" area="Admin" clickable="false" visibility ="*" rights ="admin, management">
+        <mvcSiteMapNode title="Personer" controller="People" action="Index" area="Admin" rights ="admin, management">
+          <mvcSiteMapNode title="Opret/Rediger" controller="People" action="Edit" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin, management" preservedRouteParameters="id"></mvcSiteMapNode>
+          <mvcSiteMapNode title="Se" controller="People" action="View" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin, management" preservedRouteParameters="id"></mvcSiteMapNode>
+        </mvcSiteMapNode>
+        <mvcSiteMapNode title="Prøveture" controller="Emner" action="Index" area="Admin" rights ="admin,management">
+          <mvcSiteMapNode title="Opret/Edit" controller="Emner" action="Edit" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin, management" preservedRouteParameters="id"></mvcSiteMapNode>
+        </mvcSiteMapNode>
+        <mvcSiteMapNode title="Returmail" controller="People" action="ReturnMail" area="Admin" rights ="admin,management"> </mvcSiteMapNode>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Foreninger" controller="Association" action="Index" area="Admin" rights ="admin, management">
+        <mvcSiteMapNode title="Opret/Rediger" controller="Association" action="Edit" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin,management" preservedRouteParameters="id"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Se" controller="Association" action="View" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin,management" preservedRouteParameters="id"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Lokationer" controller="Association" action="View" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin,management" preservedRouteParameters="id" >
+          <mvcSiteMapNode title="Se" controller="Association" action="LocationView" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin,management" preservedRouteParameters="id"></mvcSiteMapNode>
+          <mvcSiteMapNode title="Opret/Rediger" controller="Association" action="LocationEdit" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin,management" preservedRouteParameters="id"></mvcSiteMapNode>
+        </mvcSiteMapNode>
+        <mvcSiteMapNode title="Rette bestyrelsen" controller="Association" action="EditBoard" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin,management" preservedRouteParameters="id"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Rettigheder" controller="Association" action="Access" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin,management" preservedRouteParameters="id"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Ny note" controller="Association" action="EditNote" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin,management" preservedRouteParameters="id"></mvcSiteMapNode>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Netværk" controller="Network" action="Index" area="Admin" rights ="admin,management">
+        <mvcSiteMapNode title="Opret/Edit" controller="Network" action="Edit" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin,management" preservedRouteParameters="id"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Se" controller="Network" action="View" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin,management" preservedRouteParameters="id"></mvcSiteMapNode>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Uddannelse" controller="Cause" action="Index" area="Admin" rights ="admin,management">
+        <mvcSiteMapNode title="Opret/Rediger" controller="Cause" action="Edit" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin, management" preservedRouteParameters="id"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Se" controller="Cause" action="View" area="Admin" visibility="SiteMapPathHelper, !*" rights ="admin, management" preservedRouteParameters="id"></mvcSiteMapNode>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Filer" controller="File" action="Index" area="Admin" rights ="admin,management"> </mvcSiteMapNode>
+
+      <mvcSiteMapNode title="Fejlsøgning" controller="Home" action="TroubleShooting" area="Admin" rights ="admin,management"> </mvcSiteMapNode>
+      <mvcSiteMapNode title="Adgange" controller="Home" action="Access" area="Admin" rights ="admin,management"> </mvcSiteMapNode>
+      <mvcSiteMapNode title="Mist"  controller="Home" action="About" icon="wrench" clickable="false" rights ="admin,management">
+        <mvcSiteMapNode title="Lodtrækning" controller="Draw" action="Index" area="Admin" rights ="admin,management"> </mvcSiteMapNode>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Kommunikation" controller="Home" action="Communication" area="Admin" rights ="admin"> </mvcSiteMapNode>
+      <mvcSiteMapNode title="Tests" controller="Home" action="Tests" area="Admin" rights ="admin"> </mvcSiteMapNode>
+      <mvcSiteMapNode title="Migration"  controller="Home" action="About" icon="wrench" clickable="false" rights ="admin">
+        <mvcSiteMapNode title="Ravnetur" controller="Migration" action="Index" area="Admin" rights ="admin"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Aviva" controller="Migration" action="ImportCSV" area="Admin" rights ="admin"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Flyt Nyheder" controller="Migration" action="NewsMigration" area="Admin" rights ="admin"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Legacy data" controller="Migration" action="LegacyData" area="Admin" rights ="admin"></mvcSiteMapNode>
+        <mvcSiteMapNode title="Welcome E-mail" controller="Migration" action="SendWelcome" area="Admin" rights ="admin"></mvcSiteMapNode>
+      </mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Om" controller="Home" action="About" icon="Desktop" />
+    <mvcSiteMapNode title="Se" controller="Notification" action="Index" area="" visibility="SiteMapPathHelper, !*" help="dd927047-50e5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+    <mvcSiteMapNode title="Rediger profil" controller="People" action="EditProfile" area="" visibility="SiteMapPathHelper, !*" help="0df3c26e-50e5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+    <mvcSiteMapNode title="Setup" controller="People" action="Setup" area="" visibility="SiteMapPathHelper, !*" help="bdde8e98-50e5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+    <mvcSiteMapNode title="Ændre kodeord" controller="People" action="ChangePassword" area="" visibility="SiteMapPathHelper, !*" help="1d762226-51e5-e411-80d0-005056aa2abc"></mvcSiteMapNode>
+  </mvcSiteMapNode>
+</mvcSiteMap>

@@ -1,0 +1,21 @@
+﻿@model SiInfoModel
+<div class="page-header position-relative">
+    <h1>
+        @Model.Content.Title
+    </h1>
+</div>
+@Html.Partial("_StaticContent", Model.Content)
+@if (Model.SeniorInstructors.Any())
+{
+    <div class="row imagelist">
+        <hr />
+        @foreach (Person P in Model.SeniorInstructors)
+        {
+            <div class="col-lg-2 col-md-3 col-xs-4">
+                <a href="@Url.Action("ViewProfile", "People", new { UserName = P.UserName })" title="@P.FullName">
+                    @Html.ProfilImage(P)
+                </a>
+            </div>
+        }
+    </div>
+}

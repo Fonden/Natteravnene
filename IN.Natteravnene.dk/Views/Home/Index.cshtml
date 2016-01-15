@@ -1,0 +1,101 @@
+﻿@model FrontModel
+@section inlinescripts {
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('.carousel').carousel({
+            interval: 12000
+        });
+
+        $(document).on("click", "#Team-Listing .missing", function () {
+            var row = $(this).closest('tr');
+            var TeamId = row.data('teamid');
+            //$(this).closest('.message-item').toggleClass('selected');
+            if (confirm('@Html.Raw(General.ConfirmTakeTeamSpot)')) {
+                $('#tableplan').append('<div class="message-loading-overlay"><i class="fa-spin ace-icon fa fa-spinner orange2 bigger-300"></i></div>');
+                var url = "@Url.Action("_TTP", "Planning", new { id = "ReplaceData" })";
+                $.get(url.replace(/ReplaceData/g, TeamId), function (data) {
+                    if (data != '') {
+                        row.replaceWith(data);
+                        //$("#newsList").append(data);
+                        //str.replace(/ReplaceData/g, data);
+                        $('#tableplan').find('.message-loading-overlay').remove();
+                    }
+
+                });
+            }
+        });
+
+        $(document).on("click", "#Team-Listing .teamstatuschange", function () {
+            var row = $(this).closest('tr');
+            var TeamId = row.data('teamid');
+            var TeamStatus = $(this).data('status');
+            //$(this).closest('.message-item').toggleClass('selected');
+            if (confirm('@Html.Raw(General.ConfirmUpdateTeamStatus)')) {
+                $('#tableplan').append('<div class="message-loading-overlay"><i class="fa-spin ace-icon fa fa-spinner orange2 bigger-300"></i></div>');
+                var url = "@Url.Action("_TSU", "Planning", new { id = "ReplaceData", OK ="Status" })";
+                $.get(url.replace(/ReplaceData/g, TeamId).replace(/Status/g, TeamStatus), function (data) {
+                    if (data != '') {
+                        row.replaceWith(data);
+                        //$("#newsList").append(data);
+                        //str.replace(/ReplaceData/g, data);
+                        $('#tableplan').find('.message-loading-overlay').remove();
+                    }
+
+                });
+            }
+        });
+
+        $('[data-toggle="popover"]').popover();
+    });
+    </script>
+}
+@if (NR.Infrastructure.CurrentProfile.MailUndeliverable & NR.Infrastructure.CurrentProfile.PrintNewslettet)
+{
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="ace-icon fa fa-times"></i>
+        </button>
+        <i class="ace-icon fa fa-exclamation-triangle bigger-120">&nbsp;</i><strong>@General.Warning&nbsp;@General.WarningMailUndeliverable</strong>
+        <p>@General.WarningMailUndeliverableBoby</p>
+        @Html.ActionLink(General.BtnGoToProfileEdit, "EditProfile", "People", null, new { @class = "btn btn-small btn-primary", data_rel = "tooltip", data_placement = "left" })
+    </div>
+}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-6">
+                @if (Model.News.Any())
+                {
+                    @Html.NewsCarousel(Model.News)
+                    <a href="@Url.Action("Index", "News")">
+                        @General.SeeAllNews
+        <i class="ace-icon fa fa-arrow-right"></i>
+    </a>
+                }
+            </div>
+            <div class="col-xs-6">
+                @if (Model.Events.Any())
+                {
+                    Html.RenderPartial("_EventListing", Model.Events);
+                    <a href="@Url.Action("Index", "Event")">
+                        @General.SeeAllEvents
+                        <i class="ace-icon fa fa-arrow-right"></i>
+                    </a>
+                }
+            </div>
+        </div>
+        @if (NR.Infrastructure.CurrentProfile.usePlanning)
+        {
+
+            <div class="row header smaller lighter blue">
+                <h1>@General.MyTeams</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    @{Html.RenderPartial("_TeamListing", Model.MyTeams);}
+                </div>
+            </div>
+        }
+    </div>
+</div>

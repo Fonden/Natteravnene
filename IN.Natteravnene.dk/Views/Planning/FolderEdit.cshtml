@@ -1,0 +1,184 @@
+﻿@model Folder
+@section pagescripts {
+    @Scripts.Render("~/bundles/form")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+        function getDateFormat(formatString) {
+            var separator = formatString.match(/[.\/\-\s].*?/);
+            var parts = formatString.split(/\W+/);
+            if (!separator || !parts || parts.length === 0) {
+                throw new Error("Invalid date format.");
+            }
+            return { separator: separator, parts: parts };
+        }
+
+        function MyParseDate(value, format) {
+            var parts = value.split(format.separator);
+
+            //NEVER use Date(0), this is locale specific!
+            // * en-GB: 1970-JAN-01
+            // * pt-BR: 1969-DEC-31
+            //var date = new Date(0);
+
+            //An arbitrary date 1970-DEC-15
+            var date = new Date(1970, 11, 15);
+
+            var year = -1;
+            var month = -1;
+            var day = -1;
+
+            if (parts.length === format.parts.length) {
+                for (var i = 0, cnt = format.parts.length; i < cnt; i++) {
+                    var val = parseInt(parts[i], 10) || 1;
+
+                    switch (format.parts[i]) {
+                        case 'dd':
+                        case 'd':
+                            day = val;
+                            break;
+                        case 'mm':
+                        case 'm':
+                            month = val - 1; // month is zero-based
+                            break;
+                        case 'yyyy':
+                            year = val;
+                            break;
+                    }
+                }
+            }
+
+            // must be in this particular order, otherwise 29th of Feb in leap year would not validate
+            date.setFullYear(year);
+            date.setMonth(month);
+            date.setDate(day);
+
+            console.log("Date validated to " + date.toString());
+
+            // we can't rely on setDay(), setMonth(), setYear() because if value passed in is greater than allowed, it just ticks over
+            // to the next month/year. But we can compare if it was ticked over or not.
+            // If numbers provided are the same as resulting number, then date is fine.
+            return date.getDate() === day && date.getMonth() === month && date.getFullYear() === year;
+        }
+
+        jQuery.validator.addMethod('date',
+            function (value, element, params) {
+                if (this.optional(element)) {
+                    return true;
+                }
+                try {
+                    var format = getDateFormat('@General.JavaScripDateformat');
+                    var result = MyParseDate(value, format);
+                    return result;
+                } catch (err) {
+                    console.log(err);
+                    return false;
+                }
+            });
+
+
+
+
+    jQuery(function ($) {
+
+        ///////////////////////////////////////////
+
+
+        //$('.date-picker').datepicker({
+        //    dateFormat: "dd-mm-yy",
+        //    gotoCurrent: true,
+        //    autoclose: true,
+        //    todayHighlight: true
+        //})
+        //    .next().on(ace.click_event, function () {
+        //        $(this).prev().focus();
+        //    })
+
+        $('.input-daterange').datepicker({
+            format: "@General.JavaScripDateformat",
+                gotoCurrent: true,
+                autoclose: true,
+                todayHighlight: true
+            });
+
+
+
+            //$('.input-mask-phone').mask('(999) 999-9999');
+
+        });
+    </script>
+}
+<div class="page-header position-relative">
+    <h1>
+        <a href="@Url.Action("Folders")" class="btn btn-small btn-primary">
+            <i class="ace-icon @Icons.BackIcon icon-only"></i>
+        </a> @(Model.FolderID == Guid.Empty ? General.FolderCreate : General.FolderEdit)
+    </h1>
+</div>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.Partial("~/Views/Shared/_FormSummery.cshtml");
+    @Html.HiddenFor(m => m.FolderID)
+    <div class="space"></div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.FoldereName, new { @class = "col-sm-2 control-label no-padding-right" })
+
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.FoldereName, new { @class = "col-xs-2 col-sm-2", placeholder = DomainStrings.Foldername })
+            @Html.ValidationMessageFor(m => m.FoldereName)
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="Start" class="col-sm-2 control-label no-padding-right">@General.TimeRange</label>
+
+     
+            <div class="col-sm-10">
+                <div class="input-daterange input-group">
+                    @Html.TextBoxFor(m => m.Start, "{0:dd-MM-yyyy}", new { @class = "input-sm form-control" }).DisableIf(()=> Model.Status != FolderStatus.New)
+                    <span class="input-group-addon">
+                        <i class="fa fa-exchange"></i>
+                    </span>
+                    @Html.TextBoxFor(m => m.Finish, "{0:dd-MM-yyyy}", new { @class = "input-sm form-control" }).DisableIf(() => Model.Status != FolderStatus.New)
+                    <!--<input type="text" class="input-sm form-control" name="finish" />-->
+                </div>
+
+                <!-- /section:plugins/date-time.datepicker -->
+            </div>
+
+            @Html.ValidationMessageFor(m => m.Start)
+            @Html.ValidationMessageFor(m => m.Finish)
+        </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Status, new { @class = "col-sm-2 control-label no-padding-right" })
+
+        <div class="col-sm-10">
+            @Html.DropDownListFor(m => m.Status, (SelectList)ViewBag.Status)
+            @Html.ValidationMessageFor(m => m.Status)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+    <div class="clearfix form-actions">
+        <div class="col-md-offset-3 col-md-9">
+            <button class="btn btn-info" type="submit">
+                <i class="icon-ok bigger-110"></i>
+                @General.Save
+            </button>
+
+            &nbsp; &nbsp;
+            <button class="btn" type="reset">
+                <i class="icon-undo bigger-110"></i>
+                @General.Reset
+            </button>
+        </div>
+    </div>
+
+}

@@ -1,0 +1,45 @@
+﻿@section inlinescripts {
+    <script type="text/javascript">
+
+        $(function () {
+            $('#testemail').submit(function () {
+                if ($(this).valid()) {
+                    $.ajax({
+                        url: this.action,
+                        type: this.method,
+                        data: $(this).serialize(),
+                        success: function (result) {
+                            $('#result').html(result);
+                        }
+                    });
+                }
+                return false;
+            });
+        });
+
+
+    </script>
+    }
+<div class="page-header position-relative">
+    @Html.ActionLink(General.BtnNewNews, "Edit", null, null, new { @class = "btn btn-small btn-primary pull-right" })
+
+    <h1>@General.Status</h1>
+</div>
+
+@Html.ActionLink("Processes",null, "Processes")
+
+@Html.ActionLink("Restart server", "Restart", null, null, new { @class = "btn btn-small btn-primary" })
+
+<h2></h2>
+@using (Ajax.BeginForm("_TestText", "Home", new { area = "Admin" }, new AjaxOptions() { HttpMethod = "POST" }, new { id = "testtext", @class = "form-horizontal" }))
+{
+    <input type="text" name="Mobile"/>
+    <input type="submit" value="OK" />
+}
+
+@using (Ajax.BeginForm("_TestEmail", "Home", new { area = "Admin" }, new AjaxOptions() { HttpMethod = "POST" }, new { id = "testemail", @class = "form-horizontal" }))
+{
+    <input type="text" name="email" />
+    <input type="submit" value="OK" />
+}
+<div id="result"></div>

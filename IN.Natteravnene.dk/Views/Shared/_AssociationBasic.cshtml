@@ -1,0 +1,96 @@
+﻿@model Association
+
+<div class="row">
+    <div class="col-xs-12 col-sm-5">
+        <div class="profile-user-info">
+
+            <div class="profile-info-row">
+                <div class="profile-info-name">
+                    @DomainStrings.AssociationName
+                </div>
+
+                <div class="profile-info-value">
+                    <span>@Model.Name</span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name">
+                    @DomainStrings.AssociationStatus
+                </div>
+
+                <div class="profile-info-value">
+                    <span>@Model.Status.DisplayName()</span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name">
+                    @DomainStrings.AssociationEmail
+                </div>
+
+                <div class="profile-info-value">
+                    <span>@Model.AssociationEmail</span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name">
+                    @DomainStrings.Established
+                </div>
+
+                <div class="profile-info-value">
+                    <span>@Model.Established.ToShortDateString()</span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name">
+                    @DomainStrings.CVRnr
+                </div>
+
+                <div class="profile-info-value">
+                    <span>@Model.CVRNR</span>
+                </div>
+            </div>
+
+
+
+            <div class="profile-info-row">
+                <div class="profile-info-name">
+                    @DomainStrings.TeamPhone
+                </div>
+
+                <div class="profile-info-value">
+                    <span>@Model.TeamPhone</span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profile-info-name">
+                    @DomainStrings.ContactPhone
+                </div>
+
+                <div class="profile-info-value">
+                    <span>@Model.ContactPhone</span>
+        </div>
+    </div>
+
+
+    <div class="profile-info-row">
+        <div class="profile-info-name">
+            @DomainStrings.Address
+        </div>
+
+        <div class="profile-info-value">
+            <span>@Model.FullAddress</span>
+        </div>
+    </div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-7">
+    <div class="mapaspect">
+        <div id="map-canvas" class="map-canvas"></div>
+    </div>
+</div>
+</div>

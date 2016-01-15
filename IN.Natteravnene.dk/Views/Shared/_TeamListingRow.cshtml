@@ -1,0 +1,81 @@
+﻿@model Team
+
+<tr data-teamid="@Model.TeamID.ToString()">
+    <td data-order="@Model.Start.Ticks">@Html.TurDate(Model)</td>
+    <td class="centermiddle">@Html.TeamNote(Model)</td>
+    <td class="centermiddle">@Html.LocationListing(Model.Location)</td>
+    <td class="centermiddle">@Html.PersonListing(Model.Teamleader, Model)</td>
+    @{
+        var total = 2;
+        if (Model.Trial)
+        {
+            total = 1;
+        }
+        if (Model.Teammembers != null && Model.Teammembers.Any())
+        {
+            int c = 0;
+            foreach (Person Mem in Model.Teammembers)
+            {
+                if (Mem.PersonID != Model.TeamLeaderId)
+                {
+                    <td class="centermiddle">@Html.PersonListing(Mem, Model)</td>
+                    c += 1;
+                    if (c == total) { break; }
+                }
+
+            }
+
+            for (int i = c; i < total; i++)
+            {
+                    <td class="centermiddle">@Html.PersonListing(null, Model)</td>
+            }
+        }
+        else
+        {
+            <td class="centermiddle">@Html.PersonListing(null, Model)</td>
+            if (!Model.Trial)
+            {
+                <td class="centermiddle">@Html.PersonListing(null, Model)</td>
+            }
+        }
+        if (Model.Trial)
+        {
+            <td class="centermiddle">@Html.TrialListing(Model)</td>
+        }
+}
+    <td data-order="@Model.Status" class="centermiddle">
+        @Html.TeamStatusListing(Model)
+        <div>
+            @if (Model.OK && Model.Status == TeamStatus.Planned
+                & Model.Folder.Status == FolderStatus.Published
+                & Model.Start < DateTime.Now.AddHours(6)
+                && (NR.Infrastructure.CurrentProfile.isPlanner
+                | NR.Infrastructure.CurrentProfile.PersonID == Model.TeamLeaderId))
+            {
+                <button class="btn btn-xs btn-success teamstatuschange" data-status="true">
+                    <i class="ace-icon fa fa-thumbs-o-up bigger-120"></i>
+                </button>
+                <button class="btn btn-xs btn-warning teamstatuschange" data-status="false">
+                    <i class="ace-icon fa fa-thumbs-o-down bigger-120"></i>
+                </button>
+            }
+
+            @if (NR.Infrastructure.CurrentProfile.isPlanner)
+            {
+                <a href="@Url.Action("Edit", "Planning", new { id = Model.TeamID })" class="btn btn-xs btn-info" data-rel="tooltip" title="@General.Edit" data-original-title="@General.Edit">
+                    <i class="@Icons.Edit bigger-120"></i>
+                </a>
+                if (Model.Folder.Status == FolderStatus.New)
+                {
+                    <a href="@Url.Action("DeleteTeam", "Planning", new { id = Model.TeamID })" class="btn btn-xs btn-danger" data-rel="tooltip" title="@General.Delete" data-original-title="@General.Delete">
+                        <i class="@Icons.Delete bigger-120"></i>
+                    </a>
+                }
+            }
+        </div>
+    </td>
+
+
+
+
+</tr>

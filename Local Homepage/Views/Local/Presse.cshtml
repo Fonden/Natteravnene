@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Presse";
+    ViewBag.MetaDescription = string.Format("Informationer fra {0} til pressen. ", Model.AssociationName);
+    ViewBag.PageImage = "~/Content/Images/Natteravnene-3.jpg";
+    ViewBag.SocialImage = Html.FullyQualifiedUri("~/Content/Images/Natteravnene-3.jpg", Model.Host).ToString();
+    ViewBag.SocialType = "website";
+}
+
+
+<div id="pagehero">
+    <img src="@Url.Content(ViewBag.PageImage)" class="img-responsive" />
+    <h1>Presse</h1>
+</div>
+
+
+<div class="body-content">
+    <div class="row">
+        <div class="col-md-12">@Html.Raw(Model.PageLinks.Body)</div>
+    </div>
+</div>

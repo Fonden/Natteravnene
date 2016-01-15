@@ -1,0 +1,98 @@
+﻿@model AssociationViewModel
+@{
+    ViewBag.Title = "Aktiviteter";
+    ViewBag.MetaDescription = string.Format("Aktiviteter fra {0} og Natteravnene i Danmark.", Model.AssociationName);
+    ViewBag.PageImage = "~/Content/Images/Natteravnene-4.jpg";
+    ViewBag.SocialImage = Html.FullyQualifiedUri("~/Content/Images/Natteravnene-4.jpg", Model.Host).ToString();
+    ViewBag.SocialType = "website";
+}
+@section pagescripts {
+
+}
+@section inlinescripts {
+<script type="text/javascript">
+    if (window.jQuery) {
+        $('a[data-slide="prev"]').click(function () {
+            $('#Aktiviteter-Carousel').carousel('prev');
+        });
+
+        $('a[data-slide="next"]').click(function () {
+            $('#Aktiviteter-Carousel').carousel('next');
+        });
+    }
+</script>
+}
+
+<div id="pagehero">
+    <img src="@Url.Content(ViewBag.PageImage)" class="img-responsive" />
+    <h1>@Html.Raw(ViewBag.Title)</h1>
+</div>
+
+
+<div class="body-content">
+    <div class="row">
+        <div id="Aktiviteter-Carousel" class="col-md-12">
+            <div class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+
+                    @if (Model.Events.Any())
+                    {
+                        var first = true;
+                        foreach (Event ev in Model.Events)
+                        {
+                            <article class="item event @(first == true ? "active" : "")">
+                                <div class="eventstart">
+                                    <span class="day">@ev.Start.ToString("dddd")</span><span class="date">@ev.Start.ToString("d. MMMM")</span><span class="time">@ev.Start.ToString("kl. H:mm")</span>
+                                </div>
+                                <div class="eventinfo">
+                                    <header><h2><a href="@Url.Action("Aktivitet", "Local", new { id = ev.EventID.ToString().Replace("-", ""), titel = ev.Headline.ValidFileName() })">@ev.Headline</a></h2></header>
+                                    <div class="light-orange"><i class="ace-icon fa fa-map-marker light-orange bigger-110"></i>&nbsp;<strong>@Html.Raw(ev.Location)</strong></div>
+                                    <div class="body">
+                                        @Html.Raw(ev.Description)
+                                    </div>
+                                </div>
+                            </article>
+                            first = false;
+                        }
+                    }
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#Aktiviteter-Carousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Tidligere</span>
+            </a>
+            <a class="right carousel-control" href="#Aktiviteter-Carousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Næste</span>
+            </a>
+        </div>
+
+
+    </div>
+</div>
+</div>
+
+
+
+
+@*if (Model.Events.Any())
+    {
+        foreach (Event ev in Model.Events)
+        {
+    <div class="item">
+
+            <!--<div class="eventback"><a href="@Url.Action("Aktiviteter")"><i class="fa fa-angle-left"></i></a></div>-->
+            <div class="eventstart">
+                <span class="day">@ev.Start.ToString("dddd")</span><span class="date">@ev.Start.ToString("d. MMMM")</span><span class="time">@ev.Start.ToString("kl. H:mm")</span>
+
+            </div>
+
+            <header><h2>@ev.Headline</h2></header>
+            <p>@Html.Raw(ev.Description)</p>
+
+
+    </div>
+    }
+    }*@

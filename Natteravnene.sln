@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IN.Natteravnene.dk", "IN.Natteravnene.dk\IN.Natteravnene.dk.csproj", "{6A37D6AF-07C5-4D31-B4B1-936D607D5080}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Local Homepage", "Local Homepage\Local Homepage.csproj", "{2835FDBA-96BA-4D5C-850D-A909BB12F4E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{EAE4314D-D6C6-4A13-B992-544522A9CA09}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6A37D6AF-07C5-4D31-B4B1-936D607D5080} = {6A37D6AF-07C5-4D31-B4B1-936D607D5080}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://cfsa.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = IN.Natteravnene.dk\\IN.Natteravnene.dk.csproj
+		SccProjectName1 = IN.Natteravnene.dk
+		SccLocalPath1 = IN.Natteravnene.dk
+		SccProjectUniqueName2 = Local\u0020Homepage\\Local\u0020Homepage.csproj
+		SccProjectName2 = Local\u0020Homepage
+		SccLocalPath2 = Local\u0020Homepage
+		SccProjectUniqueName3 = UnitTest\\UnitTest.csproj
+		SccProjectName3 = UnitTest
+		SccLocalPath3 = UnitTest
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		PreRelease|Any CPU = PreRelease|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A37D6AF-07C5-4D31-B4B1-936D607D5080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A37D6AF-07C5-4D31-B4B1-936D607D5080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A37D6AF-07C5-4D31-B4B1-936D607D5080}.PreRelease|Any CPU.ActiveCfg = PreRelease|Any CPU
+		{6A37D6AF-07C5-4D31-B4B1-936D607D5080}.PreRelease|Any CPU.Build.0 = PreRelease|Any CPU
+		{6A37D6AF-07C5-4D31-B4B1-936D607D5080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A37D6AF-07C5-4D31-B4B1-936D607D5080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2835FDBA-96BA-4D5C-850D-A909BB12F4E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2835FDBA-96BA-4D5C-850D-A909BB12F4E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2835FDBA-96BA-4D5C-850D-A909BB12F4E3}.PreRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{2835FDBA-96BA-4D5C-850D-A909BB12F4E3}.PreRelease|Any CPU.Build.0 = Release|Any CPU
+		{2835FDBA-96BA-4D5C-850D-A909BB12F4E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2835FDBA-96BA-4D5C-850D-A909BB12F4E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAE4314D-D6C6-4A13-B992-544522A9CA09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAE4314D-D6C6-4A13-B992-544522A9CA09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAE4314D-D6C6-4A13-B992-544522A9CA09}.PreRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{EAE4314D-D6C6-4A13-B992-544522A9CA09}.PreRelease|Any CPU.Build.0 = Release|Any CPU
+		{EAE4314D-D6C6-4A13-B992-544522A9CA09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAE4314D-D6C6-4A13-B992-544522A9CA09}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

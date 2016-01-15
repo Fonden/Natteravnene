@@ -1,0 +1,321 @@
+﻿@model Event
+@section pagescripts {
+    @Scripts.Render("~/bundles/form")
+    @Scripts.Render("~/bundles/jcrop")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+
+
+        jQuery.validator.addMethod('date',
+           function (value, element, params) {
+               if (this.optional(element)) {
+                   return true;
+               }
+               try {
+                   var format = getDateFormat('@General.JavaScripDateformat HH:mm');
+                   var result = MyParseDate(value, format);
+                   return result;
+               } catch (err) {
+                   console.log(err);
+                   return false;
+               }
+           });
+
+        jQuery(function ($) {
+
+            ///////////////////////////////////////////
+            $('#DescriptionEditor').ace_wysiwyg({
+                toolbar:
+                [
+                    { name: 'bold', className: 'btn-info' },
+                    { name: 'italic', className: 'btn-info' },
+                    { name: 'underline', className: 'btn-info' },
+                    null,
+                    { name: 'insertunorderedlist', className: 'btn-success' },
+                    { name: 'insertorderedlist', className: 'btn-success' },
+                    { name: 'outdent', className: 'btn-purple' },
+                    { name: 'indent', className: 'btn-purple' },
+                    null,
+                    { name: 'undo', className: 'btn-grey' },
+                    { name: 'redo', className: 'btn-grey' },
+                    null,
+			        { name: 'createLink', className: 'btn-pink' },
+			        { name: 'unlink', className: 'btn-pink' },
+                ]
+            }).prev();
+
+
+
+            jQuery('#Start').datetimepicker({
+                format: 'd-m-Y H:i:s',
+                inline: true,
+                lang: 'da',
+                step: 15,
+                dayOfWeekStart: 1
+            });
+
+            jQuery('#Finish').datetimepicker({
+                format: 'd-m-Y H:i:s',
+                inline: true,
+                lang: 'da',
+                step: 15,
+                dayOfWeekStart: 1
+            });
+
+
+
+            $("select#Distribution").change(function (evt) {
+                $('select#DistributionLink').hide();
+
+                switch ($("select#Distribution").val()) {
+                    case "@((int)LevelType.Local)":
+                        $.ajax({
+                            url: "@Url.Action("GetSelectListAssociations", "Association", new { Area = ""})",
+                            type: 'POST',
+                            success: function (associations) {
+
+                                // states is your JSON array
+                                var $select = $('select#DistributionLink');
+                                $select.find('option').remove().end()
+                                $.each(associations, function (i, association) {
+                                    $('<option>', {
+                                        value: association.Value
+                                    }).html(association.Text).appendTo($select);
+                                    $select.show();
+                                });
+                            }
+                        });
+                        break;
+
+
+                    case "@((int)LevelType.Network)":
+                        $.ajax({
+                            url: "@Url.Action("GetSelectListNetworks", "Association", new { Area = "" })",
+                            type: 'POST',
+                            success: function (networks) {
+
+                                // states is your JSON array
+                                var $select = $('select#DistributionLink');
+                                $select.find('option').remove().end()
+                                $.each(networks, function (i, network) {
+                                    $('<option>', {
+                                        value: network.Value
+                                    }).html(network.Text).appendTo($select);
+                                    $select.show();
+                                });
+                            }
+                        });
+                        break;
+
+
+                }
+
+
+            });
+
+
+            $("select#Source").change(function (evt) {
+                $('select#SourceLink').hide();
+
+                switch ($("select#Source").val()) {
+                    case "@((int)LevelType.Local)":
+
+                        $.ajax({
+                            url: "@Url.Action("GetSelectListAssociations", "Association", new { Area = ""})",
+                            type: 'POST',
+                            success: function (associations) {
+
+                                // states is your JSON array
+                                var $select = $('select#SourceLink');
+                                $select.find('option').remove().end()
+                                $.each(associations, function (i, association) {
+                                    $('<option>', {
+                                        value: association.Value
+                                    }).html(association.Text).appendTo($select);
+                                    $select.show();
+                                });
+                            }
+                        });
+                        break;
+
+                    case "@((int)LevelType.Network)":
+
+                        $.ajax({
+                            url: "@Url.Action("GetSelectListNetworks", "Association", new { Area = "" })",
+                            type: 'POST',
+                            success: function (associations) {
+
+                                var $select = $('select#SourceLink');
+                                $select.find('option').remove().end()
+                                $.each(associations, function (i, association) {
+                                    $('<option>', {
+                                        value: association.Value
+                                    }).html(association.Text).appendTo($select);
+                                    $select.show();
+                                });
+                            }
+                        });
+                        break;
+
+                }
+            });
+
+
+            $('form').on('submit', function () {
+
+                //put the editor's html content inside the hidden input to be sent to server
+                $('input[name=Description]', this).val($('#DescriptionEditor').html());
+
+                return true;
+            });
+
+        });
+    </script>
+}
+<div class="page-header position-relative">
+    <h1>
+        <a href="@Url.Action("Index")" class="btn btn-small btn-primary">
+            <i class="ace-icon @Icons.BackIcon icon-only"></i>
+        </a> @(Model.EventID == Guid.Empty ? General.EventCreate : General.EventEdit)
+    </h1>
+</div>
+
+@using (Html.BeginForm("Edit", null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+
+    @Html.Partial("~/Views/Shared/_FormSummery.cshtml");
+    @Html.HiddenFor(m => m.EventID)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Headline, new { @class = "col-sm-2 control-label no-padding-right" })
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.Headline, new { @class = "form-control", placeholder = DomainStrings.Headline })
+            @Html.ValidationMessageFor(m => m.Headline)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+    
+        <div class="form-group">
+        @Html.LabelFor(m => m.Location, new { @class = "col-sm-2 control-label no-padding-right" })
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.Location, new { @class = "form-control", placeholder = DomainStrings.Headline })
+            @Html.ValidationMessageFor(m => m.Location)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "col-sm-2 control-label no-padding-right" })
+        <div class="col-sm-8">
+            <div class="wysiwyg-editor" id="DescriptionEditor">
+                @Html.Raw(Model.Description)
+            </div>
+            @Html.HiddenFor(f => f.Description)
+            @Html.ValidationMessageFor(m => m.Description)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Start, new { @class = "col-sm-2 control-label no-padding-right" })
+                <div class="col-sm-10">
+
+                    <div class="input-group">
+                        <input name="@Html.NameFor(m => m.Start)" id="@Html.IdFor(m => m.Start)" value="@Model.Start" />
+                        @*Html.TextBoxFor(m => m.Start, "{0:dd-MM-yyyy HH:mm}", new { @class = "form-control", placeholder = DomainStrings.Start })*@
+
+
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Start)
+                </div>
+            </div>
+        </div>
+
+        <div class="space-4"></div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Finish, new { @class = "col-sm-2 control-label no-padding-right" })
+                <div class="col-sm-10">
+
+                    <div class="input-group">
+                        <input name="@Html.NameFor(m => m.Finish)" id="@Html.IdFor(m => m.Finish)" value="@Model.Finish" />
+                        @*Html.TextBoxFor(m => m.Finish, "{0:dd-MM-yyyy HH:mm}", new { @class = "form-control", placeholder = DomainStrings.Finish })*@
+
+
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Finish)
+                </div>
+
+            </div>
+
+            <div class="space-4"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <h5>@Html.Raw(General.Source)</h5>
+            <div class="hr hr12 dotted"></div>
+            <div class="form-group">
+                @Html.LabelFor(f => f.Source, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                <div class="col-sm-9">
+                    @Html.EnumDropDownListFor(m => m.Source)
+                    <select name="@Html.NameFor(m => m.SourceLink)" id="@Html.IdFor(m => m.SourceLink)" style="display: none;"></select>
+                    @Html.ValidationMessageFor(f => f.Source)
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-sm-6">
+            <h5>@Html.Raw(General.Distribution)</h5>
+            <div class="hr hr12 dotted"></div>
+            <div class="form-group">
+                @Html.LabelFor(f => f.Distribution, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                <div class="col-sm-9 form-inline">
+                    @Html.EnumDropDownListFor(m => m.Distribution)
+                    <select name="@Html.NameFor(m => m.DistributionLink)" id="@Html.IdFor(m => m.DistributionLink)" style="display: none;"></select>
+                    @Html.ValidationMessageFor(f => f.Distribution)
+                </div>
+            </div>
+
+            <div class="space-4"></div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.IgnorDistribution, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                <div class="col-sm-9">
+                    <div class="input-medium">
+                        <div class="input-group">
+                            <label>
+                                <input id="@Html.IdFor(m => m.IgnorDistribution)" name="@Html.IdFor(m => m.IgnorDistribution)" class="ace ace-switch ace-switch-6" type="checkbox" value="true" checked="@Model.IgnorDistribution" />
+                                <span class="lbl"></span>
+                            </label>
+
+                        </div>
+                        @Html.ValidationMessageFor(m => m.IgnorDistribution)
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-4"></div>
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div class="form-actions">
+        <button class="btn btn-info" type="submit">
+            <i class="icon-ok bigger-110"></i>
+            @(Model.EventID == Guid.Empty ? General.Create : General.Save)
+        </button>
+    </div>
+
+}

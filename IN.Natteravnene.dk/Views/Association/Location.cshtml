@@ -1,0 +1,67 @@
+﻿@model Association
+
+    <div class="page-header position-relative">
+        <h1>
+            <a href="@Url.Action("LocationCreate", null, new { id = Model.AssociationID })" role="button" class="btn btn-small btn-primary pull-right" data-rel="tooltip" title="@General.BtnCreateNewLocationTooltip"> @General.BtnNewLocation </a>
+            <a href="@Url.Action("Index")" class="btn btn-small btn-primary" data-rel="tooltip" title="@General.BtnBackToAssociationTooltip">
+                <i class="ace-icon @Icons.BackIcon icon-only"></i>
+            </a> @General.Locations @string.Format(General.BrandTitleAssociation, Model.Name)
+        </h1>
+    </div>
+
+    <table id="Location-table" class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <td>@DomainStrings.LocationName</td>
+                <td>@DomainStrings.ShortName</td>
+                <td>@DomainStrings.Description</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Location Loc in Model.Locations)
+        {
+                <tr>
+                    <td>@Loc.Name</td>
+                    <td>@Loc.ShortName</td>
+                    <td>@Loc.Description</td>
+                    <td>
+                        <div class="hidden-sm hidden-xs action-buttons">
+                            <a class="blue" href="@Url.Action("LocationView", null, new { id = Loc.LocationID })" data-rel="tooltip" title="@General.View" data-original-title="@General.View">
+                                <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                            </a>
+
+                            <a class="green" href="@Url.Action("LocationEdit", null, new { id = Loc.LocationID })" data-rel="tooltip" title="@General.Edit" data-original-title="@General.Edit">
+                                <i class="ace-icon fa fa-pencil bigger-130"></i>
+                            </a>
+                        </div>
+                        <div class="hidden-md hidden-lg">
+                            <div class="inline position-relative">
+                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                    <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                </button>
+
+                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                    <li>
+                                        <a href="@Url.Action("LocationView", null, new { id = Loc.LocationID })" class="tooltip-info" data-rel="tooltip" title="@General.View" data-original-title="@General.View">
+                                            <span class="blue">
+                                                <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="@Url.Action("LocationEdit", null, new { id = Loc.LocationID })" class="tooltip-success" data-rel="tooltip" title="@General.Edit" data-original-title="@General.Edit">
+                                            <span class="green">
+                                                <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+        }
+        </tbody>
+    </table>

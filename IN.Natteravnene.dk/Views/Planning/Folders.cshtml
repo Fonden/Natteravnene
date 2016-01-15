@@ -1,0 +1,165 @@
+﻿@model List<Folder>
+@section pagescripts {
+    @Scripts.Render("~/bundles/table")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+ //@Url.Action("PersonsAjax","Admin")",
+    $(document).ready(function () {
+
+        var oTable1 = $('#Folder-table')
+            .on('xhr.dt', function (e, settings, json) {
+                $('[data-rel="tooltip"]').tooltip();
+            })
+            .dataTable({
+                "language": {
+                    "lengthMenu": "@General.DatatablesLengthMenu",
+                    "zeroRecords": "@General.DatatablesZeroRecords",
+                    "info": "@General.DatatablesInfo",
+                    "infoEmpty": "@General.DatatablesInfoEmpty",
+                    "infoFiltered": "@General.DatatablesInfoFiltered",
+                    "loadingRecords": "@General.DatatablesLoadingRecords",
+                    "processing": "@General.DatatablesProcessing",
+                    "search": "@General.Search:",
+                    "thousands": "@General.ThousenSeperator",
+                        "paginate": {
+                            first: ">>",
+                            previous: "<",
+                            next: ">",
+                            last: "<<"
+                        }
+                    },
+                    "columnDefs": [
+                         {
+                             "targets": [4],
+                             "searchable": false,
+                             "orderable": false
+                         }
+                    ]
+                        ,
+                    "pageLength": @NR.Infrastructure.CurrentProfile.ListLines.ToString(),
+                    "order": [[2, "desc"]]
+                });
+
+            $('[data-rel="tooltip"]').tooltip({ placement: tooltip_placement });
+            function tooltip_placement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table')
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+
+                var off2 = $source.offset();
+                //var w2 = $source.width();
+
+                if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+                return 'left';
+            }
+
+        })
+    </script>
+}
+<div class="page-header position-relative">
+    <div class="pull-right">
+
+        <a href="@Url.Action("CreateFolder")" role="button" class="btn btn-small btn-primary "> @General.BtnNewFolder</a>
+    </div>
+    <h1>
+
+        @General.Folders
+    </h1>
+</div>
+
+<table id="Folder-table" class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <td>@DomainStrings.Foldername </td>
+            <td>@DomainStrings.Start</td>
+            <td>@DomainStrings.Finish</td>
+            <td>@DomainStrings.Status</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Folder Fol in Model)
+        {
+            <tr>
+                <td>@Fol.FoldereName</td>
+                <td data-order="@Fol.Start.Ticks">@Fol.Start.ToShortDateString()</td>
+                <td data-order="@Fol.Finish.Ticks">@Fol.Finish.ToShortDateString()</td>
+                <td>@Fol.Status.DisplayName()</td>
+                <td>
+                    <div class="hidden-sm hidden-xs action-buttons">
+                        <a class="blue" href="@Url.Action("Folder", null, new { id = Fol.FolderID})" data-rel="tooltip" title="@General.BtnFolderListView" data-original-title="@General.BtnFolderListView">
+                            <i class="@Icons.FolderList bigger-130">
+                            </i>
+                        </a>
+
+                        <a class="blue" href="@Url.Action("FolderPlanning", null, new { id = Fol.FolderID })" data-rel="tooltip" title="@General.BtnFolderPlannigView" data-original-title="@General.BtnFolderPlannigView">
+                            <i class=" @Icons.FolderPlanning bigger-130">
+                            </i>
+                        </a>
+                        @if (Fol.Status != FolderStatus.Archived)
+                        {
+                            <a class="green" href="@Url.Action("FolderEdit", null, new { id = Fol.FolderID })" data-rel="tooltip" title="@General.Edit" data-original-title="@General.Edit">
+                                <i class="@Icons.Edit bigger-130"></i>
+                            </a>
+                        }
+                        @if (Fol.Status == FolderStatus.New)
+                        {
+                            <a class="green" href="@Url.Action("FolderDelete", null, new { id = Fol.FolderID })" data-rel="tooltip" title="@General.Delete" data-original-title="@General.Delete">
+                                <i class="@Icons.Delete bigger-130"></i>
+                            </a>
+                        }
+                    </div>
+                    <div class="hidden-md hidden-lg">
+                        <div class="inline position-relative">
+                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                <li>
+                                    <a href="@Url.Action("Folder", null, new { id = Fol.FolderID})" class="tooltip-info" data-rel="tooltip" title="@General.BtnFolderListView" data-original-title="@General.BtnFolderListView">
+                                        <span class="blue">
+                                            <i class="@Icons.FolderList bigger-120"></i>
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="@Url.Action("FolderPlanning", null, new { id = Fol.FolderID })" class="tooltip-info" data-rel="tooltip" title="@General.BtnFolderPlannigView" data-original-title="@General.BtnFolderPlannigView">
+                                        <span class="blue">
+                                            <i class="@Icons.FolderPlanning bigger-120"></i>
+                                        </span>
+                                    </a>
+                                </li>
+
+                                @if (Fol.Status != FolderStatus.Archived)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("FolderEdit", null, new { id = Fol.FolderID })" class="tooltip-success" data-rel="tooltip" title="@General.Edit" data-original-title="@General.Edit">
+                                            <span class="green">
+                                                <i class="@Icons.Edit bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                }
+
+                                @if (Fol.Status == FolderStatus.New)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("FolderDelete", null, new { id = Fol.FolderID })" class="tooltip-success" data-rel="tooltip" title="@General.Delete" data-original-title="@General.Delete">
+                                            <span class="green">
+                                                <i class="@Icons.Delete bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

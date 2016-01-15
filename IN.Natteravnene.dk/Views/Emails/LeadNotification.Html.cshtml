@@ -1,0 +1,47 @@
+﻿@section Headers {
+    Content-Type: text/html; charset=utf-8
+}
+<!--Body-->
+<table class="table-row" width="450" bgcolor="#FFFFFF" style="table-layout: fixed; background-color: #ffffff;" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+        <tr>
+            <td class="table-row-td" style="font-family: Arial, sans-serif; line-height: 19px; color: #444444; font-size: 13px; font-weight: normal; padding-left: 36px; padding-right: 36px;" valign="top" align="left">
+                <table class="table-col" align="left" width="378" cellspacing="0" cellpadding="0" border="0" style="table-layout: fixed;">
+                    <tbody>
+                        <tr>
+                            <td class="table-col-td" width="378" style="font-family: Arial, sans-serif; line-height: 19px; color: #444444; font-size: 13px; font-weight: normal; width: 378px;" valign="top" align="left">
+                                <table class="header-row" width="378" cellspacing="0" cellpadding="0" border="0" style="table-layout: fixed;"><tbody><tr><td class="header-row-td" width="378" style="font-family: Arial, sans-serif; font-weight: normal; line-height: 19px; color: #478fca; margin: 0px; font-size: 18px; padding-bottom: 10px; padding-top: 15px;" valign="top" align="left">Prøvetur med Natteravnene!</td></tr></tbody></table>
+                                <div style="font-family: Arial, sans-serif; line-height: 20px; color: #444444; font-size: 13px;">
+                                    Din Natteravneforening har nu oprettet dig på Natteravnenes intranet, som er et system, der indeholder informationer om dig som frivillig, informationer og nyheder fra din forening, det lokale netværk din forening er med i, samt Natteravnenes Landssekretariat.
+                                    <br><br>
+                                    Du finder også vores videnbank (Den Gule), som er vores samlede viden om Natteravnekonceptet, hvordan vi optræder på gaden, samt en mængde anden relevant information.
+                                    <br><br>
+                                    For at komme ind på systemet skal du gå på internettet (via computer, tablet, eller mobiltelefon) og skrive internetadressen<br><br>
+                                    <div style="color: #777777; text-align:center;"><b style="color: #777777; text-align:center;"><a href="@Url.Action("Index","Home",null,"http")">frivillig.natteravnene.dk</a></b></div>
+                                    <br>
+                                    Brug følgende koder for at komme ind:
+                                    <br>
+                                    <br>
+                                    Brugernavn: <b style="color: #777777;">@Model.UserName</b><br />
+                                    Kodeord: <b style="color: #777777;">@Model.Password</b>
+                                    <br><br>
+                                    Vi beder dig tjekke, at dine informationer er korrekte i systemet. <a href="@Url.Action("View","People",null,"http")">Klik her</a> for at gå til dine profildata (Du skal logge ind).
+                                    <br><br>
+                                    <b style="color: #777777;">HUSK:</b> Du kan til enhver tid få brugernavn og kodeord tilsendt på SMS og e-mail ved at taste din e-mailadresse eller mobilnummer ind på forsiden - klik .
+                                    <br><br>
+                                    Velkommen til systemet. Vi håber, at du får god brug af dette.
+                                    <br><br>
+                                    Venlig hilsen
+                                    <br>
+                                    <b style="color: #777777;">Bestyrelsen i din forening og Natteravnenes Landssekretariat</b>
+                                    <br>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--Body-->

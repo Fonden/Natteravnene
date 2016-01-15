@@ -1,0 +1,17 @@
+﻿@model List<DrawModel>
+
+    @{
+        Layout = null;
+    }
+
+
+    <div>
+        Draw
+        <ul>
+            @foreach (DrawModel D in Model)
+            {
+                <li>@D.Person.FullName</li>
+            }
+        </ul>
+    </div>
+

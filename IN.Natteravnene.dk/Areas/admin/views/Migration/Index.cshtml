@@ -1,0 +1,56 @@
+﻿@model IEnumerable<SelectListItem>
+@section inlinescripts {
+<script type="text/javascript">
+
+    function updateMonitor(taskId, status) {
+        $("#" + taskId).html("Task [" + taskId + "]: " + status);
+    }
+
+    $(function () {
+        $("#start").click(function (e) {
+            e.preventDefault();
+            var ID = $("#ForningID").val();
+            $.post("/Admin/Migration/Start/" + ID, {}, function (taskId) {
+
+                // Init monitors
+                //$("#monitors").append($("<p id='" + taskId + "'/>"));
+                //updateMonitor(taskId, "Started");
+
+                // Periodically update monitors
+                var intervalId = setInterval(function () {
+                    $.post("/Admin/Migration/Progress", { id: taskId }, function (progress) {
+                        //if (progress >= 100) {
+                        //    updateMonitor(taskId, "Completed");
+                        //    clearInterval(intervalId);
+                        //} else {
+                        //    updateMonitor(taskId, progress + "%");
+                        //}
+                        $("#monitors").html(progress);
+                    });
+                }, 100);
+            });
+        });
+    });
+</script>
+
+
+}
+<div class="page-header position-relative">
+    
+    <h1>
+
+       Migration af Fornings data fra Ravnetur.dk
+    </h1>
+</div>
+@using (Html.BeginForm("Migrate", null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+@Html.DropDownList("ForningID", Model)
+
+    <button class="btn btn-info" id="start">
+        <i class="icon-ok bigger-110"></i>
+        Migrere
+    </button>
+}
+<hr />
+<div id="monitors"></div>
+<hr />

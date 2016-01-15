@@ -1,0 +1,16 @@
+﻿@model AssociationViewModel
+@{
+    Layout = "~/Views/Shared/_about.cshtml";
+    ViewBag.Title = Model.Content.Title;
+    ViewBag.MetaDescription = string.Format("{0} har 5 simple regler som alle Natteravne følger. Regler som sikre at det er sikkert at færdes i Nattelivet", Model.AssociationName);
+    ViewBag.PageImage = "~/Content/Images/Natteravnene-5.jpg";
+    ViewBag.SocialImage = Html.FullyQualifiedUri("~/Content/Images/Natteravnene-5.jpg", Model.Host).ToString();
+    ViewBag.SocialType = "website";
+}
+<div class="row">
+    <div class="col-md-8">
+        @Html.Raw(Model.Content.Body)
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>

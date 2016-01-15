@@ -1,0 +1,187 @@
+﻿@model AssociationPagesModel
+@section pagescripts {
+    @Scripts.Render("~/bundles/form")
+    @Scripts.Render("~/bundles/jcrop")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+        jQuery(function ($) {
+
+            ///////////////////////////////////////////
+            $('#aboutEditor').ace_wysiwyg({
+                toolbar:
+                [
+                    { name: 'bold', className: 'btn-info' },
+                    { name: 'italic', className: 'btn-info' },
+                    { name: 'strikethrough', className: 'btn-info' },
+                    { name: 'underline', className: 'btn-info' },
+                    null,
+                    { name: 'insertunorderedlist', className: 'btn-success' },
+                    { name: 'insertorderedlist', className: 'btn-success' },
+                    { name: 'outdent', className: 'btn-purple' },
+                    { name: 'indent', className: 'btn-purple' },
+                    null,
+                    { name: 'undo', className: 'btn-grey' },
+                    { name: 'redo', className: 'btn-grey' }
+                ]
+            }).prev();
+
+            $('#pressEditor').ace_wysiwyg({
+                toolbar:
+                [
+                    { name: 'bold', className: 'btn-info' },
+                    { name: 'italic', className: 'btn-info' },
+                    { name: 'strikethrough', className: 'btn-info' },
+                    { name: 'underline', className: 'btn-info' },
+                    null,
+                    { name: 'insertunorderedlist', className: 'btn-success' },
+                    { name: 'insertorderedlist', className: 'btn-success' },
+                    { name: 'outdent', className: 'btn-purple' },
+                    { name: 'indent', className: 'btn-purple' },
+                    null,
+                    { name: 'undo', className: 'btn-grey' },
+                    { name: 'redo', className: 'btn-grey' }
+                ]
+            }).prev();
+
+            $('#sponsorsEditor').ace_wysiwyg({
+                toolbar:
+                [
+                    { name: 'bold', className: 'btn-info' },
+                    { name: 'italic', className: 'btn-info' },
+                    { name: 'strikethrough', className: 'btn-info' },
+                    { name: 'underline', className: 'btn-info' },
+                    null,
+                    { name: 'insertunorderedlist', className: 'btn-success' },
+                    { name: 'insertorderedlist', className: 'btn-success' },
+                    { name: 'outdent', className: 'btn-purple' },
+                    { name: 'indent', className: 'btn-purple' },
+                    null,
+                    { name: 'undo', className: 'btn-grey' },
+                    { name: 'redo', className: 'btn-grey' }
+                ]
+            }).prev();
+
+            $('#linkEditor').ace_wysiwyg({
+                toolbar:
+                [
+                    { name: 'bold', className: 'btn-info' },
+                    { name: 'italic', className: 'btn-info' },
+                    { name: 'strikethrough', className: 'btn-info' },
+                    { name: 'underline', className: 'btn-info' },
+                    null,
+                    { name: 'insertunorderedlist', className: 'btn-success' },
+                    { name: 'insertorderedlist', className: 'btn-success' },
+                    { name: 'outdent', className: 'btn-purple' },
+                    { name: 'indent', className: 'btn-purple' },
+                    null,
+                    { name: 'undo', className: 'btn-grey' },
+                    { name: 'redo', className: 'btn-grey' }
+                ]
+            }).prev();
+
+
+            $('form').on('submit', function () {
+
+                //put the editor's html content inside the hidden input to be sent to server
+                $('#PageAbout_Body', this).val($('#aboutEditor').html());
+                $('input[name=PagePress.Body]', this).val($('#pressEditor').html());
+                $('input[name=PageSponsor.Body]', this).val($('#sponsorsEditor').html());
+                $('input[name=PageLink.Body]', this).val($('#linkEditorEditor').html());
+
+                return true;
+            });
+
+        });
+
+
+    </script>
+}<div class="page-header position-relative">
+     @Html.ActionLink(General.BtnResetLocalPageContent, "_ResetLocalPage", null, null, new { @class = "btn btn-small btn-primary pull-right", data_rel = "tooltip", data_placement = "left", title = General.BtnResetLocalPageContent })
+    <h1>@General.WebPages</h1>
+</div>
+@using (Html.BeginForm(null, null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.Partial("~/Views/Shared/_FormSummery.cshtml");
+<div class="tabbable">
+    <ul class="nav nav-tabs padding-16">
+        <li class="active">
+            <a data-toggle="tab" href="#about">
+                <i class="green icon-edit bigger-125"></i>
+                Om Natteravnene
+            </a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#press">
+                <i class="green icon-edit bigger-125"></i>
+                Presse
+            </a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#sponsors">
+                <i class="green icon-edit bigger-125"></i>
+                Sponsorer
+            </a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#link">
+                <i class="green icon-edit bigger-125"></i>
+                Link
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="about" class="tab-pane active">
+
+            <div class="wysiwyg-editor" id="aboutEditor">
+                @Html.Raw(Model.PageAbout.Body)
+            </div>
+            @Html.HiddenFor(model => model.PageAbout.Body)
+
+            <div class="clearfix"></div>
+
+        </div>
+        <div id="press" class="tab-pane">
+
+            <div class="wysiwyg-editor" id="pressEditor">
+                @Html.Raw(Model.PagePress.Body)
+            </div>
+            @Html.HiddenFor(model => model.PagePress.Body)
+
+            <div class="clearfix"></div>
+
+        </div>
+        
+        <div id="sponsors" class="tab-pane">
+
+            <div class="wysiwyg-editor" id="sponsorsEditor">
+                @Html.Raw(Model.PageSponsor.Body)
+            </div>
+            @Html.HiddenFor(model => model.PageSponsor.Body)
+            <div class="clearfix"></div>
+
+        </div>
+
+        <div id="link" class="tab-pane">
+
+            <div class="wysiwyg-editor" id="linkEditor">
+                @Html.Raw(Model.PageLink.Body)
+            </div>
+            @Html.HiddenFor(model => model.PageLink.Body)
+
+            <div class="clearfix"></div>
+
+        </div>
+
+
+
+    </div>
+</div>
+<div class="form-actions">
+    <button class="btn btn-info" type="submit" data-rel="tooltip" data-placement="right" title="@General.BtnSaveTooltip">
+        <i class="icon-ok bigger-110"></i>
+        @General.Save
+    </button>
+</div>
+}

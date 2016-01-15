@@ -1,0 +1,83 @@
+﻿<div class="page-header position-relative">
+
+    <h1>
+        Logo
+    </h1>
+</div>
+<div class="row">
+    <div class="col-md-6 logo">
+@if (ViewBag.Logojpg == true)
+    {
+        <img src="@ViewBag.LogoPath" class="center-block img-responsive" />
+    }
+    </div>
+    <div class="col-md-6">
+        <p>
+            Natteravnene er et registreret og beskyttet varemærke og logoet må
+            kun benyttes med foregående aftale eller med tydelig henvisning til
+            Natteravnene.
+            Er du i tvivl om brugen af logoet, så kontakt Landssekretariatet på
+            tlf: 70 12 12 99 eller på mail: info@natteravnene.dk
+        </p>
+
+        <div class="row">
+@if (ViewBag.Logopdf == true)
+    {
+            <div class="col-lg-4 text-center">
+                <div class="single-fet">
+                    <div>
+                        <a href="@Url.Action("DownloadLogo", null, new { type = "pdf"})">
+                            <span class="nr-stack">
+                                <i class="fa fa-circle fa-stack-2x text-brand-yellow"></i>
+                                <i class="fa fa-arrow-circle-down fa-stack-1x "></i>
+                            </span>
+                        </a>
+                    </div>
+                    <h2>Logo som PDF</h2>
+                    <p>
+                        PDF indeholder logoet i vectorformat som skal bruges i forbidnelse med professionel produktion.
+                    </p>
+                </div>
+            </div>
+     }
+@if (ViewBag.Logojpg == true)
+    {
+            <div class="col-lg-4 text-center">
+                <div class="single-fet">
+                    <div>
+                        <a href="@Url.Action("DownloadLogo", null, new { type = "jpg"})">
+                            <span class="nr-stack">
+                                <i class="fa fa-circle fa-stack-2x text-brand-yellow"></i>
+                                <i class="fa fa-arrow-circle-down fa-stack-1x "></i>
+                            </span>
+                        </a>
+                    </div>
+                    <h2>Logo som JPG</h2>
+                    <p>
+                        JPG indeholder logoet i bitmap format med hvid baggrund.
+                    </p>
+                </div>
+            </div>
+    }
+    @if (ViewBag.Logoemf == true)
+    {
+            <div class="col-lg-4 text-center">
+                <div class="single-fet">
+                    <div>
+                        <a href="@Url.Action("DownloadLogo", null, new { type = "emf"})">
+                            <span class="nr-stack">
+                                <i class="fa fa-circle fa-stack-2x text-brand-yellow"></i>
+                                <i class="fa fa-arrow-circle-down fa-stack-1x "></i>
+                            </span>
+                        </a>
+                    </div>
+                    <h2>Logo som EMF</h2>
+                    <p>
+                        EMF indeholder logoet i vectorformat som kan bruges i Word, Excel og Publisher.
+                    </p>
+                </div>
+            </div>
+    }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+﻿@model MvcSiteMapProvider.Web.Html.Models.SiteMapNodeModel
+@using System.Web.Mvc.Html
+@using MvcSiteMapProvider.Web.Html.Models
+@if (Model.IsCurrentNode && Model.SourceMetadata["HtmlHelper"].ToString() != "MvcSiteMapProvider.Web.Html.MenuHelper")
+{
+
+    if (Model.Attributes.ContainsKey("icon"))
+    { <i class="ace-icon fa fa-@Model.Attributes["icon"]"></i>}
+    <span class="menu-text"> @Model.Title </span>
+}
+else if (Model.IsClickable)
+{
+    if (Model.Children.Any())
+    {
+        if (string.IsNullOrEmpty(Model.Description))
+        {
+            <a href="@Model.Url" class="dropdown-toggle">
+                @if (Model.Attributes.ContainsKey("icon"))
+                { <i class="menu-icon fa fa-@Model.Attributes["icon"]"></i>}<span class="menu-text"> @Model.Title </span><b class="arrow icon-angle-down"></b>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+        }
+        else
+        {
+            <a href="@Model.Url" title="@Model.Description" class="dropdown-toggle">
+                @if (Model.Attributes.ContainsKey("icon"))
+                { <i class="menu-icon fa fa-@Model.Attributes["icon"]"></i>}<span class="menu-text"> @Model.Title </span><b class="arrow icon-angle-down"></b>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+        }
+        
+    }
+    else
+    {
+        if (string.IsNullOrEmpty(Model.Description))
+        {
+            <a href="@Model.Url">
+                @if (Model.Attributes.ContainsKey("icon"))
+                { <i class="menu-icon fa fa-@Model.Attributes["icon"]"></i>}<span class="menu-text"> @Model.Title </span>
+            </a>
+        }
+        else
+        {
+            <a href="@Model.Url" title="@Model.Description">
+                @if (Model.Attributes.ContainsKey("icon"))
+                { <i class="menu-icon fa fa-@Model.Attributes["icon"]"></i>}<span class="menu-text"> @Model.Title </span>
+            </a>
+        }
+        
+    }
+}
+else
+{
+    if (Model.Attributes.ContainsKey("icon"))
+    { <i class="ace-icon fa fa-@Model.Attributes["icon"]"></i>}
+    <text> @Model.Title DW </text>
+}

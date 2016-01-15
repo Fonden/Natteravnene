@@ -1,0 +1,63 @@
+﻿@model ICollection<NRMembership>
+@{
+    Layout = null;
+}
+
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+    <!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Natteravne</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
+    <style>
+        .num {
+            mso-number-format: General;
+        }
+
+        .text {
+            mso-number-format: "\@@"; /*force text*/
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <table id="Voulunteers-table" class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th colspan="10" height="200" style="padding: 10px; background-color: black; color: black;"><img src="@Request.Url.FormatAbsoluteUrl(Url.Content("~/Content/img/Natteravnene_logo_gul_forside.png"))" alt="Natteravnene logo" height="80" style="height: 80px;" /></th>
+            </tr>
+            <tr style="background-color: black; color: white;">
+                <th>@DomainStrings.Username</th>
+                <th>@DomainStrings.FullName</th>
+                <th class="center">@DomainStrings.Mobile</th>
+                <th class="center">@DomainStrings.Phone</th>
+                <th>@DomainStrings.Email</th>
+                <th>@DomainStrings.Address</th>
+                <th>@DomainStrings.PersonType</th>
+                <th>@DomainStrings.Teamleader</th>
+                <th>@General.Board</th>
+                <th>@DomainStrings.SignupDate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (NRMembership M in Model)
+            {
+                <tr>
+                    <td style="padding: 0 5px;">@M.Person.UserName</td>
+                    <td style="padding: 0 5px;">@M.Person.FullName</td>
+                    <td style="padding: 0 5px;">@M.Person.Mobile</td>
+                    <td style="padding: 0 5px;">@M.Person.Phone</td>
+                    <td style="padding: 0 5px;">@M.Person.Email</td>
+                    <td style="padding: 0 5px;">@M.Person.FullAddress</td>
+                    <td style="padding: 0 5px;">@M.Type.DisplayName()</td>
+                    <td style="text-align: center; padding: 0 5px;">@(M.Teamleader == true ? "X" : "")</td>
+                    <td style="padding: 0 5px;">@M.BoardFunction.DisplayName()</td>
+                    <td style="text-align: center; padding: 0 5px;">@M.SignupDate.ToShortDateString()</td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+</body>
+</html>
+

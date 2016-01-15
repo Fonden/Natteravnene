@@ -1,0 +1,57 @@
+﻿@section inlinescripts
+{
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("#scan").on("change", function () {
+
+            var id = $("#scan").val();
+            $("#scan").val("");
+            $.ajax({
+                url: '@Url.Action("ReturnMailInfo")',
+                data: { Id: id, info: true },
+                type: 'POST'
+            })
+               .success(function (result) {
+                   $('#info').html(result).fadeIn(1000);
+
+                   $("#nmupdate").on("click", function () {
+
+                       var id = $("#Idnm").val();
+                      
+
+                       $.ajax({
+                           url: '@Url.Action("ReturnMailInfo")',
+                           data: { Id: id, info: false },
+                           type: 'POST'
+                       })
+                          .success(function (result) {
+                             
+                              $('#info').html(result).fadeIn(1000);
+                          })
+                      .error();
+                   });
+
+               })
+           .error();
+        });
+
+
+
+       
+
+    });
+    </script>
+}
+<div class="page-header position-relative">
+    <h1>
+         Retur mail
+    </h1>
+</div>
+<div class="row">
+    <div class="col-lg-4">
+        <input type="text" id="scan" class="input-xxlarge">
+    </div>
+    <div class="col-lg-4" id="info">
+
+    </div>
+</div>

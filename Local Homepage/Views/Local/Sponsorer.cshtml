@@ -1,0 +1,47 @@
+﻿@model AssociationViewModel
+@{
+    ViewBag.Title = "Sponsorer";
+    ViewBag.MetaDescription = string.Format("{0} sponsorer.", Model.AssociationName);
+    ViewBag.PageImage = "~/Content/Images/Natteravnene-7.jpg";
+    ViewBag.SocialImage = Html.FullyQualifiedUri("~/Content/Images/Natteravnene-7.jpg", Model.Host).ToString();
+    ViewBag.SocialType = "website";
+}
+
+
+<div id="pagehero">
+    <img src="@Url.Content(ViewBag.PageImage)" class="img-responsive" />
+    <h1>Sponsorer</h1>
+</div>
+
+
+<div class="body-content">
+    <div class="row">
+        
+        <div id="sponsorlist" class="col-md-offset-1 col-md-10 col-xs-12">
+            <div class="pagecontent">@Html.Raw(Model.PageSponsor.Body)</div>
+            <div class="row">
+                @if (Model.Sponsors.Any())
+                {
+                    foreach (Sponsor item in Model.Sponsors)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div class="sponsorbox">
+                                <div class="logo">
+                                    <a href="@Html.ExternalURL(item.URL)" target="_blank" class="sponsorimage">
+                                        @Html.SponsorLogoImage(item, new { @class = "img-responsive center-block" })
+                                    </a>
+                                </div>
+                                <div class="body">
+                                    <h4 class="media-heading"><a href="@Html.ExternalURL(item.URL)" target=" _blank">@item.Name</a></h4>
+                                    @Html.Raw(item.Body)
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,52 @@
+﻿@model ICollection<PrintMailingModel>
+    @{
+        ViewBag.Title = "PrintNewsList";
+        Layout = null;
+    }
+
+    <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+    <head>
+        <!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>NatteravneNyt</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
+        <style>
+            .num {
+  mso-number-format:General;
+}
+.text{
+  mso-number-format:"\@@";/*force text*/
+}
+        </style>
+    </head>
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="8" height="100" style="padding: 10px; background-color: black; color: black;"><img src="@Request.Url.FormatAbsoluteUrl(Url.Content("~/Content/img/Natteravnene_logo_gul_forside.png"))" alt="Natteravnene logo" height="80" style="height: 80px;" /></th>
+                </tr>
+                <tr style="background-color: black; color: white;">
+                    <th>ID</th>
+                    <th>@DomainStrings.Username</th>
+                    <th>@DomainStrings.FullName</th>
+                    <th>@DomainStrings.Address</th>
+                    <th>@DomainStrings.Zip</th>
+                    <th>@DomainStrings.Country</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (PrintMailingModel P in Model)
+                {
+                    <tr>
+                        <td style="padding: 0 5px;" class="text">@P.ID</td>
+                        <td style="padding: 0 5px;">@P.UserName</td>
+                        <td style="padding: 0 5px;">@P.MailName</td>
+                        <td style="padding: 0 5px;">@P.Address</td>
+                        <td style="padding: 0 5px;">@P.Zip @P.City</td>
+                        <td style="padding: 0 5px;">@P.Country</td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+    </body>
+</html>

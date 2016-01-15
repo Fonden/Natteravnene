@@ -1,0 +1,173 @@
+﻿@model DisplayProfile
+<div class="row">
+    <div class="col-xs-12 col-sm-3 center">
+        <span class="profile-picture">
+            @Html.ProfilImage(Model.Person)
+
+        </span>
+        <div class="space space-4"></div>
+        @*<a href="#" class="btn btn-sm btn-block btn-primary">
+                <i class="ace-icon fa fa-envelope-o bigger-110"></i>
+                <span class="bigger-110">Send a message</span>
+            </a>*@
+    </div><!-- /.col -->
+
+    <div class="col-xs-12 col-sm-9">
+
+        <h4 class="blue">
+            <span class="middle">@Model.Person.FullName</span>
+            @*<span class="label label-purple arrowed-in-right">
+                    <i class="ace-icon fa fa-circle smaller-80 align-middle"></i>
+                    online
+                </span>*@
+        </h4>
+        <div class="profile-user-info">
+            <div class="profile-info-row">
+                <div class="profile-info-name">
+                    @DomainStrings.Username
+                </div>
+
+                <div class="profile-info-value">
+                    <span>@Model.Person.UserName</span>
+                </div>
+            </div>
+            @if (!String.IsNullOrWhiteSpace(Model.Person.Email))
+            {
+                <div class="profile-info-row">
+                    <div class="profile-info-name">
+                        @DomainStrings.Email
+                    </div>
+
+                    <div class="profile-info-value">
+                       @Model.Person.Email
+                    </div>
+                </div>
+            }
+            @if (!String.IsNullOrWhiteSpace(Model.Person.Address) )
+            {
+                <div class="profile-info-row">
+                    <div class="profile-info-name">
+                        @DomainStrings.Address
+                    </div>
+
+                    <div class="profile-info-value">
+                        <i class="fa fa-map-marker light-orange bigger-110"></i>
+                        <span>@Model.Person.FullAddress</span>
+                    </div>
+                </div>
+            }
+            else if (!String.IsNullOrWhiteSpace(Model.Person.City))
+            {
+                <div class="profile-info-row">
+                    <div class="profile-info-name">
+                        @DomainStrings.City
+                    </div>
+
+                    <div class="profile-info-value">
+                        <i class="fa fa-map-marker light-orange bigger-110"></i>
+                        <span>@Model.Person.City</span>
+                    </div>
+                </div>
+            }
+            @if (!String.IsNullOrWhiteSpace(Model.Person.Mobile))
+            {
+                <div class="profile-info-row">
+                    <div class="profile-info-name">
+                        @DomainStrings.Mobile
+                    </div>
+
+                    <div class="profile-info-value">
+
+                        <span>@Model.Person.Mobile</span>
+                    </div>
+                </div>
+            }
+
+            @if (!String.IsNullOrWhiteSpace(Model.Person.Phone))
+            {
+                <div class="profile-info-row">
+                    <div class="profile-info-name">
+                        @DomainStrings.Phone
+                    </div>
+
+                    <div class="profile-info-value">
+
+                        <span>@Model.Person.Phone</span>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="hr hr-8 dotted"></div>
+
+
+    </div><!-- /.col -->
+</div><!-- /.row -->
+
+<div class="space-20"></div>
+
+<div class="row">
+
+
+    <div class="col-xs-12 col-sm-3">
+        <div class="widget-box transparent">
+            <div class="widget-header widget-header-small header-color-blue2">
+                <h4 class="widget-title smaller"><i class="ace-icon fa fa-lightbulb-o bigger-120"></i> @General.History</h4>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main padding-16">
+                    <div class="clearfix">
+                        <div class="grid2 center">
+                            @General.ProfileTotal
+                            <div class="space-2"></div>
+                            <!-- #section:plugins/charts.easypiechart -->
+                            <div class="">
+                                <span class="text-succes">
+                                    @(Model.Activity == null ? "-" : ((int)Model.Activity).ToString())
+                                </span>
+                            </div>
+                            <!-- /section:plugins/charts.easypiechart -->
+
+                        </div>
+
+
+                        <div class="grid2 center">
+                            @General.ProfileSince
+                            <div class="space-2"></div>
+                            <div class="center">
+                                <span class="text-succes">
+                                    @if (Model.ActiveSince != null)
+                                    {
+                                        @Html.TextDuration((DateTime)Model.ActiveSince, DateTime.Now)
+                                    }
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="hr hr-16"></div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="col-xs-12 col-sm-9">
+    <div class="widget-box transparent">
+        <div class="widget-header widget-header-small">
+            <h4 class="widget-title smaller"><i class="ace-icon fa fa-check-square-o bigger-110"></i>@DomainStrings.ProfileInfo</h4>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                @Html.Raw(Model.Person.ProfileInfo == null ? "" : Model.Person.ProfileInfo.Replace("\n", "<br />"))
+            </div>
+        </div>
+    </div>
+</div>
+</div>

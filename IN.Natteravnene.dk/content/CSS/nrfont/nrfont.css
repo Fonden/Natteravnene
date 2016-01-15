@@ -1,0 +1,83 @@
+@font-face {
+	font-family: 'Natteravnene';
+	src:url('/fonts/Natteravnene.eot?4gzj5t');
+	src:url('/fonts/Natteravnene.eot?4gzj5t#iefix') format('embedded-opentype'),
+		url('/fonts/Natteravnene.ttf?4gzj5t') format('truetype'),
+		url('/fonts/Natteravnene.woff?4gzj5t') format('woff'),
+		url('/fonts/Natteravnene.svg?4gzj5t#Natteravnene') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="nricon-"], [class*=" nricon-"] {
+	font-family: 'Natteravnene';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.nricon-Trial:before {
+	content: "\e910";
+}
+.nricon-ProfilBillede:before {
+	content: "\e90a";
+}
+.nricon-Holdleder:before {
+	content: "\e90b";
+}
+.nricon-Formand:before {
+	content: "\e90c";
+}
+.nricon-Planner:before {
+	content: "\e90d";
+}
+.nricon-Sekretaer:before {
+	content: "\e90e";
+}
+.nricon-Redaktoer:before {
+	content: "\e900";
+}
+.nricon-Kasser:before {
+	content: "\e901";
+}
+.nricon-Revisor:before {
+	content: "\e902";
+}
+.nricon-Suppleant:before {
+	content: "\e90f";
+}
+.nricon-SeniorInstruktoer:before {
+	content: "\e903";
+}
+.nricon-Natteravn:before {
+	content: "\e904";
+}
+.nricon-natteravnwalk:before {
+	content: "\e905";
+}
+.nricon-natteravnnewalk:before {
+	content: "\e906";
+}
+.nricon-Bestyrelse:before {
+	content: "\e907";
+}
+.nricon-fodvenstre:before {
+	content: "\e908";
+}
+.nricon-fodhoejre:before {
+	content: "\e909";
+}
+.nricon-nrfugl:before {
+	content: "\e932";
+}
+.nricon-Natteravnenelogo:before {
+	content: "\e933";
+}
+

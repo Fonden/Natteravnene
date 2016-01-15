@@ -1,0 +1,53 @@
+﻿@model DisplayProfile
+
+<div class="page-header position-relative">
+    @if (Model.CurrentMembership != null && (NR.Infrastructure.CurrentProfile.isPlanner | NR.Infrastructure.CurrentProfile.isSecretary))
+    {
+        @Html.ActionLink(General.Edit, "Edit", new { id = Model.CurrentMembership.MembershipID }, new { @class = "btn btn-small btn-primary pull-right" })
+    }
+    <h1>
+        <a href="@Url.Action("Index")" class="btn btn-small btn-primary">
+            <i class="ace-icon @Icons.BackIcon icon-only"></i>
+        </a> @General.UserProfile
+    </h1>
+</div>
+<!--/.page-header-->
+
+<div class="tabbable">
+    <ul class="nav nav-tabs padding-16">
+        <li class="active">
+            <a data-toggle="tab" href="#basic">
+                <i class="green icon-edit bigger-125"></i>
+                @General.TabBasicdata
+            </a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#associations">
+                <i class="green icon-edit bigger-125"></i>
+                @General.TabMemberships
+            </a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#causes">
+                <i class="green icon-edit bigger-125"></i>
+                @General.TabCauses
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content profile-edit-tab-content">
+        <div id="basic" class="row tab-pane in active">
+
+            @Html.Partial("~/Views/Shared/_ProfileBasic.cshtml", Model)
+        </div>
+        <div id="associations" class="row tab-pane">
+
+            @Html.Partial("~/Views/Shared/_ProfileMembership.cshtml", Model)
+        </div>
+        <div id="causes" class="row tab-pane">
+
+            @Html.Partial("~/Views/Shared/_ProfileCause.cshtml", Model)
+        </div>
+    </div>
+</div>
+

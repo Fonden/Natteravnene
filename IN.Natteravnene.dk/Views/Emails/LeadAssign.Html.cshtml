@@ -1,0 +1,45 @@
+﻿@section Headers {
+    Content-Type: text/html; charset=utf-8
+}
+<!--Body-->
+<table class="table-row" width="450" bgcolor="#FFFFFF" style="table-layout: fixed; background-color: #ffffff;" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+        <tr>
+            <td class="table-row-td" style="font-family: Arial, sans-serif; line-height: 19px; color: #444444; font-size: 13px; font-weight: normal; padding-left: 36px; padding-right: 36px;" valign="top" align="left">
+                <table class="table-col" align="left" width="378" cellspacing="0" cellpadding="0" border="0" style="table-layout: fixed;">
+                    <tbody>
+                        <tr>
+                            <td class="table-col-td" width="378" style="font-family: Arial, sans-serif; line-height: 19px; color: #444444; font-size: 13px; font-weight: normal; width: 378px;" valign="top" align="left">
+                                <table class="header-row" width="378" cellspacing="0" cellpadding="0" border="0" style="table-layout: fixed;"><tbody><tr><td class="header-row-td" width="378" style="font-family: Arial, sans-serif; font-weight: normal; line-height: 19px; color: #478fca; margin: 0px; font-size: 18px; padding-bottom: 10px; padding-top: 15px;" valign="top" align="left">Prøvetur med Natteravnene!</td></tr></tbody></table>
+                                <div style="font-family: Arial, sans-serif; line-height: 20px; color: #444444; font-size: 13px;">
+                                    Natteravnenes Landssekretariat har modtaget følgende anmodning for en prøvetur. I bedes venligst kontakte personen, for at se om der er basis for at få personen ud på en prøvetur.
+                                    <br><br>
+                                    Bekræft venligst modtagelse af denne email ved at klikke <a href="@Url.Action("StatusUpdateRecived", "Emne", new { id = Model.lead.LeadID }, "http")">her</a>. (Du vil blive bedt om at logge ind efterfølgende for at se den opdateret status)
+                                    <br /><br />
+                                    Natteravnenes Landssekretariat har modtaget følgede data:
+                                    <br />
+                                    <br />
+                                    Navn: <b style="color: #777777;">@Model.lead.FullName</b><br />
+                                    Mobil: <b style="color: #777777;">@Model.lead.Mobile</b><br />
+                                    Telefon: <b style="color: #777777;">@Model.lead.Phone</b><br />
+                                    Adresse: <b style="color: #777777;">@Model.lead.Address</b><br />
+                                    Postadr: <b style="color: #777777;">@Model.lead.Zip  @Model.lead.City</b><br />
+                                    Email: <b style="color: #777777;">@Model.lead.Email</b><br />
+                                    Alder: <b style="color: #777777;">@Model.lead.Age</b><br />
+                                    Kommentar:<br /> <b style="color: #777777;">@Model.lead.Comments</b><br />
+                                    <br />
+                                    <br />
+                                    Venlig hilsen
+                                    <br>
+                                    <b style="color: #777777;">Natteravnenes Landssekretariat</b>
+                                    <br>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--Body-->

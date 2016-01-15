@@ -1,0 +1,137 @@
+﻿@model TeamEditModel
+
+@using (@Html.BeginForm("Edit", "Planning", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-12">
+                @Html.HiddenFor(m => m.Team.TeamID)
+                @Html.Partial("~/Views/Shared/_FormSummery.cshtml")
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Team.Start, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+
+                        <div class="input-group">
+                            <input id="@Html.IdFor(model => model.Start)" name="@Html.IdFor(model => model.Start)" value="@Model.Team.Start" />
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Start)
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Team.Star, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <div class="input-medium">
+                            <div class="input-group">
+                                <label>
+                                    <input id="@Html.IdFor(model => model.Team.Star)" name="@Html.NameFor(model => model.Team.Star)" class="ace ace-switch ace-switch-6" type="checkbox" value="true" @(Model.Team.Star ? "checked=\"checked\"" : "") />
+                                    <span class="lbl"></span>
+                                </label>
+
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Team.Star)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.Team.Status, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        @Html.EnumDropDownListFor(model => model.Team.Status)
+                        @Html.ValidationMessageFor(f => f.Team.Status)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.TeamLeader, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        @Html.DropDownListFor(model => model.TeamLeader, new SelectList(Model.Active, "Value", "Text", Model.Team.TeamLeaderId))
+                        @Html.ValidationMessageFor(f => f.TeamLeader)
+                    </div>
+                </div>
+
+
+                @for (int i = 0; i < Model.Teammembers.Count(); i++)
+                {
+
+                    <div class="form-group">
+                        @Html.LabelFor(f => f.Teammembers, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                        <div class="col-sm-9">
+                            @if (i == Model.Teammembers.Count() - 1 && Model.Team.Trial)
+                            {
+                               @Html.DropDownListFor(model => model.Teammembers[i], new SelectList(Model.Active, "Value", "Text"), new { disabled = "disabled" }) 
+                            }
+                            else
+                            {
+                                @Html.DropDownListFor(model => model.Teammembers[i], new SelectList(Model.Active, "Value", "Text", Model.Teammembers[i]))
+                            }
+                            @Html.ValidationMessageFor(f => f.Teammembers[i])
+                        </div>
+                    </div>
+                }
+
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Team.Note, new { @class = "col-sm-2 control-label no-padding-right" })
+                    <div class="col-sm-8">
+                        <div class="input-xxlarge">
+                            @Html.TextAreaFor(m => m.Team.Note, new { @class = "form-control", placeholder = DomainStrings.Headline })
+                            @Html.ValidationMessageFor(m => m.Team.Note)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Team.Trial, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <div class="input-medium">
+                            <div class="input-group">
+                                <label>
+                                    <input id="@Html.IdFor(m => m.Team.Trial)" name="@Html.NameFor(m => m.Team.Trial)" class="ace ace-switch ace-switch-6" type="checkbox" value="true" @(Model.Team.Trial ? "checked=\"checked\"" : "") />
+                                    <span class="lbl"></span>
+                                </label>
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Team.Trial)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Team.TrialInfo, new { @class = "col-sm-2 control-label no-padding-right" })
+                    <div class="col-sm-8">
+                        <div class="input-xxlarge">
+                            @Html.TextAreaFor(m => m.Team.TrialInfo, new { @class = "form-control", placeholder = DomainStrings.Headline })
+                            @Html.ValidationMessageFor(m => m.Team.TrialInfo)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-sm btn-primary">
+            <i class="ace-icon fa fa-check"></i>
+            @General.Save
+        </button>
+    </div>
+
+}

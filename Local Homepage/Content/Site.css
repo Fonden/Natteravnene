@@ -1,0 +1,169 @@
+﻿@import url(http://fonts.googleapis.com/css?family=Lato);
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  background: #231f20 fixed url('Images/Natteravnene_bg.jpg') !important;
+  font-family: 'Lato', Verdana, sans-serif !important;
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #ffffff;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+.navbar-header .navbar-brand {
+  /*background: url('Images/Natteravnene_logo_hvid.png') no-repeat;
+    position:fixed;
+    //margin-top: 10px;
+    height: 100px;
+    width: 150px;*/
+}
+/*NAvbar*/
+.navbar-inverse {
+  background-color: #231f20;
+  border-bottom: 5px solid #ffe600 !important;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+  max-width: 280px;
+}
+/* styles for validation helpers */
+.field-validation-error {
+  color: #b94a48;
+}
+.field-validation-valid {
+  display: none;
+}
+input.input-validation-error {
+  border: 1px solid #b94a48;
+}
+input[type="checkbox"].input-validation-error {
+  border: 0 none;
+}
+.validation-summary-errors {
+  color: #b94a48;
+}
+.validation-summary-valid {
+  display: none;
+}
+footer {
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+}
+footer .footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #231f20;
+  border-top: 5px solid #ffe600;
+  text-align: center;
+  color: #ffffff;
+  padding-top: 10px;
+  z-index: 1031;
+}
+footer .footer p {
+  font-size: 80%;
+}
+footer .footer p span {
+  display: inline-block;
+  width: 3%;
+}
+footer #popup {
+  position: fixed;
+  bottom: 60px;
+  width: 100%;
+  text-align: center;
+  padding: 0;
+}
+footer #popup div {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: bottom;
+  text-align: left;
+}
+footer #popup div #lead {
+  background-color: #ffe600 !important;
+  padding: 7px 15px !important;
+  float: left;
+  min-width: 300px;
+  transform: skewX(-30deg);
+  text-align: center;
+}
+footer #popup div #lead a {
+  transform: skewX(30deg);
+  display: block;
+  font-weight: bold;
+  font-size: 16px;
+  color: #231f20;
+}
+footer #popup div #lead a .content {
+  display: none;
+}
+footer #popup div #support {
+  background-color: #231f20;
+  padding: 7px 15px !important;
+  min-width: 300px;
+  float: left;
+  transform: skewX(-30deg);
+}
+footer #popup div #support a {
+  transform: skewX(30deg);
+  display: block;
+  font-weight: bold;
+  font-size: 16px;
+  color: #ffffff;
+}
+footer #popup div #leadpopupbox {
+  position: absolute;
+  bottom: 30px;
+  z-index: 100;
+  width: 600px;
+  padding: 10px;
+  margin-left: 10px;
+  background-color: #ffe600 !important;
+  min-height: 300px;
+}
+@media (min-width: 768px) {
+  .navbar-inverse .navbar-nav {
+    margin-top: 56px !important;
+    /*.active a,
+        .active > a:hover,
+        .active > a:focus
+            {
+             background-color: @brand-yellow !important;
+        }*/
+  }
+  .navbar-inverse .navbar-nav li {
+    transform: skewX(-30deg);
+    border-right: solid 2px #231f20;
+  }
+  .navbar-inverse .navbar-nav li a {
+    display: block;
+    background-color: transparent !important;
+    padding: 7px 15px !important;
+    color: #ffffff;
+    transform: skewX(30deg);
+    font-weight: bold;
+  }
+  .navbar-inverse .navbar-nav .active,
+  .navbar-inverse .navbar-nav .active,
+  .navbar-inverse .navbar-nav .active {
+    background-color: #ffe600 !important;
+  }
+  .navbar-inverse .navbar-nav .active a,
+  .navbar-inverse .navbar-nav .active a,
+  .navbar-inverse .navbar-nav .active a,
+  .navbar-inverse .navbar-nav .active a:focus,
+  .navbar-inverse .navbar-nav .active a:focus,
+  .navbar-inverse .navbar-nav .active a:focus {
+    color: #231f20 !important;
+  }
+}
+/*# sourceMappingURL=Site.css.map */

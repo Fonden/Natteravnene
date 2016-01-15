@@ -1,0 +1,546 @@
+﻿@model Association
+
+@section pagescripts {
+    @Scripts.Render("~/bundles/form")
+    @Scripts.Render("~/bundles/jcrop")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+        jQuery(function ($) {
+
+            ///////////////////////////////////////////
+            $('#ScheduletextEditor').ace_wysiwyg({
+                toolbar:
+                [
+                    { name: 'bold', className: 'btn-info' },
+                    { name: 'italic', className: 'btn-info' },
+                    { name: 'strikethrough', className: 'btn-info' },
+                    { name: 'underline', className: 'btn-info' },
+                    null,
+                    { name: 'insertunorderedlist', className: 'btn-success' },
+                    { name: 'insertorderedlist', className: 'btn-success' },
+                    { name: 'outdent', className: 'btn-purple' },
+                    { name: 'indent', className: 'btn-purple' },
+                    null,
+                    { name: 'undo', className: 'btn-grey' },
+                    { name: 'redo', className: 'btn-grey' }
+                ]
+            }).prev();
+
+            $('#basicdata').on('submit', function () {
+
+                //put the editor's html content inside the hidden input to be sent to server
+                $('input[name=Scheduletext]', this).val($('#ScheduletextEditor').html());
+
+                return true;
+            });
+
+
+            $('.date-picker').datepicker({
+                dateFormat: "dd-mm-yy",
+                gotoCurrent: true,
+                autoclose: true,
+                todayHighlight: true
+            })
+                .next().on(ace.click_event, function () {
+                    $(this).prev().focus();
+                })
+
+
+            $('.input-mask-phone').mask('(999) 999-9999');
+
+        });
+    </script>
+}
+
+<div class="page-header position-relative">
+    <h1>
+        <a href="@Url.Action("Index")" class="btn btn-small btn-primary" data-rel="tooltip" title="@General.BtnBackToAssociationTooltip">
+            <i class="ace-icon @Icons.BackIcon icon-only"></i>
+        </a> @(Model.AssociationID == Guid.Empty ? General.AssociationCreate : General.AssociationEdit)
+    </h1>
+</div>
+<!--/.page-header-->
+@using (Html.BeginForm(null, null, null, FormMethod.Post, new { @class = "form-horizontal", id = "basicdata" }))
+{
+    @Html.HiddenFor(f => f.AssociationID)
+    @Html.Partial("~/Views/Shared/_FormSummery.cshtml");
+    <div class="tabbable">
+        <ul class="nav nav-tabs padding-16">
+            <li class="active">
+                <a data-toggle="tab" href="#edit-basic">
+                    <i class="green icon-edit bigger-125"></i>
+                    @General.TabBasicdata
+                </a>
+            </li>
+
+            <li>
+                <a data-toggle="tab" href="#edit-contacts">
+                    <i class="green icon-puzzle-piece bigger-125"></i>
+                    @General.Contacts
+                </a>
+            </li>
+
+            <li>
+                <a data-toggle="tab" href="#edit-functions">
+                    <i class="green icon-puzzle-piece bigger-125"></i>
+                    @General.FunctionsSettings
+                </a>
+            </li>
+
+            <li>
+                <a data-toggle="tab" href="#edit-communication">
+                    <i class="purple icon-cog bigger-125"></i>
+                    @General.CommunicationSettings
+                </a>
+            </li>
+
+            <li>
+                <a data-toggle="tab" href="#edit-texts">
+                    <i class="blue icon-keyboard bigger-125"></i>
+                    @General.AssociationsTexts
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="tab-content profile-edit-tab-content">
+            <div id="edit-basic" class="row tab-pane in active">
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.Name, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        @Html.TextBox5For(f => f.Name, new { @class = "col-xs-12 col-sm-10", disabled = "disabled" })
+                        @Html.ValidationMessageFor(f => f.Name)
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.Status, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <input name="status" type="text" disabled value="@Model.Status.DisplayName()" />
+                        <!--@Html.EnumDropDownListFor(m => m.Status, new { disabled = "disabled" })-->
+                        @Html.ValidationMessageFor(f => f.Status)
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.Governance, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <input name="status" type="text" disabled value="@Model.Governance.DisplayName()" />
+                        <!--@Html.EnumDropDownListFor(m => m.Governance)-->
+                        @Html.ValidationMessageFor(f => f.Governance)
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.Number, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <span class="input-icon input-icon-right">
+                            @Html.TextBox5For(f => f.Number, new { disabled = "disabled" })
+                            <i class="icon-envelope"></i>
+                        </span>
+                        @Html.ValidationMessageFor(f => f.Number)
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.URL, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        @Html.TextBox5For(f => f.URL, new { @class = "col-xs-12 col-sm-10", disabled = "disabled" })
+                        @Html.ValidationMessageFor(f => f.URL)
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.AssociationEmail, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <span class="input-icon input-icon-right">
+                            @Html.TextBox5For(f => f.AssociationEmail, new { type = "email" })
+                            <i class="icon-envelope"></i>
+                        </span>
+                        @Html.ValidationMessageFor(f => f.AssociationEmail)
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Established, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <div class="input-medium">
+                            <div class="input-group">
+                                @Html.TextBoxFor(m => m.Established, new { @class = "form-control date-picker", placeholder = "dd-mm-yyyy", disabled = "disabled" })
+
+
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar bigger-110"></i>
+                                </span>
+
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Established)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.CVRNR, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <span class="input-icon input-icon-right">
+                            @Html.TextBox5For(f => f.CVRNR)
+                            <i class="icon-archive"></i>
+                        </span>
+                        @Html.ValidationMessageFor(f => f.CVRNR)
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.SeniorInstruktoer, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        @Html.TextBox5For(f => f.SeniorInstruktoer.FullName, new { @class = "col-xs-12 col-sm-10", disabled = "disabled" })
+                        @Html.ValidationMessageFor(f => f.Name)
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+
+            </div>
+
+            <div id="edit-contacts" class="tab-pane">
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.TeamPhone, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <span class="input-icon input-icon-right">
+                            @Html.TextBox5For(f => f.TeamPhone, new { type = "tel" })
+                            <i class="icon-phone icon-flip-horizontal"></i>
+                        </span>
+                        @Html.ValidationMessageFor(f => f.TeamPhone)
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.ContactPhone, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <span class="input-icon input-icon-right">
+                            @Html.TextBox5For(f => f.ContactPhone, new { type = "tel" })
+                            <i class="icon-phone icon-flip-horizontal"></i>
+                        </span>
+                        @Html.ValidationMessageFor(f => f.ContactPhone)
+                    </div>
+                </div>
+                <h3 class="header smaller lighter blue">
+                    @Html.Raw(General.AssociationAddressHeading)
+                </h3>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.Address, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <span class="input-icon input-icon-right">
+                            @Html.TextBox5For(f => f.Address)
+                            <i class="icon-home"></i>
+                        </span>
+                        @Html.ValidationMessageFor(f => f.Address)
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.Zip, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <span class="input-icon input-icon-right">
+                            @Html.TextBox5For(f => f.Zip)
+                            <i class="icon-home"></i>
+                        </span>
+                        @Html.ValidationMessageFor(f => f.Zip)
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.City, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <span class="input-icon input-icon-right">
+                            @Html.TextBox5For(f => f.City)
+                            <i class="icon-home"></i>
+                        </span>
+                        @Html.ValidationMessageFor(f => f.City)
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div id="edit-functions" class="tab-pane">
+
+                <div>
+                    <label class="inline">
+                        @Html.CheckBox5For(f => f.ShowAddresse, new { @class = "form-field-checkbox" })
+                        <!--<input type="checkbox" name="form-field-checkbox" />-->
+                        <span class="lbl">@Html.DisplayNameFor(f => f.ShowAddresse)</span>
+                    </label>
+                </div>
+
+                <div class="space-10"></div>
+
+                <h4 class="header blue bolder smaller">Turplanlægning</h4>
+                <div>
+                    <label class="inline">
+                        @Html.CheckBox5For(f => f.UseSchedulePlanning, new { @class = "form-field-checkbox" })
+                        <span class="lbl">@Html.DisplayNameFor(f => f.UseSchedulePlanning)</span>
+                    </label>
+                </div>
+
+                <div>
+                    <label class="inline">
+                        @Html.CheckBox5For(f => f.UseTakeTeamSpot, new { @class = "form-field-checkbox" })
+                        <span class="lbl">@Html.DisplayNameFor(f => f.UseTakeTeamSpot)</span>
+                    </label>
+                </div>
+
+                <div>
+                    <label class="inline">
+                        @Html.CheckBox5For(f => f.UseShiftTeam, new { @class = "form-field-checkbox", disabled = "disabled" })
+                        <span class="lbl">@Html.DisplayNameFor(f => f.UseShiftTeam)</span>
+                    </label>
+                </div>
+
+                <div>
+                    <label class="inline">
+                        @Html.CheckBox5For(f => f.UseTeamExchange, new { @class = "form-field-checkbox", disabled = "disabled" })
+                        <span class="lbl">@Html.DisplayNameFor(f => f.UseTeamExchange)</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.DeadlineHoursTeamChange, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <span class="input-icon input-icon-right">
+                            @Html.TextBox5For(f => f.DeadlineHoursTeamChange)
+                            <i class="icon-home"></i>
+                        </span>
+                        @Html.ValidationMessageFor(f => f.DeadlineHoursTeamChange)
+                    </div>
+                </div>
+
+
+                <div class="space-10"></div>
+
+                <h4 class="header blue bolder smaller">@General.Modules</h4>
+
+                <div>
+                    <label class="inline">
+                        @Html.CheckBox5For(f => f.UseKeyBox, new { @class = "form-field-checkbox" })
+                        <span class="lbl">@Html.DisplayNameFor(f => f.UseKeyBox)</span>
+                    </label>
+                </div>
+
+                <div>
+                    <label class="inline">
+                        @Html.CheckBox5For(f => f.UseLists, new { @class = "form-field-checkbox", disabled = "disabled" })
+                        <span class="lbl">@Html.DisplayNameFor(f => f.UseLists)</span>
+                    </label>
+                </div>
+
+                <div>
+                    <label class="inline">
+                        @Html.CheckBox5For(f => f.UseHotzones, new { @class = "form-field-checkbox", disabled = "disabled" })
+                        <span class="lbl">@Html.DisplayNameFor(f => f.UseHotzones)</span>
+                    </label>
+                </div>
+
+                <div class="space-10"></div>
+
+                <h4 class="header blue bolder smaller">@General.WebPages</h4>
+
+                <div>
+                    <label class="inline">
+                        @Html.CheckBox5For(f => f.UsePressPage, new { @class = "form-field-checkbox", disabled = "disabled" })
+                        <span class="lbl">@Html.DisplayNameFor(f => f.UsePressPage)</span>
+                    </label>
+                </div>
+
+                <div>
+                    <label class="inline">
+                        @Html.CheckBox5For(f => f.UseSponsorPage, new { @class = "form-field-checkbox" })
+                        <span class="lbl">@Html.DisplayNameFor(f => f.UseSponsorPage)</span>
+                    </label>
+                </div>
+
+                <div>
+                    <label class="inline">
+                        @Html.CheckBox5For(f => f.UseLinksPage, new { @class = "form-field-checkbox", disabled = "disabled" })
+                        <span class="lbl">@Html.DisplayNameFor(f => f.UseLinksPage)</span>
+                    </label>
+                </div>
+
+            </div>
+
+            <div id="edit-communication" class="tab-pane">
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.TextServiceProviderUserName, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <span class="input-icon input-icon-right">
+                            @Html.TextBox5For(f => f.TextServiceProviderUserName, new { type = "tel" })
+                            <i class="icon-phone icon-flip-horizontal"></i>
+                        </span>
+                        @Html.ValidationMessageFor(f => f.TextServiceProviderUserName)
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.TextServiceProviderPassword, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <span class="input-icon input-icon-right">
+                            @Html.TextBox5For(f => f.TextServiceProviderPassword, new { type = "password" })
+                            <i class="icon-phone icon-flip-horizontal"></i>
+                        </span>
+                        @Html.ValidationMessageFor(f => f.TextServiceProviderPassword)
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.SendTeamText, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <span class="input-icon input-icon-right">
+                            @Html.CheckBox5For(f => f.SendTeamText, new { @class = "form-field-checkbox" })
+
+                        </span>
+                        @Html.ValidationMessageFor(f => f.SendTeamText)
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.SendTeamTextDays, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        @Html.TextBox5For(f => f.SendTeamTextDays)
+                        @Html.ValidationMessageFor(f => f.SendTeamTextDays)
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.TeamMessageTeamLeader, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <span class="input-icon input-icon-right">
+                            @Html.EditorFor(f => f.TeamMessageTeamLeader)
+                            @Html.ValidationMessageFor(f => f.TeamMessageTeamLeader)
+                        </span>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.TeamMessage, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <span class="input-icon input-icon-right">
+                            @Html.EditorFor(f => f.TeamMessage)
+                            @Html.ValidationMessageFor(f => f.TeamMessage)
+                        </span>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.SendNoteTeamleader, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        <span class="input-icon input-icon-right">
+                            @Html.CheckBox5For(f => f.SendNoteTeamleader, new { @class = "form-field-checkbox" })
+
+                        </span>
+                        @Html.ValidationMessageFor(f => f.SendNoteTeamleader)
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.NoteTextTime, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        @Html.TextBox5For(f => f.NoteTextTime, new { @class = "input-mini" })
+                        @Html.ValidationMessageFor(f => f.NoteTextTime)
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div id="edit-texts" class="tab-pane">
+                <div class="wysiwyg-editor" id="ScheduletextEditor">
+                    @Html.Raw(Model.Scheduletext)
+                </div>
+                @Html.HiddenFor(f => f.Scheduletext)
+            </div>
+
+        </div>
+    </div>
+    <div class="form-actions">
+        <button class="btn btn-info" type="submit" data-rel="tooltip" data-placement="right" title="@(Model.AssociationID == Guid.Empty ? General.BtnCreateTooltip : General.BtnSaveTooltip)">
+            <i class="icon-ok bigger-110"></i>
+            @(Model.AssociationID == Guid.Empty ? General.Create : General.Save)
+        </button>
+    </div>
+}
+
+
+
+
+

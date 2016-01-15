@@ -1,0 +1,31 @@
+﻿@model AssociationViewModel
+@{
+    Layout = "~/Views/Shared/_about.cshtml";
+    ViewBag.Title = "Fakta";
+    ViewBag.MetaDescription = string.Format("Fakta om {0} og Natteravnene i Danmark. Natteravnene gennemfører ca. 50.000 vandringer om året.", Model.AssociationName);
+    ViewBag.PageImage = "~/Content/Images/Natteravnene-5.jpg";
+    ViewBag.SocialImage = Html.FullyQualifiedUri("~/Content/Images/Natteravnene-5.jpg", Model.Host).ToString();
+    ViewBag.SocialType = "website";
+}
+<div class="row">
+    <div class="col-md-6">
+        <ul>
+            <li>@Model.AssociationName blev stiftet i @Model.Established.Year</li>
+            <li>Natteravnene blev stiftet i 1998, som en frivillig landsdækkende social organisation.</li>
+            <li>Pr. 01.09.2015 er der etableret 275 lokalforeninger i Danmark, Færøerne og Grønland, heraf er ca. 150 foreninger aktive pt.</li>
+            <li>Mere end 30.000 frivillige har deltaget siden starten, heraf er ca. 5.000 aktive i dag.</li>
+            <li>Natteravnene gennemfører ca. 50.000 vandringer om året.</li>
+            <li>Natteravnene færdes altid i hold på tre med deltagelse af både mænd og kvinder i de karakteristiske gule jakker.</li>
+            <li>Natteravnene er uafhængige af køn, alder, religion, politik og etnisk oprindelse.</li>
+            <li>En Natteravn deltager typisk 5 - 10 gange om året. En tur varer normalt 3 - 4 timer.</li>
+        </ul>
+        <p>Det danske Natteravne-koncept er udviklet i Natteravnenes Landssekretariat op til 1998, hvor den første Natteravneforening så dagens lys i marts, på basis af mange års erfaringer fra Sverige og Norge.</p>
+        <p>Det danske koncept bygger på, at et lille, professionelt drevet Sekretariat, som oftest på opfordring, hjælper lokale ildsjæle i gang med det frivillige arbejde.</p>
+    </div>
+    <div class="col-md-6">
+        <p>Idéen, de tilhørende gule jakker, t-shirts, veste, materialer, hjemmeside, uddannelse, ulykkes-forsikring, krisehjælp, bolcher, ID-kort m.v., bliver normalt stillet gratis til rådighed for @Model.AssociationName af Sekretariatet.</p>
+        <p>Sekretariatets og de landsdækkende fællesomkostninger er primært finansieret af socialt ansvarlige virksomheder, fonde og privatpersoner.</p>
+        <p>På samme måde tilstræber @Model.AssociationName at få dækket deres lokale budgetter på 5-25.000 kr. årligt, primært gennem støtte fra det lokale erhvervsliv, Lions, Rotary, spillehaller og lignende, i tillæg til de ydre rammer og fællesomkostninger, som Sekretariatet står for. Sekundært kan de lokale foreninger søge kommunale §18 midler.</p>
+        <p>@Model.AssociationNameGenitive budget dækker normalt udgifter til mobiltelefon, porto, transport og ophold i forbindelse med efteruddannelse, Landsmøder, Årsmøder m.v. samt medlemspleje, idet kommunen eller andre, normalt stiller gratis lokaler til rådighed for dem, hvor de kan opbevare de materialer, som Sekretariatet forsyner dem med.</p>
+    </div>
+</div>

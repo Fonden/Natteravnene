@@ -1,0 +1,183 @@
+﻿@model List<Lead>
+
+    @section pagescripts {
+        @Scripts.Render("~/bundles/table")
+    }
+    @section inlinescripts {
+        <script type="text/javascript">
+    $(function () {
+        var oTable1 = $('#Lead-table').dataTable({
+            "language": {
+                "lengthMenu": "@General.DatatablesLengthMenu",
+                "zeroRecords": "@General.DatatablesZeroRecords",
+                "info": "@General.DatatablesInfo",
+                "infoEmpty": "@General.DatatablesInfoEmpty",
+                "infoFiltered": "@General.DatatablesInfoFiltered",
+                "loadingRecords": "@General.DatatablesLoadingRecords",
+                "processing": "@General.DatatablesProcessing",
+                "search": "@General.Search:",
+                "thousands": "@General.ThousenSeperator",
+                "paginate": {
+                    first: ">>",
+                    previous: "<",
+                    next: ">",
+                    last: "<<"
+                }
+            },
+            "pageLength": @NR.Infrastructure.CurrentProfile.ListLines.ToString(),
+            "order": [0, "asc"],
+            "columnDefs": [
+                       
+                         {
+                             "targets": [ 9 ],
+                             "orderable": false,
+                             "searchable": false
+                         }
+
+            ]
+        });
+
+        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+        function tooltip_placement(context, source) {
+            var $source = $(source);
+            var $parent = $source.closest('table')
+            var off1 = $parent.offset();
+            var w1 = $parent.width();
+
+            var off2 = $source.offset();
+            //var w2 = $source.width();
+
+            if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+            return 'left';
+        }
+
+
+    })
+        </script>
+    }
+
+
+    <div class="page-header position-relative">
+        <div class="pull-right">
+            <div class="btn-group">
+                <a class="btn btn-success" href="@Url.Action("ListLeads", new { })">@General.BtnExportAllPeople</a>
+
+                <button data-toggle="dropdown" class="btn btn-success dropdown-toggle" aria-expanded="false">
+                    <span class="ace-icon fa fa-caret-down icon-only"></span>
+                </button>
+
+                <ul class="dropdown-menu dropdown-success">
+                    @*<li>
+                        <a href="@Url.Action("ListPeople", new {id = 2 })">@General.BtnExportBoards</a>
+                    </li>*@
+
+                </ul>
+            </div>
+
+            @Html.ActionLink(General.BtnNewLead, "Edit", null, null, new { @class = "btn btn-small btn-primary" })
+            </div>
+            <h1>@General.HeadLeads</h1>
+        </div>
+
+               <table id="Lead-table" class="table table-striped table-bordered table-hover">
+                   <thead>
+                       <tr>
+                           <th></th>
+                           <th>@DomainStrings.RequestUpdateMail</th>
+                           <th>@DomainStrings.Created</th>
+                           <th>@DomainStrings.Lastchanged</th>
+                           <th>@DomainStrings.FullName</th>
+                           <th>@DomainStrings.Email</th>
+                           <th>@DomainStrings.Zip</th>
+                           <th>@DomainStrings.Status</th>
+                           <th>@DomainStrings.AssociationName</th>
+                           <th></th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       @if (Model.Any())
+                       {
+                           foreach (Lead L in Model)
+                           {
+                               bool Urgent = false;
+                               if (
+                                       (L.Status == LeadStatus.New && L.Lastchanged < DateTime.Now) |
+                                       (L.Status == LeadStatus.Acknowledge && L.Lastchanged < DateTime.Now) |
+                                       (L.Status == LeadStatus.Clarification && L.Lastchanged < DateTime.Now.AddDays(-5)) |
+                                       (L.Status == LeadStatus.Assigned && L.Lastchanged < DateTime.Now.AddDays(-3)) |
+                                       (L.Status == LeadStatus.Recived && L.Lastchanged < DateTime.Now.AddDays(-5)) |
+                                       (L.Status == LeadStatus.Waiting && L.Lastchanged < DateTime.Now.AddDays(-15)) |
+                                       (L.Status == LeadStatus.Trial && L.Lastchanged < DateTime.Now.AddDays(-15))
+                                       )
+                               { Urgent = true; }
+                               <tr>
+
+                                   <td data-order="@if (Urgent)
+                        { @String.Format("0{0}{1}", (int)L.Status, L.Created.Ticks) }
+                        else
+                        { @String.Format("1{0}{1}", (int)L.Status, L.Created.Ticks) }
+                                       ">
+                                       @if (Urgent)
+                                       {<i class="ace-icon fa fa-exclamation-triangle red"></i>}
+                                   </td>
+                                   <td>
+                                       @if (L.RequestUpdateMail)
+                                       {<i class="@Icons.TrueIcon bigger-130"></i>}
+                                       else
+                                       {<i class="@Icons.FalseIcon bigger-130"></i>}
+                               </td>
+                               <td class="center" data-order="@L.Created.Ticks">@L.Created.ToShortDateString()</td>
+                               <td class="center" data-order="@L.Lastchanged.Ticks">@L.Lastchanged.ToShortDateString()</td>
+                               <td>@L.FullName</td>
+                               <td>@L.Email</td>
+                               <td>@L.Zip</td>
+                               <td data-order="@L.Status">@L.Status.DisplayName()</td>
+
+
+                               <td class="center">@(L.Association == null ? "-" : L.Association.Name.ToString())</td>
+                               <td class="td-actions">
+                                   <div class="hidden-sm hidden-xs action-buttons">
+
+                                       <a class="green" href="@Url.Action("Edit", null, new { id = L.LeadID })" data-rel="tooltip" title="@General.Edit" data-original-title="@General.Edit">
+                                           <i class="@Icons.Edit bigger-130"></i>
+                                       </a>
+                                       @if (Urgent && L.Status >= LeadStatus.Assigned && !L.RequestUpdateMail)
+                                       {
+                                           <a class="red" href="@Url.Action("StatusUpdateRequest", null, new { id = L.LeadID })" data-rel="tooltip" title="@DomainStrings.RequestUpdateMail" data-original-title="@DomainStrings.RequestUpdateMail">
+                                               <i class="@Icons.RequestUpdateIcon bigger-130"></i>
+                                           </a>
+                                       }
+                                       @if (Urgent && L.Status <= LeadStatus.Assigned)
+                                       {
+                                           <a class="red" href="@Url.Action("SPAM", null, new { id = L.LeadID })" data-rel="tooltip" title="@General.SPAM" data-original-title="@General.SPAM">
+                                               <i class="@Icons.SPAM bigger-130"></i>
+                                           </a>
+                                       }
+                                   </div>
+                                   <div class="hidden-md hidden-lg">
+                                       <div class="inline position-relative">
+                                           <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                               <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                           </button>
+
+                                           <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+
+                                               <li>
+                                                   <a href="@Url.Action("Edit", null, new { id = L.LeadID })" class="tooltip-success" data-rel="tooltip" title="@General.Edit" data-original-title="@General.Edit">
+                                                       <span class="green">
+                                                           <i class="@Icons.Edit bigger-120"></i>
+                                                       </span>
+                                                   </a>
+                                               </li>
+                                           </ul>
+                                       </div>
+                                   </div>
+                               </td>
+                           </tr>
+                           }
+                       }
+                   </tbody>
+               </table>
+
+
+

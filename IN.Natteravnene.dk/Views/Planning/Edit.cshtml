@@ -1,0 +1,48 @@
+﻿@model TeamEditModel
+@section pagescripts {
+    @Scripts.Render("~/bundles/form")
+    @Scripts.Render("~/bundles/jcrop")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+
+       
+        jQuery(function ($) {
+
+           
+
+        jQuery('#Start').datetimepicker({
+           format: 'd-m-Y H:i:s',
+           // inline: true,
+           //locale: 'da'
+            lang: 'da',
+            dayOfWeekStart: 1,
+            step: 15
+        });
+
+        $('#Team_Trial').on('change', function()
+        {
+            var sel = $("select[name^='Teammembers']").last();
+            sel.val("00000000-0000-0000-0000-000000000000");
+            this.checked ? sel.prop("disabled", true) : sel.prop("disabled", false);
+        
+        });
+
+
+
+        
+
+
+        });
+    </script>
+    }
+
+<div class="page-header position-relative">
+<h1>
+    <a href="@Url.Action("Folder", "Planning", new { id = Model.Team.Folder.FolderID})" class="btn btn-small btn-primary">
+        <i class="ace-icon @Icons.BackIcon icon-only"></i>
+    </a> @Model.Team.Start.ToString()
+</h1>
+</div>
+
+@{ Html.RenderPartial("_EditTeam", Model);}

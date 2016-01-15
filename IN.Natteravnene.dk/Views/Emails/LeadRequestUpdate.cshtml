@@ -1,0 +1,14 @@
+﻿@model LeadRequestUpdate
+@section Headers {
+    To: @Html.Raw(Model.to)
+    @if (Model.cc.Any())
+    {
+        foreach (string s in Model.cc)
+        {
+            <text>Cc: @Html.Raw(s)</text>
+        }
+    }
+    From: info@natteravnene.dk
+    Subject:Prøveture - Hjælp os: @Model.lead.FullName
+    Views: Html
+}

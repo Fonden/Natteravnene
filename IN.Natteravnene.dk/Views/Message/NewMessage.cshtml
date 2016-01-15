@@ -1,0 +1,237 @@
+﻿@model MessageListModel
+@section pagescripts {
+    @Scripts.Render("~/bundles/form")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+        $('.chosen-select').chosen({ allow_single_deselect: true });
+
+        $('textarea.limited').inputlimiter({
+            remText: '@General.TextareaLimitRemText',
+            limitText: '@General.TextareaLimitLimitText'
+        });
+
+        $(window)
+                    .off('resize.chosen')
+                    .on('resize.chosen', function () {
+                        $('.chosen-select').each(function () {
+                            var $this = $(this);
+                            $this.next().css({ 'width': $this.parent().width() });
+                        })
+                    }).trigger('resize.chosen');
+
+        //intialize wysiwyg editor
+        $('#longmessage').ace_wysiwyg({
+            toolbar:
+            [
+                'bold',
+                'italic',
+                'strikethrough',
+                'underline',
+                null,
+                'justifyleft',
+                'justifycenter',
+                'justifyright',
+                null,
+                'undo',
+                'redo'
+            ]
+        }).prev()
+
+        $('#btnsubmit').bind('click', function () {
+            $("#Body").val($("#longmessage").html());
+        });
+
+
+        $('#Short').on('click', function () {
+            if ($(this).is(':checked')) {
+                $('#editor').fadeToggle("slow", function () {
+                    // Animation complete.
+                });
+                $('#bodywrap').fadeToggle("slow", function () {
+                    // Animation complete.
+                });
+
+            } else {
+                $('#bodywrap').fadeToggle("slow", function () {
+                    // Animation complete.
+                });
+                $('#editor').fadeToggle("slow", function () {
+                    // Animation complete.
+                });
+
+            }
+
+
+
+        });
+    </script>
+}
+<div class="page-header position-relative">
+    <h1>
+        <a href="@Url.Action("Index")" class="btn btn-small btn-primary">
+            <i class="ace-icon @Icons.BackIcon icon-only"></i>
+        </a> @General.NewMessage
+    </h1>
+</div>
+
+
+@using (Html.BeginForm("NewMessage", null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(model => model.Body)
+    if (!this.ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">
+                <i class="icon-remove"></i>
+            </button>
+            <strong>
+                <i class="icon-warning-sign"></i>
+                @General.FormError
+            </strong>
+            @Html.ValidationSummary()
+        </div>
+
+    }
+    else
+    {
+        if (ViewBag.FormSucces == true)
+        {
+            <div class="alert alert-block alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <i class="icon-remove"></i>
+                </button>
+
+                <p>
+                    <strong>
+                        <i class="icon-ok"></i>
+                        @General.FormSuccesMailSent
+                    </strong>
+                </p>
+            </div>
+        }
+
+    }
+        <!-- #section:pages/inbox.compose -->
+    <div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">@General.MessageShort:</label>
+
+            <div class="col-sm-9">
+                <div class="input-medium">
+                    <div class="input-group">
+                        <label>
+                            <input id="@Html.IdFor(m => m.Short)" name="@Html.IdFor(m => m.Short)" class="ace ace-switch ace-switch-6" type="checkbox" value="true" @if (Model.Short == true) { <text> checked </text>           } />
+                            <span class="lbl"></span>
+                        </label>
+
+                    </div>
+                    
+                </div>
+                <span class="help-inline col-xs-12 col-sm-7">
+                    <span class="middle">@General.GuideSentAsText</span>
+                </span>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-recipient">@General.Recipients:</label>
+
+            <div class="col-sm-9">
+
+
+                @Html.ListBoxFor(m => m.NewMessageTo, new MultiSelectList(Model.List, "Value", "Text", Model.NewMessageTo), new { @class = "chosen-select tag-input-style", data_placeholder = General.Recipients })
+                @Html.ValidationMessageFor(m => m.NewMessageTo)
+
+            </div>
+        </div>
+
+        <div class="hr hr-18 dotted"></div>
+        <div id="editor" @if (Model.Short) { <text> style="display:none;" </text>    }>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-subject">@General.Subject:</label>
+
+                <div class="col-sm-6 col-xs-12">
+                    <div class="input-icon block col-xs-12 no-padding">
+                        @Html.TextBoxFor(m => m.Head, new { placeholder = General.Subject })
+                        <i class="ace-icon fa fa-comment-o"></i>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Head)
+                </div>
+            </div>
+
+            <div class="hr hr-18 dotted"></div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right">
+                    <span class="inline space-24 hidden-480"></span>
+                    @General.Message:
+                </label>
+
+                <!-- #section:plugins/editor.wysiwyg -->
+                <div class="col-sm-9">
+
+                    <div id="longmessage" class="wysiwyg-editor"></div>
+
+
+                </div>
+
+                <!-- /section:plugins/editor.wysiwyg -->
+            </div>
+        </div>
+        <div id="bodywrap" class="form-group" @if (!Model.Short) { <text> style="display:none;" </text>   }>
+            <label class="col-sm-3 control-label no-padding-right">
+                <span class="inline hidden-480"></span>
+                Message:
+            </label>
+
+            <!-- #section:plugins/editor.wysiwyg -->
+            <div class="col-sm-9">
+                @Html.TextAreaFor(model => model.BodyShort, new { @class = "form-control limited", maxlength = "320" })
+            </div>
+
+            <!-- /section:plugins/editor.wysiwyg -->
+        </div>
+
+        <div class="space"></div>
+    </div>
+
+        <!-- /section:pages/inbox.compose -->
+    <div class="row">
+
+        <div class="col-xs-12">
+            <div class=" space-4"></div>
+            <div class="clearfix form-actions">
+                <div class="col-md-offset-3 col-md-9">
+                    @if (ViewBag.FormSucces != true)
+                    {
+                        <button id="btnsubmit" class="btn btn-info" type="submit">
+                            <i class="icon-ok bigger-110"></i>
+                            @General.Send
+                        </button>
+
+                        @:&nbsp; &nbsp;
+
+                        <button class="btn" type="submit">
+                            <i class="icon-undo bigger-110"></i>
+                            @General.Reset
+                        </button>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("NewMessage")" class="btn btn-info">
+                            
+                                @General.WriteMessageNew
+                           
+                        </a>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

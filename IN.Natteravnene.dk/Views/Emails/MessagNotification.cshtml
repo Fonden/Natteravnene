@@ -1,0 +1,11 @@
+﻿@model MessagNotification
+@section Headers {
+    To:  @Model.To
+    From: besvaresikke@natteravnene.dk
+    Subject: @Model.Subject
+@if (!string.IsNullOrWhiteSpace(Model.ReplyTo)) {  
+    @:Reply-To: @Model.ReplyTo
+}
+    Views: Html
+}
+

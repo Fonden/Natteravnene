@@ -1,0 +1,28 @@
+﻿@model AssociationViewModel
+@{
+    Layout = "~/Views/Shared/_about.cshtml";
+    ViewBag.Title = "Konceptet";
+    ViewBag.MetaDescription = string.Format("Natteravne konceptet og formålet med {0}. F.eks. at medvirke til øget livsglæde, trivsel og integration især blandt udsatte børn og unge i det offentlige rum.", Model.AssociationName);
+    ViewBag.PageImage = "~/Content/Images/Natteravnene-5.jpg";
+    ViewBag.SocialImage = Html.FullyQualifiedUri("~/Content/Images/Natteravnene-5.jpg", Model.Host).ToString();
+    ViewBag.SocialType = "website";
+}
+<div class="row">
+    <div class="col-md-6">
+        <p>Formålet med @Model.AssociationName er:</p>
+        <ul>
+            <li>at skabe øget social værdi, gennem omsorg og forebyggende indsats.</li>
+            <li>at medvirke til øget livsglæde, trivsel og integration især blandt udsatte børn og unge i det offentlige rum.</li>
+            <li>Indsatsen udføres af ganske almindelige frivillige voksne – helt uafhængig af baggrund, som vælger at tage et medansvar for udviklingen i deres lokalområde.</li>
+        </ul>
+        <p>Det danske Natteravne-koncept er udviklet i Natteravnenes Landssekretariat op til 1998, hvor den første Natteravneforening så dagens lys i marts, på basis af mange års erfaringer fra Sverige og Norge.</p>
+        <p>Det danske koncept bygger på, at et lille, professionelt drevet Sekretariat, som oftest på opfordring, hjælper lokale ildsjæle i gang med det frivillige arbejde.</p>
+    </div>
+    <div class="col-md-6">
+        <p>Idéen, de tilhørende gule jakker, t-shirts, veste, materialer, hjemmeside, uddannelse, ulykkes-forsikring, krisehjælp, bolcher, ID-kort m.v., bliver normalt stillet gratis til rådighed for @Model.AssociationName af Sekretariatet.</p>
+        <p>Sekretariatets og de landsdækkende fællesomkostninger er primært finansieret af socialt ansvarlige virksomheder, fonde og privatpersoner.</p>
+        <p>På samme måde tilstræber @Model.AssociationName at få dækket deres lokale budgetter på 5-25.000 kr. årligt, primært gennem støtte fra det lokale erhvervsliv, Lions, Rotary, spillehaller og lignende, i tillæg til de ydre rammer og fællesomkostninger, som Sekretariatet står for. Sekundært kan de lokale foreninger søge kommunale §18 midler.</p>
+        <p>@Model.AssociationNameGenitive budget dækker normalt udgifter til mobiltelefon, porto, transport og ophold i forbindelse med efteruddannelse, Landsmøder, Årsmøder m.v. samt medlemspleje, idet kommunen eller andre, normalt stiller gratis lokaler til rådighed for dem, hvor de kan opbevare de materialer, som Sekretariatet forsyner dem med.</p>
+    </div>
+</div>
+

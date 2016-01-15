@@ -1,0 +1,162 @@
+﻿@model Lead
+
+<div class="page-header position-relative">
+<h1>
+    <a href="@Url.Action("Index")" class="btn btn-small btn-primary">
+        <i class="ace-icon @Icons.BackIcon icon-only"></i>
+    </a> @(Model.LeadID == Guid.Empty ? General.LeadCreate : General.LeadEdit)
+</h1>
+</div>
+
+@using (Html.BeginForm(null, null, null, FormMethod.Post, new { @class = "form-horizontal", id = "basicdata" }))
+{
+    @Html.HiddenFor(f => f.LeadID)
+    @Html.Partial("~/Views/Shared/_FormSummery.cshtml");
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Status, new { @class = "col-sm-2 control-label no-padding-right" })
+
+        <div class="col-sm-10">
+            @Html.EnumDropDownListFor(m => m.Status)
+            @Html.ValidationMessageFor(m => m.Status)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.AssociationID, new { @class = "col-sm-2 control-label no-padding-right" })
+
+        <div class="col-sm-10">
+            @Html.DropDownListFor(m => m.AssociationID, (IEnumerable<SelectListItem>)ViewData["Attach"], "-- Vælg --")
+
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName, new { @class = "col-sm-2 control-label no-padding-right" })
+
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "col-xs-8 col-sm-8", placeholder = DomainStrings.FirstName })
+            @Html.ValidationMessageFor(m => m.FirstName)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Age, new { @class = "col-sm-2 control-label no-padding-right" })
+
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.Age, new { @class = "col-xs-8 col-sm-8", placeholder = DomainStrings.FirstName })
+            @Html.ValidationMessageFor(m => m.Age)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.FamilyName, new { @class = "col-sm-2 control-label no-padding-right" })
+
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.FamilyName, new { @class = "col-xs-8 col-sm-8", placeholder = DomainStrings.FamilyName })
+            @Html.ValidationMessageFor(m => m.FamilyName)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address, new { @class = "col-sm-2 control-label no-padding-right" })
+
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.Address, new { @class = "col-xs-12 col-sm-10", placeholder = DomainStrings.Address })
+            @Html.ValidationMessageFor(m => m.Address)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Zip, new { @class = "col-sm-2 control-label no-padding-right" })
+
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.Zip, new { @class = "col-xs-12 col-sm-10", placeholder = DomainStrings.Zip })
+            @Html.ValidationMessageFor(m => m.Zip)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.City, new { @class = "col-sm-2 control-label no-padding-right" })
+
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.City, new { @class = "col-xs-12 col-sm-10", placeholder = DomainStrings.City })
+            @Html.ValidationMessageFor(m => m.City)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Mobile, new { @class = "col-sm-2 control-label no-padding-right" })
+
+        <div class="col-sm-9">
+            <span class="input-icon input-icon-right">
+                @Html.TextBoxFor(m => m.Mobile, new { type = "tel", placeholder = DomainStrings.Mobile })
+                <i class="icon-mobile-phone"></i>
+            </span>
+            @Html.ValidationMessageFor(m => m.Mobile)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Phone, new { @class = "col-sm-2 control-label no-padding-right" })
+
+        <div class="col-sm-9">
+            <span class="input-icon input-icon-right">
+                @Html.TextBoxFor(m => m.Phone, new { type = "tel", placeholder = DomainStrings.Phone })
+                <i class="icon-phone icon-flip-horizontal"></i>
+            </span>
+            @Html.ValidationMessageFor(m => m.Phone)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-sm-2 control-label no-padding-right" })
+
+        <div class="col-sm-9">
+            <span class="input-icon input-icon-right ">
+                @Html.TextBoxFor(m => m.Email, new { type = "email", placeholder = DomainStrings.Email })
+                <i class="icon-envelope"></i>
+            </span>
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+    
+    <div class="form-group">
+                        @Html.LabelFor(m => m.Comments, new { @class = "col-sm-2 control-label no-padding-right" })
+
+                        <div class="col-sm-8">
+                            @Html.TextAreaFor(m => m.Comments, new { @class = "col-xs-12 col-sm-10" })
+                            @Html.ValidationMessageFor(m => m.Comments)
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+
+    <div class="form-actions">
+        <button class="btn btn-info" type="submit">
+            <i class="icon-ok bigger-110"></i>
+            @(Model.AssociationID == Guid.Empty ? General.Create : General.Save)
+        </button>
+    </div>
+}

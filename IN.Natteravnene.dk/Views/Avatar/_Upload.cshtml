@@ -1,0 +1,72 @@
+﻿@model Guid
+
+@{
+    Layout = null;
+}
+
+<div id="profilimage-form" class="modal " tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="blue bigger">@General.ChooseProfileImage</h4>
+            </div>
+            <div class="modal-body overflow-visible">
+                <div class="row">
+                    <div id="avatar-upload-box">
+                        <div class="col-sm-12">
+                            <p>@General.ProfileImageChoose</p>
+                            @using (Ajax.BeginForm("_Upload", "Avatar", new { area = "" }, new AjaxOptions() { HttpMethod = "POST" }, new { enctype = "multipart/form-data", id = "avatar-upload-form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" value="@Model.ToString()" name="id" />
+                                <input type="file" name="files" /><br>
+                                <div class="upload-file-notice">@General.MaxSize: <span id="avatar-max-size"></span> MB</div>
+                            }
+
+                            <div class="upload-progress hidden">
+                                <div class="upload-percent-value pull-left">0%</div>
+                                <div class="upload-percent-bar pull-left"></div>
+                            </div>
+                            <div id="upload-status"></div>
+                        </div>
+                    </div>
+
+                    <div id="avatar-crop-box" class="hidden">
+                        <div class="jc-demo-box">
+                            
+                            <div class="col-md-8">
+                                <p>@General.ProfileImageCrop</p>
+                                <img src="" id="crop-avatar-target" alt="Uploaded image" />
+
+                            </div>
+                            <div class="col-md-4">
+                                <div id="preview-pane">
+                                    <div class="preview-container">
+                                        <img src="" class="jcrop-preview" alt="Preview" />
+                                    </div>
+                                </div>
+
+                               
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-default" onclick="saveAvatar()">@General.Save</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="avatar-result" class="hidden">
+                        <img src="" alt="Final Image" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="@Url.Content("~/Content/jcrop/jquery.Jcrop.min.css")" rel="stylesheet" />
+
+

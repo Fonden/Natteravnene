@@ -1,0 +1,45 @@
+﻿@if (ViewBag.IsAuthenticated != true)
+    {
+        ViewBag.Title = "Fej i feedback link";
+        Layout = "~/Views/Shared/_NRAnonomusLayout.cshtml";
+    }
+
+
+<!-- #section:pages/error -->
+<div class="error-container">
+    <div class="well">
+        <h1 class="grey lighter smaller">
+            <span class="blue bigger-125"><i class="ace-icon fa fa-sitemap"></i> 404</span> @General.PFBHead
+        </h1>
+        <hr />
+        <h3 class="lighter smaller">@General.PFHSubhead</h3>
+
+        <div>
+            <form class="form-search">
+                <span class="input-icon align-middle">
+                    <i class="ace-icon fa fa-search"></i>
+                    <input type="text" class="search-query" placeholder="@General.P404Search">
+                </span>
+                <button class="btn btn-sm" type="button">Go!</button>
+            </form>
+
+            <div class="space"></div>
+
+            <h4 class="smaller">@General.P404Try</h4>
+            <ul class="list-unstyled spaced inline bigger-110 margin-15">
+                <li><i class="ace-icon fa fa-hand-o-right blue"></i> @General.P404Try1</li>
+                <li><i class="ace-icon fa fa-hand-o-right blue"></i> @General.P404Try2</li>
+                <li><i class="ace-icon fa fa-hand-o-right blue"></i> @General.P404Try3</li>
+            </ul>
+        </div>
+
+        <hr />
+        <div class="space"></div>
+
+        <div class="center">
+            <a href="javascript:history.back()" class="btn btn-grey"><i class="ace-icon fa fa-arrow-left"></i> @General.BtnGoBack</a>
+            <a href="~/" class="btn btn-primary"><i class="ace-icon fa fa-home"></i> @General.BtnHome</a>
+        </div>
+    </div>
+</div>
+<!-- /section:pages/error -->

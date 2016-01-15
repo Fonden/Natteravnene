@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Links";
+    ViewBag.MetaDescription = string.Format("Nyttige links for {0}.", Model.AssociationName);
+    ViewBag.PageImage = "~/Content/Images/Natteravnene-6.jpg";
+    ViewBag.SocialImage = Html.FullyQualifiedUri("~/Content/Images/Natteravnene-6.jpg", Model.Host).ToString();
+    ViewBag.SocialType = "website";
+}
+
+
+<div id="pagehero">
+    <img src="@Url.Content(ViewBag.PageImage)" class="img-responsive" />
+    <h1>Links</h1>
+</div>
+
+
+<div class="body-content">
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Raw(Model.PageLinks.Body)
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+﻿@model ICollection<Person>
+    @{
+        Layout = null;
+    }
+
+
+    <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+    <head>
+        <!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>NatteravneNyt</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
+        <style>
+            .num {
+                mso-number-format: General;
+            }
+
+            .text {
+                mso-number-format: "\@@"; /*force text*/
+            }
+        </style>
+    </head>
+    <body>
+
+
+        <table id="Voulunteers-table" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th colspan="7" height="100" style="padding: 10px; background-color: black; color: black;"><img src="@Request.Url.FormatAbsoluteUrl(Url.Content("~/Content/img/Natteravnene_logo_gul_forside.png"))" alt="Natteravnene logo" height="80" style="height: 80px;" /></th>
+                </tr>
+                <tr style="background-color: black; color: white;">
+                    <th>@DomainStrings.Username</th>
+                    <th>@DomainStrings.FullName</th>
+                    <th class="center">@DomainStrings.Mobile</th>
+                    <th class="center">@DomainStrings.Phone</th>
+                    <th>@DomainStrings.Email</th>
+                    <th>@DomainStrings.Address</th>
+                    <th>@DomainStrings.AssociationName</th>
+                    @*<th>@DomainStrings.Teamleader</th>
+                        <th>@General.Board</th>
+                        <th>@DomainStrings.SignupDate</th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Person P in Model)
+                {
+                    <tr>
+                        <td style="padding: 0 5px;">@P.UserName</td>
+                        <td style="padding: 0 5px;">@P.FullName</td>
+                        <td style="padding: 0 5px;">@P.Mobile</td>
+                        <td style="padding: 0 5px;">@P.Phone</td>
+                        <td style="padding: 0 5px;">@P.Email</td>
+                        <td style="padding: 0 5px;">@P.FullAddress</td>
+                        <td style="padding: 0 5px;">
+                            @if (P.SiAssociation != null && P.SiAssociation.Any())
+                            {
+                                string output = "";
+                                foreach (Association A in P.SiAssociation)
+                                {
+
+
+                                    if (output != "")
+                                    {
+                                        output += "<br />";
+                                        <text><br /></text>
+                                    }
+                                    output += string.Format("{0}", A.Name);
+                                    <text>@string.Format("{0}", A.Name)</text>
+                                };
+                            }
+
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+        </body> 
+</html> 

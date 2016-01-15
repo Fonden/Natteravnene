@@ -1,0 +1,77 @@
+﻿@section pagescripts {
+    @Scripts.Render("~/bundles/form")
+    @Scripts.Render("~/bundles/jcrop")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+        jQuery(function ($) {
+
+
+            $.ajax({
+                url: "@Url.Action("GetSelectListAssociations", "Association", new { Area = ""})",
+                type: 'POST',
+            success: function (associations) {
+
+                // states is your JSON array
+                var $select = $('#id');
+                $select.find('option').remove().end()
+                $.each(associations, function (i, association) {
+                    $('<option>', {
+                        value: association.Value
+                    }).html(association.Text).appendTo($select);
+                    $select.show();
+                });
+            },
+            
+            });
+
+            $("#upload-form input:file").on("change", function (e) {
+                $('#upload-form').submit();
+            });
+
+            $('#upload-form').ajaxForm({
+                beforeSend: function () {
+                    //updateProgress(0);
+                    //$('#avatar-upload-form').addClass('hidden');
+                },
+                uploadProgress: function (event, position, total, percentComplete) {
+                    //updateProgress(percentComplete);
+                },
+                success: function (data) {
+                    //updateProgress(100);
+                    if (data.success === false) {
+                        $('#status').html(data.errorMessage);
+                    } else {
+                        $('#status').html(data.data);
+
+                       
+                    }
+                },
+                complete: function (xhr) {
+                }
+            });
+
+
+
+
+
+
+    });
+    </script>
+    }
+<div class="page-header position-relative">
+
+    <h1>
+
+        Import CSV Aviva
+    </h1>
+</div>
+@using (Ajax.BeginForm("_UploadCSV", null, new { area = "" }, new AjaxOptions() { HttpMethod = "POST" }, new { enctype = "multipart/form-data", id = "upload-form" }))
+{
+    @Html.AntiForgeryToken()
+    <select name="id" id="id"></select><br />
+    <input name="Forening" id="Forening" type="text" /><br/>
+<input type="file" name="file" /><br>
+    <div class="upload-file-notice">Maximum size: <span id="avatar-max-size"></span> MB</div>
+}
+<div id="status"></div>

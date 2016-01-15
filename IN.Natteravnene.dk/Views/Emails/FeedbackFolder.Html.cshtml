@@ -1,0 +1,86 @@
+﻿@model FeedbackFolder
+@section Headers {
+    Content-Type: text/html; charset=utf-8
+}
+<!--Body-->
+<table class="table-row" width="450" bgcolor="#FFFFFF" style="table-layout: fixed; background-color: #ffffff;" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+        <tr>
+            <td class="table-row-td" style="font-family: Arial, sans-serif; line-height: 19px; color: #444444; font-size: 13px; font-weight: normal; padding-left: 36px; padding-right: 36px;" valign="top" align="left">
+                <table class="table-col" align="left" width="378" cellspacing="0" cellpadding="0" border="0" style="table-layout: fixed;">
+                    <tbody>
+                        <tr>
+                            <td class="table-col-td" width="378" style="font-family: Arial, sans-serif; line-height: 19px; color: #444444; font-size: 13px; font-weight: normal; width: 378px;" valign="top" align="left">
+                                <table class="header-row" width="378" cellspacing="0" cellpadding="0" border="0" style="table-layout: fixed;"><tbody><tr><td class="header-row-td" width="378" style="font-family: Arial, sans-serif; font-weight: normal; line-height: 19px; color: #478fca; margin: 0px; font-size: 18px; padding-bottom: 10px; padding-top: 15px;" valign="top" align="left">TurMappe: @Model.folder.FoldereName</td></tr></tbody></table>
+                                <div style="font-family: Arial, sans-serif; line-height: 20px; color: #444444; font-size: 13px;">
+                                    @if (!string.IsNullOrWhiteSpace(Model.message))
+                                    {
+                                        @Html.Raw(Model.message)
+                                        <br /><br />
+                                    }
+                                    @if (Model.Link == true)
+                                    {
+                                        <text>Klik på linket nedenfor for gå til @Url.Action("Index", "home", null, "http").Remove(0, 7).Replace("/", "")  hvor du online kan give Turplanlæggeren tilbagemelding, om hvornår du har mulighed for at gå som Natteravn, i forhold til nedenstående planlagte ture.</text>
+                                        <br /><br />
+                                    }
+                                </div>
+                                @if (Model.Link)
+                                {
+                                    <table class="table-col" align="left" width="378" cellspacing="0" cellpadding="0" border="0" style="table-layout: fixed;">
+                                        <tbody>
+                                            <tr>
+                                                <td class="table-col-td" width="378" style="font-family: Arial, sans-serif; line-height: 19px; color: #444444; font-size: 13px; font-weight: normal; width: 378px;" valign="top" align="left">
+                                                    <div style="font-family: Arial, sans-serif; line-height: 19px; color: #444444; font-size: 13px; text-align: center;">
+                                                        <a href="@Url.Action("FeedBack", "Planning", new { P = Model.Person.PersonID, F = Model.folder.FolderID }, "http")" style="color: #ffffff; text-decoration: none; margin: 0px; text-align: center; vertical-align: baseline; border: 4px solid #6fb3e0; padding: 4px 9px; font-size: 15px; line-height: 21px; background-color: #6fb3e0;">&nbsp; Klik her for at give online tilbagemelding &nbsp;</a>
+                                                    </div>
+                                                    <table class="table-space" height="16" style="height: 16px; font-size: 0px; line-height: 0; width: 378px; background-color: #ffffff;" width="378" bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="table-space-td" valign="middle" height="16" style="height: 16px; width: 378px; background-color: #ffffff;" width="378" bgcolor="#FFFFFF" align="left">&nbsp;</td></tr></tbody></table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                }
+                                <div style="font-family: Arial, sans-serif; line-height: 20px; color: #444444; font-size: 13px;">
+                                    @if (false && Model.Link && !String.IsNullOrWhiteSpace(Model.ReplyTo))
+                                    {
+                                        <br /><br />
+                                        <text>Alternativt kan du svare på denne mail med dine muligheder for at gå som Natteravn.</text>
+                                        <br /><br />
+                                    }
+                                    @if (Model.folder.Status  == FolderStatus.Published)
+                                    {
+                                    <br /><br />
+                                    <text>Se den detaljeret TurPlan på <a href="@Url.Action("Index", "Planning", null, "http")">frivillig.natteravnene.dk</a>.</text>
+                                    <br /><br />
+                                    }
+                                    Turmappe
+                                    <br><br>
+                                    <table class="folderlist">
+                                        <thead>
+                                            <tr>
+                                                <th>Hvornår</th>
+                                                <th>OK?</th>
+                                                <th>Skal du gå?</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (Team T in Model.folder.Teams)
+                                            {
+                                                <tr >
+                                                    <td>@Html.TurDate(T)</td>
+                                                    <td style="text-align: center">@(T.OK ? "OK" : "Mangler Ravne")</td>
+                                                    <td style="text-align: center">@(T.Teammembers.Contains(Model.Person) ? "JA" : "-")</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                    <br><br>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--Body-->

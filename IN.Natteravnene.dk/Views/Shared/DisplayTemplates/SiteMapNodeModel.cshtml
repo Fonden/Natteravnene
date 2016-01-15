@@ -1,0 +1,40 @@
+﻿@model MvcSiteMapProvider.Web.Html.Models.SiteMapNodeModel
+@using System.Web.Mvc.Html
+@using MvcSiteMapProvider.Web.Html.Models
+
+@if (Model.SourceMetadata["HtmlHelper"].ToString() == "MvcSiteMapProvider.Web.Html.MenuHelper")
+{ 
+<a href="@(Model.IsClickable ? Model.Url : "#")" @if (Model.Children.Any()) { <text> class="dropdown-toggle" </text>       }>
+
+    @if (Model.Parent == null || Model.Parent.IsRootNode )
+    {
+        if (Model.Attributes.ContainsKey("icon"))
+        { <i class="menu-icon @Model.Attributes["icon"]"></i> }
+        <span class="menu-text"> @Model.Title </span>
+    }
+    else
+    {
+        if (Model.SourceMetadata["HtmlHelper"].ToString() == "MvcSiteMapProvider.Web.Html.MenuHelper") {<i class="menu-icon fa fa-caret-right"></i>}
+        @Model.Title
+    }
+
+    @if (Model.Children.Any())
+    { <b class="arrow fa fa-angle-down"></b> }
+</a>
+
+<b class="arrow"></b>
+}
+else
+{
+    if (Model.IsClickable & !Model.IsCurrentNode)
+    { 
+    
+    <a href="@Model.Url" >
+        @Model.Title
+        </a> 
+    }
+    else
+    {
+       @Model.Title
+    }
+}

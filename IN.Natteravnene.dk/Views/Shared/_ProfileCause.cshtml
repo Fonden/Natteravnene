@@ -1,0 +1,25 @@
+﻿@model DisplayProfile
+
+<table id="Cause-table" class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <td>@DomainStrings.CauseName</td>
+            <td>@DomainStrings.Causedate</td>
+            <td>@DomainStrings.CauseDescription</td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Person.Causes != null && Model.Person.Causes.Any())
+        {
+            foreach (CausePartisipant m in Model.Person.Causes)
+            {
+                <tr>
+                    <td>@m.Cause.Name</td>
+                    <td>@m.Date.ToShortDateString()</td>
+                    <td>@m.Cause.Description</td>
+                </tr>
+            }
+        }
+    </tbody>
+
+</table>

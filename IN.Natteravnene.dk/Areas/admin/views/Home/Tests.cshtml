@@ -1,0 +1,169 @@
+﻿@section inlinescripts {
+    <script type="text/javascript">
+
+        $(function () {
+
+            $('#testtext').submit(function () {
+                if ($(this).valid()) {
+                    $.ajax({
+                        url: this.action,
+                        type: this.method,
+                        data: $(this).serialize(),
+                        success: function (result) {
+                            $('#textresult').html(result);
+                        }
+                    });
+                }
+                return false;
+            });
+       
+
+       
+            $('#testemail').submit(function () {
+                if ($(this).valid()) {
+                    $.ajax({
+                        url: this.action,
+                        type: this.method,
+                        data: $(this).serialize(),
+                        success: function (result) {
+                            $('#emailresult').html(result);
+                        }
+                    });
+                }
+                return false;
+            });
+
+
+            
+                $('#testmsg').submit(function () {
+                    if ($(this).valid()) {
+                        $.ajax({
+                            url: this.action,
+                            type: this.method,
+                            data: $(this).serialize(),
+                            success: function (result) {
+                                $('#emailmsg').html(result);
+                            }
+                        });
+                    }
+                    return false;
+                });
+
+
+                
+                    $('#PersonStatus').submit(function () {
+                        if ($(this).valid()) {
+                            $.ajax({
+                                url: this.action,
+                                type: this.method,
+                                data: $(this).serialize(),
+                                success: function (result) {
+                                    $('#PersonStatusresult').html(result);
+                                }
+                            });
+                        }
+                        return false;
+                    });
+
+
+
+        });
+
+
+    </script>
+}
+<div class="page-header position-relative">
+    @Html.ActionLink(General.BtnNewNews, "Edit", null, null, new { @class = "btn btn-small btn-primary pull-right" })
+
+    <h1>Tests</h1>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="widget-box">
+            <div class="widget-header">
+                <h4 class="widget-title">Test E-mail</h4>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main">
+                    @using (Ajax.BeginForm("_TestEmail", "Home", new { area = "Admin" }, new AjaxOptions() { HttpMethod = "POST" }, new { id = "testemail", @class = "form-horizontal" }))
+                    {
+                        <input type="text" name="email" />
+                        <input type="submit" value="OK" />
+                    }
+                    <div id="emailresult"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-6">
+        <div class="widget-box">
+            <div class="widget-header">
+                <h4 class="widget-title">Test text</h4>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main">
+                    @using (Ajax.BeginForm("_TestText", "Home", new { area = "Admin" }, new AjaxOptions() { HttpMethod = "POST" }, new { id = "testtext", @class = "form-horizontal" }))
+                    {
+                        <input type="text" name="Mobile" />
+                        <input type="submit" value="OK" />
+                    }
+                    <div id="textresult"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="widget-box">
+            <div class="widget-header">
+                <h4 class="widget-title">Test Person Status</h4>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main">
+                    @using (Ajax.BeginForm("_TestPersonStatus", "Home", new { area = "Admin" }, new AjaxOptions() { HttpMethod = "POST" }, new { id = "PersonStatus", @class = "form-horizontal" }))
+                    {
+                        <input type="text" name="UserName" />
+                        <input type="submit" value="OK" />
+                    }
+                    <div id="PersonStatusresult"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-6">
+        <div class="widget-box">
+            <div class="widget-header">
+                <h4 class="widget-title">Test Message</h4>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main">
+                    @using (Ajax.BeginForm("_TestMessage", "Home", new { area = "Admin" }, new AjaxOptions() { HttpMethod = "POST" }, new { id = "testmsg", @class = "form-horizontal" }))
+                    {
+                        <input type="text" name="UserName" />
+                        <input type="submit" value="OK" />
+                    }
+                    <div id="textmsg"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+@Html.ActionLink("Processes", null, "Processes")
+
+
+
+

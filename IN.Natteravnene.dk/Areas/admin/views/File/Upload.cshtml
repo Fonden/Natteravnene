@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Upload";
+}
+@section pagescripts {
+@Scripts.Render("~/bundles/form")
+@Scripts.Render("~/bundles/jcrop")
+    <script src="@Url.Content("~/Scripts/fileupload.js")"></script>
+}
+<h2>Upload</h2>
+
+<a href="#fileupload-form" role="button" class="btn full-width" data-toggle="modal"> File upload </a>
+
+@{ Html.RenderPartial("_Upload", Guid.Empty); }

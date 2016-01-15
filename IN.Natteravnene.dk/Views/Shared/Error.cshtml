@@ -1,0 +1,67 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@if (!WebSecurity.IsAuthenticated)
+{
+    ViewBag.Title = "Fejl på siden";
+    Layout = "~/Views/Shared/_NRAnonomusLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <!-- PAGE CONTENT BEGINS -->
+        <!-- #section:pages/error -->
+        <div class="error-container">
+            <div class="well">
+                <h1 class="grey lighter smaller">
+                    <span class="blue bigger-125">
+                        <i class="ace-icon fa fa-random"></i>
+                        500
+                    </span>
+                    @General.P500Head
+                </h1>
+
+                <hr />
+                <h3 class="lighter smaller">
+                    @Html.Raw(General.P500SubHead)
+                </h3>
+
+                <div class="space"></div>
+
+                <div>
+                    <h4 class="smaller">@General.P500Try</h4>
+                    <ul class="list-unstyled spaced inline bigger-110 margin-15">
+                        <li><i class="ace-icon fa fa-hand-o-right blue"></i> @General.P500Try1</li>
+                        <li><i class="ace-icon fa fa-hand-o-right blue"></i> @General.P500Try2</li>
+                    </ul>
+                </div>
+
+                <hr />
+                <div class="space"></div>
+                @{
+                    string urlMailto = "mailto:info@natteravnene.dk?subject=" + Url.Encode("Fejl frivillig.natteravnene.dk") + "&body=";
+                    urlMailto += Url.Encode("----- SYSTEM INFORMATIONER SLET IKKE --------------------") + "%0D%0A";
+                    urlMailto += Url.Encode("URL: " + Request.Url.ToString()) + "%0D%0A";
+                    urlMailto += Url.Encode("Tidspunkt: " + DateTime.Now) + "%0D%0A";
+                    urlMailto += Url.Encode("Brugernavn: " + NR.Infrastructure.CurrentProfile.Username) + "%0D%0A";
+                    urlMailto += Url.Encode("----- SYSTEM INFORMATIONER SLET IKKE --------------------") + "%0D%0A";
+                    urlMailto += Url.Encode("Beskrivelse af problemet: ") + "%0D%0A";
+
+
+                }
+                <h5>@General.P500ErrorInfo (<a href="@urlMailto" target="_blank">Klik her for at sende</a> )</h5>
+                <p>
+                    URL: @Request.Url.ToString()<br />
+                    Tidspunkt: @DateTime.Now<br />
+                    Brugernavn: @NR.Infrastructure.CurrentProfile.Username
+                </p>
+
+                <div class="center">
+                    <a href="javascript:history.back()" class="btn btn-grey"><i class="ace-icon fa fa-arrow-left"></i> @General.BtnGoBack</a>
+                    <a href="~/" class="btn btn-primary"><i class="ace-icon fa fa-home"></i> @General.BtnHome</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- /section:pages/error -->
+        <!-- PAGE CONTENT ENDS -->
+    </div><!-- /.col -->
+</div><!-- /.row -->

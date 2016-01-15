@@ -1,0 +1,505 @@
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*22-10-2015 17:22:33 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert the value NULL into column 'Created', table 'Natteravnene.dbo.Leads'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   ved System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   ved System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   ved System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   ved System.Data.SqlClient.SqlDataReader.get_MetaData()
+   ved System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   ved System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   ved System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   ved System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   ved System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   ved System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   ved System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   ved System.Data.Entity.DbContext.SaveChanges()
+   ved NR.Entity.NRDbContext.SaveChanges() i d:\Development\Natteravnene\Natteravnene\Local Homepage\Concrete\NRDbContext.cs:linje 74
+---------------
+** DbUpdateException
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* 22-10-2015 17:22:33 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*22-10-2015 17:23:06 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert the value NULL into column 'Created', table 'Natteravnene.dbo.Leads'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   ved System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   ved System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   ved System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   ved System.Data.SqlClient.SqlDataReader.get_MetaData()
+   ved System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   ved System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   ved System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   ved System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   ved System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   ved System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   ved System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   ved System.Data.Entity.DbContext.SaveChanges()
+   ved NR.Entity.NRDbContext.SaveChanges() i d:\Development\Natteravnene\Natteravnene\Local Homepage\Concrete\NRDbContext.cs:linje 105
+   ved ASP.NET_MVC5_Bootstrap3_3_1_LESS.Controllers.LocalController.BlivNatteravn(TrialFormModel result) i d:\Development\Natteravnene\Natteravnene\Local Homepage\Controllers\Local\LocalController.cs:linje 129
+---------------
+Save file
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* 22-10-2015 17:23:06 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*22-10-2015 17:35:17 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert the value NULL into column 'Created', table 'Natteravnene.dbo.Leads'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   ved System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   ved System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   ved System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   ved System.Data.SqlClient.SqlDataReader.get_MetaData()
+   ved System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   ved System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   ved System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   ved System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   ved System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   ved System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   ved System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   ved System.Data.Entity.DbContext.SaveChanges()
+   ved NR.Entity.NRDbContext.SaveChanges() i d:\Development\Natteravnene\Natteravnene\Local Homepage\Concrete\NRDbContext.cs:linje 74
+---------------
+** DbUpdateException
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* 22-10-2015 17:35:17 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*22-10-2015 17:35:49 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert the value NULL into column 'Created', table 'Natteravnene.dbo.Leads'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   ved System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   ved System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   ved System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   ved System.Data.SqlClient.SqlDataReader.get_MetaData()
+   ved System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   ved System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   ved System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   ved System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   ved System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   ved System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   ved System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   ved System.Data.Entity.DbContext.SaveChanges()
+   ved NR.Entity.NRDbContext.SaveChanges() i d:\Development\Natteravnene\Natteravnene\Local Homepage\Concrete\NRDbContext.cs:linje 105
+   ved ASP.NET_MVC5_Bootstrap3_3_1_LESS.Controllers.LocalController.BlivNatteravn(TrialFormModel result) i d:\Development\Natteravnene\Natteravnene\Local Homepage\Controllers\Local\LocalController.cs:linje 129
+---------------
+Save file
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* 22-10-2015 17:35:49 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*22-10-2015 17:40:00 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert the value NULL into column 'Created', table 'Natteravnene.dbo.Leads'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   ved System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   ved System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   ved System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   ved System.Data.SqlClient.SqlDataReader.get_MetaData()
+   ved System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   ved System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   ved System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   ved System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   ved System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   ved System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   ved System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   ved System.Data.Entity.DbContext.SaveChanges()
+   ved NR.Entity.NRDbContext.SaveChanges() i d:\Development\Natteravnene\Natteravnene\Local Homepage\Concrete\NRDbContext.cs:linje 74
+---------------
+** DbUpdateException
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* 22-10-2015 17:40:00 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*22-10-2015 17:42:31 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert the value NULL into column 'Created', table 'Natteravnene.dbo.Leads'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   ved System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   ved System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   ved System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   ved System.Data.SqlClient.SqlDataReader.get_MetaData()
+   ved System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   ved System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   ved System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   ved System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   ved System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   ved System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   ved System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   ved System.Data.Entity.DbContext.SaveChanges()
+   ved NR.Entity.NRDbContext.SaveChanges() i d:\Development\Natteravnene\Natteravnene\Local Homepage\Concrete\NRDbContext.cs:linje 105
+   ved ASP.NET_MVC5_Bootstrap3_3_1_LESS.Controllers.LocalController.BlivNatteravn(TrialFormModel result) i d:\Development\Natteravnene\Natteravnene\Local Homepage\Controllers\Local\LocalController.cs:linje 131
+---------------
+Save file
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* 22-10-2015 17:42:31 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*22-10-2015 17:43:07 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_dbo.Leads_dbo.Associations_AssociationID". The conflict occurred in database "Natteravnene", table "dbo.Associations", column 'AssociationID'.
+The statement has been terminated.
+   ved System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   ved System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   ved System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   ved System.Data.SqlClient.SqlDataReader.get_MetaData()
+   ved System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   ved System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   ved System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   ved System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   ved System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   ved System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   ved System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   ved System.Data.Entity.DbContext.SaveChanges()
+   ved NR.Entity.NRDbContext.SaveChanges() i d:\Development\Natteravnene\Natteravnene\Local Homepage\Concrete\NRDbContext.cs:linje 74
+---------------
+** DbUpdateException
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* 22-10-2015 17:43:07 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*22-10-2015 17:45:03 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_dbo.Leads_dbo.Associations_AssociationID". The conflict occurred in database "Natteravnene", table "dbo.Associations", column 'AssociationID'.
+The statement has been terminated.
+   ved System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   ved System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   ved System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   ved System.Data.SqlClient.SqlDataReader.get_MetaData()
+   ved System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   ved System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   ved System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   ved System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   ved System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   ved System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   ved System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   ved System.Data.Entity.DbContext.SaveChanges()
+   ved NR.Entity.NRDbContext.SaveChanges() i d:\Development\Natteravnene\Natteravnene\Local Homepage\Concrete\NRDbContext.cs:linje 105
+   ved ASP.NET_MVC5_Bootstrap3_3_1_LESS.Controllers.LocalController.BlivNatteravn(TrialFormModel result) i d:\Development\Natteravnene\Natteravnene\Local Homepage\Controllers\Local\LocalController.cs:linje 131
+---------------
+Save file
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* 22-10-2015 17:45:03 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+22-10-2015 17:47:21 > > > Validation failed for one or more entities. See 'EntityValidationErrors' property for more details. The validation errors are: Feltet 'Email' indeholder ikke et korrekte e-mail format
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*22-10-2015 17:47:38 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details. The validation errors are: Feltet 'Email' indeholder ikke et korrekte e-mail format
+   ved NR.Entity.NRDbContext.SaveChanges() i d:\Development\Natteravnene\Natteravnene\Local Homepage\Concrete\NRDbContext.cs:linje 100
+   ved ASP.NET_MVC5_Bootstrap3_3_1_LESS.Controllers.LocalController.BlivNatteravn(TrialFormModel result) i d:\Development\Natteravnene\Natteravnene\Local Homepage\Controllers\Local\LocalController.cs:linje 131
+---------------
+Save file
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* 22-10-2015 17:47:38 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*22-10-2015 18:01:47 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert the value NULL into column 'AssociationID', table 'Natteravnene.dbo.Leads'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   ved System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   ved System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   ved System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   ved System.Data.SqlClient.SqlDataReader.get_MetaData()
+   ved System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   ved System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   ved System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   ved System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   ved System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   ved System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   ved System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   ved System.Data.Entity.DbContext.SaveChanges()
+   ved NR.Entity.NRDbContext.SaveChanges() i d:\Development\Natteravnene\Natteravnene\Local Homepage\Concrete\NRDbContext.cs:linje 74
+---------------
+** DbUpdateException
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* 22-10-2015 18:01:47 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*22-10-2015 18:02:58 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert the value NULL into column 'AssociationID', table 'Natteravnene.dbo.Leads'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   ved System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   ved System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   ved System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   ved System.Data.SqlClient.SqlDataReader.get_MetaData()
+   ved System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   ved System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   ved System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   ved System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   ved System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   ved System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   ved System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   ved System.Data.Entity.DbContext.SaveChanges()
+   ved NR.Entity.NRDbContext.SaveChanges() i d:\Development\Natteravnene\Natteravnene\Local Homepage\Concrete\NRDbContext.cs:linje 74
+---------------
+** DbUpdateException
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* 22-10-2015 18:02:58 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*22-10-2015 18:06:08 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+System.Data.Entity.Infrastructure.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.Entity.Core.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_dbo.Leads_dbo.Associations_AssociationID". The conflict occurred in database "Natteravnene", table "dbo.Associations", column 'AssociationID'.
+The statement has been terminated.
+   ved System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   ved System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   ved System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   ved System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   ved System.Data.SqlClient.SqlDataReader.get_MetaData()
+   ved System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   ved System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   ved System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   ved System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   ved System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   ved System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   ved System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   ved System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   ved System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   ved System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   ved System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   ved System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- Slut på staksporing af indre undtagelser ---
+   ved System.Data.Entity.Internal.InternalContext.SaveChanges()
+   ved System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   ved System.Data.Entity.DbContext.SaveChanges()
+   ved NR.Entity.NRDbContext.SaveChanges() i d:\Development\Natteravnene\Natteravnene\Local Homepage\Concrete\NRDbContext.cs:linje 74
+---------------
+** DbUpdateException
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* 22-10-2015 18:06:08 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+22-10-2015 21:04:31 > > > Validation failed for one or more entities. See 'EntityValidationErrors' property for more details. The validation errors are: Feltet 'Email' indeholder ikke et korrekte e-mail format
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*22-10-2015 21:04:33 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details. The validation errors are: Feltet 'Email' indeholder ikke et korrekte e-mail format
+   ved NR.Entity.NRDbContext.SaveChanges() i d:\Development\Natteravnene\Natteravnene\Local Homepage\Concrete\NRDbContext.cs:linje 100
+   ved ASP.NET_MVC5_Bootstrap3_3_1_LESS.Controllers.LocalController.BlivNatteravn(TrialFormModel result) i d:\Development\Natteravnene\Natteravnene\Local Homepage\Controllers\Local\LocalController.cs:linje 131
+---------------
+Save file
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* 22-10-2015 21:04:33 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+10-12-2015 11:42:34 > > > Validation failed for one or more entities. See 'EntityValidationErrors' property for more details. The validation errors are: Feltet 'Post nr' skal være minimum 2 og maksimalt 15 karakterer langt

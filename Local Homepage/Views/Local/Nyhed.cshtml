@@ -1,0 +1,22 @@
+﻿@model AssociationViewModel
+@{
+    ViewBag.Title = Model.theNews.Headline;
+    ViewBag.MetaDescription = Model.theNews.Teaser.Trim();
+    ViewBag.PageImage = ViewBag.SocialImage = Html.NewsImagePath(Model.theNews, Model.Host).ToString();
+    ViewBag.SocialType = "article";
+}
+
+<div id="pagehero">
+    @Html.NewsImage(Model.theNews, new { @class = "img-responsive" })
+    <h1>@Html.Raw(ViewBag.Title)</h1>
+</div>
+
+
+<div class="body-content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="newsdate"><i class="fa fa-calendar"></i> @Model.theNews.Publish.ToShortDateString()</div>
+            @Html.Raw(Model.theNews.Content)
+        </div>
+    </div>
+</div>

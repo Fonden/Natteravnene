@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@Html.MvcSiteMap().SiteMapTitle()</title>
+
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--basic styles-->
+    @Styles.Render("~/bundles/style")"
+
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+    <![endif]-->
+
+    <!-- page specific plugin styles -->
+    @RenderSection("pagecss", required: false)
+
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="@Url.Content("~/assets/css/ace-ie.min.css")" />
+    <![endif]-->
+
+
+    <script src="@Url.Content("~/assets/js/ace-extra.min.js")"></script>
+
+    <!--inline styles related to this page-->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="@Url.Content("~/Content/ico/apple-touch-icon-144-precomposed.png")">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="@Url.Content("~/Content/ico/apple-touch-icon-114-precomposed.png")">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="@Url.Content("~/Content/ico/apple-touch-icon-72-precomposed.png")">
+    <link rel="apple-touch-icon-precomposed" href="@Url.Content("~/Content/ico/apple-touch-icon-57-precomposed.png")">
+    <link rel="shortcut icon" href="@Url.Content("~/Content/ico/favicon.png")">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">window.jQuery || document.write("<script src='@Url.Content("~/Scripts/jquery-jquery-2.1.1.min.js")'>" + "<" + "/script>");</script>
+</head>
+
+<body>
+    <div class="navbar navbar-default" id="navbar">
+        <script type="text/javascript">
+            try { ace.settings.check('navbar', 'fixed') } catch (e) { }
+        </script>
+
+        <div class="navbar-container" id="navbar-container">
+            <div class="navbar-header pull-left">
+                <a href="~/" class="brand">
+                    <small>
+                        Natteravnene
+                    </small>
+                </a>
+                <!--/.brand-->
+
+
+            </div>
+            <!--/.container-fluid-->
+            @{ Html.RenderAction("UserStatusBar", "Account"); }
+        </div>
+        <!--/.navbar-inner-->
+    </div>
+
+    <div class="main-container" id="main-container">
+        <script type="text/javascript">
+            try { ace.settings.check('main-container', 'fixed') } catch (e) { }
+        </script>
+        <div class="main-container-inner">
+            @Html.MvcSiteMap().Menu()
+            @*{ Html.RenderAction("Menu", "Navigation"); }*@
+
+            <div class="main-content">
+                <div class="breadcrumbs" id="breadcrumbs">
+                    @Html.MvcSiteMap().SiteMapPath()
+                    <!--.breadcrumb-->
+
+                    <div class="nav-search" id="nav-search">
+                        <form class="form-search">
+                            <span class="input-icon">
+                                <input type="text" placeholder="@General.Search ..." class="input-small nav-search-input" id="nav-search-input" autocomplete="off" />
+                                <i class="icon-search nav-search-icon"></i>
+                            </span>
+                        </form>
+                    </div>
+                    <!--#nav-search-->
+                </div>
+
+                <div class="page-content">
+
+                    <!--PAGE CONTENT BEGINS-->
+                    @RenderBody()
+                    <!--PAGE CONTENT ENDS-->
+
+                </div>
+                <!--/.page-content-->
+            </div>
+        </div>
+        <!--/.main-content-->
+    </div>
+    <!--/.main-container-->
+
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-small btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+
+    <!--basic scripts-->
+    <!--[if !IE]>-->
+    
+
+    <script type="text/javascript">
+        if ("ontouchend" in document) document.write("<script src='@Url.Content("~/assets/js/jquery.mobile.custom.min.js")'>" + "<" + "/script>");
+    </script>
+   @Scripts.Render("~/bundles/jquery")
+
+
+
+<!--page specific plugin scripts-->
+    @RenderSection("pagescripts", required: false)
+    <!--ace scripts-->
+
+    
+
+
+    <!--inline scripts related to this page-->
+    @RenderSection("inlinescripts", required: false)
+
+</body>
+</html>

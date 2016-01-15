@@ -1,0 +1,76 @@
+﻿@model NR.Models.BoardModelView
+
+<div class="row imagelist">
+    @if (Model.Chairmann != null)
+    {
+        <div class="col-lg-2 col-md-3 col-xs-4">
+            <a href="@Url.Action("ViewProfile", "People", new { UserName = Model.Chairmann.UserName })" title="@Model.Chairmann.FullName" role="@(Model.Association.Governance == GovernanceType.Traditionel ?DomainStrings.BoardFunctionTypeChairman : General.BoardSpokesman)">
+                @Html.ProfilImage(Model.Chairmann)
+            </a>
+        </div>
+    }
+    @if (Model.Accountant != null)
+    {
+        <div class="col-lg-2 col-md-3 col-xs-4">
+            <a href="@Url.Action("ViewProfile", "People", new { UserName = Model.Accountant.UserName })" title="@Model.Accountant.FullName" role="@DomainStrings.BoardFunctionTypeAccountant">
+                @Html.ProfilImage(Model.Accountant)
+            </a>
+        </div>
+    }
+    @if (Model.BoardMembers.Any())
+    {
+        foreach (Person member in Model.BoardMembers)
+        {
+            <div class="col-lg-2 col-md-3 col-xs-4">
+                <a href="@Url.Action("ViewProfile", "People", new { UserName = member.UserName })" title="@member.FullName" role="@General.BoardMemeberShort">
+                    @Html.ProfilImage(member)
+                </a>
+            </div>
+        }
+    }
+</div>
+<hr />
+
+@if (Model.Alternate.Any())
+{
+    <div class="row imagelist">
+        @foreach (Person member in Model.Alternate)
+        {
+            <div class="col-lg-2 col-md-3 col-xs-4">
+                <a href="@Url.Action("ViewProfile", "People", new { UserName = member.UserName })" title="@member.FullName" role="@DomainStrings.BoardFunctionTypeAlternate">
+                    @Html.ProfilImage(member)
+                </a>
+            </div>
+        }
+    </div>
+    <hr />
+
+}
+<div class="row imagelist">
+
+    @if (Model.Auditor != null)
+    {
+
+        <div class="col-lg-2 col-md-3 col-xs-4">
+            <a href="@Url.Action("ViewProfile", "People", new { UserName = Model.Auditor.UserName })" title="@Model.Auditor.FullName" role="@DomainStrings.BoardFunctionTypeAuditor">
+                @Html.ProfilImage(Model.Auditor)
+            </a>
+        </div>
+    }
+    @if (Model.AuditorAlternate != null)
+    {
+        <div class="col-lg-2 col-md-3 col-xs-4">
+            <a href="@Url.Action("ViewProfile", "People", new { UserName = Model.AuditorAlternate.UserName })" title="@Model.AuditorAlternate.FullName" role="@DomainStrings.BoardFunctionTypeAuditorAlternate">
+                @Html.ProfilImage(Model.AuditorAlternate)
+            </a>
+        </div>
+    }
+    @if (Model.Association != null && Model.Association.SeniorInstruktoer != null)
+    {
+        <div class="col-lg-2 col-md-3 col-xs-4">
+            <a href="@Url.Action("ViewProfile","People", new {UserName = Model.Association.SeniorInstruktoer.UserName })" title="@Model.Association.SeniorInstruktoer.FullName" role="@DomainStrings.AssociationSeniorInstructor">
+                @Html.ProfilImage(Model.Association.SeniorInstruktoer)
+            </a>
+        </div>
+    }
+</div>

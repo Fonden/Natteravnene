@@ -1,0 +1,32 @@
+﻿@model List<Event>
+
+@if (Model.Any())
+{
+    foreach (Event Event in Model)
+    {
+
+        <article class="activitybox" style="position: relative;">
+            <a href="@Url.Action("View", "Event", new { id = Event.EventID })">
+                <div class="ribbon">
+                    <div class="border-ribbon"></div>
+                    <span class="day">@Event.Start.Day</span>
+                    <span class="month">@Event.Start.ToString("MMM")</span>
+                </div>
+                <h3>@Event.Headline</h3>
+                <div class="time"><i class="ace-icon fa fa-clock-o light-orange bigger-110"></i>&nbsp;@Event.Start.ToShortTimeString()&nbsp;&nbsp;&nbsp;&nbsp;<i class="ace-icon fa fa-map-marker light-orange bigger-110"></i>&nbsp;@Event.Location</div>
+                <div class="description">@Html.Raw(Event.Description)</div>
+            </a>
+            @if ((NR.Infrastructure.CurrentProfile.isEditor | NR.Infrastructure.CurrentProfile.isSecretary) &&
+            (Event.Source == LevelType.Local & Event.SourceLink == NR.Infrastructure.CurrentProfile.AssociationID))
+            {
+                <a href="@Url.Action("Edit", "Event", new { id = Event.EventID })" class="btn btn-info btn-xs discreteedit" data-rel="tooltip" title="@General.BtnSilentEdit">
+                    <span class="green">
+                        <i class="@Icons.Edit bigger-110 icon-only"></i>
+                    </span>
+                </a>
+            }
+        </article>
+
+
+    }
+}

@@ -1,0 +1,80 @@
+﻿@model AssociationNoteEditModel
+
+@section pagescripts {
+    @Scripts.Render("~/bundles/form")
+    @Scripts.Render("~/bundles/jcrop")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+        jQuery(function ($) {
+
+            ///////////////////////////////////////////
+            $('#NoteEditor').ace_wysiwyg({
+                toolbar:
+                [
+                    { name: 'bold', className: 'btn-info' },
+                    { name: 'italic', className: 'btn-info' },
+                    { name: 'strikethrough', className: 'btn-info' },
+                    { name: 'underline', className: 'btn-info' },
+                    null,
+                    { name: 'insertunorderedlist', className: 'btn-success' },
+                    { name: 'insertorderedlist', className: 'btn-success' },
+                    { name: 'outdent', className: 'btn-purple' },
+                    { name: 'indent', className: 'btn-purple' },
+                    null,
+                    { name: 'undo', className: 'btn-grey' },
+                    { name: 'redo', className: 'btn-grey' }
+                ]
+            }).prev();
+
+            $('form').on('submit', function () {
+
+                //put the editor's html content inside the hidden input to be sent to server
+                $('input[name=NewNote]', this).val($('#NoteEditor').html());
+
+                return true;
+            });
+
+            // scrollables
+            $('.scrollable').each(function () {
+                var $this = $(this);
+                $(this).ace_scroll({
+                    size: $this.data('size') || 100,
+                    //styleClass: 'scroll-left scroll-margin scroll-thin scroll-dark scroll-light no-track scroll-visible'
+                });
+            });
+
+        });
+    </script>
+}
+
+<div class="page-header position-relative">
+    <h1>
+        <a href="@Url.Action("Index")" class="btn btn-small btn-primary">
+            <i class="ace-icon @Icons.BackIcon icon-only"></i>
+        </a> @General.AssociationEditComment
+    </h1>
+</div>
+@using (Html.BeginForm("EditNote", null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+
+    @Html.Partial("~/Views/Shared/_FormSummery.cshtml");
+    @Html.HiddenFor(m => m.AssociationID)
+    <div class="form-group">
+        @Html.LabelFor(m => m.NewNote, new { @class = "col-sm-2 control-label no-padding-right" })
+        <div class="col-sm-8">
+            <div class="wysiwyg-editor" id="NoteEditor">
+                @Html.Raw(Model.NewNote)
+            </div>
+            @Html.HiddenFor(f => f.NewNote)
+            @Html.ValidationMessageFor(m => m.NewNote)
+        </div>
+    </div>
+    <button class="btn btn-info" type="submit">
+        <i class="icon-ok bigger-110"></i>
+        @General.Save
+    </button>
+
+}
+<hr />
+            @Html.Raw(Model.Note)

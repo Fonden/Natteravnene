@@ -1,0 +1,127 @@
+﻿@model List<AFile>
+@section pagescripts {
+    @Scripts.Render("~/bundles/table")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+ //@Url.Action("PersonsAjax","Admin")",
+    $(document).ready(function () {
+
+        var oTable1 = $('#File-table')
+            .on('xhr.dt', function ( e, settings, json ) {
+                $('[data-rel="tooltip"]').tooltip();
+            } )
+            .dataTable( {
+               "language": {
+                    "lengthMenu": "@General.DatatablesLengthMenu",
+                    "zeroRecords": "@General.DatatablesZeroRecords",
+                    "info": "@General.DatatablesInfo",
+                    "infoEmpty": "@General.DatatablesInfoEmpty",
+                    "infoFiltered": "@General.DatatablesInfoFiltered",
+                    "loadingRecords": "@General.DatatablesLoadingRecords",
+                    "processing": "@General.DatatablesProcessing",
+                    "search": "@General.Search:",
+                   "thousands": "@General.ThousenSeperator",
+                   "paginate": {
+                       first: ">>",
+                       previous: "<",
+                       next: ">",
+                       last: "<<"
+                   }
+                },
+                
+                "order": [[0, "asc"]]
+            } );
+
+        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+        function tooltip_placement(context, source) {
+            var $source = $(source);
+            var $parent = $source.closest('table')
+            var off1 = $parent.offset();
+            var w1 = $parent.width();
+
+            var off2 = $source.offset();
+            //var w2 = $source.width();
+
+            if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+            return 'left';
+        }
+
+    })
+    </script>
+}
+
+
+<div class="page-header position-relative">
+    
+        @Html.ActionLink(General.BtnNewFile, "Edit", null, null, new { @class = "btn btn-small btn-primary pull-right" })
+
+    <h1>@General.Files</h1>
+</div>
+
+
+<table id="File-table" class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>@DomainStrings.FileTitle</th>
+            <th>@DomainStrings.FilType</th>
+            <th>Exists</th>
+            <th>@DomainStrings.Created</th>
+            <th>@DomainStrings.Lastchanged</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (AFile F in Model)
+        {
+            <tr>
+                <td>@F.Title</td>
+                <td>@F.Type</td>
+                <td>@F.Exists</td>
+                <td data-order="@F.Created.Ticks">@F.Created</td>
+                <td data-order="@F.Lastchanged.Ticks">@F.Lastchanged</td>
+                <td>
+                    <div class="hidden-sm hidden-xs action-buttons" data-rel="tooltip" title="@General.View" data-original-title="@General.View">
+                        <a class="blue" href="@Url.Action("Download", "File", new {id =F.FileID, Area = "" })">
+                            <i class="@Icons.View bigger-130"></i>
+                        </a>
+                       
+                            <a class="green" href="@Url.Action("Edit", new { id = F.FileID })" data-rel="tooltip" title="@General.Edit" data-original-title="@General.Edit">
+                                <i class="@Icons.Edit bigger-130"></i>
+                            </a>
+                      
+
+                    </div>
+                    <div class="hidden-md hidden-lg">
+                        <div class="inline position-relative">
+                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                <li>
+                                    <a href="@Url.Action("Download", new { id = F.FileID })" class="tooltip-info" data-rel="tooltip" title="@General.View" data-original-title="@General.View">
+                                        <span class="blue">
+                                            <i class="@Icons.View bigger-120"></i>
+                                        </span>
+                                    </a>
+                               
+                                    <li>
+                                        <a href="@Url.Action("Edit", new { id = F.FileID })" class="tooltip-success" data-rel="tooltip" title="@General.Edit" data-original-title="@General.Edit">
+                                            <span class="green">
+                                                <i class="@Icons.Edit-square-o bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                               
+                            </ul>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

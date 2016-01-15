@@ -1,0 +1,46 @@
+﻿@model Folder
+@section inlinescripts {
+    <script type="text/javascript">
+    jQuery(function ($) {
+
+        function PrepareTable(obj) {
+            $('#upcontainer').append('<div class="message-loading-overlay"><i class="fa-spin ace-icon fa fa-spinner orange2 bigger-160"></i></div>');
+            var Team = obj.data('team');
+            var Person = obj.data('person');
+
+            $.ajax({
+                url: '@Url.Action("_FPAj")',
+                data: { Team: Team, Person: Person },
+                type: 'POST'
+            })
+                .success(function (result) {
+                    $('#upcontainer').find('.message-loading-overlay').remove();
+                    $('#upcontainer').html(result).fadeIn(1000);
+                })
+            .error();
+            }
+
+        $('#upcontainer').on('click', '.teamstatus', function () {
+            PrepareTable($(this));
+        });
+
+    });
+    </script>
+    }
+
+<div class="page-header position-relative">
+    <div class="pull-right">
+        <a href="@Url.Action("Folder", new { ID = Model.FolderID })" role="button" class="btn btn-small btn-primary tooltip-info" data-rel="tooltip" title="@General.BtnFolderListView" data-original-title="@General.BtnFolderListView">
+            <i class="@Icons.FolderList"></i>
+        </a>
+        <a href="@Url.Action("Communicate", new { ID = Model.FolderID })" role="button" class="btn btn-small btn-primary "> @General.BtnFolderCommunicate</a>
+        <a href="@Url.Action("AddTeams", new { ID = Model.FolderID })" role="button" class="btn btn-small btn-primary "> @General.BtnNewTeams</a>
+    </div>
+    <h1>
+
+       @Model.FoldereName ( @Model.Start.ToShortDateString() -  @Model.Finish.ToShortDateString() )
+    </h1>
+</div>
+<div id="upcontainer">
+    @{ Html.RenderAction("_FolderPlanning", new { ID = Model.FolderID });}
+</div>

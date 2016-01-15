@@ -1,0 +1,1201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Ago" xml:space="preserve">
+    <value>siden</value>
+  </data>
+  <data name="AssociationAddressHeading" xml:space="preserve">
+    <value>Foreningens adresse &lt;small&gt;Bruges når der sendes post til foreningen&lt;/small&gt;</value>
+  </data>
+  <data name="AssociationCreate" xml:space="preserve">
+    <value>Opret Forening</value>
+  </data>
+  <data name="AssociationEdit" xml:space="preserve">
+    <value>Rediger Forening</value>
+  </data>
+  <data name="AssociationProfile" xml:space="preserve">
+    <value>Foreningsprofil</value>
+  </data>
+  <data name="AssociationsTexts" xml:space="preserve">
+    <value>Tekster</value>
+  </data>
+  <data name="Attributes" xml:space="preserve">
+    <value>Attributter</value>
+  </data>
+  <data name="BackToLogin" xml:space="preserve">
+    <value>Tilbage til Log ind</value>
+    <comment>Tilbage til Log ind</comment>
+  </data>
+  <data name="BtnNewNetwork" xml:space="preserve">
+    <value>Opret netværk</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Afbryd</value>
+  </data>
+  <data name="ChooseProfileImage" xml:space="preserve">
+    <value>Ændre profilbillede</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Bemærkninger</value>
+  </data>
+  <data name="CommunicationSettings" xml:space="preserve">
+    <value>Kommunikations indstillinger</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Kontakter</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Opret</value>
+  </data>
+  <data name="CreateNetworkTxt" xml:space="preserve">
+    <value>Opret nyt netværk</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="DatatablesInfo" xml:space="preserve">
+    <value>Viser side _PAGE_ af _PAGES_</value>
+    <comment>Showing page _PAGE_ of _PAGES_</comment>
+  </data>
+  <data name="DatatablesInfoEmpty" xml:space="preserve">
+    <value>Ingen poster tilgængelig</value>
+    <comment>No records available</comment>
+  </data>
+  <data name="DatatablesInfoFiltered" xml:space="preserve">
+    <value>(filtreret fra  _MAX_ poster totalt)</value>
+    <comment>(filtered from _MAX_ total records)</comment>
+  </data>
+  <data name="DatatablesLengthMenu" xml:space="preserve">
+    <value>Vis _MENU_ poster per side</value>
+    <comment>Display _MENU_ records per page</comment>
+  </data>
+  <data name="DatatablesLoadingRecords" xml:space="preserve">
+    <value>Henter....</value>
+    <comment>Loading...</comment>
+  </data>
+  <data name="DatatablesProcessing" xml:space="preserve">
+    <value>Arbejder....</value>
+    <comment>Processing...</comment>
+  </data>
+  <data name="DatatablesZeroRecords" xml:space="preserve">
+    <value>Intet fundet - desværre!</value>
+    <comment>Nothing found - sorry</comment>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Rediger</value>
+  </data>
+  <data name="EmailNewsLetterTxt" xml:space="preserve">
+    <value>&lt;p&gt;Der udsendes regelmæssigt nyhedsbreve fra Natteravnenes Landssekretariat, Netværket og foreningen, som fortæller dig om hvad der sker inden for Natteravnenes rækker.&lt;/p&gt;
+&lt;p&gt;Her kan du vælge om du ønsker at modtage disse elektroniske nyhedsbreve.&lt;/p&gt;</value>
+  </data>
+  <data name="ErrorNoContactInfo" xml:space="preserve">
+    <value>Der skal udfyldes en af kontakt E-mail, telefon eller mobil</value>
+  </data>
+  <data name="ErrorSave" xml:space="preserve">
+    <value>Der skete en ukendt fejl, prøv igen. Virker dette ikke kontakt administrator</value>
+  </data>
+  <data name="ErrorUsernameNotUnique" xml:space="preserve">
+    <value>Det valgte brugernavn er allerede brugt</value>
+  </data>
+  <data name="FormError" xml:space="preserve">
+    <value>Pokkers! Der er desværre fejl i det indtastede</value>
+  </data>
+  <data name="FormSucces" xml:space="preserve">
+    <value>Perfekt! Data er nu gemt et sikket sted</value>
+  </data>
+  <data name="FunctionsSettings" xml:space="preserve">
+    <value>Funktioner</value>
+  </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Go Back</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hej</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Forside</value>
+  </data>
+  <data name="IForgotMyPassword" xml:space="preserve">
+    <value>Glemt Log ind?</value>
+    <comment>I forgot my password</comment>
+  </data>
+  <data name="Inbox" xml:space="preserve">
+    <value>Indbakke</value>
+  </data>
+  <data name="InboxSmall" xml:space="preserve">
+    <value>Indeholder både korte og lange beskeder</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Log ind</value>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>Brugernavn og/eller kodeord er forkert</value>
+    <comment>The user name or password provided is incorrect</comment>
+  </data>
+  <data name="LoginPrompt" xml:space="preserve">
+    <value>Indtast dine informationer</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Log ud</value>
+  </data>
+  <data name="Missing" xml:space="preserve">
+    <value>Mangler</value>
+    <comment>Person missing for a Hold</comment>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Navn</value>
+    <comment>Name</comment>
+  </data>
+  <data name="NetworksCreate" xml:space="preserve">
+    <value>Opret netværk</value>
+  </data>
+  <data name="NetworksEdit" xml:space="preserve">
+    <value>Rediger netværk</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nej</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>Notifikationer</value>
+  </data>
+  <data name="PrintNewslettetTxt" xml:space="preserve">
+    <value>&lt;p&gt;Natteravnenes Landssekretariat udsender via post et nyhedsmagasin kaldet NatteravneNyt. Dette udsendes ca. 4 gange om året.&lt;/p&gt;
+&lt;p&gt;Vi bruger her den adresse som du har angivet under din profil.&lt;/p&gt;
+&lt;p&gt;Her kan du vælge om du ønsker at modtage dette nyhedsmagasin.&lt;/p&gt;</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ProfileEdit" xml:space="preserve">
+    <value>Rediger profil</value>
+  </data>
+  <data name="ProfileImageCropError" xml:space="preserve">
+    <value>Fejl ved konverteringen af profilbilledet.</value>
+  </data>
+  <data name="ProfileImageToSmall" xml:space="preserve">
+    <value>Profilbillede er for lille (min 550x428)</value>
+  </data>
+  <data name="ProfileState" xml:space="preserve">
+    <value>Din profil er {0}% færdig</value>
+    <comment>Your profile is {0} complete</comment>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Nulstil</value>
+  </data>
+  <data name="RetriveLoginInfoTxt" xml:space="preserve">
+    <value>Få sendt log ind informationer</value>
+    <comment>Retrive login information</comment>
+  </data>
+  <data name="RetriveLoginInfoTxtEnter" xml:space="preserve">
+    <value>Tast e-mail eller mobil nummer for at få sendt dine log ind informationer</value>
+    <comment>Enter Email or mobile to recive login information</comment>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Gem</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Søg</value>
+  </data>
+  <data name="Sent" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Indstillinger</value>
+  </data>
+  <data name="SystemTitle" xml:space="preserve">
+    <value>Natteravnenes Intranet</value>
+  </data>
+  <data name="TabBasicdata" xml:space="preserve">
+    <value>Stamdata</value>
+  </data>
+  <data name="TabCauses" xml:space="preserve">
+    <value>Træning/uddannelse</value>
+  </data>
+  <data name="TabContactData" xml:space="preserve">
+    <value>Kontaktdata</value>
+  </data>
+  <data name="TableLanguage" xml:space="preserve">
+    <value>,
+                "oLanguage": {
+                    "sProcessing": "Henter...",
+                    "sLengthMenu": "Vis _MENU_ linjer",
+                    "sZeroRecords": "Ingen linjer matcher s&amp;oslash;gningen",
+                    "sInfo": "Viser _START_ til _END_ af _TOTAL_ linjer",
+                    "sInfoEmpty": "Viser 0 til 0 af 0 linjer",
+                    "sInfoFiltered": "(filtreret fra _MAX_ linjer)",
+                    "sInfoPostFix": "",
+                    "sSearch": "S&amp;oslash;g:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "F&amp;oslash;rste",
+                        "sPrevious": "Forrige",
+                        "sNext": "N&amp;aelig;ste",
+                        "sLast": "Sidste"
+                    }
+                }</value>
+  </data>
+  <data name="TabMemberships" xml:space="preserve">
+    <value>Frivillig i foreninger</value>
+  </data>
+  <data name="ThousenSeperator" xml:space="preserve">
+    <value>.</value>
+    <comment>,</comment>
+  </data>
+  <data name="UnreadMessages" xml:space="preserve">
+    <value>{0} ulæste beskeder</value>
+  </data>
+  <data name="UseSocialLoginDevider" xml:space="preserve">
+    <value>Eller log ind ved hjælp af</value>
+    <comment>Or Login Using</comment>
+  </data>
+  <data name="WriteMessage" xml:space="preserve">
+    <value>Send en besked</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>Personer</value>
+  </data>
+  <data name="BtnNewPerson" xml:space="preserve">
+    <value>Opret person</value>
+  </data>
+  <data name="NoCause" xml:space="preserve">
+    <value>Ingen kurser registreret</value>
+  </data>
+  <data name="NoMemberships" xml:space="preserve">
+    <value>Ikke registreret som med i nogen forening</value>
+  </data>
+  <data name="ProfileImageChoose" xml:space="preserve">
+    <value>Vælg et billede på din computer som du vil bruge som profil billede. Du får mulighed for at beskære det</value>
+  </data>
+  <data name="ProfileImageCrop" xml:space="preserve">
+    <value>Beskære billedet ved at flytte markørerne</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>beskeder</value>
+  </data>
+  <data name="SeeAllMessages" xml:space="preserve">
+    <value>Se alle beskeder</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Slet</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Se</value>
+  </data>
+  <data name="LoginPageDescription" xml:space="preserve">
+    <value>Velkommen til Natteravnenes Intranet. Her finder du nyheder, liste over de Natteravnene m.m. Er du Natteravn så burde du også kunne komme på, alt du behøver er din e-mail eller mobil nummer så sender systemet dit log ind</value>
+  </data>
+  <data name="LoginPageTitle" xml:space="preserve">
+    <value>Natteravnenes Intranet</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Historik</value>
+  </data>
+  <data name="ProfileSince" xml:space="preserve">
+    <value>Frivillig i</value>
+  </data>
+  <data name="ProfileTotal" xml:space="preserve">
+    <value>Antal vandringer</value>
+  </data>
+  <data name="UserProfile" xml:space="preserve">
+    <value>Brugerprofil</value>
+  </data>
+  <data name="LocationCreate" xml:space="preserve">
+    <value>Opret lokation</value>
+  </data>
+  <data name="LocationEditHelp" xml:space="preserve">
+    <value>Klik eller træk ikonet til midten af det område som denne lokation dækker</value>
+  </data>
+  <data name="LocationksEdit" xml:space="preserve">
+    <value>Rediger lokation</value>
+  </data>
+  <data name="TabLocations" xml:space="preserve">
+    <value>Lokationer</value>
+  </data>
+  <data name="TabContactPersons" xml:space="preserve">
+    <value>Kontaktpersoner</value>
+  </data>
+  <data name="TabNotes" xml:space="preserve">
+    <value>Noter</value>
+  </data>
+  <data name="BrandTitleAssociation" xml:space="preserve">
+    <value>Natteravnene {0}</value>
+  </data>
+  <data name="BrandTitleNoAssociation" xml:space="preserve">
+    <value>Natteravnene</value>
+  </data>
+  <data name="Board" xml:space="preserve">
+    <value>Bestyrelsen</value>
+  </data>
+  <data name="Steeringgroup" xml:space="preserve">
+    <value>Styregruppe</value>
+  </data>
+  <data name="BoardMemeberShort" xml:space="preserve">
+    <value>Medlem</value>
+  </data>
+  <data name="BoardSpokesman" xml:space="preserve">
+    <value>Talsmand</value>
+  </data>
+  <data name="BtnGoBack" xml:space="preserve">
+    <value>Gå tilbage</value>
+  </data>
+  <data name="BtnHome" xml:space="preserve">
+    <value>Forside</value>
+  </data>
+  <data name="P404PageNotFound" xml:space="preserve">
+    <value>Siden blev ikke fundet</value>
+    <comment>Page Not Found</comment>
+  </data>
+  <data name="P404Search" xml:space="preserve">
+    <value>Forsøg med en søgning...</value>
+    <comment>Give it a search...</comment>
+  </data>
+  <data name="P404Subhead" xml:space="preserve">
+    <value>Vi har kigget alle vegne men kunne ikke finde det!</value>
+    <comment>We looked everywhere but we couldn't find it!</comment>
+  </data>
+  <data name="P404Try" xml:space="preserve">
+    <value>Prøv en af følgende:</value>
+    <comment>Try one of the following:</comment>
+  </data>
+  <data name="P404Try1" xml:space="preserve">
+    <value>Re-check the url for typos</value>
+    <comment>Re-check the url for typos</comment>
+  </data>
+  <data name="P404Try2" xml:space="preserve">
+    <value>Read the FAQ</value>
+    <comment>Read the faq</comment>
+  </data>
+  <data name="P404Try3" xml:space="preserve">
+    <value>Fortæl os om det</value>
+    <comment>Tell us about it</comment>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>---Vælg---</value>
+  </data>
+  <data name="BoardAccountantMissing" xml:space="preserve">
+    <value>Kasserer skal udfyldes</value>
+  </data>
+  <data name="BoardAlternateMax" xml:space="preserve">
+    <value>Der kan maksimalt være {0} suppleanter</value>
+  </data>
+  <data name="BoardAlternateMin" xml:space="preserve">
+    <value>Der skal minimum være {0} suppleanter</value>
+  </data>
+  <data name="BoardAuditorMissing" xml:space="preserve">
+    <value>Revisor skal udfyldes</value>
+  </data>
+  <data name="BoardCharimannMissing" xml:space="preserve">
+    <value>Bestyrelsesformand/Talsmand skal udfyldes</value>
+  </data>
+  <data name="TooltipBoardEdit" xml:space="preserve">
+    <value>Rediger bestyrelsen for foreningen</value>
+  </data>
+  <data name="BoardEven" xml:space="preserve">
+    <value>Der skal være et lige antal bestyrelsesmedlemmer</value>
+  </data>
+  <data name="BoardMemeberMax" xml:space="preserve">
+    <value>Der kan maksimalt være {0} bestyrelsesmedlemmer</value>
+  </data>
+  <data name="BoardMemeberMin" xml:space="preserve">
+    <value>Der skal minimum være {0} bestyrelsesmedlemmer</value>
+  </data>
+  <data name="BoardOdd" xml:space="preserve">
+    <value>Der skal være et ulige antal bestyrelsesmedlemmer</value>
+  </data>
+  <data name="BoardSamePerson" xml:space="preserve">
+    <value>En eller flere personer besætte flere poster i bestyrelsen, revisor, supplaneter og revisor supplanter</value>
+  </data>
+  <data name="Access" xml:space="preserve">
+    <value>Rettigheder</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Opdater</value>
+  </data>
+  <data name="BtnAddPerson" xml:space="preserve">
+    <value>Tilføj person</value>
+  </data>
+  <data name="BtnAttachAssociation" xml:space="preserve">
+    <value>Tilknyt forening</value>
+  </data>
+  <data name="Locations" xml:space="preserve">
+    <value>Lokationer</value>
+  </data>
+  <data name="TooltipAccessEdit" xml:space="preserve">
+    <value>Rediger bruger rettigheder til administration af foreningen</value>
+  </data>
+  <data name="TooltipAssociationAttach" xml:space="preserve">
+    <value>Tilknyt person til forening</value>
+  </data>
+  <data name="TooltipAssociationEdit" xml:space="preserve">
+    <value>Rediger forenings opsætning</value>
+  </data>
+  <data name="TooltipAssociationLocation" xml:space="preserve">
+    <value>Rediger foreningens lokationer/gå-steder</value>
+  </data>
+  <data name="TooltipAssociationNew" xml:space="preserve">
+    <value>Opret en ny forening</value>
+  </data>
+  <data name="TooltipAssociationView" xml:space="preserve">
+    <value>Se foreningens detaljer</value>
+  </data>
+  <data name="BtnNewAssociation" xml:space="preserve">
+    <value>Ny forening</value>
+  </data>
+  <data name="BtnNewLocation" xml:space="preserve">
+    <value>Ny lokation</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="ErrorNoBody" xml:space="preserve">
+    <value>Der er ingen besked</value>
+  </data>
+  <data name="ErrorNoHeadOrBody" xml:space="preserve">
+    <value>Der er ingen emne eller besked</value>
+  </data>
+  <data name="ErrorNoRecipients" xml:space="preserve">
+    <value>Der skal være mindst en modtager</value>
+  </data>
+  <data name="NewMessage" xml:space="preserve">
+    <value>Ny besked</value>
+  </data>
+  <data name="Recipients" xml:space="preserve">
+    <value>Modtagere</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Emne</value>
+  </data>
+  <data name="Teamleaders" xml:space="preserve">
+    <value>Holdledere</value>
+  </data>
+  <data name="TextareaLimitLimitText" xml:space="preserve">
+    <value>max tilladte tegn: %n.</value>
+    <comment>max allowed : %n.</comment>
+  </data>
+  <data name="TextareaLimitRemText" xml:space="preserve">
+    <value>%n tegn tilbage...</value>
+    <comment>%n character%s remaining...</comment>
+  </data>
+  <data name="FormSuccesMailSent" xml:space="preserve">
+    <value>Lige i øjet! Beskeden er sendt</value>
+  </data>
+  <data name="LoginInfoRetrived" xml:space="preserve">
+    <value>Log ind informationer er sendt til din e-mail og Mobil - hvis du har en Natteravne profil</value>
+  </data>
+  <data name="Outbox" xml:space="preserve">
+    <value>Sendte beskeder</value>
+  </data>
+  <data name="WriteMessageNew" xml:space="preserve">
+    <value>Send en ny besked</value>
+  </data>
+  <data name="LoginRegisterLink" xml:space="preserve">
+    <value>http://www.blivnatteravn.dk/</value>
+  </data>
+  <data name="LoginRegisterTxt" xml:space="preserve">
+    <value>Bliv Natteravn</value>
+  </data>
+  <data name="BtnNewFolder" xml:space="preserve">
+    <value>Ny Turmappe</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>Turmapper</value>
+  </data>
+  <data name="MyTeams" xml:space="preserve">
+    <value>Mine ture</value>
+  </data>
+  <data name="ThePlan" xml:space="preserve">
+    <value>Turplanen</value>
+  </data>
+  <data name="ErrorStartGreaterFinish" xml:space="preserve">
+    <value>Startdato skal være før slutdato</value>
+  </data>
+  <data name="ErrorStartGreaterToday" xml:space="preserve">
+    <value>Start må ikke være i fortiden</value>
+  </data>
+  <data name="FolderCreate" xml:space="preserve">
+    <value>Opret turmappe</value>
+  </data>
+  <data name="JavaScripDateformat" xml:space="preserve">
+    <value>dd-mm-yyyy</value>
+  </data>
+  <data name="TimeRange" xml:space="preserve">
+    <value>Tidsinterval</value>
+  </data>
+  <data name="AddTeams" xml:space="preserve">
+    <value>Tilføj ture til Turmappe</value>
+  </data>
+  <data name="BtnFolderCommunicate" xml:space="preserve">
+    <value>Kommunikation</value>
+  </data>
+  <data name="BtnFolderListView" xml:space="preserve">
+    <value>Turmappe listevisning</value>
+  </data>
+  <data name="BtnFolderPlannigView" xml:space="preserve">
+    <value>Turmappe planlægningsvisning</value>
+  </data>
+  <data name="BtnNewTeams" xml:space="preserve">
+    <value>Ny(e) ture</value>
+  </data>
+  <data name="FolderLink" xml:space="preserve">
+    <value>Tilbagemeldingslink</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Lokation</value>
+  </data>
+  <data name="ErrorDurationZero" xml:space="preserve">
+    <value>Varighed skal være længer en 0:00</value>
+  </data>
+  <data name="ErrorStartNotWithinFolderDate" xml:space="preserve">
+    <value>Start datoen skal være inden for Turmappens datoområde</value>
+  </data>
+  <data name="Teammember" xml:space="preserve">
+    <value>Ravn</value>
+  </data>
+  <data name="Teammembers" xml:space="preserve">
+    <value>Ravne</value>
+  </data>
+  <data name="When" xml:space="preserve">
+    <value>Hvornår</value>
+  </data>
+  <data name="DropDownChoose" xml:space="preserve">
+    <value>---Vælg---</value>
+  </data>
+  <data name="TooltipSimulateAssociation" xml:space="preserve">
+    <value>Simuler frivillig i organisation</value>
+  </data>
+  <data name="FeedBackHead" xml:space="preserve">
+    <value>Tilbagemelding</value>
+  </data>
+  <data name="FeedBackNoTeamsHead" xml:space="preserve">
+    <value>Hvornår kan du gå?</value>
+  </data>
+  <data name="FeedBackNoTeamsTxt" xml:space="preserve">
+    <value>Fjern afkrydsningen fra de ture nedenfor som du &lt;strong&gt;IKKE&lt;/strong&gt; har mulighed for at gå. Husk! At du kun kommer til at gå det antal ture som du har angivet ovenfor under punkt 2., så jo flere ture du tillader jo nemmer bliver det at få TurPlanen til at gå op.&lt;br /&gt;&lt;br/&gt;Tryk Send knappen i bunden når du er færdig.</value>
+  </data>
+  <data name="FeedBackPassHead" xml:space="preserve">
+    <value>Har du ikke mulighed for at gå i perioden {0}?</value>
+  </data>
+  <data name="FeedBackPassTxt" xml:space="preserve">
+    <value>Afkryds denne boks hvis du &lt;strong&gt;ikke&lt;/strong&gt; har mulighed for at gå &lt;strong&gt;nogen&lt;/strong&gt; af denne Turmappes turer i perioden {0}. (Alle turer vil blive markeret til at du ikke kan gå).</value>
+  </data>
+  <data name="FeedBackTeamsHead" xml:space="preserve">
+    <value>Hvor mange gange vil du gå i perioden {0}?</value>
+  </data>
+  <data name="FeedBackTeamsTxt" xml:space="preserve">
+    <value>Hvor mange turer ialt du ønsker at gå i perioden {0}. Turerne vil blive fordelt ligeligt over perioden, så vidt det lader sig gøre.</value>
+  </data>
+  <data name="TextDatePeriodFull" xml:space="preserve">
+    <value>dd. MMM yyyy</value>
+  </data>
+  <data name="TextDatePeriodMonth" xml:space="preserve">
+    <value>dd. MMM</value>
+  </data>
+  <data name="FeedBackLocationHead" xml:space="preserve">
+    <value>Hvilke lokationer vil du gå på?</value>
+  </data>
+  <data name="FeedBackLocationTxt" xml:space="preserve">
+    <value>Klik på de Lokationer du &lt;strong&gt;IKKE&lt;/strong&gt; ønsker at gå på. De vil blive skjult nedenfor og markeret som ikke mulige turer.</value>
+  </data>
+  <data name="SeeAllNotefications" xml:space="preserve">
+    <value>Se alle notifikationer</value>
+  </data>
+  <data name="UnreadNotifications" xml:space="preserve">
+    <value>{0} ulæste notefikationer</value>
+  </data>
+  <data name="BtnNewEvent" xml:space="preserve">
+    <value>Opret ny event</value>
+  </data>
+  <data name="EventCreate" xml:space="preserve">
+    <value>Opret event</value>
+  </data>
+  <data name="EventEdit" xml:space="preserve">
+    <value>Rediger event</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Aktiviteter</value>
+  </data>
+  <data name="Networks" xml:space="preserve">
+    <value>Netværk</value>
+  </data>
+  <data name="Distribution" xml:space="preserve">
+    <value>Distribution &lt;small&gt;Hvordan skal budskabet distribueres&lt;/small&gt;</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Kilde &lt;small&gt;Hvem er afsender af budskabet&lt;/small&gt;</value>
+  </data>
+  <data name="BtnNewCause" xml:space="preserve">
+    <value>Nyt kursus</value>
+  </data>
+  <data name="BtnNewNews" xml:space="preserve">
+    <value>Opret Nyhed</value>
+  </data>
+  <data name="BtnNewWiki" xml:space="preserve">
+    <value>Opret nyt emne </value>
+  </data>
+  <data name="CauseCreate" xml:space="preserve">
+    <value>Opret kursus</value>
+  </data>
+  <data name="CauseEdit" xml:space="preserve">
+    <value>Rediger kursus</value>
+  </data>
+  <data name="Causes" xml:space="preserve">
+    <value>Kurser</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>Nyheder</value>
+  </data>
+  <data name="NewsCreate" xml:space="preserve">
+    <value>Opret nyhed</value>
+  </data>
+  <data name="NewsEdit" xml:space="preserve">
+    <value>Rediger nyhed</value>
+  </data>
+  <data name="WikiCreate" xml:space="preserve">
+    <value>Opret emne</value>
+  </data>
+  <data name="WikiEdit" xml:space="preserve">
+    <value>Rediger emne</value>
+  </data>
+  <data name="Wikis" xml:space="preserve">
+    <value>Den Gule</value>
+  </data>
+  <data name="Teamnote" xml:space="preserve">
+    <value>Turnote</value>
+  </data>
+  <data name="MissingTakeIt" xml:space="preserve">
+    <value>Er du frisk?</value>
+  </data>
+  <data name="TrialNote" xml:space="preserve">
+    <value>Prøvetur</value>
+  </data>
+  <data name="SeniorInstructor" xml:space="preserve">
+    <value>Seniorinstruktør</value>
+  </data>
+  <data name="SeniorInstructorAssociations" xml:space="preserve">
+    <value>Tildelte foreninger</value>
+  </data>
+  <data name="SeniorInstructorMaterials" xml:space="preserve">
+    <value>Materialer</value>
+  </data>
+  <data name="SeniorInstructorMinutes" xml:space="preserve">
+    <value>Referater</value>
+  </data>
+  <data name="SeniorInstructorOverview" xml:space="preserve">
+    <value>Overblik</value>
+  </data>
+  <data name="WebPages" xml:space="preserve">
+    <value>Web Sider</value>
+  </data>
+  <data name="ConfirmTakeTeamSpot" xml:space="preserve">
+    <value>Ønsker du at tage denne tur?</value>
+  </data>
+  <data name="ProfileImageUpdate" xml:space="preserve">
+    <value>Når profilbilledet er ændret skal dine lokale data opdateres ved at du trykker på CTRL+F5</value>
+  </data>
+  <data name="Modules" xml:space="preserve">
+    <value>Moduler</value>
+  </data>
+  <data name="FileUploadNoUploaded" xml:space="preserve">
+    <value>Ingen fil er uploaded</value>
+  </data>
+  <data name="FileUploadWrongFormat" xml:space="preserve">
+    <value>Forkert format på fil</value>
+  </data>
+  <data name="FileUploadZeroLength" xml:space="preserve">
+    <value>Fil kan ikke være tom</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Billede</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Dokumenter</value>
+  </data>
+  <data name="TimeMonths" xml:space="preserve">
+    <value>{0} måneder</value>
+  </data>
+  <data name="TimeSpanAnd" xml:space="preserve">
+    <value> og </value>
+  </data>
+  <data name="TimeSpanDay" xml:space="preserve">
+    <value>{0} dag</value>
+  </data>
+  <data name="TimeSpanDays" xml:space="preserve">
+    <value>{0} dage</value>
+  </data>
+  <data name="TimeSpanHour" xml:space="preserve">
+    <value>{0} time</value>
+  </data>
+  <data name="TimeSpanHours" xml:space="preserve">
+    <value>{0} timer</value>
+  </data>
+  <data name="TimeSpanMinutes" xml:space="preserve">
+    <value>{0} minutter</value>
+  </data>
+  <data name="TimeSpanMonth" xml:space="preserve">
+    <value>{0} måned</value>
+  </data>
+  <data name="TimeSpanMonths" xml:space="preserve">
+    <value>{0} måneder</value>
+  </data>
+  <data name="TimeSpanOnemoment" xml:space="preserve">
+    <value>et øjeblik</value>
+  </data>
+  <data name="TimeSpanYear" xml:space="preserve">
+    <value>{0} år</value>
+  </data>
+  <data name="TimeSpanYears" xml:space="preserve">
+    <value>{0} år</value>
+  </data>
+  <data name="Words" xml:space="preserve">
+    <value>Ord</value>
+  </data>
+  <data name="MaxSize" xml:space="preserve">
+    <value>Maximal størrelse</value>
+  </data>
+  <data name="UploadFile" xml:space="preserve">
+    <value>Upload fil</value>
+  </data>
+  <data name="UploadFileInfo" xml:space="preserve">
+    <value>Vælg den fil på din computer som du ønsker at uploade.</value>
+  </data>
+  <data name="SIServer" xml:space="preserve">
+    <value>SI Server</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Filer</value>
+  </data>
+  <data name="BtnNewFile" xml:space="preserve">
+    <value>Ny fil</value>
+  </data>
+  <data name="FileCreate" xml:space="preserve">
+    <value>Ny fil</value>
+  </data>
+  <data name="FileEdit" xml:space="preserve">
+    <value>Rediger fil</value>
+  </data>
+  <data name="AccessAdmin" xml:space="preserve">
+    <value>Admin rettigheder</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Rolle</value>
+  </data>
+  <data name="RoleHeadlineAdmin" xml:space="preserve">
+    <value>Bruger med Admin rettigheder</value>
+  </data>
+  <data name="RoleHeadlineForm" xml:space="preserve">
+    <value>Tildel bruger rettighed</value>
+  </data>
+  <data name="RoleHeadlineManagenent" xml:space="preserve">
+    <value>Bruger med Management rettigheder</value>
+  </data>
+  <data name="RoleHelp" xml:space="preserve">
+    <value>Tildeler Brugernavn en rolle</value>
+  </data>
+  <data name="SendMe" xml:space="preserve">
+    <value>Send!</value>
+  </data>
+  <data name="SystemTextMessagesForgetLogin" xml:space="preserve">
+    <value>Log ind til frivillig.natteravnene.dk
+
+Brugernavn: {0}
+Kodeord: {1}</value>
+  </data>
+  <data name="SystemTextMessagesFrom" xml:space="preserve">
+    <value>Natteravnen</value>
+    <comment>max 11 characters</comment>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="SystemTextMessagesTeamNote" xml:space="preserve">
+    <value>Note til turen ##Turstart##
+----------------------------</value>
+  </data>
+  <data name="MissingFeedback" xml:space="preserve">
+    <value>Personer der mangler at give tilbagemelding</value>
+  </data>
+  <data name="AddBoardAlternate" xml:space="preserve">
+    <value>Tilføj suppleanter</value>
+  </data>
+  <data name="AddBoardMembers" xml:space="preserve">
+    <value>Tilføj bestyrelsesmedlemmer</value>
+  </data>
+  <data name="FeedbackTextLink" xml:space="preserve">
+    <value>Du kan give feedback på følgende link {0}</value>
+  </data>
+  <data name="MessageNotificationFooter" xml:space="preserve">
+    <value>Besked fra frivillig.natteravnene.dk</value>
+  </data>
+  <data name="MessageAll" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="MessageLong" xml:space="preserve">
+    <value>Lang besked</value>
+  </data>
+  <data name="MessageNone" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="MessageRead" xml:space="preserve">
+    <value>Læste</value>
+  </data>
+  <data name="MessageShort" xml:space="preserve">
+    <value>Kort besked</value>
+  </data>
+  <data name="MessageUnread" xml:space="preserve">
+    <value>Ulæste</value>
+  </data>
+  <data name="MessagePage" xml:space="preserve">
+    <value>side {0} af {1}</value>
+  </data>
+  <data name="MessageTotal" xml:space="preserve">
+    <value>{0} beskede ialt</value>
+  </data>
+  <data name="ErrorTrialToManyTeammembers" xml:space="preserve">
+    <value>For mange Ravne  når det er en Prøvetur</value>
+  </data>
+  <data name="GenderFemale" xml:space="preserve">
+    <value>Kvinder</value>
+  </data>
+  <data name="GenderMale" xml:space="preserve">
+    <value>Mænd</value>
+  </data>
+  <data name="PFBHead" xml:space="preserve">
+    <value>Tilbagemeldings  link forkert</value>
+  </data>
+  <data name="PFHSubhead" xml:space="preserve">
+    <value>Linket du bruger kan vi desværre ikke bruge tjek det venligst igen.</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Ændre kodeord</value>
+  </data>
+  <data name="PersonSetup" xml:space="preserve">
+    <value>Opsætning</value>
+  </data>
+  <data name="SeeAllEvents" xml:space="preserve">
+    <value>Se alle aktiviteter</value>
+  </data>
+  <data name="SeeAllNews" xml:space="preserve">
+    <value>Se alle nyheder</value>
+  </data>
+  <data name="BtnExportAllPeople" xml:space="preserve">
+    <value>Eksporter alle til Excel</value>
+  </data>
+  <data name="BtnExportBoards" xml:space="preserve">
+    <value>Eksporter Bestyrelsesmedlemmer</value>
+  </data>
+  <data name="BtnExportChairmen" xml:space="preserve">
+    <value>Eksporter Formænd</value>
+  </data>
+  <data name="BtnExportSI" xml:space="preserve">
+    <value>Eksporter SeniorInstruktører</value>
+  </data>
+  <data name="CapsLockOn" xml:space="preserve">
+    <value>Caps Lock er slået til</value>
+  </data>
+  <data name="ErrorPassword" xml:space="preserve">
+    <value>Nyt kodeord er ikke gyldigt. Kodeordet skal være mellem 6 og 10 karakter lang kun indeholde bokstaver og tal samt *!#%&amp;</value>
+  </data>
+  <data name="ErrorPasswordMismatch" xml:space="preserve">
+    <value>Det nuværende kodeord er forkert eller de nye er ikke ens eller forkert</value>
+  </data>
+  <data name="ExcelTitelSI" xml:space="preserve">
+    <value>Natteravnene SeniorInstruktører</value>
+  </data>
+  <data name="ExcelTitleBoard" xml:space="preserve">
+    <value>Natteravnene Bestyrelsesmedlemmer</value>
+  </data>
+  <data name="ExcelTitleChairmen" xml:space="preserve">
+    <value>Natteravnene Formænd</value>
+  </data>
+  <data name="GetIdcard" xml:space="preserve">
+    <value>Download Idkort</value>
+  </data>
+  <data name="TooltipAssociationNote" xml:space="preserve">
+    <value>Indsæt note på foreningen</value>
+  </data>
+  <data name="Absent" xml:space="preserve">
+    <value>Udmeld personen af Foreningen</value>
+  </data>
+  <data name="BtnExportToExcel" xml:space="preserve">
+    <value>Eksporter til Excel</value>
+  </data>
+  <data name="ErrorKeybox" xml:space="preserve">
+    <value>Ny keyboxkode er ikke gyldigt. keyboxkoden skal være op til 10 karakter lang kun indeholde bokstaver og tal samt *!#%&amp;</value>
+  </data>
+  <data name="KeyBox" xml:space="preserve">
+    <value>Nøglebokskode</value>
+  </data>
+  <data name="MessageSendLogin" xml:space="preserve">
+    <value>Log ind sent til personen</value>
+  </data>
+  <data name="TooltipSendLogin" xml:space="preserve">
+    <value>Send brugeres log ind via e-mail</value>
+  </data>
+  <data name="KeyBoxHeadline" xml:space="preserve">
+    <value>Keyboxkoden er: </value>
+  </data>
+  <data name="MailToHeadNoName" xml:space="preserve">
+    <value>E-mail list uden navn</value>
+  </data>
+  <data name="MailToHeadWithName" xml:space="preserve">
+    <value>E-mail list med navn</value>
+  </data>
+  <data name="MessageMailTo" xml:space="preserve">
+    <value>E-mails til ekstern afsendelse</value>
+  </data>
+  <data name="MessageMailToExplain" xml:space="preserve">
+    <value>Marker teksten i nedestående felt. Vælg alle linjer (CTRL+A), kopier (CTRL+C) og gå til dit e-mail program og indsæt e-mails (CTRL-V).</value>
+  </data>
+  <data name="FileLibrary" xml:space="preserve">
+    <value>Filbibliotek</value>
+  </data>
+  <data name="BtnAllNotificationRead" xml:space="preserve">
+    <value>Sæt alle notifikationer som læst</value>
+  </data>
+  <data name="FormHandledException" xml:space="preserve">
+    <value>Tjaa.. Der er sket en fejl som jeg ikke selv kan fixe. Jeg har meddelt de kloge mennersker dette så de kigger på det. Jeg beklager!</value>
+  </data>
+  <data name="FolderEdit" xml:space="preserve">
+    <value>Rediger turmappe</value>
+  </data>
+  <data name="General.ProfileEdit" xml:space="preserve">
+    <value>Rediger profil</value>
+  </data>
+  <data name="ProfileCreate" xml:space="preserve">
+    <value>Rediger profil</value>
+  </data>
+  <data name="ProfileImageExists" xml:space="preserve">
+    <value>Personen har et profil billede</value>
+  </data>
+  <data name="AssociationEditComment" xml:space="preserve">
+    <value>Rediger kommentar</value>
+  </data>
+  <data name="GenderDistributionOK" xml:space="preserve">
+    <value>Køns fordeling ok  &gt;&gt;</value>
+  </data>
+  <data name="HeadFeedback" xml:space="preserve">
+    <value>Tilbage&lt;br /&gt;melding</value>
+  </data>
+  <data name="HeadTeamStatus" xml:space="preserve">
+    <value>Max/nu&lt;br /&gt;ture</value>
+  </data>
+  <data name="ConfirmUpdateTeamStatus" xml:space="preserve">
+    <value>Opdater Tur status?</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Tilbage</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Besked</value>
+  </data>
+  <data name="MessageOfTotal" xml:space="preserve">
+    <value>Besked {0} af {1}</value>
+  </data>
+  <data name="P500ErrorInfo" xml:space="preserve">
+    <value>Send eventuelt uddybende informationer i en mail:</value>
+  </data>
+  <data name="P500Head" xml:space="preserve">
+    <value>Ups. Der skete en fejl</value>
+  </data>
+  <data name="P500SubHead" xml:space="preserve">
+    <value> Fejlen er blevet noteret og vi kigger på det hurtigst muligt</value>
+  </data>
+  <data name="P500Try" xml:space="preserve">
+    <value>Prøv eventuelt:</value>
+  </data>
+  <data name="P500Try1" xml:space="preserve">
+    <value>Det kan være en periodisk fejl så prøv igen.</value>
+  </data>
+  <data name="P500Try2" xml:space="preserve">
+    <value>Se om det er en kendt fejl</value>
+  </data>
+  <data name="DropDownEmpty" xml:space="preserve">
+    <value>--- Ingen ---</value>
+  </data>
+  <data name="AddWikiWord" xml:space="preserve">
+    <value>Tilføj ord</value>
+  </data>
+  <data name="BtnCreateTooltip" xml:space="preserve">
+    <value>Klik her for at oprette data</value>
+  </data>
+  <data name="BtnHelpTooltip" xml:space="preserve">
+    <value>Hjælp til denne side</value>
+  </data>
+  <data name="BtnMessagesTooltip" xml:space="preserve">
+    <value>Her kan du se om der er nogle ulæste beskeder, samt liste over de sidste modtaget. </value>
+  </data>
+  <data name="BtnNewEventTooltip" xml:space="preserve">
+    <value>Klik her for at oprette en aktivitet. OBS! Knappen kan kun ses af redaktører</value>
+  </data>
+  <data name="BtnNewNewsTooltip" xml:space="preserve">
+    <value>Klik her for at oprette en nyhed. OBS! Knappe kan kun ses af redaktører</value>
+  </data>
+  <data name="BtnNotificationTooltip" xml:space="preserve">
+    <value>Her kan du se ulæste notifikationer fra systemet</value>
+  </data>
+  <data name="BtnSaveTooltip" xml:space="preserve">
+    <value>Klik her for at gemme data</value>
+  </data>
+  <data name="BtnSilentEdit" xml:space="preserve">
+    <value>Klik her for at redigere</value>
+  </data>
+  <data name="BtnAddPersonForAccessTooltip" xml:space="preserve">
+    <value>Tilføj person, fra rulle listen, der skal have rettigheder i foreningen. </value>
+  </data>
+  <data name="BtnBackToAssociationTooltip" xml:space="preserve">
+    <value>Tilbage til se foreningen</value>
+  </data>
+  <data name="BtnBackToBoardTooltip" xml:space="preserve">
+    <value>Tilbage til se bestyrelsen</value>
+  </data>
+  <data name="BtnCreateNewLocationTooltip" xml:space="preserve">
+    <value>Opret en ny lokation for foreningen</value>
+  </data>
+  <data name="BtnExportPersonsExcel" xml:space="preserve">
+    <value>Eksporter alle frivillige til en Excel fil</value>
+  </data>
+  <data name="BtnNewPersonTooltip" xml:space="preserve">
+    <value>Klik her for at oprette en person (Frivillig, VIp, Støtte person)</value>
+  </data>
+  <data name="BtnUpdateAccessTooltip" xml:space="preserve">
+    <value>Opdater rettigheder i foreningen</value>
+  </data>
+  <data name="BtnExportPrint" xml:space="preserve">
+    <value>Export til NatteravneNyt</value>
+  </data>
+  <data name="FrontMetaDescription" xml:space="preserve">
+    <value>Natteravnenes Intranet for alle de frivillige Natteravne. Her finder du nyheder, liste over de Natteravnene m.m. Det er Natteravnenes primære formål, at udvise omsorg og ansvarlighed, og som gode rollemodeller medvirke til at skabe større tryghed og især hjælpe børn og unge til øget livsglæde og integration.</value>
+  </data>
+  <data name="SystemTextMessagesWelcome" xml:space="preserve">
+    <value>Velkommen til Natteravnenes Intranet!
+Din Natteravneforening har nu oprettet dig på Natteravnenes intranet, som er et system, der indeholder informationer om dig som frivillig, informationer og nyheder fra din forening, det lokale netværk din forening er med i, samt Natteravnenes Landssekretariat.
+For at komme ind på systemet skal du gå på internettet (via computer, tablet, eller mobiltelefon) og skrive internetadressen
+http://frivillig.natteravnene.dk
+
+Brug følgende koder for at komme ind:
+Brugernavn: {0}
+Kodeord: {1}</value>
+  </data>
+</root>

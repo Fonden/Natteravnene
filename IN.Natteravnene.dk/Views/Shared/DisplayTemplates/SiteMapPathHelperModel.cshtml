@@ -1,0 +1,27 @@
+﻿@model MvcSiteMapProvider.Web.Html.Models.SiteMapPathHelperModel
+@using System.Web.Mvc.Html
+@using System.Linq
+@using MvcSiteMapProvider.Web.Html.Models
+
+@foreach (var node in Model)
+{
+    if (node == Model.First())
+    {
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            @Html.DisplayFor(m => node)
+        </li>
+    }
+    else if (node == Model.Last())
+    {
+        <li class="active">
+            @Html.DisplayFor(m => node)
+        </li>
+    }
+    else
+    {
+        <li>
+            @Html.DisplayFor(m => node)
+        </li>
+    }
+}

@@ -1,0 +1,67 @@
+﻿@model List<News>
+@section inlinescripts {
+
+<script type="text/javascript">
+    jQuery(function ($) {
+
+    var index = 0;
+    var _inCallback = false;
+
+    function loadProducts() {
+        if (index > -1 && !_inCallback) {
+            _inCallback = true;
+            index++;
+            $('div#loading').html('<div class="message-loading-overlay"><i class="fa-spin ace-icon fa fa-spinner orange2 bigger-160"></i></div>');
+            $.get("@Url.Action("Index", null, new { id = "0" })" + index , function (data) {
+                if (data != '') {
+                    $("#newsList").append(data);
+                }
+                else {
+                    index = -1;
+                }
+
+                _inCallback = false;
+                $('div#loading').empty();
+            });
+        }
+    }
+
+    var dcList = true;
+
+    //$(window).scroll(function () {
+    //    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+
+    //        loadProducts();
+    //    }
+
+
+        //lastAddedLiveFunc();
+        $(window).scroll(function () {
+
+            var wintop = $(window).scrollTop(), docheight = $(document).height(), winheight = $(window).height();
+            var scrolltrigger = 0.95;
+
+            if ((wintop / (docheight - winheight)) > scrolltrigger) {
+                //console.log('scroll bottom');
+                //lastAddedLiveFunc();
+                loadProducts();
+            }
+        });
+
+
+    });
+</script>
+    }
+<div class="page-header position-relative">
+    @if (NR.Infrastructure.CurrentProfile.isEditor | NR.Infrastructure.CurrentProfile.isSecretary)
+    {
+        @Html.ActionLink(General.BtnNewNews, "Edit", null, null, new { @class = "btn btn-small btn-primary pull-right", data_rel = "tooltip", data_placement = "left", title = General.BtnNewNewsTooltip })
+    }
+    <h1>@General.News</h1>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-12 col-lg-8" id="newsList">
+        @{ Html.RenderPartial("_newsListing", Model);}
+    </div>
+    <div id="loading"></div>
+</div>

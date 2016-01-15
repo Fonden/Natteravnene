@@ -1,0 +1,31 @@
+﻿@model DisplayProfile
+
+<table id="Association-table" class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <td>@DomainStrings.AssociationName</td>
+            <td>@DomainStrings.SignupDate</td>
+            <td>@DomainStrings.PersonType</td>
+            <td>Funktion</td>
+            <td>@DomainStrings.Teamleader</td>
+            <td>@DomainStrings.Absent</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (NRMembership m in Model.Person.Memberships)
+        {
+            <tr>
+                <td>@m.Association.Name</td>
+                <td>@m.SignupDate.ToShortDateString("-")</td>
+                <td>@m.Type.DisplayName()</td>
+                <td>@Html.MembershipOnlyAttributesIcons(m)</td>
+                <td>@Html.IconBoolTable(m.Teamleader)</td>
+                <td>@m.AbsentDate.ToShortDateString("-")</td>
+
+            </tr>
+
+        }
+    </tbody>
+
+</table>
+

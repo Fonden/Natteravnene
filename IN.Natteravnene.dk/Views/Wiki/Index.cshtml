@@ -1,0 +1,92 @@
+﻿@model WikiViewModel
+<div class="page-header position-relative">
+    <h1>
+         @General.Wikis
+    </h1>
+</div>
+
+<ul class="pagination alpha">
+    @foreach (var link in Model.Alphabet)
+    {
+        if (Model.FirstLetters.Contains(link) || (Model.NamesStartWithNumbers && link == "0-9") || link == "Alle")
+        {
+            if (Model.SelectedLetter == link || Model.SelectedLetter.IsEmpty() && link == "Alle")
+            {
+                <li class="active"><span>@link</span></li>
+            }
+            else
+            {
+                <li>@Html.ActionLink(link, "Index", new { selectedLetter = link })</li>
+            }
+        }
+        else
+        {
+            <li class="inactive"><span>@link</span></li>
+        }
+    }
+</ul>
+@{
+    int num = Model.Words.Count / 3;
+    char CurLetter = ' ';
+    
+}
+<div class="row">
+    <div class="col-lg-4">
+        <ul class="listalpha">
+            @foreach (var item in Model.Words.GetRange(0, num))
+            {
+                if (CurLetter != item.Word.ToUpper()[0])
+                {
+                    CurLetter = item.Word.ToUpper()[0];
+                    <li data-letter="@item.Word.ToUpper()[0]">@Html.ActionLink(item.Word, "View", new { id = item.Wiki.WikiID })</li>
+
+                }
+                else
+                {
+                    <li>@Html.ActionLink(item.Word, "View", new { id = item.Wiki.WikiID })</li>
+                }
+            }
+        </ul>
+
+
+
+
+
+    </div>
+    <div class="col-lg-4">
+        <ul class="listalpha">
+            @foreach (var item in Model.Words.GetRange(num, num))
+            {
+                if (CurLetter != item.Word.ToUpper()[0])
+                {
+                    CurLetter = item.Word.ToUpper()[0];
+                    <li data-letter="@item.Word.ToUpper()[0]">@Html.ActionLink(item.Word, "View", new { id = item.Wiki.WikiID })</li>
+
+                }
+                else
+                {
+                    <li>@Html.ActionLink(item.Word, "View", new { id = item.Wiki.WikiID })</li>
+                }
+            }
+        </ul>
+    </div>
+    <div class="col-lg-4">
+        <ul class="listalpha">
+            @foreach (var item in Model.Words.GetRange(num * 2, Model.Words.Count - 2 * num))
+            {
+                if (CurLetter != item.Word.ToUpper()[0])
+                {
+                    CurLetter = item.Word.ToUpper()[0];
+                    <li data-letter="@item.Word.ToUpper()[0]">@Html.ActionLink(item.Word, "View", new { id = item.Wiki.WikiID })</li>
+
+                }
+                else
+                {
+                    <li>@Html.ActionLink(item.Word, "View", new { id = item.Wiki.WikiID })</li>
+                }
+            }
+        </ul>
+    </div>
+
+
+</div>

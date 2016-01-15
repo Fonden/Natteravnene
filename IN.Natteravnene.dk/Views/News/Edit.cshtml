@@ -1,0 +1,396 @@
+﻿@model News
+@section pagescripts {
+    @Scripts.Render("~/bundles/form")
+    @Scripts.Render("~/bundles/jcrop")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+
+
+        jQuery.validator.addMethod('date',
+           function (value, element, params) {
+               if (this.optional(element)) {
+                   return true;
+               }
+               try {
+                   var format = getDateFormat('@General.JavaScripDateformat HH:mm');
+                   var result = MyParseDate(value, format);
+                   return result;
+               } catch (err) {
+                   console.log(err);
+                   return false;
+               }
+           });
+
+        jQuery(function ($) {
+
+            ///////////////////////////////////////////
+            $('#ContentEditor').ace_wysiwyg({
+                toolbar:
+                [
+                    { name: 'bold', className: 'btn-info' },
+                    { name: 'italic', className: 'btn-info' },
+                    { name: 'underline', className: 'btn-info' },
+                    null,
+                    { name: 'insertunorderedlist', className: 'btn-success' },
+                    { name: 'insertorderedlist', className: 'btn-success' },
+                    { name: 'outdent', className: 'btn-purple' },
+                    { name: 'indent', className: 'btn-purple' },
+                    null,
+                    { name: 'undo', className: 'btn-grey' },
+                    { name: 'redo', className: 'btn-grey' },
+                    null,
+			        { name: 'createLink', className: 'btn-pink' },
+			        { name: 'unlink', className: 'btn-pink' }
+                ]
+            }).prev();
+
+
+
+            jQuery('#Publish').datetimepicker({
+                format: 'd.m.Y H:i:s',
+                inline: true,
+                lang: 'da',
+                dayOfWeekStart: 1
+            });
+
+            jQuery('#Depublish').datetimepicker({
+                format: 'd.m.Y H:i:s',
+                inline: true,
+                lang: 'da',
+                dayOfWeekStart: 1
+            });
+
+
+
+            $("select#Distribution").change(function (evt) {
+                $('select#DistributionLink').hide();
+
+                switch ($("select#Distribution").val()) {
+                    case "@((int)LevelType.Local)":
+                        $.ajax({
+                            url: "@Url.Action("GetSelectListAssociations", "Association", new { Area = ""})",
+                            type: 'POST',
+                            success: function (associations) {
+
+                                // states is your JSON array
+                                var $select = $('select#DistributionLink');
+                                $select.find('option').remove().end()
+                                $.each(associations, function (i, association) {
+                                    $('<option>', {
+                                        value: association.Value
+                                    }).html(association.Text).appendTo($select);
+                                    $select.show();
+                                });
+                            }
+                        });
+                        break;
+
+
+                    case "@((int)LevelType.Network)":
+                        $.ajax({
+                            url: "@Url.Action("GetSelectListNetworks", "Association", new { Area = "" })",
+                            type: 'POST',
+                            success: function (networks) {
+
+                                // states is your JSON array
+                                var $select = $('select#DistributionLink');
+                                $select.find('option').remove().end()
+                                $.each(networks, function (i, network) {
+                                    $('<option>', {
+                                        value: network.Value
+                                    }).html(network.Text).appendTo($select);
+                                    $select.show();
+                                });
+                            }
+                        });
+                        break;
+
+
+                }
+
+
+            });
+
+
+            $("select#Source").change(function (evt) {
+                $('select#SourceLink').hide();
+
+                switch ($("select#Source").val()) {
+                    case "@((int)LevelType.Local)":
+
+                        $.ajax({
+                            url: "@Url.Action("GetSelectListAssociations", "Association", new { Area = ""})",
+                            type: 'POST',
+                            success: function (associations) {
+
+                                // states is your JSON array
+                                var $select = $('select#SourceLink');
+                                $select.find('option').remove().end()
+                                $.each(associations, function (i, association) {
+                                    $('<option>', {
+                                        value: association.Value
+                                    }).html(association.Text).appendTo($select);
+                                    $select.show();
+                                });
+                            }
+                        });
+                        break;
+
+                    case "@((int)LevelType.Network)":
+
+                        $.ajax({
+                            url: "@Url.Action("GetSelectListNetworks", "Association", new { Area = "" })",
+                            type: 'POST',
+                            success: function (associations) {
+
+                                var $select = $('select#SourceLink');
+                                $select.find('option').remove().end()
+                                $.each(associations, function (i, association) {
+                                    $('<option>', {
+                                        value: association.Value
+                                    }).html(association.Text).appendTo($select);
+                                    $select.show();
+                                });
+                            }
+                        });
+                        break;
+
+                }
+            });
+
+
+            $('form').on('submit', function () {
+
+                //put the editor's html content inside the hidden input to be sent to server
+                $('input[name=Content]', this).val($('#ContentEditor').html());
+
+                return true;
+            });
+
+
+            if (typeof $('#image-upload-form') !== undefined) {
+                var maxSizeAllowed = 10; // ToDo - Change upload limit in MB
+
+                initImageUpload();
+
+                $('#image-max-size').html(maxSizeAllowed);
+
+                $("#image-upload-form input:file").on("change", function (e) {
+                    var files = e.currentTarget.files;
+
+                    for (var x in files) {
+                        if (files[x].name != "item" && typeof files[x].name != "undefined") {
+                            if (files[x].size <= maxSizeAllowed * 1024 * 1024) {
+                                // Submit the selected file
+                                $('#image-upload-form .upload-file-notice').removeClass('bg-danger');
+                                $('#image-upload-form').submit();
+                            } else {
+                                // File too large
+                                $('#image-upload-form .upload-file-notice').addClass('bg-danger');
+                            }
+                        }
+                    }
+                });
+            }
+
+
+            function initImageUpload() {
+                $('#image-upload-form').ajaxForm({
+                    beforeSend: function () {
+                        updateProgress(0);
+                        //$('#avatar-upload-form').addClass('hidden');
+                    },
+                    uploadProgress: function (event, position, total, percentComplete) {
+                        updateProgress(percentComplete);
+                    },
+                    success: function (data) {
+                        updateProgress(100);
+                        if (data.success === false) {
+                            $('#status').html(data.errorMessage);
+                        } else {
+                            (new Image()).src = data.fileName;
+                            $('#image-upload-form img').attr('src', data.fileName);
+                            $('.upload-progress').addClass('hidden');
+                            $('#files').after($('#files').clone(true)).remove();
+
+                        }
+                    },
+                    complete: function (xhr) {
+                    }
+                });
+            }
+
+            function updateProgress(percentComplete) {
+                $('.upload-percent-bar').width(percentComplete + '%');
+                $('.upload-percent-value').html(percentComplete + '%');
+                if (percentComplete === 0) {
+                    $('#upload-status').empty();
+                    $('.upload-progress').removeClass('hidden');
+                }
+            }
+
+            if ($('#Depublishdisable').attr("checked")) {
+                $('#depublishcontainer').hide();
+            }
+
+            $('#Depublishdisable').on('click', function () {
+                $('#depublishcontainer').toggle();
+                $('#Depublish').val('') = '';
+            });
+
+            if ($('#Publishdisable').attr("checked")) {
+                $('#publishcontainer').hide();
+            }
+
+            $('#Publishdisable').on('click', function () {
+                $('#publishcontainer').toggle();
+                $('#Publish').val('') = '';
+            });
+
+
+        });
+    </script>
+}
+<div class="page-header position-relative">
+    <h1>
+        <a href="@Url.Action("Index")" class="btn btn-small btn-primary">
+            <i class="ace-icon @Icons.BackIcon icon-only"></i>
+        </a> @(Model.NewsId == Guid.Empty ? General.NewsCreate : General.NewsEdit)
+    </h1>
+</div>
+@if (Model.NewsId != Guid.Empty)
+{
+
+    using (Ajax.BeginForm("_Upload", "News", new { area = "" }, new AjaxOptions() { HttpMethod = "POST" }, new { enctype = "multipart/form-data", id = "image-upload-form", @class = "form-horizontal" }))
+    {
+
+        <div class="form-group">
+
+            <label class="col-sm-2 control-label no-padding-right">@General.Image</label>
+            <div class="col-sm-3">
+                @Html.NewsImage(Model, new { @class = "img-rounded img-responsive" }, true)
+            </div>
+            <div class="col-sm-4">
+                @Html.HiddenFor(m => m.NewsId)
+                <input type="file" name="files" /><br>
+                <div class="upload-file-notice">Maximum size: <span id="image-max-size"></span> MB</div>
+                <div class="upload-progress hidden">
+                    <div class="upload-percent-value pull-left">0%</div>
+                    <div class="upload-percent-bar pull-left"></div>
+                </div>
+                <div id="upload-status"></div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="space-4"></div>
+    }
+}
+
+@using (Html.BeginForm("Edit", null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+
+    @Html.Partial("~/Views/Shared/_FormSummery.cshtml");
+    @Html.HiddenFor(m => m.NewsId)
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Headline, new { @class = "col-sm-2 control-label no-padding-right" })
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.Headline, new { @class = "form-control", placeholder = DomainStrings.Headline })
+            @Html.ValidationMessageFor(m => m.Headline)
+        </div>
+    </div>
+
+
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Teaser, new { @class = "col-sm-2 control-label no-padding-right" })
+        <div class="col-sm-8">
+            @Html.TextAreaFor(m => m.Teaser, new { @class = "form-control", placeholder = DomainStrings.Headline })
+            @Html.ValidationMessageFor(m => m.Teaser)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Internal, new { @class = "col-sm-2 control-label no-padding-right" })
+        <div class="input-group">
+            <label>
+                <input id="@Html.IdFor(f => f.Internal)" name="@Html.NameFor(f => f.Internal)" class="ace ace-switch ace-switch-6" type="checkbox" value="true" @if (Model.Internal == true) { <text> checked </text>              } />
+                <span class="lbl"></span>
+            </label>
+        </div>
+        </div>
+        <div class="space-4"></div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Content, new { @class = "col-sm-2 control-label no-padding-right" })
+            <div class="col-sm-8">
+                <div class="wysiwyg-editor" id="ContentEditor">
+                    @Html.Raw(Model.Content)
+                </div>
+                @Html.HiddenFor(f => f.Content)
+                @Html.ValidationMessageFor(m => m.Content)
+            </div>
+        </div>
+
+        <div class="space-4"></div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Publish, new { @class = "col-sm-3 control-label no-padding-right" })
+                    <div class="col-sm-10">
+
+                        <div class="input-group">
+                            @if (Model.NewsId == Guid.Empty)
+                        {
+                                <label>
+                                    <input id="Publishdisable" name="Publishdisable" class="ace" type="checkbox" value="true" @if (Model.Depublish == null) { <text> checked </text>                 } />
+                                    <span class="lbl"> Nu</span>
+                                </label>
+                        }
+                            <div id="publishcontainer">
+                                <input name="@Html.NameFor(m => m.Publish)" id="@Html.IdFor(m => m.Publish)" value="@Model.Publish" />
+                            </div>
+
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Publish)
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-4">
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Depublish, new { @class = "col-sm-3 control-label no-padding-right" })
+                    <div class="col-sm-10">
+
+                        <div class="input-group">
+
+                            <div id="depublishcontainer">
+                                <input name="@Html.NameFor(m => m.Depublish)" id="@Html.IdFor(m => m.Depublish)" value="@Model.Depublish" />
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Depublish)
+                        <label>
+                            <input id="Depublishdisable" name="Depublishdisable" class="ace" type="checkbox" value="true" @if (Model.Depublish == null) { <text> checked </text>                  } />
+                            <span class="lbl"> Aldrig</span>
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="space-4"></div>
+            </div>
+        </div>
+        <div class="space-4"></div>
+        <div class="form-actions">
+            <button class="btn btn-info" type="submit" data-rel="tooltip" data-placement="right" title="@(Model.NewsId == Guid.Empty ? General.BtnCreateTooltip : General.BtnSaveTooltip)">
+                <i class="icon-ok bigger-110"></i>
+                @(Model.NewsId == Guid.Empty ? General.Create : General.Save)
+            </button>
+        </div>
+
+        }

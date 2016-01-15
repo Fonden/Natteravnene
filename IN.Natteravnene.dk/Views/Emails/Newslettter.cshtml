@@ -1,0 +1,9 @@
+﻿@model FeedbackFolder
+@section Headers {
+    To:  @Model.To
+    From: info@natteravnene.dk
+    Subject: TurMappe: @Model.folder.FoldereName
+   @if (string.IsNullOrWhiteSpace(Model.ReplyTo)) {  <text>Reply-To: @Model.ReplyTo</text> }
+    Views: Html
+}
+

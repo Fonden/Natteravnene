@@ -1,0 +1,18 @@
+﻿<div class="page-header position-relative">
+    <h1>@General.Status</h1>
+</div>
+
+<h2>Bruger konto</h2>
+<p>Fejlsøger en konto baseret på BrugerNavn.</p>
+
+@using (Ajax.BeginForm("_fixaccount", "Home", new { area = "Admin" }, new AjaxOptions() { 
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace, //target element(#patientList) will be replaced
+    UpdateTargetId = "fixaccuntstatus"
+    }, new { id = "testtext", @class = "form-horizontal" }))
+{
+    <input type="text" name="Username" />
+    <input type="submit" value="OK" />
+}
+<div id="fixaccuntstatus"></div>
+

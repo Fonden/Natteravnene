@@ -1,0 +1,90 @@
+﻿@model AdminAccessModel
+<div class="page-header position-relative">
+
+
+    <h1>@General.AccessAdmin</h1>
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="widget-box">
+            <div class="widget-header">
+                <h5 class="widget-title">@General.RoleHeadlineAdmin</h5>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    @if (Model.UserInAdminRole != null && Model.UserInAdminRole.Any())
+                    {
+                        <ul>
+                            @foreach (string UserName in Model.UserInAdminRole)
+                            {
+                                <li>@UserName @if(Roles.IsUserInRole("Administrator")) {<a href="@Url.Action("Delete", null, new { UserName = UserName, Role = "Management" })" class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></a>}</li>
+                            }
+                        </ul>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="widget-box">
+            <div class="widget-header">
+                <h5 class="widget-title">@General.RoleHeadlineManagenent</h5>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main">
+                    @if (Model.UserInManagementRole != null && Model.UserInManagementRole.Any())
+                    {
+                        <ul>
+                            @foreach (string UserName in Model.UserInManagementRole)
+                            {
+                                <li>@UserName <a href="@Url.Action("Delete", null, new { UserName = UserName, Role = "Management" })" class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i></a></li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="widget-box">
+            <div class="widget-header">
+                <h5 class="widget-title">@General.RoleHeadlineForm</h5>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main no-padding">
+ @using (Html.BeginForm("Assign", null, FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+
+                        <!-- <legend>Form</legend> -->
+                        <fieldset>
+                            <label>@DomainStrings.Username</label>
+
+                            <input name="UserName" type="text" placeholder="@DomainStrings.Username" /><br />
+                            <label>@General.Role</label>
+                            @Html.DropDownList("Role", Model.DropRoles)
+                            <span class="help-block">@General.RoleHelp</span>
+
+                            
+                        </fieldset>
+   
+                        <div class="form-actions center">
+                            <button type="submit" class="btn btn-sm btn-success">
+                                @General.Create
+                                <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+                            </button>
+                        </div>
+ }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <hr />
+
+</div>

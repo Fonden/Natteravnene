@@ -1,0 +1,155 @@
+﻿@model AddTeamsModel
+@section pagescripts {
+    @Scripts.Render("~/bundles/form")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+        jQuery.validator.addMethod('date',
+         function (value, element, params) {
+             if (this.optional(element)) {
+                 return true;
+             }
+             try {
+                 var format = getDateFormat('@General.JavaScripDateformat');
+                 var result = MyParseDate(value, format);
+                 return result;
+             } catch (err) {
+                 console.log(err);
+                 return false;
+             }
+         });
+        
+        jQuery(function ($) {
+        //$('#Start').datetimepicker({
+        //    language: 'ru'});
+        //    }).next().on(ace.click_event, function () {
+        //    $(this).prev().focus();
+        //});
+
+
+        $("#sliderduration").slider({
+            value: @Model.Duration.TotalMinutes ,
+                min: 30,
+                max: 600,
+                step: 15,
+                slide: function (event, ui) {
+                    $("#Duration").val(Math.floor(ui.value / 60) + ":" + (ui.value % 60 < 10 ? ("0" + ui.value % 60) : ui.value % 60));
+                }
+            });
+
+            $('#StartDate').datepicker({
+                format: "@General.JavaScripDateformat",
+                gotoCurrent: true,
+                autoclose: true,
+                todayHighlight: true
+            });
+
+
+        $('#StartTime').timepicker({
+            minuteStep: 15,
+            showSeconds: false,
+            showMeridian: false
+        });
+
+       
+
+
+
+
+
+
+
+        });
+    </script>
+}
+
+
+<div class="page-header position-relative">
+    <h1>
+        <a href="@Url.Action("Folder", null, new { ID = Model.Folder.FolderID })" class="btn btn-small btn-primary">
+            <i class="ace-icon @Icons.BackIcon icon-only"></i>
+        </a>
+        @General.AddTeams <small>@Model.Folder.FoldereName ( @Model.Folder.Start.ToShortDateString() -  @Model.Folder.Finish.ToShortDateString() )</small>
+    </h1>
+    <h2></h2>
+</div>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(m => m.Folder.FolderID)
+      @Html.Partial("~/Views/Shared/_FormSummery.cshtml");
+        <div class="space"></div>
+    
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.StartDate, new { @class = "col-sm-2 control-label no-padding-right" })
+        ,
+        <div class="col-sm-8">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-calendar bigger-110"></i>
+                </span>
+                @Html.TextBoxFor(m => m.StartDate, "{0:dd-MM-yyyy}" )
+                </div>
+
+           
+
+
+            <div class="input-group bootstrap-timepicker">
+                <span class="input-group-addon">
+                    <i class="fa fa-clock-o bigger-110"></i>
+                </span>
+                @Html.TextBoxFor(m => m.StartTime, "{0:HH:mm}")
+
+            </div>
+                @*Html.TextBoxFor(m => m.StartTime, "{0:HH:mm}")*@
+                @Html.ValidationMessageFor(m => m.Location)
+            </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label no-padding-right" for="form-field-recipient">Varighed</label>
+
+<div class="col-sm-8">
+    @Html.TextBoxFor(m => m.Duration, "{0:hh\\:mm}")
+    <div class="space-4"></div>
+    <div id="sliderduration" class="ui-slider-green ui-slider-small col-sm-3"></div>
+
+   
+    @Html.ValidationMessageFor(m => m.Duration)
+</div>
+    </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Repetition, new { @class = "col-sm-2 control-label no-padding-right" })
+            <div class="col-sm-8">
+                @Html.EnumDropDownListFor(m => m.Repetition)
+                @Html.ValidationMessageFor(m => m.Repetition)
+
+            </div>
+        </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label no-padding-right" for="form-field-recipient">@General.Location</label>
+
+        <div class="col-sm-8">
+            @Html.DropDownListFor(m => m.Location, new SelectList(Model.LocationsSelectList, "Value", "Text", Model.Location), new { data_placeholder = General.Location })
+            @Html.ValidationMessageFor(m => m.Location)
+        </div>
+    </div>
+
+    <div class="clearfix form-actions">
+        <div class="col-md-offset-3 col-md-9">
+            <button class="btn btn-info" type="submit">
+                <i class="icon-ok bigger-110"></i>
+                @General.Create
+            </button>
+
+            &nbsp; &nbsp;
+            <button class="btn" type="reset">
+                <i class="icon-undo bigger-110"></i>
+                @General.Reset
+            </button>
+        </div>
+    </div>
+
+}

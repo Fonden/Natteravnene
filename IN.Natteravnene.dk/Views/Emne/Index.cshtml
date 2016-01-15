@@ -1,0 +1,140 @@
+﻿@model List<Lead>
+
+@section pagescripts {
+    @Scripts.Render("~/bundles/table")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+    $(function () {
+        var oTable1 = $('#Lead-table').dataTable({
+            "language": {
+                "lengthMenu": "@General.DatatablesLengthMenu",
+                "zeroRecords": "@General.DatatablesZeroRecords",
+                "info": "@General.DatatablesInfo",
+                "infoEmpty": "@General.DatatablesInfoEmpty",
+                "infoFiltered": "@General.DatatablesInfoFiltered",
+                "loadingRecords": "@General.DatatablesLoadingRecords",
+                "processing": "@General.DatatablesProcessing",
+                "search": "@General.Search:",
+                "thousands": "@General.ThousenSeperator",
+                "paginate": {
+                    first: ">>",
+                    previous: "<",
+                    next: ">",
+                    last: "<<"
+                }
+            },
+            "pageLength": @NR.Infrastructure.CurrentProfile.ListLines.ToString(),
+            "order": [1, "asc"],
+            "columnDefs": [
+
+                         {
+                             "targets": [ 7 ],
+                             "orderable": false,
+                             "searchable": false
+                         }
+
+            ]
+        });
+
+        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+        function tooltip_placement(context, source) {
+            var $source = $(source);
+            var $parent = $source.closest('table')
+            var off1 = $parent.offset();
+            var w1 = $parent.width();
+
+            var off2 = $source.offset();
+            //var w2 = $source.width();
+
+            if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+            return 'left';
+        }
+
+        @if (ViewBag.Create == true)
+            {
+                <text>
+            bootbox.setDefaults({
+
+                locale: "da"
+            });
+                bootbox.confirm("@General.QuestionCreatePerson", function(result) {
+                    if(result) {
+                        $(location).attr('href','@Url.Action("CreatePerson", "Emne", new { id = ViewBag.ID }, "http")');
+                    }
+                });
+            </text>
+            }
+
+
+    })
+    </script>
+}
+
+
+<div class="page-header position-relative">
+    <h1>@General.HeadLeads</h1>
+</div>
+
+<table id="Lead-table" class="table table-striped table-bordered table-hover table-input">
+    <thead>
+        <tr>
+            <th>@DomainStrings.Created</th>
+            <th>@DomainStrings.Lastchanged</th>
+            <th>@DomainStrings.FullName</th>
+            <th>@DomainStrings.Age</th>
+            <th>@DomainStrings.Email</th>
+            <th>@DomainStrings.Zip</th>
+            <th>@DomainStrings.Status</th>
+            <th>@General.ChangeStatusTo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+
+            foreach (Lead L in Model)
+            {
+
+                <tr>
+                    <td class="center" data-order="@L.Created.Ticks">@L.Created.ToShortDateString()</td>
+                    <td class="center" data-order="@L.Lastchanged.Ticks">@L.Lastchanged.ToShortDateString()</td>
+                    <td>@L.FullName</td>
+                    <td>@L.Age</td>
+                    <td>@L.Email</td>
+                    <td>@L.Zip</td>
+                    <td data-order="@L.Status">
+                        @L.Status.DisplayName()
+                        @if (
+                            (L.Status == LeadStatus.New && L.Lastchanged < DateTime.Now) |
+                            (L.Status == LeadStatus.Acknowledge && L.Lastchanged < DateTime.Now) |
+                            (L.Status == LeadStatus.Assigned && L.Lastchanged < DateTime.Now.AddDays(-3)) |
+                            (L.Status == LeadStatus.Recived && L.Lastchanged < DateTime.Now.AddDays(-5)) |
+                            (L.Status == LeadStatus.Waiting && L.Lastchanged < DateTime.Now.AddDays(-15)) |
+                            (L.Status == LeadStatus.Trial && L.Lastchanged < DateTime.Now.AddDays(-15))
+                            )
+                        {<i class="ace-icon fa fa-exclamation-triangle red"></i>}
+
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("StatusUpdate", null, null, FormMethod.Post, new { @class = "form-inline" }))
+                        {
+                            @Html.Hidden("ID", L.LeadID)
+                            @Html.DropDownList("Status", new SelectList((IEnumerable<SelectListItem>)ViewData["Attach"], "Value", "Text", (int)L.StatusAssociation))
+
+                            @*@Html.EnumDropDownListFor(m => m.StatusAssociation, new { @class = "input-small" })}*@
+                            <button class="btn btn-info btn-minier" type="submit">
+                                <i class="icon-ok bigger-110"></i>
+                                < @General.ChangeStatus
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+
+
+

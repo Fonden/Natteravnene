@@ -1,0 +1,5 @@
+﻿# robots.txt for http://frivillig.natteravnene.dk/
+
+User-agent: *
+Allow: /$
+Disallow: /

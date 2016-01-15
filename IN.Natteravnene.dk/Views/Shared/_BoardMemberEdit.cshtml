@@ -1,0 +1,13 @@
+﻿@model BoardModel
+
+<div class="form-group">
+    @*Html.LabelFor(model => f.BoardMembers, new { @class = "col-sm-2 control-label no-padding-right" })*@
+
+    <div class="col-sm-9">
+        @Html.DropDownListFor(model => Model.BoardMembers[MembersIndex].PersonID, new SelectList(Model.Active, "PersonID", "FullName", Model.BoardMembers[MembersIndex].PersonID.ToString()), General.Select)
+        @Html.ValidationMessageFor(f => Model.BoardMembers[MembersIndex].PersonID)
+    </div>
+</div>
+<a href="#" onclick="$(this).parent().remove();">Delete</a>
+<div class="space-4"></div>
+

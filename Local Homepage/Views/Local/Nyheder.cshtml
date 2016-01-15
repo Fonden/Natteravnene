@@ -1,0 +1,67 @@
+﻿@model AssociationViewModel
+@{
+    ViewBag.Title = "Nyheder";
+    ViewBag.MetaDescription = string.Format("Nyheder fra {0} og Natteravnene i Danmark.", Model.AssociationName);
+    ViewBag.PageImage = "~/Content/Images/Natteravnene-6.jpg";
+    ViewBag.SocialImage = Html.FullyQualifiedUri("~/Content/Images/Natteravnene-6.jpg", Model.Host).ToString();
+    ViewBag.SocialType = "website";
+}
+@section inlinescripts {
+
+    <script type="text/javascript">
+    jQuery(function ($) {
+
+    var index = 0;
+    var _inCallback = false;
+
+    function loadNews() {
+        if (index > -1 && !_inCallback) {
+            _inCallback = true;
+            index++;
+            $('div#loading').html('<div class="message-loading-overlay"><i class="fa-spin ace-icon fa fa-spinner orange2 bigger-160"></i></div>');
+            $.get("@Url.Action(null, null, new { id = "0" })" + index , function (data) {
+                if (data != '') {
+                    $("#newslist").append(data);
+                }
+                else {
+                    index = -1;
+                }
+
+                _inCallback = false;
+                $('div#loading').empty();
+            });
+        }
+    }
+
+    var dcList = true;
+
+        $(window).scroll(function () {
+
+            var wintop = $(window).scrollTop(), docheight = $(document).height(), winheight = $(window).height();
+            var scrolltrigger = 0.95;
+
+            if ((wintop / (docheight - winheight)) > scrolltrigger) {
+                loadNews();
+            }
+        });
+
+
+    });
+    </script>
+}
+
+
+<div id="pagehero">
+    <img src="@Url.Content(ViewBag.PageImage)" class="img-responsive" />
+    <h1>@Html.Raw(ViewBag.Title)</h1>
+</div>
+
+
+<div class="body-content">
+    <div class="row">
+        <div id="newslist" class="col-md-offset-2 col-md-8 col-xs-12">
+            @{ Html.RenderPartial("_newsListing", Model.News);}
+        </div>
+        <div id="loading"></div>
+    </div>
+</div>

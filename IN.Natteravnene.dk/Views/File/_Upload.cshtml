@@ -1,0 +1,41 @@
+﻿@model Guid
+
+@{
+    Layout = null;
+}
+
+<div id="fileupload-form" class="modal " tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+             <h4 class="blue bigger">@General.UploadFile</h4>
+            </div>
+            <div class="modal-body overflow-visible">
+                <div class="row">
+                    <div id="file-upload-box">
+                        <div class="col-sm-12">
+                            <p>@General.UploadFileInfo</p>
+                            @using (Ajax.BeginForm("_Upload", "File", new { area = "" }, new AjaxOptions() { HttpMethod = "POST" }, new { enctype = "multipart/form-data", id = "file-upload-form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" value="@Model.ToString()" name="id" />
+                                <input type="file" name="files" /><br />
+                                <input type="text" name="name" /><br />
+                                <button type="button" class="btn full-width" data-toggle="modal"> Upload fil </button>
+                                <div class="upload-file-notice">@General.MaxSize: <span id="avatar-max-size"></span> MB</div>
+                            }
+
+                            <div class="upload-progress hidden">
+                                <div class="upload-percent-value pull-left">0%</div>
+                                <div class="upload-percent-bar pull-left"></div>
+                            </div>
+                            <div id="upload-status"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

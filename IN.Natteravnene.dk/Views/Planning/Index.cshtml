@@ -1,0 +1,134 @@
+﻿@model ThePlanModel
+@section pagescripts {
+    @Scripts.Render("~/bundles/table")
+    @Scripts.Render("~/bundles/form")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+ //@Url.Action("PersonsAjax","Admin")",
+    $(document).ready(function () {
+
+        var oTable1 = $('#Team-Listing')
+            .on('xhr.dt', function (e, settings, json) {
+                $('[data-rel="tooltip"]').tooltip();
+            })
+            .dataTable({
+                "language": {
+                    "lengthMenu": "@General.DatatablesLengthMenu",
+                    "zeroRecords": "@General.DatatablesZeroRecords",
+                    "info": "@General.DatatablesInfo",
+                    "infoEmpty": "@General.DatatablesInfoEmpty",
+                    "infoFiltered": "@General.DatatablesInfoFiltered",
+                    "loadingRecords": "@General.DatatablesLoadingRecords",
+                    "processing": "@General.DatatablesProcessing",
+                    "search": "@General.Search:",
+                    "thousands": "@General.ThousenSeperator",
+                    "paginate": {
+                        first: ">>",
+                        previous: "<",
+                        next: ">",
+                        last: "<<"
+                    }
+                },
+                "columnDefs": [
+                     {
+
+                     }
+                ]
+                    ,
+                "order": [[0, "asc"]]
+            });
+
+        //$('[data-rel="tooltip"]').tooltip({ placement: tooltip_placement });
+        //function tooltip_placement(context, source) {
+        //    var $source = $(source);
+        //    var $parent = $source.closest('table')
+        //    var off1 = $parent.offset();
+        //    var w1 = $parent.width();
+
+        //    var off2 = $source.offset();
+        //    //var w2 = $source.width();
+
+        //    if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+        //    return 'left';
+        //}
+
+
+        @*$(document).on("click", ".EditTeamModal", function () {
+                var TeamId = $(this).data('id');
+                //$("#form-field-username").val(TeamId);
+                var url = '@Url.Action("_EditTeam", "Planning")/' + TeamId;
+                $.get(url, function (data) {
+                    $("#EditTeamModalForm").html(data);
+                });
+                var $form = $("#EditTeamModalForm").find("form");
+                if ($form.length) {
+                    $form.unbind();
+                    $form.data("validator", null);
+                    $.validator.unobtrusive.parse(document);
+                }
+
+                $('#Start').datetimepicker().next().on(ace.click_event, function () {
+                    $(this).prev().focus();
+                });
+
+                // As pointed out in comments,
+                // it is superfluous to have to manually call the modal.
+                // $('#addBookDialog').modal('show');
+            });*@
+
+        $(document).on("click", "#Team-Listing .missing", function () {
+            var row = $(this).closest('tr');
+            var TeamId = row.data('teamid');
+            //$(this).closest('.message-item').toggleClass('selected');
+            if (confirm('@Html.Raw(General.ConfirmTakeTeamSpot)')) {
+                $('#tableplan').append('<div class="message-loading-overlay"><i class="fa-spin ace-icon fa fa-spinner orange2 bigger-300"></i></div>');
+                var url = "@Url.Action("_TTP", "Planning", new { id = "ReplaceData" })";
+                $.get(url.replace(/ReplaceData/g, TeamId), function (data) {
+                    if (data != '') {
+                        row.replaceWith(data);
+                        //$("#newsList").append(data);
+                        //str.replace(/ReplaceData/g, data);
+                        $('#tableplan').find('.message-loading-overlay').remove();
+                    }
+
+                });
+            }
+        });
+
+        $(document).on("click", "#Team-Listing .teamstatuschange", function () {
+            var row = $(this).closest('tr');
+            var TeamId = row.data('teamid');
+            var TeamStatus = $(this).data('status');
+            //$(this).closest('.message-item').toggleClass('selected');
+            if (confirm('@Html.Raw(General.ConfirmUpdateTeamStatus)')) {
+                $('#tableplan').append('<div class="message-loading-overlay"><i class="fa-spin ace-icon fa fa-spinner orange2 bigger-300"></i></div>');
+                var url = "@Url.Action("_TSU", "Planning", new { id = "ReplaceData", OK ="Status" })";
+                $.get(url.replace(/ReplaceData/g, TeamId).replace(/Status/g, TeamStatus), function (data) {
+                    if (data != '') {
+                        row.replaceWith(data);
+                        //$("#newsList").append(data);
+                        //str.replace(/ReplaceData/g, data);
+                        $('#tableplan').find('.message-loading-overlay').remove();
+                    }
+
+                });
+            }
+        });
+
+        $('[data-toggle="popover"]').popover();
+
+    });
+    </script>
+}
+<div class="page-header position-relative">
+    <h1>@General.ThePlan</h1>
+</div>
+<div class="row">
+    <div class="col-xs-12" id="tableplan">
+        @{Html.RenderPartial("_TeamListing", Model.Plan);}
+        <p>
+            @Html.Raw(Model.association.Scheduletext)
+        </p>
+    </div>
+</div>

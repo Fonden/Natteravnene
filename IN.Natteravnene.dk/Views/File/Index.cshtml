@@ -1,0 +1,84 @@
+﻿@section pagescripts {
+
+    <script src="@Url.Content("~/Scripts/fuelux/fuelux.tree.min.js")"></script>
+}
+@section inlinescripts {
+    <script type="text/javascript">
+        jQuery(function ($) {
+
+            var $idown;  // Keep it outside of the function, so it's initialized once.
+            downloadURL: function downloadURL(url) {
+                if ($idown) {
+                    $idown.attr('src',url);
+                } else {
+                    $idown = $('<iframe>', { id:'idown', src:url }).hide().appendTo('body');
+                }
+            };
+
+
+            //construct the data source object to be used by tree
+            function DataSourceTree(options) {
+                this.url = options.url;
+
+                this.data = function (options, callback) {
+                    var parent_id = null
+                    if (!('name' in options || 'type' in options)) {
+                        parent_id = '';//load first level data
+                    }
+                    else if ('type' in options && options['type'] == 'folder') {//it has children
+                        //if ('dataAttributes' in options && 'children' in options.dataAttributes && options.dataAttributes.children == true)
+                            parent_id = options.dataAttributes['id']
+                    }
+
+                    if (parent_id !== null) {
+                        $.ajax({
+                            url: this.url,
+                            data: 'id=' + parent_id,
+                            type: 'POST',
+                            dataType: 'json',
+                            success: function (response) {
+                                if (response.status == "OK")
+                                    callback({ data: response.data })
+                            },
+                            error: function (response) {
+                                //console.log(response);
+                            }
+                        })
+                    }
+                }
+            };
+
+
+
+
+            $('#files').ace_tree({
+                dataSource: new DataSourceTree({ url: '@Url.Action("_GetDirectory", "File")' }),
+                loadingHTML: '<div class="tree-loading"><i class="ace-icon fa fa-refresh fa-spin blue"></i></div>',
+                'open-icon': 'ace-icon fa fa-folder-open',
+                'close-icon': 'ace-icon fa fa-folder',
+                'selectable': true,
+                'selected-icon': null,
+                'unselected-icon': null
+            });
+
+
+            $('#files').on('selected.fu.tree', function (e, data) {
+                //e.preventDefault();  //stop the browser from following
+                //window.location.href = e;
+                var selectedArray = $('#files').tree('selectedItems'); //fuelux custom event
+                downloadURL(selectedArray[0].url);
+            })
+
+        });
+    </script>
+}
+
+<div class="page-header position-relative">
+    <h1>
+        <a href="@Url.Action("Index")" class="btn btn-small btn-primary">
+            <i class="ace-icon @Icons.BackIcon icon-only"></i>
+        </a> @General.FileLibrary
+    </h1>
+</div>
+
+<div id="files" class="tree"></div>

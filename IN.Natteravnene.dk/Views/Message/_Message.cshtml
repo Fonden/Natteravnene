@@ -1,0 +1,49 @@
+﻿@model Message
+
+
+
+    <!-- #section:pages/inbox.message-header -->
+    <div class="message-header clearfix">
+        <div class="pull-left">
+            <span class="blue bigger-125"> @Model.Head </span>
+
+            <div class="space-4"></div>
+            <div class="user-info middle">
+                @Html.ProfilImage(@Model.Sender)
+            </div>
+                <!--<img class="middle" alt="John's Avatar" src="../assets/avatars/avatar.png" width="32" />-->
+                &nbsp;
+                <a href="#" class="sender">@Model.Sender.FullName</a>
+
+                &nbsp;
+                <i class="ace-icon fa fa-clock-o bigger-110 orange middle"></i>
+                <span class="time grey">@Html.DateTimeSwitch(Model.Created)</span>
+            </div>
+
+        <div class="pull-right action-buttons">
+            <!--<a href="#">
+                <i class="ace-icon fa fa-reply green icon-only bigger-130"></i>
+            </a>
+
+            <a href="#">
+                <i class="ace-icon fa fa-mail-forward blue icon-only bigger-130"></i>
+            </a>-->
+
+            <a href="@Url.Action("Delete","Message", new {id = Model.MessageID })">
+                <i class="ace-icon fa fa-trash-o red icon-only bigger-130"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- /section:pages/inbox.message-header -->
+    <div class="hr hr-double"></div>
+
+    <!-- #section:pages/inbox.message-body -->
+    <div class="message-body">
+       @Html.Raw(Model.Body)
+    </div>
+
+    
+
+ 
+

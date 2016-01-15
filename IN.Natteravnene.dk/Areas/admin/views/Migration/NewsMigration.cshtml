@@ -1,0 +1,84 @@
+﻿@section pagescripts {
+    @Scripts.Render("~/bundles/form")
+    @Scripts.Render("~/bundles/jcrop")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+        jQuery(function ($) {
+            var uploading = false;
+
+            $.ajax({
+                url: "@Url.Action("GetSelectListAssociations", "Association", new { Area = ""})",
+                type: 'POST',
+            success: function (associations) {
+
+                // states is your JSON array
+                var $select = $('#id');
+                $select.find('option').remove().end()
+                $('<option>', {
+                    value: ''
+                }).html('National').appendTo($select);
+                $.each(associations, function (i, association) {
+                    $('<option>', {
+                        value: association.Value
+                    }).html(association.Text).appendTo($select);
+                    $select.show();
+                });
+            },
+
+            });
+
+            $("#url").on("change", function (e) {
+                if (!uploading) {
+                    $('#upload-form').submit();
+                };
+            });
+
+            $('#upload-form').ajaxForm({
+                beforeSend: function () {
+                    $("#url").val('');
+                    //updateProgress(0);
+                    //$('#avatar-upload-form').addClass('hidden');
+                },
+                uploadProgress: function (event, position, total, percentComplete) {
+                    //updateProgress(percentComplete);
+                },
+                success: function (data) {
+                    //updateProgress(100);
+                    if (data.success === false) {
+                        $('#status').html(data.errorMessage);
+                    } else {
+                        $('#status').html(data.data);
+                        $("#url").val('');
+                        uploading = false;
+
+
+                    }
+                },
+                complete: function (xhr) {
+                }
+            });
+
+
+
+
+
+
+    });
+    </script>
+}
+<div class="page-header position-relative">
+
+    <h1>
+
+        Import CSV Aviva
+    </h1>
+</div>
+@using (Ajax.BeginForm("_NewsMigration", null, new { area = "admin" }, new AjaxOptions() { HttpMethod = "POST" }, new { enctype = "multipart/form-data", id = "upload-form" }))
+{
+    @Html.AntiForgeryToken()
+    <select name="id" id="id"></select><br />
+    <textarea name="url" id="url" cols="40" rows="20" ></textarea> 
+
+}
+<div id="status"></div>

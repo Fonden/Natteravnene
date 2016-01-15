@@ -1,0 +1,58 @@
+﻿@model Network
+<div class="page-header position-relative">
+    <h1>
+        <a href="@Url.Action("Index")" class="btn btn-small btn-primary">
+            <i class="ace-icon @Icons.BackIcon icon-only"></i>
+        </a> @(Model.NetworkID == Guid.Empty ? General.NetworksCreate : General.NetworksEdit)
+    </h1>
+</div>
+<!--/.page-header-->
+
+
+
+        <!-- PAGE CONTENT BEGINS -->
+        @using (Html.BeginForm("Edit", null, FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+
+            @Html.Partial("~/Views/Shared/_FormSummery.cshtml");
+            @Html.HiddenFor(m => m.NetworkID)
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NetworkNumber, new { @class = "col-sm-2 control-label no-padding-right" })
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.NetworkNumber, new { @class = "form-control", placeholder = DomainStrings.NetworkNumber })
+            @Html.ValidationMessageFor(m => m.NetworkNumber)
+        </div>
+    </div>
+            
+            <div class="space-4"></div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.NetworkName, new { @class = "col-sm-2 control-label no-padding-right" })
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(m => m.NetworkName, new { @class = "form-control", placeholder = DomainStrings.NetworkName })
+                    @Html.ValidationMessageFor(m => m.NetworkName)
+                </div>
+            </div>
+
+            <div class="space-4"></div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.NetworkNotToShow, new { @class = "col-sm-2 control-label no-padding-right" })
+                <div class="col-sm-8">
+                    <input name="@Html.IdFor(m => m.NetworkNotToShow)" class="ace ace-switch ace-switch-6" type="checkbox" value="true" checked="@Model.NetworkNotToShow"  />
+                    <span class="lbl"></span>
+                </div>
+            </div>
+
+            <div class="space-4"></div>
+            <div class="clearfix form-actions">
+                <div class="col-md-9">
+                    <button class="btn btn-info" type="submit">
+                        <i class="icon-ok bigger-110"></i>
+                        @(Model.NetworkID == Guid.Empty ? General.Create : General.Save)
+                    </button>
+                </div>
+            </div>
+        }

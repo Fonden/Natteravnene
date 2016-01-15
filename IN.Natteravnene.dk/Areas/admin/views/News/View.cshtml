@@ -1,0 +1,15 @@
+﻿@model News
+<article>
+    <header class="page-header position-relative">
+        <h1>@Model.Headline</h1>
+    </header>
+    <div class="row-fluid">
+        <div class="span8">
+            @Html.NewsImage(Model, new { @class = "img-rounded" })
+            <div>
+                @Html.NewsDate(Model, new { @class = "pull-right" })
+                @Html.Raw(Model.Content)
+            </div>
+        </div>
+    </div>
+</article>

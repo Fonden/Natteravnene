@@ -1,0 +1,172 @@
+﻿@model FolderUserAnswer
+
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/_NRAnonomusLayout.cshtml";
+    int theMonth = 0;
+    DateTime WeekStart = new DateTime();
+    
+}
+@section pagescripts 
+    {
+    @Scripts.Render("~/bundles/form")
+    
+}
+@section inlinescripts
+{
+<script type="text/javascript">
+    jQuery(function ($) {
+        $('#feedback-wizard')
+                    .ace_wizard({
+                        //step: 2 //optional argument. wizard will jump to step "2" at first
+                    })
+                    .on('change', function (e, info) {
+                        //if (info.step == 1 && $validation) {
+                            // if(!$('#validation-form').valid()) return false;
+                        //}
+                    })
+                    .on('finished', function (e) {
+                        bootbox.dialog({
+                            message: "Thank you! Your information was successfully saved!",
+                            buttons: {
+                                "success": {
+                                    "label": "OK",
+                                    "className": "btn-sm btn-primary"
+                                }
+                            }
+                        });
+                    }).on('stepclick', function (e) {
+                        //e.preventDefault();//this will prevent clicking and selecting steps
+                    });
+    });
+    </script>
+    }
+
+
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="center">
+                <h1>
+                    <img src="@Url.Content("~/Content/img/Natteravnene_logo_gul_forside.png")" alt="Natteravnene logo" />
+                </h1>
+            </div>
+
+            <div class="space-6"></div>
+            <div style="background-color:white;">
+                <table>
+                    @foreach (Team T in Model.Folder.Teams.OrderBy(t => t.Start))
+                    {
+                        if (T.Start.AddSeconds(-1) > WeekStart.AddDays(7))
+                        {
+                            if (theMonth != T.Start.AddSeconds(-1).Month)
+                        {
+                            <tr>
+                                <td colspan="7">@T.Start.ToString("MMMM")</td>
+                            </tr>
+                        }
+
+                        theMonth = T.Start.Month;
+                        DayOfWeek dayWeek = T.Start.AddSeconds(-1).DayOfWeek;
+                        if (dayWeek == DayOfWeek.Sunday)
+                        { WeekStart = T.Start.AddSeconds(-1).AddDays(-(int)dayWeek + 6); }
+                        else
+                        { WeekStart = T.Start.AddSeconds(-1).AddDays(-(int)dayWeek + 1); }
+
+
+                        <tr>
+                            <td colspan="7">@WeekStart.ToString("ddd - dd-MM-yy")  / @T.Start.AddSeconds(-1).ToString("ddd - dd-MM-yy")</td>
+                        </tr>
+                        <tr>
+                            @for (int i = 0; i < 7; i++)
+                            {
+                                <td>
+                                    @WeekStart.AddDays(i).ToString("ddd - dd") <br />
+                                    @{
+                                        DateTime thisDate = WeekStart.AddDays(i);
+                                        foreach (Team TD in Model.Folder.Teams.Where(g => g.Start.AddSeconds(-1).Date == thisDate.Date).OrderBy(t => t.Start))
+                                        {
+                                            @TD.Start.ToShortTimeString() <br />
+
+                                        }
+
+                                    }
+                                </td>
+                            }
+                        </tr>
+
+                        }
+                    }
+
+
+                </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               
+                </div>
+            <div class="center">
+                <a href="http://natteravnene.dk" target="_blank"><h4 id="id-company-text">www.natteravnene.dk</h4></a>
+            </div>
+        </div><!-- /.col -->
+    </div><!-- /.row -->

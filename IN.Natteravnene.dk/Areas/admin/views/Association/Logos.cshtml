@@ -1,0 +1,144 @@
+﻿@model Association
+@section pagescripts {
+    @Scripts.Render("~/bundles/form")
+    @Scripts.Render("~/bundles/jcrop")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+
+        jQuery(function ($) {
+
+            if (typeof $('#image-upload-form') !== undefined) {
+                var maxSizeAllowed = 10; // ToDo - Change upload limit in MB
+
+                initImageUpload();
+                checkLogos();
+
+                $('#image-max-size').html(maxSizeAllowed);
+
+                $("#image-upload-form input:file").on("change", function (e) {
+                    var files = e.currentTarget.files;
+
+                    for (var x in files) {
+                        if (files[x].name != "item" && typeof files[x].name != "undefined") {
+                            if (files[x].size <= maxSizeAllowed * 1024 * 1024) {
+                                // Submit the selected file
+                                $('#image-upload-form .upload-file-notice').removeClass('bg-danger');
+                                $('#image-upload-form').submit();
+                            } else {
+                                // File too large
+                                $('#image-upload-form .upload-file-notice').addClass('bg-danger');
+                            }
+                        }
+                    }
+                });
+            }
+
+
+            function initImageUpload() {
+                $('#image-upload-form').ajaxForm({
+                    beforeSend: function () {
+                        updateProgress(0);
+                        //$('#avatar-upload-form').addClass('hidden');
+                    },
+                    uploadProgress: function (event, position, total, percentComplete) {
+                        updateProgress(percentComplete);
+                    },
+                    success: function (data) {
+                        updateProgress(100);
+                        if (data.success === false) {
+                            $('#status').html(data.errorMessage);
+                        } else {
+                            $('.upload-progress').addClass('hidden');
+                            $('#files').after($('#files').clone(true)).remove();
+
+                        }
+                    },
+                    complete: function (xhr) {
+                        checkLogos();
+
+                    }
+                });
+            }
+
+            function updateProgress(percentComplete) {
+                $('.upload-percent-bar').width(percentComplete + '%');
+                $('.upload-percent-value').html(percentComplete + '%');
+                if (percentComplete === 0) {
+                    $('#upload-status').empty();
+                    $('.upload-progress').removeClass('hidden');
+                }
+            }
+
+            function checkLogos() {
+                $('#logostatus').empty();
+                $('#logopic').empty();
+
+                $.ajax({
+                    url: '@ViewBag.LogoPath' + '.jpg',
+                    type: 'HEAD',
+                    error: function () {
+                        $('#logostatus').prepend('<p><i class="fa fa-thumbs-down"></i> JPG</p>')
+                    },
+                    success: function () {
+                        $('#logopic').prepend('<img id="theImg" src="@string.Format("{0}.jpg", ViewBag.LogoPath)" class="img-responsive" />')
+                        $('#logostatus').prepend('<p><i class="fa fa-thumbs-up"></i> JPG</p>')
+                    }
+                });
+
+                $.ajax({
+                    url: '@ViewBag.LogoPath' + '.pdf',
+                    type: 'HEAD',
+                    error: function () {
+                        $('#logostatus').prepend('<p><i class="fa fa-thumbs-down"></i> PDF</p>')
+                    },
+                    success: function () {
+                        $('#logostatus').prepend('<p><i class="fa fa-thumbs-up"></i> PDF</p>')
+                    }
+                });
+
+                $.ajax({
+                    url: '@ViewBag.LogoPath' + '.emf',
+                    type: 'HEAD',
+                    error: function () {
+                        $('#logostatus').prepend('<p><i class="fa fa-thumbs-down"></i> EMF</p>')
+                    },
+                    success: function () {
+                        $('#logostatus').prepend('<p><i class="fa fa-thumbs-up"></i> EMF</p>')
+                    }
+                });
+
+
+            }
+
+        });
+    </script>
+}
+<div class="page-header position-relative">
+    <h1>
+        @string.Format(General.BrandTitleAssociation, Model.Name)
+    </h1>
+</div>
+
+<div class="row">
+    <div class="col-xs-6">
+
+        @using (Ajax.BeginForm("_Upload", null, new { area = "Admin" }, new AjaxOptions() { HttpMethod = "POST" }, new { enctype = "multipart/form-data", id = "image-upload-form" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" value="@Model.ToString()" name="id" />
+            @Html.HiddenFor(m => m.AssociationID)
+            <input type="file" name="files" multiple /><br>
+            <div class="upload-file-notice">@General.MaxSize: <span id="avatar-max-size"></span> MB</div>
+        }
+        <div class="upload-progress hidden">
+            <div class="upload-percent-value pull-left">0%</div>
+            <div class="upload-percent-bar pull-left"></div>
+        </div>
+        <div id="upload-status"></div>
+    </div>
+    <div id="logostatus" class="col-xs-2">
+    </div>
+    <div id="logopic" class="col-xs-4">
+    </div>
+</div>

@@ -1,0 +1,817 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="UseCalender" xml:space="preserve">
+    <value>Brug kalender funktion</value>
+  </data>
+  <data name="UseKeyBox" xml:space="preserve">
+    <value>Brug boks/lås kode funktion</value>
+  </data>
+  <data name="UseLists" xml:space="preserve">
+    <value>Brug liste funktion</value>
+  </data>
+  <data name="UseLocation" xml:space="preserve">
+    <value>Brug lokation funktion</value>
+  </data>
+  <data name="UseNationalNewsletter" xml:space="preserve">
+    <value>Brug LS nyhedsbrev funktion</value>
+  </data>
+  <data name="UseLocalNewsletter" xml:space="preserve">
+    <value>Brug lokal nyhedsbrev funktion</value>
+  </data>
+  <data name="UsePolicePlanning" xml:space="preserve">
+    <value>Brug Politi funktion</value>
+  </data>
+  <data name="UseAccounting" xml:space="preserve">
+    <value>Brug regnskabs funktion</value>
+  </data>
+  <data name="UseShiftTeam" xml:space="preserve">
+    <value>Brug "byt tur" funktion</value>
+  </data>
+  <data name="UseTakeTeamSpot" xml:space="preserve">
+    <value>Brug "tag tur" funktion</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>By</value>
+  </data>
+  <data name="FamilyName" xml:space="preserve">
+    <value>Efternavn</value>
+  </data>
+  <data name="AssociationName" xml:space="preserve">
+    <value>Forenings navn</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Fornavn</value>
+  </data>
+  <data name="TeamMessageTeamLeader" xml:space="preserve">
+    <value>Holdleder SMS</value>
+  </data>
+  <data name="TeamMessage" xml:space="preserve">
+    <value>Ravne SMS</value>
+  </data>
+  <data name="SendTeamTextDays" xml:space="preserve">
+    <value>Dage før for Hold SMS</value>
+  </data>
+  <data name="IDWEB" xml:space="preserve">
+    <value>ID NR web</value>
+  </data>
+  <data name="KeyBoxcode" xml:space="preserve">
+    <value>Boks/lås kode</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Køn</value>
+  </data>
+  <data name="lat" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="lng" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="LocationName" xml:space="preserve">
+    <value>Navn på lokation</value>
+  </data>
+  <data name="NetworkName" xml:space="preserve">
+    <value>Netværksnavn</value>
+  </data>
+  <data name="NoteTextTime" xml:space="preserve">
+    <value>Timer før for holdnote</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Oprettet</value>
+  </data>
+  <data name="SendTeamText" xml:space="preserve">
+    <value>Send huske SMS</value>
+  </data>
+  <data name="SendNoteTeamleader" xml:space="preserve">
+    <value>Send note SMS</value>
+  </data>
+  <data name="SetupFoerstehjaelp" xml:space="preserve">
+    <value>Førstehjælp</value>
+  </data>
+  <data name="SetupTeamleader" xml:space="preserve">
+    <value>Holdleder</value>
+  </data>
+  <data name="SetupPrintNewslettet" xml:space="preserve">
+    <value>NatteravneNyt</value>
+  </data>
+  <data name="SetupSeniorInstructor" xml:space="preserve">
+    <value>Senior Instruktør</value>
+  </data>
+  <data name="SetupStoettemedlem" xml:space="preserve">
+    <value>Støttemedlem</value>
+  </data>
+  <data name="Absent" xml:space="preserve">
+    <value>Udmeldt</value>
+  </data>
+  <data name="Lastchanged" xml:space="preserve">
+    <value>Sidst rettet</value>
+  </data>
+  <data name="TextServiceProviderPassword" xml:space="preserve">
+    <value>SMS Kodeord</value>
+  </data>
+  <data name="TextServiceProviderUserName" xml:space="preserve">
+    <value>SMS Brugernavn</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefon nr.</value>
+  </data>
+  <data name="Scheduletext" xml:space="preserve">
+    <value>Turliste tekst</value>
+  </data>
+  <data name="TeamPhone" xml:space="preserve">
+    <value>Turtelefon</value>
+  </data>
+  <data name="URL" xml:space="preserve">
+    <value>URL (Webadresse)</value>
+  </data>
+  <data name="Zip" xml:space="preserve">
+    <value>Post nr</value>
+  </data>
+  <data name="FolInfo" xml:space="preserve">
+    <value>Føl-information</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="Slut" xml:space="preserve">
+    <value>Sluttidspunkt</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Starttidspunkt</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Foldername" xml:space="preserve">
+    <value>Mappenavn</value>
+  </data>
+  <data name="NewPasswordsMustMatch" xml:space="preserve">
+    <value>Det nye kodeord og bekræft kodeord er ikke ens</value>
+  </data>
+  <data name="PasswordMinLength" xml:space="preserve">
+    <value>{0} skal være mindst {2} tegn langt</value>
+  </data>
+  <data name="PasswordsMustMatch" xml:space="preserve">
+    <value>Kodeord og bekræft kodeord er ikke ens</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Feltet '{0}' er obligatorisk</value>
+  </data>
+  <data name="StringLength" xml:space="preserve">
+    <value>Feltet '{0}' skal være minimum {2} og maksimalt {1} karakterer langt</value>
+  </data>
+  <data name="WrongEmailFormat" xml:space="preserve">
+    <value>Feltet '{0}' indeholder ikke et korrekte e-mail format</value>
+  </data>
+  <data name="WrongURLFormat" xml:space="preserve">
+    <value>Feltet '{0}' indeholder ikke et korrekte URL format</value>
+  </data>
+  <data name="UseHotzones" xml:space="preserve">
+    <value>Brug HotZones</value>
+  </data>
+  <data name="UseTeamExchange" xml:space="preserve">
+    <value>Brug Turbørs</value>
+  </data>
+  <data name="AssociationEmail" xml:space="preserve">
+    <value>Foreningens e-mail</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Fulde navn</value>
+  </data>
+  <data name="Network" xml:space="preserve">
+    <value>Netværk</value>
+  </data>
+  <data name="NoteSMSSendt" xml:space="preserve">
+    <value>Note SMS sendt</value>
+  </data>
+  <data name="BrugKeyBoxNoNote" xml:space="preserve">
+    <value>Man kan ikke bruge "boks/lås kode funktion" hvis man ikke bruger "Send Note SMS"</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="DeliverAt" xml:space="preserve">
+    <value>Planlagt modtagelse</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="FlashSMS" xml:space="preserve">
+    <value>Flash SMS</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Besked</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Kodeord</value>
+  </data>
+  <data name="RequiredSingle" xml:space="preserve">
+    <value>Feltet skal udfyldes!</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Brugernavn</value>
+  </data>
+  <data name="Delivered" xml:space="preserve">
+    <value>Afleveret</value>
+  </data>
+  <data name="BasicTraining" xml:space="preserve">
+    <value>Grunduddannelse</value>
+  </data>
+  <data name="BasicTrainingDate" xml:space="preserve">
+    <value>Dato grunduddannelse</value>
+  </data>
+  <data name="SignupDate" xml:space="preserve">
+    <value>Indmeldt</value>
+  </data>
+  <data name="SetupFoerstehjaelpDato" xml:space="preserve">
+    <value>Dato førstehjælp</value>
+  </data>
+  <data name="AbsentDate" xml:space="preserve">
+    <value>Dato udmeldelse</value>
+  </data>
+  <data name="Pass" xml:space="preserve">
+    <value>Pas</value>
+  </data>
+  <data name="ShowAddresse" xml:space="preserve">
+    <value>Vis adresse</value>
+  </data>
+  <data name="SetupEmailNewsLetter" xml:space="preserve">
+    <value>E-mail nyhedsbreve</value>
+  </data>
+  <data name="CVRnr" xml:space="preserve">
+    <value>CVR-nr.</value>
+  </data>
+  <data name="CVRWrongformat" xml:space="preserve">
+    <value>CVR-nr. forkert format skal være 8-cifre</value>
+  </data>
+  <data name="ContactPhone" xml:space="preserve">
+    <value>Kontakt telefon</value>
+  </data>
+  <data name="AssociationNamePrompt" xml:space="preserve">
+    <value>Foreningens navn</value>
+  </data>
+  <data name="Postaddress" xml:space="preserve">
+    <value>Postadresse</value>
+  </data>
+  <data name="UseSchedulePlanning" xml:space="preserve">
+    <value>Brug Turplanlægning</value>
+  </data>
+  <data name="ContactPhonePrompt" xml:space="preserve">
+    <value>Evt. officielle nummer til foreningen</value>
+  </data>
+  <data name="CVRnrPrompt" xml:space="preserve">
+    <value>Forenings CVR-nr. www.cvr.dk</value>
+  </data>
+  <data name="AssociationEmailPrompt" xml:space="preserve">
+    <value>Officielle e-mail til foreningen</value>
+  </data>
+  <data name="TextServiceProviderPasswordPrompt" xml:space="preserve">
+    <value>Kodeord til www.cpsms.dk</value>
+  </data>
+  <data name="TextServiceProviderPasswordRequired" xml:space="preserve">
+    <value>SMS Kodeord skal udfyldes når "Send Huske SMS" er afkrydset</value>
+  </data>
+  <data name="TextServiceProviderUserNamePrompt" xml:space="preserve">
+    <value>Brugernavn til www.cpsms.dk</value>
+  </data>
+  <data name="SMSUserNameRequired" xml:space="preserve">
+    <value>SMS Brugernavn skal udfyldes når "Send Huske SMS" er afkrydset</value>
+  </data>
+  <data name="TeamPhonePrompt" xml:space="preserve">
+    <value>Nr. til evt. turtelefon</value>
+  </data>
+  <data name="EventType" xml:space="preserve">
+    <value>Aktivitets type</value>
+  </data>
+  <data name="NewsType" xml:space="preserve">
+    <value>Nyhedstype</value>
+  </data>
+  <data name="ProfileInfo" xml:space="preserve">
+    <value>Profilinformation</value>
+  </data>
+  <data name="LoginRememberMe" xml:space="preserve">
+    <value>Husk mig?</value>
+  </data>
+  <data name="Birthdate" xml:space="preserve">
+    <value>Fødselsdag</value>
+  </data>
+  <data name="PersonType" xml:space="preserve">
+    <value>Profiltype</value>
+  </data>
+  <data name="Er_DisplayFormat" xml:space="preserve">
+    <value>Værdien {0} er ikke gyldig for feltet {1}</value>
+    <comment>The value '05/15/2014' is not valid for Fødselsdag</comment>
+  </data>
+  <data name="FileTitle" xml:space="preserve">
+    <value>Fil titel</value>
+  </data>
+  <data name="FilType" xml:space="preserve">
+    <value>Fil type</value>
+  </data>
+  <data name="WikiBody" xml:space="preserve">
+    <value>Wiki indhold</value>
+  </data>
+  <data name="WikiTitle" xml:space="preserve">
+    <value>Emne titel</value>
+  </data>
+  <data name="ErrorAssociationDBError" xml:space="preserve">
+    <value>Fejl ved læsning fra Foreningsdatabasen</value>
+  </data>
+  <data name="Teamleader" xml:space="preserve">
+    <value>Holdleder</value>
+  </data>
+  <data name="NetworkID" xml:space="preserve">
+    <value>Netværks ID</value>
+  </data>
+  <data name="AssociationStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Established" xml:space="preserve">
+    <value>Etableret</value>
+  </data>
+  <data name="PersonTypeActive" xml:space="preserve">
+    <value>Aktiv (Går som Natteravn)</value>
+  </data>
+  <data name="PersonTypePassiv" xml:space="preserve">
+    <value>Passiv (Går pt. ikke som Natteravn)</value>
+  </data>
+  <data name="PersonTypeSupport" xml:space="preserve">
+    <value>Supporter (Støtter Natteravnene)</value>
+  </data>
+  <data name="PersonTypeVIP" xml:space="preserve">
+    <value>VIP (Vigtig person)</value>
+  </data>
+  <data name="Causedate" xml:space="preserve">
+    <value>Kursusdato</value>
+  </data>
+  <data name="CauseName" xml:space="preserve">
+    <value>Kursusnavn</value>
+  </data>
+  <data name="UserNameNotUnique" xml:space="preserve">
+    <value>Brugernavnet "{0}" er ikke unik, vælg et nyt eller behold det eksisterende</value>
+  </data>
+  <data name="UserNameNotUniqueSuggestion" xml:space="preserve">
+    <value>Brugernavnet "{0}" er ikke unik, brug det forslået eller vælg et nyt</value>
+  </data>
+  <data name="BoardFunctionTypeAccountant" xml:space="preserve">
+    <value>Kasserer</value>
+  </data>
+  <data name="BoardFunctionTypeAlternate" xml:space="preserve">
+    <value>Suppleant</value>
+  </data>
+  <data name="BoardFunctionTypeAuditor" xml:space="preserve">
+    <value>Revisor</value>
+  </data>
+  <data name="BoardFunctionTypeAuditorAlternate" xml:space="preserve">
+    <value>Revisorsuppleant</value>
+  </data>
+  <data name="BoardFunctionTypeBoardMember" xml:space="preserve">
+    <value>Bestyrelsesmedlem</value>
+  </data>
+  <data name="BoardFunctionTypeChairman" xml:space="preserve">
+    <value>Formand</value>
+  </data>
+  <data name="BoardFunctionTypeNone" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="BoardFunctionTypeViceChairman" xml:space="preserve">
+    <value>Næstformand</value>
+  </data>
+  <data name="GenderMan" xml:space="preserve">
+    <value>Mand</value>
+  </data>
+  <data name="GenderNotDefined" xml:space="preserve">
+    <value>Ikke defineret</value>
+  </data>
+  <data name="GenderWoman" xml:space="preserve">
+    <value>Kvinde</value>
+  </data>
+  <data name="CauseDescription" xml:space="preserve">
+    <value>Kursusbeskrivelse</value>
+  </data>
+  <data name="CountryDK" xml:space="preserve">
+    <value>Danmark</value>
+  </data>
+  <data name="CountryFO" xml:space="preserve">
+    <value>Færøerne</value>
+  </data>
+  <data name="CountryGL" xml:space="preserve">
+    <value>Grønland</value>
+  </data>
+  <data name="CountrySE" xml:space="preserve">
+    <value>Sverige</value>
+  </data>
+  <data name="SetupEditor" xml:space="preserve">
+    <value>Redaktør</value>
+  </data>
+  <data name="SetupPlanner" xml:space="preserve">
+    <value>Turplanlægger</value>
+  </data>
+  <data name="SetupSecretary" xml:space="preserve">
+    <value>Sekretær</value>
+  </data>
+  <data name="CurrentAssociation" xml:space="preserve">
+    <value>Nuværende forening</value>
+  </data>
+  <data name="ListLines" xml:space="preserve">
+    <value>Rækker i lister</value>
+  </data>
+  <data name="NetworkNotToShow" xml:space="preserve">
+    <value>Netværk kan ikke vælges</value>
+  </data>
+  <data name="TeamStatus_Cancelled" xml:space="preserve">
+    <value>Aflyst</value>
+  </data>
+  <data name="TeamStatus_Droped" xml:space="preserve">
+    <value>Nedlagt</value>
+  </data>
+  <data name="TeamStatus_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="TeamStatus_Planned" xml:space="preserve">
+    <value>Planlagt</value>
+  </data>
+  <data name="AssociationStatusActive" xml:space="preserve">
+    <value>Aktiv</value>
+  </data>
+  <data name="AssociationStatusClosed" xml:space="preserve">
+    <value>Nedlagt</value>
+  </data>
+  <data name="AssociationStatusDorment" xml:space="preserve">
+    <value>Bero</value>
+  </data>
+  <data name="AssociationNumber" xml:space="preserve">
+    <value>Forenings Nummer</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beskrivelse</value>
+  </data>
+  <data name="LocationActive" xml:space="preserve">
+    <value>Aktiv lokation</value>
+  </data>
+  <data name="LocationShowNationaMap" xml:space="preserve">
+    <value>Vis på national kort</value>
+  </data>
+  <data name="ShortName" xml:space="preserve">
+    <value>Kort navn</value>
+  </data>
+  <data name="GovernanceType" xml:space="preserve">
+    <value>Bestyrelsesform</value>
+  </data>
+  <data name="GovernanceTypeSteeringgroup" xml:space="preserve">
+    <value>Styregruppe</value>
+  </data>
+  <data name="GovernanceTypeTraditionel" xml:space="preserve">
+    <value>Traditionel</value>
+  </data>
+  <data name="AssociationSeniorInstructor" xml:space="preserve">
+    <value>Tilknyttet Senior Instruktør</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>Mobil</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Slut</value>
+  </data>
+  <data name="FolderStatusArchived" xml:space="preserve">
+    <value>Arkiveret</value>
+  </data>
+  <data name="FolderStatusInput" xml:space="preserve">
+    <value>Input</value>
+  </data>
+  <data name="FolderStatusNew" xml:space="preserve">
+    <value>Ny</value>
+  </data>
+  <data name="FolderStatusPubliceret" xml:space="preserve">
+    <value>Publiceret</value>
+  </data>
+  <data name="NoteTextSent" xml:space="preserve">
+    <value>Note SMS sent</value>
+  </data>
+  <data name="ReminderTextSent" xml:space="preserve">
+    <value>Huske SMS sendt</value>
+  </data>
+  <data name="Teamlog" xml:space="preserve">
+    <value>Hold log</value>
+  </data>
+  <data name="Trial" xml:space="preserve">
+    <value>Prøvetur</value>
+  </data>
+  <data name="TrialInfo" xml:space="preserve">
+    <value>Prøvetur information</value>
+  </data>
+  <data name="LevelTypeGlobaly" xml:space="preserve">
+    <value>Globalt</value>
+  </data>
+  <data name="LevelTypeLocal" xml:space="preserve">
+    <value>Lokalt</value>
+  </data>
+  <data name="LevelTypeNational" xml:space="preserve">
+    <value>Nationalt</value>
+  </data>
+  <data name="LevelTypeNetvork" xml:space="preserve">
+    <value>Netværk</value>
+  </data>
+  <data name="RepetitionTypeBiWeekly" xml:space="preserve">
+    <value>Hver 2. uge</value>
+  </data>
+  <data name="RepetitionTypeDaily" xml:space="preserve">
+    <value>Dagligt</value>
+  </data>
+  <data name="RepetitionTypeMonthly" xml:space="preserve">
+    <value>Månedligt</value>
+  </data>
+  <data name="RepetitionTypeNone" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="RepetitionTypeSecondday" xml:space="preserve">
+    <value>Hver 2. dag</value>
+  </data>
+  <data name="RepetitionTypeWeekly" xml:space="preserve">
+    <value>Ugentligt</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Varighed</value>
+  </data>
+  <data name="StarTeam" xml:space="preserve">
+    <value>Stjernetur</value>
+  </data>
+  <data name="MeetingDate" xml:space="preserve">
+    <value>Mødedato</value>
+  </data>
+  <data name="MinutesTypeBoardmeeting" xml:space="preserve">
+    <value>Bestyrelsesmøde</value>
+  </data>
+  <data name="MinutesTypeExtraordinaryGeneralMeeting" xml:space="preserve">
+    <value>Ekstraordinær generalforsamling</value>
+  </data>
+  <data name="MinutesTypeGeneralMeeting" xml:space="preserve">
+    <value>Generalforsamling</value>
+  </data>
+  <data name="MaxTeams" xml:space="preserve">
+    <value>Max tur i perioden</value>
+  </data>
+  <data name="Headline" xml:space="preserve">
+    <value>Overskrift</value>
+  </data>
+  <data name="DistributionLevel" xml:space="preserve">
+    <value>Distributions niveau</value>
+  </data>
+  <data name="SourceLevel" xml:space="preserve">
+    <value>Kilde</value>
+  </data>
+  <data name="NetworkNumber" xml:space="preserve">
+    <value>Netværks nr.</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Indhold</value>
+  </data>
+  <data name="Depublish" xml:space="preserve">
+    <value>Skjul</value>
+  </data>
+  <data name="Internal" xml:space="preserve">
+    <value>Intern nyhed</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Dato publisering</value>
+  </data>
+  <data name="Teaser" xml:space="preserve">
+    <value>Teaser</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>Visninger</value>
+  </data>
+  <data name="LastContactHQ" xml:space="preserve">
+    <value>Sidste kontakt LS</value>
+  </data>
+  <data name="IgnorDistribution" xml:space="preserve">
+    <value>Ignorer distribution</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Lokation</value>
+  </data>
+  <data name="TeamMember" xml:space="preserve">
+    <value>Ravn</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="WikiWord" xml:space="preserve">
+    <value>Ord</value>
+  </data>
+  <data name="UseLinksPage" xml:space="preserve">
+    <value>Brug Link Websiden</value>
+  </data>
+  <data name="UsePressPage" xml:space="preserve">
+    <value>Brug Presse Websiden</value>
+  </data>
+  <data name="UseSponsorPage" xml:space="preserve">
+    <value>Brug Sponsor Websiden</value>
+  </data>
+  <data name="DeadlineHoursTeamChange" xml:space="preserve">
+    <value>Grænse i timer for Frivillig turændringer</value>
+  </data>
+  <data name="Issue" xml:space="preserve">
+    <value>Bekymring med forening</value>
+  </data>
+  <data name="Confirmnewpassword" xml:space="preserve">
+    <value>Konfimer nyt koderord</value>
+  </data>
+  <data name="Currentpassword" xml:space="preserve">
+    <value>Nuværende kodeord</value>
+  </data>
+  <data name="Newpassword" xml:space="preserve">
+    <value>Nyt kodeord</value>
+  </data>
+  <data name="NoMatchPassword" xml:space="preserve">
+    <value>Nyt kodeord og Komfimer nyt kodeor matcher ikke</value>
+  </data>
+  <data name="Body" xml:space="preserve">
+    <value>Indhold</value>
+  </data>
+  <data name="NewNote" xml:space="preserve">
+    <value>Ny note</value>
+  </data>
+  <data name="Anniversary" xml:space="preserve">
+    <value>Jubilæum</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>År</value>
+  </data>
+  <data name="LeadStatusAcknowledge" xml:space="preserve">
+    <value>Kvitterede</value>
+  </data>
+  <data name="LeadStatusAssigned" xml:space="preserve">
+    <value>Tildelt</value>
+  </data>
+  <data name="LeadStatusDroped" xml:space="preserve">
+    <value>Fortrudt - før prøvetur</value>
+  </data>
+  <data name="LeadStatusNew" xml:space="preserve">
+    <value>Ny</value>
+  </data>
+  <data name="LeadStatusSucces" xml:space="preserve">
+    <value>Blevet frivillig</value>
+  </data>
+  <data name="LeadStatusTrial" xml:space="preserve">
+    <value>Prøvetur</value>
+  </data>
+  <data name="LeadStatusSPAM" xml:space="preserve">
+    <value>SPAM</value>
+  </data>
+  <data name="LeadStatusRecived" xml:space="preserve">
+    <value>Modtaget</value>
+  </data>
+  <data name="LeadStatusDropedTrial" xml:space="preserve">
+    <value>Fortrudt - efter prøvetur</value>
+  </data>
+  <data name="LeadStatusNotSuited" xml:space="preserve">
+    <value>Ikke egnet</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Alder</value>
+  </data>
+  <data name="LeadStatusClarification" xml:space="preserve">
+    <value>Afventer afklaring (LS)</value>
+  </data>
+  <data name="LeadStatusWaiting" xml:space="preserve">
+    <value>Afventer afklaring (Forening)</value>
+  </data>
+  <data name="RequestUpdateMail" xml:space="preserve">
+    <value>Rykker mail sent</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="SponsorLogoImage" xml:space="preserve">
+    <value>Sponsor logo</value>
+  </data>
+  <data name="Sequence" xml:space="preserve">
+    <value>Rækkefølge</value>
+  </data>
+  <data name="SequenceRange" xml:space="preserve">
+    <value>Værdi skal være mellem 0 og 100</value>
+  </data>
+</root>

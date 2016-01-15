@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="TeamMessageTeamLeader" xml:space="preserve">
+    <value>Hej ##Fornavn##, Du skal ud og gå Natteravn ##Turstart## med ##Ravne##. Du er Holdleder og der er sendt en besked til de andre om turen fra dig, så du skulle få besked fra dem. Hvis ikke må du følge op på Ravnene.</value>
+  </data>
+  <data name="TeamMessage" xml:space="preserve">
+    <value>Hej ##Fornavn##, Du skal ud og gå Natteravn ##Turstart## med ##Ravne##. Du bedes give tilbagemelding til Holdlederen ved at svare på denne SMS.</value>
+  </data>
+  <data name="TextServiceProviderPassword" xml:space="preserve">
+    <value>UBFHVI</value>
+  </data>
+  <data name="TextServiceProviderUserName" xml:space="preserve">
+    <value>FFSA</value>
+  </data>
+  <data name="Scheduletext" xml:space="preserve">
+    <value>&lt;p&gt;&lt;strong&gt;Husk:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;i&gt;Kan du ikke gå alligevel&lt;/i&gt;, skal DU gøre alt for at finde en afløser. Det kan du gøre enten gennem de frivillige i samråd med holdlederen, eller ved evt. at finde en person som du har tillid til, og som godt kunne tænke sig en prøvetur. Du kan via Ravnetur.dk udsende både e-mail og SMS til Ravnene for at høre, om der er nogen der har mulighed for at tage din tur. Lykkes dette IKKE så giv holdlederen besked og turen må aflyses./p&gt;</value>
+  </data>
+  <data name="Welcomeemail" xml:space="preserve">
+    <value>&lt;p&gt;Natteravnene i &lt;b&gt;{0}&lt;/b&gt; er nu oprettet i Ravnetur.dk, og er klar til brug.&lt;/p&gt;
+&lt;fieldset  style="background: #ffe600;margin: 8px;padding: 5px 20px 5px 20px;border: 2px solid #6d6e71;border-radius: 8px;-webkit-border-radius: 8px;-moz-border-radius: 8px;"&gt;
+&lt;legend&gt;Brugernavn og Kodeord&lt;/legend&gt;
+Brugernavn: {1}&lt;br /&gt;
+Kodeord: {2}
+&lt;p&gt;&lt;b&gt;Husk:&lt;/b&gt; at du altid på Ravnetur.dk kan få dit brugernavn og kodeord tilsendt per SMS eller E-mail, i boksen til højre på forsiden.&lt;/b&gt;&lt;/p&gt;&lt;/fieldset&gt;
+&lt;p&gt;For at du kan teste systemet, er Haslevs konto til at sende SMS hos CPSMS der 
+    bruges, hvorfor du snarrest muligt bedes oprette en konto hos CPSMS (De har en test konto med 10 
+    GRATIS SMS'er som du kan bruge).
+Du finder CPSMS på &lt;a href="CPSMS.dk"&gt;CPSMS.DK&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Gode links for at komme i gang:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.ravnetur.dk/Hjaelp.htm"&gt;Dokumentation til systemet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Husk at systemet er udviklet på frivillig basis, hvorfor du bedes have forståelse for at support helst forgår ved at skrive til &lt;a href="mailto:webmaster@ravnetur.dk"&gt;webmaster@ravnetur.dk&lt;/a&gt;. 
+Landssekretariatet er IKKE involveret i support af systemet.&lt;/p&gt;
+&lt;p&gt;Da systemet stadig er i beta version, hav forståelse for hvis du møder en fejl. Skriv gerne til mig om fejlen. Ligeledes hvis du har en god ide til at gøre det nemmere at administrere foreningen, så hører jeg gerne fra dig 
+- mit udgangs punkt er at det er Natteravnenes system og lad os hjælpes med at gøre det bedre og bedre.&lt;/p&gt;
+&lt;p&gt;Jeg håber du kan drage nytte af system. God fornøjelse med testen.&lt;/p&gt;
+&lt;p&gt;Med venlig hilsen&lt;/p&gt;
+&lt;p&gt;Dan Taxbøl&lt;/p&gt;</value>
+  </data>
+  <data name="WelcomeTxt" xml:space="preserve">
+    <value>Hej {0},
+Så er Natteravnene i {1} oprettet på Ravnetur.dk, og er klar til brug. For at logge ind brug nedestående.
+---
+Brugernavn ""{2}""
+Kodeord ""{3}""
+---
+Der er også sendt en e-mail med flere informationer.
+God fornøjelse
+Ravnetur.dk</value>
+  </data>
+  <data name="NoteTextTime" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="SendTeamTextDays" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="PageContentAbout" xml:space="preserve">
+    <value>Aboutside</value>
+  </data>
+  <data name="PageContentAboutTitle" xml:space="preserve">
+    <value>Omside</value>
+  </data>
+  <data name="PageContentLink" xml:space="preserve">
+    <value>Link side</value>
+  </data>
+  <data name="PageContentLinkTitle" xml:space="preserve">
+    <value>Link side</value>
+  </data>
+  <data name="PageContentPress" xml:space="preserve">
+    <value>Presseside</value>
+  </data>
+  <data name="PageContentPressTitle" xml:space="preserve">
+    <value>Presseside</value>
+  </data>
+  <data name="PageContentSponsor" xml:space="preserve">
+    <value>Sponsor side</value>
+  </data>
+  <data name="PageContentSponsorTitle" xml:space="preserve">
+    <value>Sponsorside</value>
+  </data>
+</root>

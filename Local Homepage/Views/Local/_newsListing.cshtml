@@ -1,0 +1,19 @@
+﻿@model List<News>
+
+@if (Model.Any())
+{
+    foreach (News item in Model)
+    {
+        <div class="media">
+            <div class="media-left">
+                <a href="@Url.Action("Nyhed", "Local", new { id = item.NewsId.ToString().Replace("-", ""), titel = item.Headline.ValidFileName() })" class="newsimage">
+                    @Html.NewsImage(item, new { @class = "" })
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading"><a href="@Url.Action("Nyhed", "Local", new { id = item.NewsId.ToString().Replace("-", ""), titel = item.Headline.ValidFileName() })">@item.Headline</a></h4>
+                @item.Teaser
+            </div>
+        </div>
+    }
+}

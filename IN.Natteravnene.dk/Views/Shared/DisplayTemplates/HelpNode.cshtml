@@ -1,0 +1,10 @@
+﻿@model MvcSiteMapProvider.Web.Html.Models.SiteMapTitleHelperModel
+@using System.Web.Mvc.Html
+@using MvcSiteMapProvider.Web.Html.Models
+@if (Model.CurrentNode != null && Model.CurrentNode.Attributes.ContainsKey("help"))
+{
+    <a src="@Url.Action("GetHelp","Home", new {ID = Model.CurrentNode.Attributes["help"] })" data-toggle="modal" data-target="#pagehelp" class="btn btn-app btn-info btn-xs" data-rel="tooltip" data-placement="left" title="@General.BtnHelpTooltip">
+        <i class="ace-icon fa fa-question bigger-160"></i>
+    </a>
+
+}

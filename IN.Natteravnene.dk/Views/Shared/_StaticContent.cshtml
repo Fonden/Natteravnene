@@ -1,0 +1,11 @@
+﻿@model Content
+
+<div style="position: relative;">
+    @Html.Raw(Model.Body)
+@if (Roles.IsUserInRole("Administrator") | Roles.IsUserInRole("Management"))
+{
+    <a class="btn btn-info btn-xs discreteedit" href="@Url.Action("Edit", "Content", new { area = "Admin", id = Model.ContentID })" data-rel="tooltip" title="@General.BtnSilentEdit">
+        <i class="@Icons.Edit bigger-110 icon-only"></i>
+    </a>
+}
+</div>

@@ -1,0 +1,204 @@
+﻿@model Event
+@section pagescripts {
+    @Scripts.Render("~/bundles/form")
+    @Scripts.Render("~/bundles/jcrop")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+
+
+        jQuery.validator.addMethod('date',
+           function (value, element, params) {
+               if (this.optional(element)) {
+                   return true;
+               }
+               try {
+                   var format = getDateFormat('@General.JavaScripDateformat HH:mm');
+                   var result = MyParseDate(value, format);
+                   return result;
+               } catch (err) {
+                   console.log(err);
+                   return false;
+               }
+           });
+
+        var timeSpan;
+
+        jQuery(function ($) {
+
+            ///////////////////////////////////////////
+            $('#DescriptionEditor').ace_wysiwyg({
+                toolbar:
+                [
+                    { name: 'bold', className: 'btn-info' },
+                    { name: 'italic', className: 'btn-info' },
+                    { name: 'underline', className: 'btn-info' },
+                    null,
+                    { name: 'insertunorderedlist', className: 'btn-success' },
+                    { name: 'insertorderedlist', className: 'btn-success' },
+                    { name: 'outdent', className: 'btn-purple' },
+                    { name: 'indent', className: 'btn-purple' },
+                    null,
+                    { name: 'undo', className: 'btn-grey' },
+                    { name: 'redo', className: 'btn-grey' },
+                    null,
+			        { name: 'createLink', className: 'btn-pink' },
+			        { name: 'unlink', className: 'btn-pink' }
+                ]
+            }).prev();
+
+            var dtstart;
+            var stfinish;
+
+            jQuery('#Start').datetimepicker({
+                format: 'd-m-Y H:i:s',
+                inline: true,
+                lang: 'da',
+                step: 15,
+                dayOfWeekStart: 1,
+                onChangeDateTime: function (dp, $input) {
+                   
+                    stfinish.setOptions({
+                        minDate: jQuery('#Start').val() ? jQuery('#Start').val().substring(0, 10) : false,
+                        formatDate: 'd-m-Y',
+                        value: jQuery('#Start').val()
+                    })
+                },
+                    formatDate: 'd-m-Y',
+                    minDate: '@DateTime.Now.ToString()',
+                onGenerate: function (crt) { dtstart = this }
+            });
+
+            jQuery('#Finish').datetimepicker({
+                format: 'd-m-Y H:i:s',
+                inline: true,
+                lang: 'da',
+                step: 15,
+                dayOfWeekStart: 1,
+                onChangeDateTime: function (crt) {
+                    dtstart.setOptions({
+                        maxDate: jQuery('#Finish').val() ? jQuery('#Finish').val().substring(0, 10) : false,
+                        formatDate: 'd-m-Y'
+                    })
+                },
+                minDate: jQuery('#Start').val() ? jQuery('#Start').val().substring(0, 10) : false,
+                formatDate: 'd-m-Y',
+                onGenerate: function (crt) { stfinish = this }
+            });
+
+
+            
+
+
+
+
+
+
+            $('form').on('submit', function () {
+
+                //put the editor's html content inside the hidden input to be sent to server
+                $('input[name=Description]', this).val($('#DescriptionEditor').html());
+
+                return true;
+            });
+  
+
+        });
+    </script>
+}
+<div class="page-header position-relative">
+    <h1>
+        <a href="@Url.Action("Index")" class="btn btn-small btn-primary">
+            <i class="ace-icon @Icons.BackIcon icon-only"></i>
+        </a> @(Model.EventID == Guid.Empty ? General.EventCreate : General.EventEdit)
+    </h1>
+</div>
+
+@using (Html.BeginForm("Edit", null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+
+    @Html.Partial("~/Views/Shared/_FormSummery.cshtml");
+    @Html.HiddenFor(m => m.EventID)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Headline, new { @class = "col-sm-2 control-label no-padding-right" })
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.Headline, new { @class = "form-control", placeholder = DomainStrings.Headline })
+            @Html.ValidationMessageFor(m => m.Headline)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+    
+        <div class="form-group">
+        @Html.LabelFor(m => m.Location, new { @class = "col-sm-2 control-label no-padding-right" })
+        <div class="col-sm-8">
+            @Html.TextBoxFor(m => m.Location, new { @class = "form-control", placeholder = DomainStrings.Headline })
+            @Html.ValidationMessageFor(m => m.Location)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "col-sm-2 control-label no-padding-right" })
+        <div class="col-sm-8">
+            <div class="wysiwyg-editor" id="DescriptionEditor">
+                @Html.Raw(Model.Description)
+            </div>
+            @Html.HiddenFor(f => f.Description)
+            @Html.ValidationMessageFor(m => m.Description)
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Start, new { @class = "col-sm-2 control-label no-padding-right" })
+                <div class="col-sm-10">
+
+                    <div class="input-group">
+                        <input name="@Html.NameFor(m => m.Start)" id="@Html.IdFor(m => m.Start)" value="@Model.Start" />
+                        @*Html.TextBoxFor(m => m.Start, "{0:dd-MM-yyyy HH:mm}", new { @class = "form-control", placeholder = DomainStrings.Start })*@
+
+
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Start)
+                </div>
+            </div>
+        </div>
+
+        <div class="space-4"></div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Finish, new { @class = "col-sm-2 control-label no-padding-right" })
+                <div class="col-sm-10">
+
+                    <div class="input-group">
+                        <input name="@Html.NameFor(m => m.Finish)" id="@Html.IdFor(m => m.Finish)" value="@Model.Finish" />
+                        @*Html.TextBoxFor(m => m.Finish, "{0:dd-MM-yyyy HH:mm}", new { @class = "form-control", placeholder = DomainStrings.Finish })*@
+
+
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Finish)
+                </div>
+
+            </div>
+
+            <div class="space-4"></div>
+        </div>
+    </div>
+   
+    <div class="space-4"></div>
+    <div class="form-actions">
+        <button class="btn btn-info" type="submit" data-rel="tooltip" data-placement="right" title="@(Model.EventID == Guid.Empty ? General.BtnCreateTooltip : General.BtnSaveTooltip)">
+            <i class=" icon-ok bigger-110">
+            </i>
+            @(Model.EventID == Guid.Empty ? General.Create : General.Save)
+        </button>
+    </div>
+
+}

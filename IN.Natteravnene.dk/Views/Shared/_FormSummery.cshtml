@@ -1,0 +1,44 @@
+﻿@if (!this.ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-error">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="icon-remove"></i>
+        </button>
+        <strong>
+            <i class="icon-warning-sign"></i>
+            @General.FormError
+        </strong>
+        @Html.ValidationSummary()
+    </div>
+
+}
+else if (ViewBag.FormSucces == true)
+{
+    <div class="alert alert-block alert-success">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="icon-remove"></i>
+        </button>
+
+        <p>
+            <strong>
+                <i class="icon-ok"></i>
+                @General.FormSucces
+            </strong>
+        </p>
+    </div>
+}
+else if (ViewBag.HandledException == true)
+{
+    <div class="alert alert-block alert-success">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="icon-remove"></i>
+        </button>
+
+        <p>
+            <strong>
+                <i class="icon-ok"></i>
+                @General.FormHandledException
+            </strong>
+        </p>
+    </div>
+}

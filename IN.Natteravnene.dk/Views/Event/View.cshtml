@@ -1,0 +1,19 @@
+﻿@model Event
+
+
+<div class="page-header position-relative">
+    <h1>
+        <a href="@Url.Action("Index")" class="btn btn-small btn-primary">
+            <i class="ace-icon @Icons.BackIcon icon-only"></i>
+        </a> @Model.Headline
+    </h1>
+</div>
+<div class="eventdetail pull-right">
+    <i class="ace-icon fa fa-calendar light-orange bigger-110"></i>&nbsp;@Html.TextDatePeriod(Model.Start, Model.Finish)<br />
+    <i class="ace-icon fa fa-clock-o light-orange bigger-110"></i>&nbsp;@Model.Start.ToShortTimeString()&nbsp;-&nbsp;@Model.Finish.ToShortTimeString()<br />
+    <i class="ace-icon fa fa-map-marker light-orange bigger-110"></i>&nbsp;@Model.Location
+
+</div>
+@Html.Raw(Model.Description)
+
+

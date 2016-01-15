@@ -1,0 +1,156 @@
+﻿@model List<Sponsor>
+@section pagescripts {
+    @Scripts.Render("~/bundles/table")
+}
+@section inlinescripts {
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $(document).on("click", ".sendlogin", function () {
+                var Id = $(this).data('id');
+                $.post("@Url.Action("SendLogin",null,new {ID = ""})/" + Id, function (data) {
+                    alert(data.errorMessage);
+                });
+                return false;
+            });
+
+            $('.absent').on("click",function(event) {
+                event.preventDefault();
+                var r=confirm("Er du sikker?");
+                if (r==true)   {
+                    window.location = $(this).attr('href');
+                }
+
+            });
+
+            var oTable1 = $('#Voulunteers-table')
+                .on('xhr.dt', function (e, settings, json) {
+                    $('[data-rel="tooltip"]').tooltip();
+                })
+                .dataTable({
+                    "language": {
+                        "lengthMenu": "@General.DatatablesLengthMenu",
+                        "zeroRecords": "@General.DatatablesZeroRecords",
+                        "info": "@General.DatatablesInfo",
+                        "infoEmpty": "@General.DatatablesInfoEmpty",
+                        "infoFiltered": "@General.DatatablesInfoFiltered",
+                        "loadingRecords": "@General.DatatablesLoadingRecords",
+                        "processing": "@General.DatatablesProcessing",
+                        "search": "@General.Search:",
+                        "thousands": "@General.ThousenSeperator",
+                        "paginate": {
+                            first: ">>",
+                            previous: "<",
+                            next: ">",
+                            last: "<<"
+                        }
+                    },
+                    "columnDefs": [
+
+
+                         {
+                             "targets": [5],
+                             "searchable": false,
+                             "orderable": false
+                         }
+                    ]
+                                ,
+                    "pageLength": @NR.Infrastructure.CurrentProfile.ListLines.ToString(),
+                    "order": [[1, "asc"]]
+                });
+
+            //$('[data-rel="tooltip"]').tooltip({ placement: tooltip_placement });
+            //function tooltip_placement(context, source) {
+            //    var $source = $(source);
+            //    var $parent = $source.closest('table')
+            //    var off1 = $parent.offset();
+            //    var w1 = $parent.width();
+
+            //    var off2 = $source.offset();
+            //    //var w2 = $source.width();
+
+            //    if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+            //    return 'left';
+            //}
+
+
+        });
+
+
+        
+    </script>
+}
+
+
+<div class="page-header position-relative">
+        <div class="pull-right">
+            @Html.ActionLink(General.BtnNewSponsor, "EditSponsor", null, null, new { @class = "btn btn-small btn-primary", data_rel = "tooltip", data_placement = "left", title = General.BtnNewSponsorTooltip })
+        </div>
+    <h1>@General.Sponsors</h1>
+</div>
+
+
+<table id="Voulunteers-table" class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>@DomainStrings.Name</th>
+            <th>@DomainStrings.Finish</th>
+            <th>@DomainStrings.URL</th>
+            <th>@DomainStrings.Sequence</th>
+            <th>@DomainStrings.Created</th>
+            <th class="">@DomainStrings.Lastchanged</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Sponsor S in Model)
+        {
+            <tr>
+                <td>@S.Name</td>
+                <td data-order="@(S.Finish == null ? 0 : ((DateTime)S.Finish).Ticks)">@S.Finish</td>
+                <td>@S.URL</td>
+                <td>@S.Sequence</td>
+                <td data-order="@S.Created.Ticks">@S.Created</td>
+                <td data-order="@S.Lastchanged.Ticks">@S.Lastchanged</td>
+                <td>
+                    <div class="hidden-sm hidden-xs action-buttons">
+                            <a class="green" href="@Url.Action("EditSponsor", new {id = S.SponsorID  })" data-rel="tooltip" title="@General.Edit">
+                                <i class="@Icons.Edit bigger-130"></i>
+                            </a>
+                            <a class="yellow" href="@Url.Action("DeleteSponsor", new { id = S.SponsorID })" data-rel="tooltip" title="@General.Delete">
+                                <i class="@Icons.Delete bigger-130"></i>
+                            </a>
+                    </div>
+                    <div class="hidden-md hidden-lg">
+                        <div class="inline position-relative">
+                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                    <li>
+                                        <a href="@Url.Action("EditSponsor", new { id = S.SponsorID })" class="tooltip-success" data-rel="tooltip" title="@General.Edit" >
+                                            <span class="green">
+                                                <i class="@Icons.Edit bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("DeleteSponsor", new { id = S.SponsorID })" class="tooltip-success sendlogin" data-rel="tooltip" title="@General.Delete">
+                                            <span class="yellow">
+                                                <i class="@Icons.Delete bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

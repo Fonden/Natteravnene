@@ -1,0 +1,116 @@
+﻿@model BoardModel
+
+
+<div class="page-header position-relative">
+    <h1>
+        <a href="@Url.Action("Index")" class="btn btn-small btn-primary">
+            <i class="ace-icon @Icons.BackIcon icon-only"></i>
+        </a> @General.Board @string.Format(General.BrandTitleAssociation, Model.AssociationName)
+    </h1>
+</div>
+@*using (Ajax.BeginForm("EditBoard", null, FormMethod.Post, null,  new { @class = "form-horizontal" })))*@
+@using (Html.BeginForm("EditBoard", null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(model => model.AssociationID)
+    @Html.Partial("~/Views/Shared/_FormSummery.cshtml");
+    <div class="row">
+        <div class="col-lg-6 col-xs-12">
+
+
+            <div class="form-group">
+                @Html.LabelFor(f => f.Chairmann, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                <div class="col-sm-9">
+                    @Html.DropDownListFor(model => model.Chairmann, new SelectList(Model.Active, "PersonID", "FullName", Model.Chairmann.ToString()))
+                    @Html.ValidationMessageFor(f => f.Chairmann)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(f => f.Accountant, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                <div class="col-sm-9">
+                    @Html.DropDownListFor(model => model.Accountant, new SelectList(Model.Active, "PersonID", "FullName", Model.Accountant.ToString()))
+                    @Html.ValidationMessageFor(f => f.Accountant)
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xs-12">
+            <div class="form-group">
+                @Html.LabelFor(f => f.Auditor, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                <div class="col-sm-9">
+                    @Html.DropDownListFor(model => model.Auditor, new SelectList(Model.All, "PersonID", "FullName", Model.Auditor.ToString()))
+                    @Html.ValidationMessageFor(f => f.Auditor)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(f => f.AuditorAlternate, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                <div class="col-sm-9">
+                    @Html.DropDownListFor(model => model.AuditorAlternate, new SelectList(Model.All, "PersonID", "FullName", Model.AuditorAlternate.ToString()))
+                    @Html.ValidationMessageFor(f => f.AuditorAlternate)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-xs-12">
+
+            @for (var MembersIndex = 0; MembersIndex < Model.BoardMembers.Count(); MembersIndex++)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(f => f.BoardMembers, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        @Html.DropDownListFor(f => f.BoardMembers[MembersIndex], new SelectList(Model.Active, "PersonID", "FullName", Model.BoardMembers[MembersIndex].ToString()))&nbsp;<button name="Action" value="delMember_@MembersIndex" class="btn btn-danger btn-sm">
+                            <i class="ace-icon fa fa-trash-o icon-only"></i>
+                        </button>
+                        @Html.ValidationMessageFor(f => f.BoardMembers[MembersIndex])
+                    </div>
+                </div>
+                <div class="space-4"></div>
+            }
+            <button name="Action" value="addMember" class="btn btn-info" type="submit">
+                <i class="icon-ok bigger-110"></i>
+                + @General.AddBoardMembers
+            </button>
+        </div>
+        <div class="col-lg-6 col-xs-12">
+            @for (var AlternateIndex = 0; AlternateIndex < Model.Alternate.Count(); AlternateIndex++)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(f => f.Alternate, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                    <div class="col-sm-9">
+                        @Html.DropDownListFor(f => f.Alternate[AlternateIndex], new SelectList(Model.Active, "PersonID", "FullName", Model.Alternate[AlternateIndex].ToString()))&nbsp;<button name="Action" value="delAlternate_@AlternateIndex" class="btn btn-danger btn-sm">
+                            <i class="ace-icon fa fa-trash-o icon-only"></i>
+                        </button>
+                        @Html.ValidationMessageFor(f => f.Alternate[AlternateIndex])
+                    </div>
+                </div>
+                <div class="space-4"></div>
+            }
+            <button name="Action" value="addAlternate" class="btn btn-info" type="submit">
+                <i class="icon-ok bigger-110"></i>
+                + @General.AddBoardAlternate
+            </button>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-xs-12">
+            <div class=" space-4"></div>
+            <div class="clearfix form-actions">
+                <div class="col-md-offset-3 col-md-9">
+                    <button class="btn btn-info" type="submit">
+                        <i class="icon-ok bigger-110"></i>
+                        @General.Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

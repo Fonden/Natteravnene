@@ -1,0 +1,158 @@
+﻿@model List<DrawModel>
+
+    @{
+        Layout = null;
+    }
+
+    <!DOCTYPE HTML>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+        @Styles.Render("~/bundles/style")
+        <style>
+                    .highlight {
+                        color: £FFF;
+                        background-color: #C00;
+                        -webkit-opacity: 0.45;
+                        -moz-opacity: 0.45;
+                        opacity: 0.45;
+                        -webkit-transition: all 0.4s ease;
+                        -moz-transition: all 0.4s ease;
+                        -ms-transition: all 0.4s ease;
+                        -o-transition: all 0.4s ease;
+                        transition: all 0.4s ease;
+                    }
+
+                    .youwin {
+                        font-size: 30px;
+                        background-color: #ffa;
+                        -webkit-opacity: 1;
+                        -moz-opacity: 1;
+                        opacity: 1;
+                    }
+
+                    .entrant {
+                        padding: 2px;
+                        font-size: 7px;
+                    }
+
+                    .highlight .association {
+                        background-color: yellow !important;
+                        color: #000000 !important;
+                    }
+
+                    .youwin .association {
+                        /*background-color: #aba4a4 !important;
+            color: #393838 !important;*/
+                    }
+                    #name, #username {
+                        display: block;
+                        width: 100%;
+                        text-align: center;
+                        font-size: 40px;
+                    } 
+                    #winners 
+                    {
+                        background-color:InactiveBorder;
+                        margin-top: 30px;
+
+                    }
+                     #winners div div
+                     {
+                         background-color: #b4c805;
+                         text-align: center;
+                         padding: 2px;
+                         margin: 2px;
+                         
+                          
+                     }
+                      #winners ol li
+                     {
+                        display:inline-block;
+
+                     }
+        </style>
+    </head>
+    <body>
+        <div>
+            <button class='choosewinner btn btn-sm btn-danger'>Vælg vinner</button>
+            @*@{ Html.RenderAction("_Draw");}*@
+            <div class="row">
+                @foreach (DrawModel D in Model)
+                {
+                    <div class="col-lg-1 entrant">
+                        <button class="btn btn-sm btn-default btn-block association" data-name="@D.Person.FullName" data-username="@D.Person.UserName">
+                            @foreach (Association A in D.Associations)
+                            {
+                                @A.Name
+                            }
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+        <div id="winners" class="row">
+            
+        </div>
+
+
+        <div class="modal fade" id="winnerannouncement">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p id="name"></p>
+                        <p id="username"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <script type="text/javascript">
+            if (!window.jQuery) { document.write('<script src="@Url.Content("~/Scripts/jquery-2.1.3.min.js")"><\/script>'); }
+        </script>
+        @Scripts.Render("~/bundles/js")
+        <script>
+            function highlight() {
+                var $divs = $('.entrant').removeClass('highlight');
+                var random = Math.floor(Math.random() * $divs.length);
+                $divs.eq(random).addClass('highlight');
+            }
+
+
+            $(".choosewinner").click(function () {
+                //highlight();
+                var startTime = new Date().getTime();
+                var interval = setInterval(function () {
+                    if (new Date().getTime() - startTime > 5000) {
+                        clearInterval(interval);
+                        $('.highlight').addClass('youwin');
+                        return;
+                    }
+                    highlight();
+                }, 200);
+            });
+
+
+            $(".youwin, .association").click(function () {
+                if ($(this).parent().hasClass("youwin"))
+                    {
+                var name = $(this).data("name");
+                var username = $(this).data("username");
+               
+                $('#winnerannouncement').modal('show');
+                $('#winners').append('<div class="col-lg-2"><div>' + name + ' <span class="username">(' + username + ')</span></div></div>');
+                $("#name").text(name);
+                $("#username").text(username);
+                }
+            });
+        </script>
+    </body>
+</html>

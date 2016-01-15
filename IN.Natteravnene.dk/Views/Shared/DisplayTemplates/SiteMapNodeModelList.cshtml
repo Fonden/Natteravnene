@@ -1,0 +1,15 @@
+﻿@model MvcSiteMapProvider.Web.Html.Models.SiteMapNodeModelList
+@using System.Web.Mvc.Html
+@using MvcSiteMapProvider.Web.Html.Models
+
+<ul class="submenu">
+    @foreach (var node in Model)
+    {
+        <li @if (node.IsCurrentNode) { <text> class="active" </text>  }
+            else if (node.IsInCurrentPath) { <text> class="active open" </text>  }>
+            @Html.DisplayFor(m => node)
+            @if (node.Children.Any())
+            { @Html.DisplayFor(m => node.Children)  }
+        </li>
+    }
+</ul>

@@ -1,0 +1,101 @@
+﻿@model AssociationViewModel
+@{
+    Layout = "~/Views/Shared/_about.cshtml";
+    ViewBag.Title = "Landssekretariatet";
+    ViewBag.MetaDescription = string.Format("Natteravnenes Landssekretariat er en non-profit organisation. Det er Landssekretariatet, der udlåner Natteravnenes karakteristiske gule jakker til {0}.", Model.AssociationName);
+    ViewBag.PageImage = "~/Content/Images/Natteravnene-5.jpg";
+    ViewBag.SocialImage = Html.FullyQualifiedUri("~/Content/Images/Natteravnene-5.jpg", Model.Host).ToString();
+    ViewBag.SocialType = "website";
+}
+<div class="row">
+    <div class="col-md-6">
+        <p>
+            Natteravnenes Landssekretariat er en non-profit organisation.
+        </p>
+        <p>
+            Medarbejderne er ansat af Fonden for Socialt Ansvar, der finansieres af større og mindre virksomheder, fonde, offentlige myndigheder samt via fradragsberettigede bidrag fra privatpersoner og arv.
+        </p>
+        <p>Sekretariat står for den overordnede kommunikation, udarbejder materialer og tilbyder løbende råd og vejledning.</p>
+        <p>Sekretariatet tilbyder erfaringsudveksling gennem nyhedsbreve og Landsmøder.</p>
+        <p>Det er Landssekretariatet, der udlåner Natteravnenes karakteristiske gule jakker til @Model.AssociationName.</p>
+    </div>
+    <div class="col-md-6">
+        <p>Landssekretariatet er også hotline og hotel for foreningernes egne hjemmesider.</p>
+        <p>
+            I forbindelse med etableringen af nye lokalforeninger tilbyder Sekretariatet fx. hjælp med planlægning, dele af undervisningen, ulykkesforsikring
+            med krisehjælp, lokal hjemmeside. Derefter tager foreningen formelt selv
+            ansvaret for sit fremtidige virke - i samarbejde med det lokale erhvervsliv.
+        </p>
+        <p>
+            Sekretariatet deltager gerne i informationsmøder om konceptet og frivillig
+            ansvarlighed på skoler, institutioner, virksomheder, foreninger m.v.
+            Har du spørgsmål eller en god ide er du velkommen til at kontakte Sekretariatet på tlf. 70 12 12 99 eller på info@natteravnene.dk
+            om Natteravnene
+        </p>
+        <p>Natteravnenes Landssekretariat, Olivia Hansens Gade 2, 1799 København V<br />Tlf: +45 70 12 12 99 info@natteravnene.dk</p>
+    </div>
+</div>
+<h2>Natteravnenes hovedsamarbejdspartnere</h2>
+<div class="row">
+    <div class="col-md-4 sponsor">
+        <div>
+            <div class="img-sponsor">
+                <img src="~/Content/Images/TrygFonden.png" alt="TrygFonden" />
+            </div>
+            <p>
+                TrygFonden har været hovedsamarbejdspartner siden 1. maj 2004. TrygFonden arbejder for at skabe mere tryghed i Danmark og er en del af TryghedsGruppen. Tryghedsgruppen er hovedejer i forsikringsselskabet Tryg og skaber værdi og tryghed gennem langsigtede investeringer og almennyttige uddelinger.
+            </p>
+            <a href="http://www.trygfonden.dk/Projekter/Natteravnene" target="_blank" class="btn btn-nr-yellow btn-block">Læs mere om TrygFonden</a>
+        </div>
+    </div>
+    <div class="col-md-4 sponsor">
+        <div>
+            <div class="img-sponsor">
+                <img src="~/Content/Images/Falck.png" alt="Falck" class="img-responsive" />
+            </div>
+            <p>
+                Falck har været Hovedsamarbejdspartner siden 1. maj 2004. Falck er landets største redningskorps, og deres formål er at forebygge og hjælpe. Siden Natteravnenes start har Falck bidraget med ulykkesbegrænsende 1. hjælps orientering i forbindelse med start af nye foreninger.
+            </p>
+            <a href="http://www.falck.dk/" target="_blank" class="btn btn-nr-yellow btn-block">Læs mere om Falck</a>
+        </div>
+    </div>
+    <div class="col-md-4 sponsor">
+        <div>
+            <div class="img-sponsor">
+                <img src="~/Content/Images/Carlsberg.png" alt="Carlsberg" class="img-responsive" />
+            </div>
+            <p>
+                Carlsberg har været Hovedsamarbejdspartner siden 1 maj 2004 Bryggeriet Carlsberg er nok mest kendt for sin støtte til kulturen, fodbold og andre sportsgrene. Men de er også en social ansvarlig virksomhed, som støtter aktiviteter med et socialt og forebyggende indhold.
+            </p>
+            <a href="http://www.carlsberggroup.com/" target="_blank" class="btn btn-nr-yellow btn-block">Læs mere om Carlsberg</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 sponsor">
+        <div>
+            <div class="img-sponsor">
+                <img src="~/Content/Images/DSB.png" alt="DSB" class="img-responsive" />
+            </div>
+            <p>
+                DSB har været Hovedsamarbejdspartner siden maj 2009. DSB er Danmarks største trafik operatør og er en selvstændig offentlig virksomhed ejet af Transport- og Energiministeriet. S-togene er DSB’s storbytog. De kører i hele hovedstadsområdet, og det er her, DSB har langt det største antal passagerer. Cirka 245.000 rejser i døgnet i gennemsnit, alle ugens dage, året rundt. DSB S-tog har været samarbejdspartner siden 1. juni 2008, siden hen er DSB tog i hele landet kommet til og Natteravne på arbejde har fri transport på samtlige strækninger på S-togsnettet, Fjern- og Regionalnettet samt på Kystbanen mellem Helsingør og Københavns Lufthavn, Kastrup.
+            </p>
+            <a href="http://www.dsb.dk/" target="_blank" class="btn btn-nr-yellow btn-block">Læs mere om DSB</a>
+        </div>
+    </div>
+    @if (DateTime.Now < new DateTime(2016, 1, 1, 0, 0, 0))
+    {
+        <div class="col-md-4 sponsor">
+            <div>
+                <div class="img-sponsor">
+                    <img src="~/Content/Images/Bikubenfonden.png" alt="Bikubenfonden" class="img-responsive" />
+                </div>
+                <p>
+                    Bikubenfonden har været Hovedsamarbejdspartner siden januar 2010. Bikubenfonden af 1989 er en erhvervsdrivende fond, der uddeler bevillinger til gavn for almennyttige og velgørende formål. Bikubenfonden støtter projekter og indsatser indenfor kultur og socialt udviklingsarbejde. Formålet med fondens sociale bevillinger er at øge livskvaliteten og forbedre levevilkårene for socialt udsatte og marginaliserede grupper. Fondens hovedfokus er på udsatte børn og unge og deres familier, men fonden støtter også indsatser og projekter, der er til gavn for andre udsatte grupper som f.eks. hjemløse og misbrugere. I 2008 uddelte fonden bevillinger på i alt godt 50 mio. kr. på det sociale område i Danmark og Grønland.
+                </p>
+                <a href="http://www.bikubenfonden.dk/" target="_blank" class="btn btn-nr-yellow btn-block">Læs mere om Bikubenfonden</a>
+            </div>
+        </div>
+    }
+</div>
+
